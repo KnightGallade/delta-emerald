@@ -218,6 +218,9 @@ Route101_EventScript_RouteSign::
 Route101_EventScript_BirchsBag::
 	lock
 	faceplayer
+	msgbox Route101_Text_WhichTypeStarter, MSGBOX_DEFAULT
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, Route101_Text_WhichTypeStarter_Choice1, Route101_Text_WhichTypeStarter_Choice2, Route101_Text_WhichTypeStarter_Choice3
+	copyvar VAR_STARTER_MON, VAR_RESULT
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_RESCUED_BIRCH
 	fadescreen FADE_TO_BLACK
@@ -296,4 +299,17 @@ Route101_Text_WildPokemonInTallGrass:
 Route101_Text_RouteSign:
 	.string "ROUTE 101\n"
 	.string "{UP_ARROW} OLDALE TOWN$"
+
+Route101_Text_WhichTypeStarter:
+	.string "There are several compartments...\n"
+	.string "Which color should you open?$"
+
+Route101_Text_WhichTypeStarter_Choice1:
+	.string "Green$"
+
+Route101_Text_WhichTypeStarter_Choice2:
+	.string "Red$"
+
+Route101_Text_WhichTypeStarter_Choice3:
+	.string "Blue$"
 

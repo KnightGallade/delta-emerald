@@ -42,6 +42,12 @@
 #include "constants/moves.h"
 #include "naming_screen.h"
 #include "tv.h"
+#include "battle_main.h"
+#include "battle_transition.h"
+#include "task.h"
+#include "sound.h"
+#include "script.h"
+#include "battle_setup.h"
 
  /*
     9 Starter Selection Birch Case
@@ -130,20 +136,52 @@ struct MonChoiceData{ // This is the format used to define a mon, everything lef
 //
 //  Making Changes Here Changes The Options In The UI. This is where you define your mons
 //
-static const struct MonChoiceData sStarterChoices[9] = 
+static const struct MonChoiceData sStarterChoicesGrass[9] = 
 {
-    [BALL_TOP_FIRST]        = {SPECIES_MUDKIP, 5, ITEM_POTION, BALL_NET, NATURE_JOLLY, 1, MON_MALE, {255, 255, 0, 0, 0, 0}, {31, 31, 31, 31, 31, 31}, {MOVE_FIRE_BLAST, MOVE_SHEER_COLD, MOVE_WATER_GUN, MOVE_THUNDER}, 0, 0, 0},
-    [BALL_TOP_SECOND]       = {SPECIES_TREECKO, 5},
+    [BALL_TOP_FIRST]        = {SPECIES_BULBASAUR, 5},
+    [BALL_TOP_SECOND]       = {SPECIES_CHIKORITA, 5},
+    [BALL_MIDDLE_FIRST]     = {SPECIES_TREECKO, 5},
+
+    [BALL_TOP_THIRD]        = {SPECIES_TURTWIG, 5},
+    [BALL_TOP_FOURTH]       = {SPECIES_SNIVY, 5},
+    [BALL_MIDDLE_THIRD]     = {SPECIES_CHESPIN, 5},
+
+    [BALL_MIDDLE_SECOND]    = {SPECIES_EEVEE, 5},
+    [BALL_BOTTOM_FIRST]     = {SPECIES_PANSAGE, 5},
+    [BALL_BOTTOM_SECOND]    = {SPECIES_COTTONEE, 5},
+};
+
+static const struct MonChoiceData sStarterChoicesFire[9] = 
+{
+    [BALL_TOP_FIRST]        = {SPECIES_CHARMANDER, 5},
+    [BALL_TOP_SECOND]       = {SPECIES_CYNDAQUIL, 5},
     [BALL_MIDDLE_FIRST]     = {SPECIES_TORCHIC, 5},
 
-    [BALL_TOP_THIRD]        = {SPECIES_CHIKORITA, 5},
-    [BALL_TOP_FOURTH]       = {SPECIES_NONE, 5},
-    [BALL_MIDDLE_THIRD]     = {SPECIES_CYNDAQUIL, 5},
+    [BALL_TOP_THIRD]        = {SPECIES_CHIMCHAR, 5},
+    [BALL_TOP_FOURTH]       = {SPECIES_TEPIG, 5},
+    [BALL_MIDDLE_THIRD]     = {SPECIES_FENNEKIN, 5},
 
-    [BALL_MIDDLE_SECOND]    = {SPECIES_BULBASAUR, 5},
-    [BALL_BOTTOM_FIRST]     = {SPECIES_CHARMANDER, 5},
-    [BALL_BOTTOM_SECOND]    = {SPECIES_NONE, 5},
+    [BALL_MIDDLE_SECOND]    = {SPECIES_EEVEE, 5},
+    [BALL_BOTTOM_FIRST]     = {SPECIES_PANSEAR, 5},
+    [BALL_BOTTOM_SECOND]    = {SPECIES_LITWICK, 5},
 };
+
+static const struct MonChoiceData sStarterChoicesWater[9] = 
+{
+    [BALL_TOP_FIRST]        = {SPECIES_SQUIRTLE, 5},
+    [BALL_TOP_SECOND]       = {SPECIES_TOTODILE, 5},
+    [BALL_MIDDLE_FIRST]     = {SPECIES_MUDKIP, 5},
+
+    [BALL_TOP_THIRD]        = {SPECIES_PIPLUP, 5},
+    [BALL_TOP_FOURTH]       = {SPECIES_OSHAWOTT, 5},
+    [BALL_MIDDLE_THIRD]     = {SPECIES_FROAKIE, 5},
+
+    [BALL_MIDDLE_SECOND]    = {SPECIES_EEVEE, 5},
+    [BALL_BOTTOM_FIRST]     = {SPECIES_PANPOUR, 5},
+    [BALL_BOTTOM_SECOND]    = {SPECIES_SPHEAL, 5},
+};
+
+static const struct MonChoiceData *sStarterChoices;
 
 //==========EWRAM==========//
 static EWRAM_DATA struct MenuResources *sBirchCaseDataPtr = NULL;
@@ -505,6 +543,23 @@ void BirchCase_Init(MainCallback callback)
     {
         sBirchCaseDataPtr->pokeballSpriteIds[i] = SPRITE_NONE;
     }
+
+    // Handle which starters to use
+    switch (VarGet(VAR_STARTER_MON))
+    {
+    case 0: // Grass choice
+        sStarterChoices = sStarterChoicesGrass;
+        break;
+    case 1: // Fire choice
+        sStarterChoices = sStarterChoicesFire;
+        break;
+    case 2: // Water choice
+        sStarterChoices = sStarterChoicesWater;
+        break;
+    default:
+        sStarterChoices = sStarterChoicesGrass; // fallback
+        break;
+    }
     
     SetMainCallback2(BirchCaseRunSetup);
 }
@@ -635,16 +690,6 @@ static void Task_BirchCaseWaitFadeIn(u8 taskId)
         gTasks[taskId].func = Task_BirchCaseMain;
 }
 
-static void Task_BirchCaseTurnOff(u8 taskId)
-{
-    if (!gPaletteFade.active)
-    {
-        SetMainCallback2(sBirchCaseDataPtr->savedCallback);
-        BirchCaseFreeResources();
-        DestroyTask(taskId);
-    }
-}
-
 static bool8 BirchCase_InitBgs(void) // Init the bgs and bg tilemap buffers and turn sprites on, also set the bgs to blend
 {
     ResetAllBgsCoordinates();
@@ -726,7 +771,6 @@ static void BirchCase_InitWindows(void)
 //
 static const u8 sText_ChooseMon[] = _("Release a Pokémon!");
 static const u8 sText_AreYouSure[] = _("Are you sure?    {A_BUTTON} Yes  {B_BUTTON} No");
-static const u8 sText_RecievedMon[] = _("Give your Pokémon a Nickname?   {A_BUTTON} Yes  {B_BUTTON} No");
 static void PrintTextToBottomBar(u8 textId)
 {
     u8 speciesNameArray[16];
@@ -748,9 +792,6 @@ static void PrintTextToBottomBar(u8 textId)
             break;
         case 1:
             mainBarAlternatingText = sText_AreYouSure;
-            break;
-        case 2:
-            mainBarAlternatingText = sText_RecievedMon;
             break;
         default:
             mainBarAlternatingText = sText_ChooseMon;
@@ -818,33 +859,17 @@ static void Task_DelayedSpriteLoad(u8 taskId) // wait 4 frames after changing th
     }
 }
 
-static void Task_WaitForFadeAndOpenNamingScreen(u8 taskId)
-{   
+static void Task_BirchCaseStartBirchBattle(u8 taskId)
+{
     if (!gPaletteFade.active)
     {
+        // Clean up the briefcase UI
         SetMainCallback2(sBirchCaseDataPtr->savedCallback);
         BirchCaseFreeResources();
         DestroyTask(taskId);
-        VarSet(VAR_0x8004, gPlayerPartyCount - 1);
-        ChangePokemonNickname();
-    }
-}
 
-static void Task_BirchCaseRecievedMon(u8 taskId)
-{
-    if(JOY_NEW(A_BUTTON))
-    {
-        PlaySE(SE_SELECT);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-        gTasks[taskId].func = Task_WaitForFadeAndOpenNamingScreen;
-        return;
-    }
-    if (JOY_NEW(B_BUTTON))
-    {
-        PlaySE(SE_SELECT);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-        gTasks[taskId].func = Task_BirchCaseTurnOff;
-        return;
+        // Launch Birch battle
+        SetMainCallback2(ChooseStarter);
     }
 }
 
@@ -853,9 +878,13 @@ static void Task_BirchCaseConfirmSelection(u8 taskId)
     if(JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
-        PrintTextToBottomBar(RECIEVED_MON);
         BirchCase_GiveMon();
-        gTasks[taskId].func = Task_BirchCaseRecievedMon;
+
+        // Fade out the briefcase UI
+        // BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+
+        // Instead of showing nickname prompt, skip straight to battle
+        gTasks[taskId].func = Task_BirchCaseStartBirchBattle;
         return;
     }
     if (JOY_NEW(B_BUTTON))
@@ -866,7 +895,6 @@ static void Task_BirchCaseConfirmSelection(u8 taskId)
         return;
     }
 }
-
 
 /* Main Grid Based Movement Control Flow*/
 static void Task_BirchCaseMain(u8 taskId)
