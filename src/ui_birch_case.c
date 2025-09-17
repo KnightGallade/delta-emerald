@@ -1012,7 +1012,8 @@ static void Task_BirchCaseMain(u8 taskId)
     if(JOY_NEW(A_BUTTON))
     {
         if(sStarterChoices[sBirchCaseDataPtr->handPosition].species != SPECIES_NONE) // If spot empty don't go to next control flow state
-        {
+        {   
+            PlayCry_Normal(sStarterChoices[sBirchCaseDataPtr->handPosition].species, 0);
             PlaySE(SE_SELECT);
             PrintTextToBottomBar(CONFIRM_SELECTION);
             gTasks[taskId].func = Task_BirchCaseConfirmSelection;
