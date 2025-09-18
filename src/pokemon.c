@@ -66,6 +66,7 @@
 #include "constants/union_room.h"
 #include "constants/weather.h"
 #include "wild_encounter.h"
+#include "constants/region_map_sections.h"
 
 #define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_8) ? 160 : 220)
 
@@ -5852,7 +5853,10 @@ u16 GetBattleBGM(void)
     }
     else
     {
-        return MUS_VS_WILD;
+        if (gMapHeader.regionMapSectionId == MAPSEC_ROUTE_102)
+            return MUS_RG_VS_WILD;
+        else
+            return MUS_VS_WILD;
     }
 }
 
