@@ -5854,7 +5854,21 @@ u16 GetBattleBGM(void)
     else
     {
         if (gMapHeader.regionMapSectionId == MAPSEC_ROUTE_102)
-            return MUS_RG_VS_WILD;
+            return MUS_DP_VS_WILD;
+        // For a wild battle, choose a song based off the gen of the Pokémon (no song XY/gen6 for now)
+        u16 dexNum = SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL));
+        if (dexNum >= 1 && dexNum <= 151)
+            return MUS_RG_VS_WILD; // Gen 1
+        else if (dexNum >= 152 && dexNum <= 251)
+            return MUS_HG_VS_WILD; // Gen 2
+        else if (dexNum >= 252 && dexNum <= 386)
+            return MUS_VS_WILD; // Gen 3
+        else if (dexNum >= 387 && dexNum <= 493)
+            return MUS_DP_VS_WILD; // Gen 4
+        else if (dexNum >= 494 && dexNum <= 649)
+            return MUS_BW_VS_WILD; // Gen 5
+        else if (dexNum >= 650 && dexNum <= 721)
+            return MUS_HG_VS_WILD_KANTO; // Gen 6
         else
             return MUS_VS_WILD;
     }
