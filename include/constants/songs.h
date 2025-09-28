@@ -1109,6 +1109,7 @@
 
 #define END_MUS                     MUS_BW_OBTAIN_BERRY
 
+#define MUS_CITY                    0x7FFD  // Set the route so that I can custom change day night music
 #define MUS_ROUTE                   0x7FFE  // Set the route so that I can custom change day night music
 #define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 

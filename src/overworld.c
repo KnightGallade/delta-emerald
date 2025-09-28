@@ -1169,12 +1169,12 @@ u16 GetLocationMusic(struct WarpData *warp)
     else {
         u16 music;
         music = Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
-        if (music == MUS_ROUTE) {// If it is a route, check for night song
-            s32 hours;
-            RtcCalcLocalTime();
-            hours = sHoursOverride ? sHoursOverride : gLocalTime.hours;
-            bool8 nightTime;
-            nightTime = IsBetweenHours(hours, EVENING_HOUR_BEGIN, NIGHT_HOUR_END);
+        s32 hours;
+        RtcCalcLocalTime();
+        hours = sHoursOverride ? sHoursOverride : gLocalTime.hours;
+        bool8 nightTime;
+        nightTime = IsBetweenHours(hours, EVENING_HOUR_BEGIN, NIGHT_HOUR_END);
+        if (music == MUS_ROUTE) { // If it is a route, check for night song
             switch (warp->mapNum) {
                 case MAP_NUM(MAP_ROUTE101):
                     return nightTime ? MUS_HG_RADIO_ROUTE101 : MUS_ROUTE101;
@@ -1191,18 +1191,18 @@ u16 GetLocationMusic(struct WarpData *warp)
                 case MAP_NUM(MAP_ROUTE107):
                     return nightTime ? MUS_HG_RADIO_ROUTE201 : MUS_BW_ROUTE1;
                 case MAP_NUM(MAP_ROUTE108):
-                    return nightTime ? MUS_HG_ROUTE47 : MUS_HG_ROUTE47;
+                    return nightTime ? MUS_BW_ROUTE4_SUMMER : MUS_HG_ROUTE47;
                 case MAP_NUM(MAP_ROUTE109):
                     return nightTime ? MUS_HG_ROUTE42 : MUS_HG_ROUTE26;
                 case MAP_NUM(MAP_ROUTE110):
                     return nightTime ? MUS_DESERT : MUS_ROUTE110;
                 case MAP_NUM(MAP_ROUTE111): // check if in desert with sandstorm
-                        if (GetSavedWeather() == WEATHER_SANDSTORM) { return nightTime ? MUS_DP_ROUTE228_NIGHT : MUS_DP_ROUTE228_DAY; }
-                        else { return nightTime ? MUS_DP_ROUTE225_NIGHT : MUS_DP_ROUTE225_DAY; }
+                    if (GetSavedWeather() == WEATHER_SANDSTORM) { return nightTime ? MUS_DP_ROUTE228_NIGHT : MUS_DP_ROUTE228_DAY; }
+                    else { return nightTime ? MUS_DP_ROUTE225_NIGHT : MUS_DP_ROUTE225_DAY; }
                 case MAP_NUM(MAP_ROUTE112):
                     return nightTime ? MUS_BW_ROUTE6_AUTUMN : MUS_BW_ROUTE6_SPRING;
                 case MAP_NUM(MAP_ROUTE113):
-                    return nightTime ? MUS_BW_ROUTE4_WINTER : MUS_BW_ROUTE4_SUMMER;
+                    return nightTime ? MUS_ROUTE113 : MUS_BW_ROUTE4_SUMMER;
                 case MAP_NUM(MAP_ROUTE114):
                     return nightTime ? MUS_BW_ROUTE4_SPRING : MUS_BW_ROUTE4_AUTUMN;
                 case MAP_NUM(MAP_ROUTE115):
@@ -1249,8 +1249,11 @@ u16 GetLocationMusic(struct WarpData *warp)
                 case MAP_NUM(MAP_ROUTE134):
                     return nightTime ? MUS_HG_ROUTE11 : MUS_RG_ROUTE11;
                 default:
-                    return MUS_DP_ROUTE216_DAY; // error
+                    return MUS_VICTORY_WILD; // error
             }
+        }
+        else if (music == MUS_CITY) { // If it is a city/town, check for night song
+            return MUS_DP_ROUTE216_DAY;
         }
         else { return music; }
     }
