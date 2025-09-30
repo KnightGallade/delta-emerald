@@ -47,7 +47,6 @@ static void UpdateChainFishingStreak();
 static bool8 IsWildLevelAllowedByRepel(u8 level);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
-static u8 GetMaxLevelOfSpeciesInWildTable(const struct WildPokemon *wildMon, u16 species, enum WildPokemonArea area);
 #ifdef BUGFIX
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u16 ability, u8 *monIndex, u32 size);
 #else
@@ -249,27 +248,19 @@ static u32 ChooseWildMonIndex_Fishing(u8 rod)
 
 static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIndex, enum WildPokemonArea area)
 {
-    u8 min;
-    u8 max;
-    u8 range;
-    u8 rand;
+    u8 min = 1;
+    u8 i;
+    // Check the number of badges obtained
+    for (i = 1; i <= 8; i++) {
+        if (FlagGet(FLAG_BADGE01_GET + i - 1)) {
+            min += 10;
+        }
+    }
+    u8 max = min + 10;
+    u8 rand = Random() % 10;
 
     if (LURE_STEP_COUNT == 0)
     {
-        // Make sure minimum level is less than maximum level
-        if (wildPokemon[wildMonIndex].maxLevel >= wildPokemon[wildMonIndex].minLevel)
-        {
-            min = wildPokemon[wildMonIndex].minLevel;
-            max = wildPokemon[wildMonIndex].maxLevel;
-        }
-        else
-        {
-            min = wildPokemon[wildMonIndex].maxLevel;
-            max = wildPokemon[wildMonIndex].minLevel;
-        }
-        range = max - min + 1;
-        rand = Random() % range;
-
         // check ability for max level mon
         if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         {
@@ -285,15 +276,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
         }
         return min + rand;
     }
-    else
-    {
-        // Looks for the max level of all slots that share the same species as the selected slot.
-        max = GetMaxLevelOfSpeciesInWildTable(wildPokemon, wildPokemon[wildMonIndex].species, area);
-        if (max > 0)
-            return max + 1;
-        else // Failsafe
-            return wildPokemon[wildMonIndex].maxLevel + 1;
-    }
+    else { return max + 1; }
 }
 
 u16 GetCurrentMapWildMonHeaderId(void)
@@ -495,7 +478,46 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
     if (gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
         return FALSE;
 
-    CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level);
+    u16 species = wildMonInfo->wildPokemon[wildMonIndex].species;
+    u8 evoOdds = 0;
+    u8 i;
+    // Get the number of badges obtained
+    for (i = 1; i <= 8; i++) {
+        if (FlagGet(FLAG_BADGE01_GET + i - 1)) {
+            evoOdds += 10;
+        }
+    }
+
+    // Is the check even worth it?
+    // If the Pokémon can evolve, and you have at least 5 badges, run the odds to see if evolve
+    const struct Evolution *evolutions = GetSpeciesEvolutions(species);
+    if (evoOdds < 50 || evolutions == NULL || evoOdds < (Random() % 100)) {
+        CreateWildMon(species, level);
+        return TRUE;
+    }
+    // Count the number of evolutions
+    u8 evoCount = 0;
+    while (evolutions[evoCount].targetSpecies != SPECIES_NONE) {
+        evoCount++;
+    }
+    // Pick a random evolution
+    u8 randomEvoIndex = Random() % evoCount;
+    species = evolutions[randomEvoIndex].targetSpecies;
+
+    // Run a second check for a second evolution
+    evolutions = GetSpeciesEvolutions(species);
+    if (evolutions == NULL || evoOdds < (Random() % 100)) {
+        CreateWildMon(species, level);
+        return TRUE;
+    }
+    evoCount = 0;
+    while (evolutions[evoCount].targetSpecies != SPECIES_NONE) {
+        evoCount++;
+    }
+    randomEvoIndex = Random() % evoCount;
+
+    species = evolutions[randomEvoIndex].targetSpecies;
+    CreateWildMon(species, level);
     return TRUE;
 }
 
@@ -1083,36 +1105,6 @@ static bool8 TryGetRandomWildMonIndexByType(const struct WildPokemon *wildMon, u
 }
 
 #include "data.h"
-
-static u8 GetMaxLevelOfSpeciesInWildTable(const struct WildPokemon *wildMon, u16 species, enum WildPokemonArea area)
-{
-    u8 i, maxLevel = 0, numMon = 0;
-
-    switch (area)
-    {
-    case WILD_AREA_LAND:
-        numMon = LAND_WILD_COUNT;
-        break;
-    case WILD_AREA_WATER:
-        numMon = WATER_WILD_COUNT;
-        break;
-    case WILD_AREA_ROCKS:
-        numMon = ROCK_WILD_COUNT;
-        break;
-    default:
-    case WILD_AREA_FISHING:
-    case WILD_AREA_HIDDEN:
-        break;
-    }
-
-    for (i = 0; i < numMon; i++)
-    {
-        if (wildMon[i].species == species && wildMon[i].maxLevel > maxLevel)
-            maxLevel = wildMon[i].maxLevel;
-    }
-
-    return maxLevel;
-}
 
 #ifdef BUGFIX
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u16 ability, u8 *monIndex, u32 size)

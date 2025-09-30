@@ -5853,8 +5853,9 @@ u16 GetBattleBGM(void)
     }
     else
     {
-        if (gMapHeader.regionMapSectionId == MAPSEC_ROUTE_102)
-            return MUS_DP_VS_WILD;
+        // Here is an example for how to make the music depend on the route
+        // if (gMapHeader.regionMapSectionId == MAPSEC_ROUTE_102)
+            // return MUS_DP_VS_WILD;
         // For a wild battle, choose a song based off the gen of the Pokémon (no song XY/gen6 for now)
         u16 dexNum = SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL));
         if (dexNum >= 1 && dexNum <= 151)
