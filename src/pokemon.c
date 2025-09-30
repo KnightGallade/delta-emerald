@@ -5870,8 +5870,14 @@ u16 GetBattleBGM(void)
             return MUS_BW_VS_WILD; // Gen 5
         else if (dexNum >= 650 && dexNum <= 721)
             return MUS_HG_VS_WILD_KANTO; // Gen 6
+        else if (dexNum >= 722 && dexNum <= 809)
+            return MUS_BW_VS_WILD_STRONG; // Gen 7
+        else if (dexNum >= 810 && dexNum <= 905)
+            return MUS_DP_VS_TRAINER; // Gen 8
+        else if (dexNum >= 906 && dexNum <= 1025)
+            return MUS_VS_RIVAL; // Gen 9
         else
-            return MUS_VS_WILD;
+            return MUS_RG_SLOW_PALLET; // Error condition
     }
 }
 
