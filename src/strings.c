@@ -1301,11 +1301,57 @@ const u8 gText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't de
 const u8 gText_Rename[] = _("RENAME");
 const u8 gText_CannotSendMonToBoxHM[] = _("Cannot send that mon to the box,\nbecause it knows a HM move.{PAUSE_UNTIL_PRESS}");
 
-//// side quest data
+// side quest data
+
 //generic strings
 const u8 gText_QuestAnnounce[] = _("The quest '{STR_VAR_1}'\nis now {STR_VAR_2}.");
 const u8 gText_QuestComplete[] =_("complete");
 const u8 gText_QuestActive[] =_("active");
+
+// Articuno
+const u8 gText_SideQuestName_Articuno[] = _("Frozen Sky");
+const u8 gText_SideQuestDesc_Articuno[] = _("Legends tell of a legendary raptor,\nborn as the very embodiment of ice.");
+const u8 gText_SideQuestDoneDesc_Articuno[] = _("You caught the legendary Freeze Pokémon,\nArticuno!");
+const u8 gText_SideQuestMap_Articuno[] = _("Hidden Cave");
+const u8 gText_SubQuest_Articuno_Name1[] = _("Prove your strength");
+const u8 gText_SubQuest_Articuno_Desc1[] = _("Legends do not care for the weak.\nProve your strength with 4 badges.");
+const u8 gText_SubQuest_Articuno_Map1[] = _("Hoenn Gyms");
+const u8 gText_SubQuest_Articuno_Name2[] = _("Master the cold");
+const u8 gText_SubQuest_Articuno_Desc2[] = _("Catch 50 ice types.");
+const u8 gText_SubQuest_Articuno_Map2[] = _("Hoenn");
+const u8 gText_SubQuest_Articuno_Name3[] = _("Prepare for battle");
+const u8 gText_SubQuest_Articuno_Desc3[] = _("Rumors say a powerful Pokémon\nhas been seen in Shoal Cave.");
+const u8 gText_SubQuest_Articuno_Map3[] = _("Shoal Cave");
+
+// Zapdos
+const u8 gText_SideQuestName_Zapdos[] = _("Thundurous Sky");
+const u8 gText_SideQuestDesc_Zapdos[] = _("Legends tell of a legendary raptor,\nborn as the very embodiment of lightning.");
+const u8 gText_SideQuestDoneDesc_Zapdos[] = _("You caught the legendary Electric Pokémon,\nZapdos!");
+const u8 gText_SideQuestMap_Zapdos[] = _("Hidden Cave");
+const u8 gText_SubQuest_Zapdos_Name1[] = _("Prove your strength");
+const u8 gText_SubQuest_Zapdos_Desc1[] = _("Legends do not care for the weak.\nProve your strength with 4 badges.");
+const u8 gText_SubQuest_Zapdos_Map1[] = _("Hoenn Gyms");
+const u8 gText_SubQuest_Zapdos_Name2[] = _("Master the lightning");
+const u8 gText_SubQuest_Zapdos_Desc2[] = _("Catch 50 electric types.");
+const u8 gText_SubQuest_Zapdos_Map2[] = _("Hoenn");
+const u8 gText_SubQuest_Zapdos_Name3[] = _("Prepare for battle");
+const u8 gText_SubQuest_Zapdos_Desc3[] = _("Rumors say a powerful Pokémon\nhas been seen in New Mauville.");
+const u8 gText_SubQuest_Zapdos_Map3[] = _("New Mauville");
+
+// Moltres
+const u8 gText_SideQuestName_Moltres[] = _("Burning Sky");
+const u8 gText_SideQuestDesc_Moltres[] = _("Legends tell of a legendary raptor,\nborn as the very embodiment of fire.");
+const u8 gText_SideQuestDoneDesc_Moltres[] = _("You caught the legendary Flame Pokémon,\nMoltres!");
+const u8 gText_SideQuestMap_Moltres[] = _("Hidden Cave");
+const u8 gText_SubQuest_Moltres_Name1[] = _("Prove your strength");
+const u8 gText_SubQuest_Moltres_Desc1[] = _("Legends do not care for the weak.\nProve your strength with 4 badges.");
+const u8 gText_SubQuest_Moltres_Map1[] = _("Hoenn Gyms");
+const u8 gText_SubQuest_Moltres_Name2[] = _("Master the flames");
+const u8 gText_SubQuest_Moltres_Desc2[] = _("Catch 50 fire types.");
+const u8 gText_SubQuest_Moltres_Map2[] = _("Hoenn");
+const u8 gText_SubQuest_Moltres_Name3[] = _("Prepare for battle");
+const u8 gText_SubQuest_Moltres_Desc3[] = _("Rumors say a powerful Pokémon\nhas been seen in Fiery Path.");
+const u8 gText_SubQuest_Moltres_Map3[] = _("Fiery Path");
 
 //names
 const u8 gText_SideQuestName_1[] = _("Side Quest 1");

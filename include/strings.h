@@ -2371,6 +2371,51 @@ extern const u8 gText_QuestAnnounce[];
 extern const u8 gText_QuestComplete[];
 extern const u8 gText_QuestActive[];
 
+// Articuno
+extern const u8 gText_SideQuestName_Articuno[];
+extern const u8 gText_SideQuestDesc_Articuno[];
+extern const u8 gText_SideQuestDoneDesc_Articuno[];
+extern const u8 gText_SideQuestMap_Articuno[];
+extern const u8 gText_SubQuest_Articuno_Name1[];
+extern const u8 gText_SubQuest_Articuno_Desc1[];
+extern const u8 gText_SubQuest_Articuno_Map1[];
+extern const u8 gText_SubQuest_Articuno_Name2[];
+extern const u8 gText_SubQuest_Articuno_Desc2[];
+extern const u8 gText_SubQuest_Articuno_Map2[];
+extern const u8 gText_SubQuest_Articuno_Name3[];
+extern const u8 gText_SubQuest_Articuno_Desc3[];
+extern const u8 gText_SubQuest_Articuno_Map3[];
+
+// Zapdos
+extern const u8 gText_SideQuestName_Zapdos[];
+extern const u8 gText_SideQuestDesc_Zapdos[];
+extern const u8 gText_SideQuestDoneDesc_Zapdos[];
+extern const u8 gText_SideQuestMap_Zapdos[];
+extern const u8 gText_SubQuest_Zapdos_Name1[];
+extern const u8 gText_SubQuest_Zapdos_Desc1[];
+extern const u8 gText_SubQuest_Zapdos_Map1[];
+extern const u8 gText_SubQuest_Zapdos_Name2[];
+extern const u8 gText_SubQuest_Zapdos_Desc2[];
+extern const u8 gText_SubQuest_Zapdos_Map2[];
+extern const u8 gText_SubQuest_Zapdos_Name3[];
+extern const u8 gText_SubQuest_Zapdos_Desc3[];
+extern const u8 gText_SubQuest_Zapdos_Map3[];
+
+// Moltres
+extern const u8 gText_SideQuestName_Moltres[];
+extern const u8 gText_SideQuestDesc_Moltres[];
+extern const u8 gText_SideQuestDoneDesc_Moltres[];
+extern const u8 gText_SideQuestMap_Moltres[];
+extern const u8 gText_SubQuest_Moltres_Name1[];
+extern const u8 gText_SubQuest_Moltres_Desc1[];
+extern const u8 gText_SubQuest_Moltres_Map1[];
+extern const u8 gText_SubQuest_Moltres_Name2[];
+extern const u8 gText_SubQuest_Moltres_Desc2[];
+extern const u8 gText_SubQuest_Moltres_Map2[];
+extern const u8 gText_SubQuest_Moltres_Name3[];
+extern const u8 gText_SubQuest_Moltres_Desc3[];
+extern const u8 gText_SubQuest_Moltres_Map3[];
+
 //names
 extern const u8 gText_SideQuestName_1[];
 extern const u8 gText_SideQuestName_2[];
