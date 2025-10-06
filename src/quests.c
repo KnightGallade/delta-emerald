@@ -70,6 +70,7 @@ EWRAM_DATA static u8 *sBg1TilemapBuffer = NULL;
 EWRAM_DATA static struct ListMenuItem *sListMenuItems = NULL;
 EWRAM_DATA static struct QuestMenuStaticResources sListMenuState = {0};
 EWRAM_DATA static u8 sItemMenuIconSpriteIds[12] = {0};        // from pokefirered src/item_menu_icons.c
+EWRAM_DATA static u8 sItemMenuSpriteTypes[12] = {0};          // Tracks the type of sprite being printed
 EWRAM_DATA static void *questNamePointer = NULL;
 EWRAM_DATA static u8 **questNameArray = NULL;
 
@@ -245,543 +246,10 @@ static const u8 sText_AZ[] = _(" A-Z");
 //Declaration of subquest structures. Edits to subquests are made here.
 #define sub_quest(i, n, d, m, s, st, t) {.id = i, .name = n, .desc = d, .map = m, .sprite = s, .spritetype = st, .type = t}
 
-static const struct SubQuest sSubQuests_Articuno[QUEST_ARTICUNO_SUB_COUNT] =
+static const struct SubQuest sSubQuests_WingsOfPower[QUEST_WINGS_OF_POWER_SUB_COUNT] =
 {
 	sub_quest(
-	    0,
-	    gText_SubQuest_Articuno_Name1,
-	    gText_SubQuest_Articuno_Desc1,
-	    gText_SubQuest_Articuno_Map1,
-	    ITEM_FAME_CHECKER,
-	    ITEM,
-	    sText_Ready
-	),
-
-	sub_quest(
-	    1,
-	    gText_SubQuest_Articuno_Name2,
-	    gText_SubQuest_Articuno_Desc2,
-	    gText_SubQuest_Articuno_Map2,
-	    ITEM_POKE_RADAR,
-	    ITEM,
-	    sText_Ready
-	),
-
-	sub_quest(
-	    2,
-	    gText_SubQuest_Articuno_Name3,
-	    gText_SubQuest_Articuno_Desc3,
-	    gText_SubQuest_Articuno_Map3,
-	    SPECIES_ARTICUNO,
-	    PKMN,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Zapdos[QUEST_ZAPDOS_SUB_COUNT] =
-{
-	sub_quest(
-	    3,
-	    gText_SubQuest_Zapdos_Name1,
-	    gText_SubQuest_Zapdos_Desc1,
-	    gText_SubQuest_Zapdos_Map1,
-	    ITEM_FAME_CHECKER,
-	    ITEM,
-	    sText_Ready
-	),
-
-	sub_quest(
-	    4,
-	    gText_SubQuest_Zapdos_Name2,
-	    gText_SubQuest_Zapdos_Desc2,
-	    gText_SubQuest_Zapdos_Map2,
-	    ITEM_POKE_RADAR,
-	    ITEM,
-	    sText_Ready
-	),
-
-	sub_quest(
-	    5,
-	    gText_SubQuest_Zapdos_Name3,
-	    gText_SubQuest_Zapdos_Desc3,
-	    gText_SubQuest_Zapdos_Map3,
-	    SPECIES_ZAPDOS,
-	    PKMN,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Moltres[QUEST_MOLTRES_SUB_COUNT] =
-{
-	sub_quest(
-	    6,
-	    gText_SubQuest_Moltres_Name1,
-	    gText_SubQuest_Moltres_Desc1,
-	    gText_SubQuest_Moltres_Map1,
-	    ITEM_FAME_CHECKER,
-	    ITEM,
-	    sText_Ready
-	),
-
-	sub_quest(
-	    7,
-	    gText_SubQuest_Moltres_Name2,
-	    gText_SubQuest_Moltres_Desc2,
-	    gText_SubQuest_Moltres_Map2,
-	    ITEM_POKE_RADAR,
-	    ITEM,
-	    sText_Ready
-	),
-
-	sub_quest(
-	    8,
-	    gText_SubQuest_Moltres_Name3,
-	    gText_SubQuest_Moltres_Desc3,
-	    gText_SubQuest_Moltres_Map3,
-	    SPECIES_MOLTRES,
-	    PKMN,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Mewtwo[QUEST_MEWTWO_SUB_COUNT] =
-{
-	sub_quest(
-	    9,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    10,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    11,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Mew[QUEST_MEW_SUB_COUNT] =
-{
-	sub_quest(
-	    12,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    13,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    14,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Raikou[QUEST_RAIKOU_SUB_COUNT] =
-{
-	sub_quest(
-	    15,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    16,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    17,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Entei[QUEST_ENTEI_SUB_COUNT] =
-{
-	sub_quest(
-	    18,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    19,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    20,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Suicune[QUEST_SUICUNE_SUB_COUNT] =
-{
-	sub_quest(
-	    21,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    22,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    23,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Lugia[QUEST_LUGIA_SUB_COUNT] =
-{
-	sub_quest(
-	    24,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    25,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    26,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Ho_Oh[QUEST_HO_OH_SUB_COUNT] =
-{
-	sub_quest(
-	    27,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    28,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    29,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Celebi[QUEST_CELEBI_SUB_COUNT] =
-{
-	sub_quest(
-	    30,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    31,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    32,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Regirock[QUEST_REGIROCK_SUB_COUNT] =
-{
-	sub_quest(
-	    33,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    34,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    35,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Regice[QUEST_REGICE_SUB_COUNT] =
-{
-	sub_quest(
-	    36,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    37,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    38,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Registeel[QUEST_REGISTEEL_SUB_COUNT] =
-{
-	sub_quest(
-	    39,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    40,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    41,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Latias[QUEST_LATIAS_SUB_COUNT] =
-{
-	sub_quest(
-	    42,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    43,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    44,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Latios[QUEST_LATIOS_SUB_COUNT] =
-{
-	sub_quest(
-	    45,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    46,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    47,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Kyogre[QUEST_KYOGRE_SUB_COUNT] =
-{
-	sub_quest(
-	    48,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    49,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    50,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-};
-
-static const struct SubQuest sSubQuests_Groudon[QUEST_GROUDON_SUB_COUNT] =
-{
-	sub_quest(
-	    51,
+	    0, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -790,7 +258,7 @@ static const struct SubQuest sSubQuests_Groudon[QUEST_GROUDON_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    52,
+	    1, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -799,7 +267,7 @@ static const struct SubQuest sSubQuests_Groudon[QUEST_GROUDON_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    53,
+	    2, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -807,12 +275,8 @@ static const struct SubQuest sSubQuests_Groudon[QUEST_GROUDON_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Rayquaza[QUEST_RAYQUAZA_SUB_COUNT] =
-{
 	sub_quest(
-	    54,
+	    3, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -821,7 +285,7 @@ static const struct SubQuest sSubQuests_Rayquaza[QUEST_RAYQUAZA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    55,
+	    4, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -830,7 +294,7 @@ static const struct SubQuest sSubQuests_Rayquaza[QUEST_RAYQUAZA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    56,
+	    5, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -838,12 +302,8 @@ static const struct SubQuest sSubQuests_Rayquaza[QUEST_RAYQUAZA_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Jirachi[QUEST_JIRACHI_SUB_COUNT] =
-{
 	sub_quest(
-	    57,
+	    6, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -852,7 +312,7 @@ static const struct SubQuest sSubQuests_Jirachi[QUEST_JIRACHI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    58,
+	    7, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -861,7 +321,7 @@ static const struct SubQuest sSubQuests_Jirachi[QUEST_JIRACHI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    59,
+	    8, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -871,10 +331,10 @@ static const struct SubQuest sSubQuests_Jirachi[QUEST_JIRACHI_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Deoxys[QUEST_DEOXYS_SUB_COUNT] =
+static const struct SubQuest sSubQuests_MutatedWings[QUEST_MUTATED_WINGS_SUB_COUNT] =
 {
 	sub_quest(
-	    60,
+	    9, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -883,7 +343,7 @@ static const struct SubQuest sSubQuests_Deoxys[QUEST_DEOXYS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    61,
+	    10, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -892,7 +352,7 @@ static const struct SubQuest sSubQuests_Deoxys[QUEST_DEOXYS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    62,
+	    11, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -902,10 +362,10 @@ static const struct SubQuest sSubQuests_Deoxys[QUEST_DEOXYS_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Uxie[QUEST_UXIE_SUB_COUNT] =
+static const struct SubQuest sSubQuests_BeastsOfResurrection[QUEST_BEASTS_OF_RESURRECTION_SUB_COUNT] =
 {
 	sub_quest(
-	    63,
+	    12, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -914,7 +374,7 @@ static const struct SubQuest sSubQuests_Uxie[QUEST_UXIE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    64,
+	    13, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -923,7 +383,7 @@ static const struct SubQuest sSubQuests_Uxie[QUEST_UXIE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    65,
+	    14, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -933,19 +393,10 @@ static const struct SubQuest sSubQuests_Uxie[QUEST_UXIE_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Mesprit[QUEST_MESPRIT_SUB_COUNT] =
+static const struct SubQuest sSubQuests_GolemsOfTheEras[QUEST_GOLEMS_OF_THE_ERAS_SUB_COUNT] =
 {
-	sub_quest(
-	    66,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    67,
+	    15, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -954,7 +405,7 @@ static const struct SubQuest sSubQuests_Mesprit[QUEST_MESPRIT_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    68,
+	    16, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -962,12 +413,8 @@ static const struct SubQuest sSubQuests_Mesprit[QUEST_MESPRIT_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Azelf[QUEST_AZELF_SUB_COUNT] =
-{
 	sub_quest(
-	    69,
+	    17, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -976,7 +423,7 @@ static const struct SubQuest sSubQuests_Azelf[QUEST_AZELF_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    70,
+	    18, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -985,7 +432,7 @@ static const struct SubQuest sSubQuests_Azelf[QUEST_AZELF_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    71,
+	    19, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -993,12 +440,8 @@ static const struct SubQuest sSubQuests_Azelf[QUEST_AZELF_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Dialga[QUEST_DIALGA_SUB_COUNT] =
-{
 	sub_quest(
-	    72,
+	    20, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1007,7 +450,7 @@ static const struct SubQuest sSubQuests_Dialga[QUEST_DIALGA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    73,
+	    21, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1016,7 +459,7 @@ static const struct SubQuest sSubQuests_Dialga[QUEST_DIALGA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    74,
+	    22, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1026,10 +469,10 @@ static const struct SubQuest sSubQuests_Dialga[QUEST_DIALGA_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Palkia[QUEST_PALKIA_SUB_COUNT] =
+static const struct SubQuest sSubQuests_SpiritsOfTheSoul[QUEST_SPIRITS_OF_THE_SOUL_SUB_COUNT] =
 {
 	sub_quest(
-	    75,
+	    23, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1038,7 +481,7 @@ static const struct SubQuest sSubQuests_Palkia[QUEST_PALKIA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    76,
+	    24, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1047,7 +490,7 @@ static const struct SubQuest sSubQuests_Palkia[QUEST_PALKIA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    77,
+	    25, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1055,12 +498,8 @@ static const struct SubQuest sSubQuests_Palkia[QUEST_PALKIA_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Heatran[QUEST_HEATRAN_SUB_COUNT] =
-{
 	sub_quest(
-	    78,
+	    26, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1069,7 +508,7 @@ static const struct SubQuest sSubQuests_Heatran[QUEST_HEATRAN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    79,
+	    27, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1078,7 +517,7 @@ static const struct SubQuest sSubQuests_Heatran[QUEST_HEATRAN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    80,
+	    28, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1086,12 +525,8 @@ static const struct SubQuest sSubQuests_Heatran[QUEST_HEATRAN_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Regigigas[QUEST_REGIGIGAS_SUB_COUNT] =
-{
 	sub_quest(
-	    81,
+	    29, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1099,8 +534,12 @@ static const struct SubQuest sSubQuests_Regigigas[QUEST_REGIGIGAS_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
+};
+
+static const struct SubQuest sSubQuests_PrimordialSea[QUEST_PRIMORDIAL_SEA_SUB_COUNT] =
+{
 	sub_quest(
-	    82,
+	    30, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1109,7 +548,7 @@ static const struct SubQuest sSubQuests_Regigigas[QUEST_REGIGIGAS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    83,
+	    31, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1119,19 +558,10 @@ static const struct SubQuest sSubQuests_Regigigas[QUEST_REGIGIGAS_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Giratina[QUEST_GIRATINA_SUB_COUNT] =
+static const struct SubQuest sSubQuests_DesolateLand[QUEST_DESOLATE_LAND_SUB_COUNT] =
 {
-	sub_quest(
-	    84,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    85,
+	    32, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1140,7 +570,7 @@ static const struct SubQuest sSubQuests_Giratina[QUEST_GIRATINA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    86,
+	    33, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1150,19 +580,10 @@ static const struct SubQuest sSubQuests_Giratina[QUEST_GIRATINA_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Cresselia[QUEST_CRESSELIA_SUB_COUNT] =
+static const struct SubQuest sSubQuests_AncientDragonOfConquest[QUEST_ANCIENT_DRAGON_OF_CONQUEST_SUB_COUNT] =
 {
-	sub_quest(
-	    87,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    88,
+	    34, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1171,7 +592,7 @@ static const struct SubQuest sSubQuests_Cresselia[QUEST_CRESSELIA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    89,
+	    35, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1181,19 +602,10 @@ static const struct SubQuest sSubQuests_Cresselia[QUEST_CRESSELIA_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Phione[QUEST_PHIONE_SUB_COUNT] =
+static const struct SubQuest sSubQuests_LegendsLie[QUEST_LEGENDS_LIE_SUB_COUNT] =
 {
-	sub_quest(
-	    90,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    91,
+	    36, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1202,7 +614,7 @@ static const struct SubQuest sSubQuests_Phione[QUEST_PHIONE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    92,
+	    37, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1210,12 +622,8 @@ static const struct SubQuest sSubQuests_Phione[QUEST_PHIONE_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Manaphy[QUEST_MANAPHY_SUB_COUNT] =
-{
 	sub_quest(
-	    93,
+	    38, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1224,7 +632,7 @@ static const struct SubQuest sSubQuests_Manaphy[QUEST_MANAPHY_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    94,
+	    39, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1233,7 +641,7 @@ static const struct SubQuest sSubQuests_Manaphy[QUEST_MANAPHY_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    95,
+	    40, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1241,12 +649,8 @@ static const struct SubQuest sSubQuests_Manaphy[QUEST_MANAPHY_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Darkrai[QUEST_DARKRAI_SUB_COUNT] =
-{
 	sub_quest(
-	    96,
+	    41, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1255,7 +659,7 @@ static const struct SubQuest sSubQuests_Darkrai[QUEST_DARKRAI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    97,
+	    42, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1264,7 +668,7 @@ static const struct SubQuest sSubQuests_Darkrai[QUEST_DARKRAI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    98,
+	    43, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1274,10 +678,10 @@ static const struct SubQuest sSubQuests_Darkrai[QUEST_DARKRAI_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Shaymin[QUEST_SHAYMIN_SUB_COUNT] =
+static const struct SubQuest sSubQuests_ImprisonedCurses[QUEST_IMPRISONED_CURSES_SUB_COUNT] =
 {
 	sub_quest(
-	    99,
+	    44, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1286,7 +690,7 @@ static const struct SubQuest sSubQuests_Shaymin[QUEST_SHAYMIN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    100,
+	    45, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1295,7 +699,7 @@ static const struct SubQuest sSubQuests_Shaymin[QUEST_SHAYMIN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    101,
+	    46, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1303,12 +707,8 @@ static const struct SubQuest sSubQuests_Shaymin[QUEST_SHAYMIN_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Arceus[QUEST_ARCEUS_SUB_COUNT] =
-{
 	sub_quest(
-	    102,
+	    47, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1317,7 +717,7 @@ static const struct SubQuest sSubQuests_Arceus[QUEST_ARCEUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    103,
+	    48, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1326,7 +726,7 @@ static const struct SubQuest sSubQuests_Arceus[QUEST_ARCEUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    104,
+	    49, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1334,12 +734,8 @@ static const struct SubQuest sSubQuests_Arceus[QUEST_ARCEUS_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Victini[QUEST_VICTINI_SUB_COUNT] =
-{
 	sub_quest(
-	    105,
+	    50, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1348,7 +744,7 @@ static const struct SubQuest sSubQuests_Victini[QUEST_VICTINI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    106,
+	    51, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1357,7 +753,7 @@ static const struct SubQuest sSubQuests_Victini[QUEST_VICTINI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    107,
+	    52, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1367,10 +763,10 @@ static const struct SubQuest sSubQuests_Victini[QUEST_VICTINI_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Cobalion[QUEST_COBALION_SUB_COUNT] =
+static const struct SubQuest sSubQuests_SentinelsOfTheWilds[QUEST_SENTINELS_OF_THE_WILDS_SUB_COUNT] =
 {
 	sub_quest(
-	    108,
+	    53, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1379,7 +775,7 @@ static const struct SubQuest sSubQuests_Cobalion[QUEST_COBALION_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    109,
+	    54, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1388,7 +784,7 @@ static const struct SubQuest sSubQuests_Cobalion[QUEST_COBALION_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    110,
+	    55, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1396,12 +792,8 @@ static const struct SubQuest sSubQuests_Cobalion[QUEST_COBALION_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Terrakion[QUEST_TERRAKION_SUB_COUNT] =
-{
 	sub_quest(
-	    111,
+	    56, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1410,7 +802,7 @@ static const struct SubQuest sSubQuests_Terrakion[QUEST_TERRAKION_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    112,
+	    57, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1419,7 +811,7 @@ static const struct SubQuest sSubQuests_Terrakion[QUEST_TERRAKION_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    113,
+	    58, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1429,19 +821,10 @@ static const struct SubQuest sSubQuests_Terrakion[QUEST_TERRAKION_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Virizion[QUEST_VIRIZION_SUB_COUNT] =
+static const struct SubQuest sSubQuests_GeniesOfNature[QUEST_GENIES_OF_NATURE_SUB_COUNT] =
 {
-	sub_quest(
-	    114,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    115,
+	    59, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1450,7 +833,7 @@ static const struct SubQuest sSubQuests_Virizion[QUEST_VIRIZION_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    116,
+	    60, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1458,12 +841,8 @@ static const struct SubQuest sSubQuests_Virizion[QUEST_VIRIZION_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Tornadus[QUEST_TORNADUS_SUB_COUNT] =
-{
 	sub_quest(
-	    117,
+	    61, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1472,7 +851,7 @@ static const struct SubQuest sSubQuests_Tornadus[QUEST_TORNADUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    118,
+	    62, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1481,7 +860,7 @@ static const struct SubQuest sSubQuests_Tornadus[QUEST_TORNADUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    119,
+	    63, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1489,12 +868,8 @@ static const struct SubQuest sSubQuests_Tornadus[QUEST_TORNADUS_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Thundurus[QUEST_THUNDURUS_SUB_COUNT] =
-{
 	sub_quest(
-	    120,
+	    64, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1503,7 +878,7 @@ static const struct SubQuest sSubQuests_Thundurus[QUEST_THUNDURUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    121,
+	    65, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1512,7 +887,7 @@ static const struct SubQuest sSubQuests_Thundurus[QUEST_THUNDURUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    122,
+	    66, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1522,10 +897,10 @@ static const struct SubQuest sSubQuests_Thundurus[QUEST_THUNDURUS_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Reshiram[QUEST_RESHIRAM_SUB_COUNT] =
+static const struct SubQuest sSubQuests_ChronoAlchemy[QUEST_CHRONO_ALCHEMY_SUB_COUNT] =
 {
 	sub_quest(
-	    123,
+	    67, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1534,7 +909,7 @@ static const struct SubQuest sSubQuests_Reshiram[QUEST_RESHIRAM_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    124,
+	    68, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1543,7 +918,7 @@ static const struct SubQuest sSubQuests_Reshiram[QUEST_RESHIRAM_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    125,
+	    69, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1553,28 +928,10 @@ static const struct SubQuest sSubQuests_Reshiram[QUEST_RESHIRAM_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Zekrom[QUEST_ZEKROM_SUB_COUNT] =
+static const struct SubQuest sSubQuests_TechnoRebirth[QUEST_TECHNO_REBIRTH_SUB_COUNT] =
 {
-	sub_quest(
-	    126,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    127,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    128,
+	    70, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1582,12 +939,8 @@ static const struct SubQuest sSubQuests_Zekrom[QUEST_ZEKROM_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Landorus[QUEST_LANDORUS_SUB_COUNT] =
-{
 	sub_quest(
-	    129,
+	    71, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1596,7 +949,7 @@ static const struct SubQuest sSubQuests_Landorus[QUEST_LANDORUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    130,
+	    72, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1605,7 +958,7 @@ static const struct SubQuest sSubQuests_Landorus[QUEST_LANDORUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    131,
+	    73, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1613,12 +966,8 @@ static const struct SubQuest sSubQuests_Landorus[QUEST_LANDORUS_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Kyurem[QUEST_KYUREM_SUB_COUNT] =
-{
 	sub_quest(
-	    132,
+	    74, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1627,7 +976,7 @@ static const struct SubQuest sSubQuests_Kyurem[QUEST_KYUREM_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    133,
+	    75, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1636,7 +985,7 @@ static const struct SubQuest sSubQuests_Kyurem[QUEST_KYUREM_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    134,
+	    76, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1646,10 +995,10 @@ static const struct SubQuest sSubQuests_Kyurem[QUEST_KYUREM_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Keldeo[QUEST_KELDEO_SUB_COUNT] =
+static const struct SubQuest sSubQuests_ConcealedForcesOfExistence[QUEST_CONCEALED_FORCES_OF_EXISTENCE_SUB_COUNT] =
 {
 	sub_quest(
-	    135,
+	    77, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1658,7 +1007,7 @@ static const struct SubQuest sSubQuests_Keldeo[QUEST_KELDEO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    136,
+	    78, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1667,7 +1016,7 @@ static const struct SubQuest sSubQuests_Keldeo[QUEST_KELDEO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    137,
+	    79, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1675,12 +1024,8 @@ static const struct SubQuest sSubQuests_Keldeo[QUEST_KELDEO_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Meloetta[QUEST_MELOETTA_SUB_COUNT] =
-{
 	sub_quest(
-	    138,
+	    80, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1688,8 +1033,12 @@ static const struct SubQuest sSubQuests_Meloetta[QUEST_MELOETTA_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
+};
+
+static const struct SubQuest sSubQuests_BrokenWormholes[QUEST_BROKEN_WORMHOLES_SUB_COUNT] =
+{
 	sub_quest(
-	    139,
+	    81, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1698,7 +1047,7 @@ static const struct SubQuest sSubQuests_Meloetta[QUEST_MELOETTA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    140,
+	    82, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1706,12 +1055,8 @@ static const struct SubQuest sSubQuests_Meloetta[QUEST_MELOETTA_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Genesect[QUEST_GENESECT_SUB_COUNT] =
-{
 	sub_quest(
-	    141,
+	    83, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1720,7 +1065,7 @@ static const struct SubQuest sSubQuests_Genesect[QUEST_GENESECT_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    142,
+	    84, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1729,7 +1074,7 @@ static const struct SubQuest sSubQuests_Genesect[QUEST_GENESECT_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    143,
+	    85, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1739,10 +1084,10 @@ static const struct SubQuest sSubQuests_Genesect[QUEST_GENESECT_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Xerneas[QUEST_XERNEAS_SUB_COUNT] =
+static const struct SubQuest sSubQuests_CelestialEclipse[QUEST_CELESTIAL_ECLIPSE_SUB_COUNT] =
 {
 	sub_quest(
-	    144,
+	    86, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1751,7 +1096,7 @@ static const struct SubQuest sSubQuests_Xerneas[QUEST_XERNEAS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    145,
+	    87, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1760,7 +1105,7 @@ static const struct SubQuest sSubQuests_Xerneas[QUEST_XERNEAS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    146,
+	    88, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1768,12 +1113,8 @@ static const struct SubQuest sSubQuests_Xerneas[QUEST_XERNEAS_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Yveltal[QUEST_YVELTAL_SUB_COUNT] =
-{
 	sub_quest(
-	    147,
+	    89, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1781,8 +1122,12 @@ static const struct SubQuest sSubQuests_Yveltal[QUEST_YVELTAL_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
+};
+
+static const struct SubQuest sSubQuests_WardensOfTheNebula[QUEST_WARDENS_OF_THE_NEBULA_SUB_COUNT] =
+{
 	sub_quest(
-	    148,
+	    90, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1791,7 +1136,7 @@ static const struct SubQuest sSubQuests_Yveltal[QUEST_YVELTAL_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    149,
+	    91, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1799,12 +1144,8 @@ static const struct SubQuest sSubQuests_Yveltal[QUEST_YVELTAL_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Zygarde[QUEST_ZYGARDE_SUB_COUNT] =
-{
 	sub_quest(
-	    150,
+	    92, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1813,7 +1154,7 @@ static const struct SubQuest sSubQuests_Zygarde[QUEST_ZYGARDE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    151,
+	    93, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1822,7 +1163,7 @@ static const struct SubQuest sSubQuests_Zygarde[QUEST_ZYGARDE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    152,
+	    94, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1832,10 +1173,10 @@ static const struct SubQuest sSubQuests_Zygarde[QUEST_ZYGARDE_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Diancie[QUEST_DIANCIE_SUB_COUNT] =
+static const struct SubQuest sSubQuests_TwinSouls[QUEST_TWIN_SOULS_SUB_COUNT] =
 {
 	sub_quest(
-	    153,
+	    95, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1844,7 +1185,7 @@ static const struct SubQuest sSubQuests_Diancie[QUEST_DIANCIE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    154,
+	    96, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1853,7 +1194,7 @@ static const struct SubQuest sSubQuests_Diancie[QUEST_DIANCIE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    155,
+	    97, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1863,28 +1204,10 @@ static const struct SubQuest sSubQuests_Diancie[QUEST_DIANCIE_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Hoopa[QUEST_HOOPA_SUB_COUNT] =
+static const struct SubQuest sSubQuests_ArtificialPower[QUEST_ARTIFICIAL_POWER_SUB_COUNT] =
 {
-	sub_quest(
-	    156,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    157,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    158,
+	    98, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1892,12 +1215,8 @@ static const struct SubQuest sSubQuests_Hoopa[QUEST_HOOPA_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Volcanion[QUEST_VOLCANION_SUB_COUNT] =
-{
 	sub_quest(
-	    159,
+	    99, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1906,7 +1225,7 @@ static const struct SubQuest sSubQuests_Volcanion[QUEST_VOLCANION_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    160,
+	    100, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1915,7 +1234,7 @@ static const struct SubQuest sSubQuests_Volcanion[QUEST_VOLCANION_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    161,
+	    101, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1925,10 +1244,10 @@ static const struct SubQuest sSubQuests_Volcanion[QUEST_VOLCANION_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Tapu_Koko[QUEST_TAPU_KOKO_SUB_COUNT] =
+static const struct SubQuest sSubQuests_TaoKings[QUEST_TAO_KINGS_SUB_COUNT] =
 {
 	sub_quest(
-	    162,
+	    102, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1937,7 +1256,7 @@ static const struct SubQuest sSubQuests_Tapu_Koko[QUEST_TAPU_KOKO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    163,
+	    103, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1946,7 +1265,7 @@ static const struct SubQuest sSubQuests_Tapu_Koko[QUEST_TAPU_KOKO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    164,
+	    104, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1954,12 +1273,8 @@ static const struct SubQuest sSubQuests_Tapu_Koko[QUEST_TAPU_KOKO_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Tapu_Lele[QUEST_TAPU_LELE_SUB_COUNT] =
-{
 	sub_quest(
-	    165,
+	    105, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1968,7 +1283,7 @@ static const struct SubQuest sSubQuests_Tapu_Lele[QUEST_TAPU_LELE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    166,
+	    106, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1977,7 +1292,7 @@ static const struct SubQuest sSubQuests_Tapu_Lele[QUEST_TAPU_LELE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    167,
+	    107, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1985,12 +1300,8 @@ static const struct SubQuest sSubQuests_Tapu_Lele[QUEST_TAPU_LELE_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Tapu_Bulu[QUEST_TAPU_BULU_SUB_COUNT] =
-{
 	sub_quest(
-	    168,
+	    108, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -1998,8 +1309,12 @@ static const struct SubQuest sSubQuests_Tapu_Bulu[QUEST_TAPU_BULU_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
+};
+
+static const struct SubQuest sSubQuests_DistortedDimensions[QUEST_DISTORTED_DIMENSIONS_SUB_COUNT] =
+{
 	sub_quest(
-	    169,
+	    109, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2008,7 +1323,7 @@ static const struct SubQuest sSubQuests_Tapu_Bulu[QUEST_TAPU_BULU_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    170,
+	    110, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2016,12 +1331,8 @@ static const struct SubQuest sSubQuests_Tapu_Bulu[QUEST_TAPU_BULU_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Tapu_Fini[QUEST_TAPU_FINI_SUB_COUNT] =
-{
 	sub_quest(
-	    171,
+	    111, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2030,7 +1341,7 @@ static const struct SubQuest sSubQuests_Tapu_Fini[QUEST_TAPU_FINI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    172,
+	    112, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2039,7 +1350,7 @@ static const struct SubQuest sSubQuests_Tapu_Fini[QUEST_TAPU_FINI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    173,
+	    113, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2047,12 +1358,8 @@ static const struct SubQuest sSubQuests_Tapu_Fini[QUEST_TAPU_FINI_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Cosmog[QUEST_COSMOG_SUB_COUNT] =
-{
 	sub_quest(
-	    174,
+	    114, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2061,7 +1368,7 @@ static const struct SubQuest sSubQuests_Cosmog[QUEST_COSMOG_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    175,
+	    115, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2070,7 +1377,7 @@ static const struct SubQuest sSubQuests_Cosmog[QUEST_COSMOG_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    176,
+	    116, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2080,10 +1387,10 @@ static const struct SubQuest sSubQuests_Cosmog[QUEST_COSMOG_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Solgaleo[QUEST_SOLGALEO_SUB_COUNT] =
+static const struct SubQuest sSubQuests_GoldenHeartSilverSoul[QUEST_GOLDEN_HEART_SILVER_SOUL_SUB_COUNT] =
 {
 	sub_quest(
-	    177,
+	    117, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2092,7 +1399,7 @@ static const struct SubQuest sSubQuests_Solgaleo[QUEST_SOLGALEO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    178,
+	    118, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2101,7 +1408,7 @@ static const struct SubQuest sSubQuests_Solgaleo[QUEST_SOLGALEO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    179,
+	    119, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2109,12 +1416,8 @@ static const struct SubQuest sSubQuests_Solgaleo[QUEST_SOLGALEO_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Lunala[QUEST_LUNALA_SUB_COUNT] =
-{
 	sub_quest(
-	    180,
+	    120, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2123,7 +1426,7 @@ static const struct SubQuest sSubQuests_Lunala[QUEST_LUNALA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    181,
+	    121, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2132,7 +1435,7 @@ static const struct SubQuest sSubQuests_Lunala[QUEST_LUNALA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    182,
+	    122, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2142,10 +1445,10 @@ static const struct SubQuest sSubQuests_Lunala[QUEST_LUNALA_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Necrozma[QUEST_NECROZMA_SUB_COUNT] =
+static const struct SubQuest sSubQuests_LoneFire[QUEST_LONE_FIRE_SUB_COUNT] =
 {
 	sub_quest(
-	    183,
+	    123, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2154,7 +1457,7 @@ static const struct SubQuest sSubQuests_Necrozma[QUEST_NECROZMA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    184,
+	    124, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2163,7 +1466,7 @@ static const struct SubQuest sSubQuests_Necrozma[QUEST_NECROZMA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    185,
+	    125, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2173,28 +1476,10 @@ static const struct SubQuest sSubQuests_Necrozma[QUEST_NECROZMA_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Magearna[QUEST_MAGEARNA_SUB_COUNT] =
+static const struct SubQuest sSubQuests_LunarSpirits[QUEST_LUNAR_SPIRITS_SUB_COUNT] =
 {
-	sub_quest(
-	    186,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
-	sub_quest(
-	    187,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    188,
+	    126, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2202,12 +1487,8 @@ static const struct SubQuest sSubQuests_Magearna[QUEST_MAGEARNA_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Marshadow[QUEST_MARSHADOW_SUB_COUNT] =
-{
 	sub_quest(
-	    189,
+	    127, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2216,7 +1497,7 @@ static const struct SubQuest sSubQuests_Marshadow[QUEST_MARSHADOW_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    190,
+	    128, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2225,7 +1506,7 @@ static const struct SubQuest sSubQuests_Marshadow[QUEST_MARSHADOW_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    191,
+	    129, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2235,10 +1516,10 @@ static const struct SubQuest sSubQuests_Marshadow[QUEST_MARSHADOW_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Zeraora[QUEST_ZERAORA_SUB_COUNT] =
+static const struct SubQuest sSubQuests_HeartsOfTheSea[QUEST_HEARTS_OF_THE_SEA_SUB_COUNT] =
 {
 	sub_quest(
-	    192,
+	    130, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2247,7 +1528,7 @@ static const struct SubQuest sSubQuests_Zeraora[QUEST_ZERAORA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    193,
+	    131, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2256,7 +1537,7 @@ static const struct SubQuest sSubQuests_Zeraora[QUEST_ZERAORA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    194,
+	    132, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2264,12 +1545,8 @@ static const struct SubQuest sSubQuests_Zeraora[QUEST_ZERAORA_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Meltan[QUEST_MELTAN_SUB_COUNT] =
-{
 	sub_quest(
-	    195,
+	    133, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2278,7 +1555,7 @@ static const struct SubQuest sSubQuests_Meltan[QUEST_MELTAN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    196,
+	    134, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2287,7 +1564,7 @@ static const struct SubQuest sSubQuests_Meltan[QUEST_MELTAN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    197,
+	    135, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2296,11 +1573,11 @@ static const struct SubQuest sSubQuests_Meltan[QUEST_MELTAN_SUB_COUNT] =
 	    sText_Ready
 	),
 };
-/* 
-static const struct SubQuest sSubQuests_Zacian[QUEST_ZACIAN_SUB_COUNT] =
+
+static const struct SubQuest sSubQuests_StalwartSoldiers[QUEST_STALWART_SOLDIERS_SUB_COUNT] =
 {
 	sub_quest(
-	    198,
+	    136, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2309,7 +1586,7 @@ static const struct SubQuest sSubQuests_Zacian[QUEST_ZACIAN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    199,
+	    137, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2318,7 +1595,7 @@ static const struct SubQuest sSubQuests_Zacian[QUEST_ZACIAN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    200,
+	    138, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2326,12 +1603,8 @@ static const struct SubQuest sSubQuests_Zacian[QUEST_ZACIAN_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Zamazenta[QUEST_ZAMAZENTA_SUB_COUNT] =
-{
 	sub_quest(
-	    201,
+	    139, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2340,7 +1613,7 @@ static const struct SubQuest sSubQuests_Zamazenta[QUEST_ZAMAZENTA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    202,
+	    140, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2349,7 +1622,7 @@ static const struct SubQuest sSubQuests_Zamazenta[QUEST_ZAMAZENTA_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    203,
+	    141, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2359,19 +1632,10 @@ static const struct SubQuest sSubQuests_Zamazenta[QUEST_ZAMAZENTA_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Eternatus[QUEST_ETERNATUS_SUB_COUNT] =
+static const struct SubQuest sSubQuests_MartialStudent[QUEST_MARTIAL_STUDENT_SUB_COUNT] =
 {
-	sub_quest(
-	    204,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    205,
+	    142, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2380,7 +1644,7 @@ static const struct SubQuest sSubQuests_Eternatus[QUEST_ETERNATUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    206,
+	    143, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2390,10 +1654,10 @@ static const struct SubQuest sSubQuests_Eternatus[QUEST_ETERNATUS_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Kubfu[QUEST_KUBFU_SUB_COUNT] =
+static const struct SubQuest sSubQuests_KingsSteed[QUEST_KINGS_STEED_SUB_COUNT] =
 {
 	sub_quest(
-	    207,
+	    144, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2402,7 +1666,7 @@ static const struct SubQuest sSubQuests_Kubfu[QUEST_KUBFU_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    208,
+	    145, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2411,7 +1675,7 @@ static const struct SubQuest sSubQuests_Kubfu[QUEST_KUBFU_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    209,
+	    146, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2419,12 +1683,8 @@ static const struct SubQuest sSubQuests_Kubfu[QUEST_KUBFU_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Zarude[QUEST_ZARUDE_SUB_COUNT] =
-{
 	sub_quest(
-	    210,
+	    147, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2432,8 +1692,12 @@ static const struct SubQuest sSubQuests_Zarude[QUEST_ZARUDE_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
+};
+
+static const struct SubQuest sSubQuests_StellarShrine[QUEST_STELLAR_SHRINE_SUB_COUNT] =
+{
 	sub_quest(
-	    211,
+	    148, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2442,7 +1706,7 @@ static const struct SubQuest sSubQuests_Zarude[QUEST_ZARUDE_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    212,
+	    149, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2450,12 +1714,8 @@ static const struct SubQuest sSubQuests_Zarude[QUEST_ZARUDE_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Articuno_Galar[QUEST_ARTICUNO_GALAR_SUB_COUNT] =
-{
 	sub_quest(
-	    213,
+	    150, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2464,7 +1724,7 @@ static const struct SubQuest sSubQuests_Articuno_Galar[QUEST_ARTICUNO_GALAR_SUB_
 	    sText_Ready
 	),
 	sub_quest(
-	    214,
+	    151, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2473,7 +1733,7 @@ static const struct SubQuest sSubQuests_Articuno_Galar[QUEST_ARTICUNO_GALAR_SUB_
 	    sText_Ready
 	),
 	sub_quest(
-	    215,
+	    152, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2483,19 +1743,10 @@ static const struct SubQuest sSubQuests_Articuno_Galar[QUEST_ARTICUNO_GALAR_SUB_
 	),
 };
 
-static const struct SubQuest sSubQuests_Zapdos_Galar[QUEST_ZAPDOS_GALAR_SUB_COUNT] =
+static const struct SubQuest sSubQuests_MythicalPixies[QUEST_MYTHICAL_PIXIES_SUB_COUNT] =
 {
-	sub_quest(
-	    216,
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
-	    sText_Ready
-	),
 	sub_quest(
-	    217,
+	    153, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2504,7 +1755,7 @@ static const struct SubQuest sSubQuests_Zapdos_Galar[QUEST_ZAPDOS_GALAR_SUB_COUN
 	    sText_Ready
 	),
 	sub_quest(
-	    218,
+	    154, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2512,12 +1763,8 @@ static const struct SubQuest sSubQuests_Zapdos_Galar[QUEST_ZAPDOS_GALAR_SUB_COUN
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Moltres_Galar[QUEST_MOLTRES_GALAR_SUB_COUNT] =
-{
 	sub_quest(
-	    219,
+	    155, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2526,7 +1773,7 @@ static const struct SubQuest sSubQuests_Moltres_Galar[QUEST_MOLTRES_GALAR_SUB_CO
 	    sText_Ready
 	),
 	sub_quest(
-	    220,
+	    156, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2535,7 +1782,7 @@ static const struct SubQuest sSubQuests_Moltres_Galar[QUEST_MOLTRES_GALAR_SUB_CO
 	    sText_Ready
 	),
 	sub_quest(
-	    221,
+	    157, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2543,12 +1790,8 @@ static const struct SubQuest sSubQuests_Moltres_Galar[QUEST_MOLTRES_GALAR_SUB_CO
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Regieleki[QUEST_REGIELEKI_SUB_COUNT] =
-{
 	sub_quest(
-	    222,
+	    158, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2557,7 +1800,7 @@ static const struct SubQuest sSubQuests_Regieleki[QUEST_REGIELEKI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    223,
+	    159, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2566,7 +1809,7 @@ static const struct SubQuest sSubQuests_Regieleki[QUEST_REGIELEKI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    224,
+	    160, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2574,12 +1817,8 @@ static const struct SubQuest sSubQuests_Regieleki[QUEST_REGIELEKI_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Regidrago[QUEST_REGIDRAGO_SUB_COUNT] =
-{
 	sub_quest(
-	    225,
+	    161, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2588,7 +1827,7 @@ static const struct SubQuest sSubQuests_Regidrago[QUEST_REGIDRAGO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    226,
+	    162, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2597,7 +1836,7 @@ static const struct SubQuest sSubQuests_Regidrago[QUEST_REGIDRAGO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    227,
+	    163, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2607,10 +1846,10 @@ static const struct SubQuest sSubQuests_Regidrago[QUEST_REGIDRAGO_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Glastrier[QUEST_GLASTRIER_SUB_COUNT] =
+static const struct SubQuest sSubQuests_FragmentedDNA[QUEST_FRAGMENTED_DNA_SUB_COUNT] =
 {
 	sub_quest(
-	    228,
+	    164, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2619,7 +1858,7 @@ static const struct SubQuest sSubQuests_Glastrier[QUEST_GLASTRIER_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    229,
+	    165, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2628,7 +1867,7 @@ static const struct SubQuest sSubQuests_Glastrier[QUEST_GLASTRIER_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    230,
+	    166, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2636,12 +1875,8 @@ static const struct SubQuest sSubQuests_Glastrier[QUEST_GLASTRIER_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Spectrier[QUEST_SPECTRIER_SUB_COUNT] =
-{
 	sub_quest(
-	    231,
+	    167, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2650,7 +1885,7 @@ static const struct SubQuest sSubQuests_Spectrier[QUEST_SPECTRIER_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    232,
+	    168, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2659,7 +1894,7 @@ static const struct SubQuest sSubQuests_Spectrier[QUEST_SPECTRIER_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    233,
+	    169, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2667,12 +1902,8 @@ static const struct SubQuest sSubQuests_Spectrier[QUEST_SPECTRIER_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Calyrex[QUEST_CALYREX_SUB_COUNT] =
-{
 	sub_quest(
-	    234,
+	    170, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2681,7 +1912,7 @@ static const struct SubQuest sSubQuests_Calyrex[QUEST_CALYREX_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    235,
+	    171, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2690,7 +1921,7 @@ static const struct SubQuest sSubQuests_Calyrex[QUEST_CALYREX_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    236,
+	    172, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2698,12 +1929,8 @@ static const struct SubQuest sSubQuests_Calyrex[QUEST_CALYREX_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Enamorus[QUEST_ENAMORUS_SUB_COUNT] =
-{
 	sub_quest(
-	    237,
+	    173, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2711,8 +1938,12 @@ static const struct SubQuest sSubQuests_Enamorus[QUEST_ENAMORUS_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
+};
+
+static const struct SubQuest sSubQuests_ChallengeTheProgenitor[QUEST_CHALLENGE_THE_PROGENITOR_SUB_COUNT] =
+{
 	sub_quest(
-	    238,
+	    174, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2721,7 +1952,7 @@ static const struct SubQuest sSubQuests_Enamorus[QUEST_ENAMORUS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    239,
+	    175, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2729,12 +1960,8 @@ static const struct SubQuest sSubQuests_Enamorus[QUEST_ENAMORUS_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Wo_Chien[QUEST_WO_CHIEN_SUB_COUNT] =
-{
 	sub_quest(
-	    240,
+	    176, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2743,7 +1970,7 @@ static const struct SubQuest sSubQuests_Wo_Chien[QUEST_WO_CHIEN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    241,
+	    177, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2752,7 +1979,7 @@ static const struct SubQuest sSubQuests_Wo_Chien[QUEST_WO_CHIEN_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    242,
+	    178, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2762,10 +1989,10 @@ static const struct SubQuest sSubQuests_Wo_Chien[QUEST_WO_CHIEN_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Chien_Pao[QUEST_CHIEN_PAO_SUB_COUNT] =
+static const struct SubQuest sSubQuests_FallenIdol[QUEST_FALLEN_IDOL_SUB_COUNT] =
 {
 	sub_quest(
-	    243,
+	    179, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2774,7 +2001,7 @@ static const struct SubQuest sSubQuests_Chien_Pao[QUEST_CHIEN_PAO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    244,
+	    180, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2783,7 +2010,7 @@ static const struct SubQuest sSubQuests_Chien_Pao[QUEST_CHIEN_PAO_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    245,
+	    181, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2791,12 +2018,8 @@ static const struct SubQuest sSubQuests_Chien_Pao[QUEST_CHIEN_PAO_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Ting_Lu[QUEST_TING_LU_SUB_COUNT] =
-{
 	sub_quest(
-	    246,
+	    182, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2805,7 +2028,7 @@ static const struct SubQuest sSubQuests_Ting_Lu[QUEST_TING_LU_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    247,
+	    183, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2814,7 +2037,7 @@ static const struct SubQuest sSubQuests_Ting_Lu[QUEST_TING_LU_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    248,
+	    184, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2824,10 +2047,10 @@ static const struct SubQuest sSubQuests_Ting_Lu[QUEST_TING_LU_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Chi_Yu[QUEST_CHI_YU_SUB_COUNT] =
+static const struct SubQuest sSubQuests_PrincessJewel[QUEST_PRINCESS_JEWEL_SUB_COUNT] =
 {
 	sub_quest(
-	    249,
+	    185, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2836,7 +2059,7 @@ static const struct SubQuest sSubQuests_Chi_Yu[QUEST_CHI_YU_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    250,
+	    186, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2845,7 +2068,7 @@ static const struct SubQuest sSubQuests_Chi_Yu[QUEST_CHI_YU_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    251,
+	    187, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2853,12 +2076,8 @@ static const struct SubQuest sSubQuests_Chi_Yu[QUEST_CHI_YU_SUB_COUNT] =
 	    OBJECT,
 	    sText_Ready
 	),
-};
-
-static const struct SubQuest sSubQuests_Koraidon[QUEST_KORAIDON_SUB_COUNT] =
-{
 	sub_quest(
-	    252,
+	    188, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2867,7 +2086,7 @@ static const struct SubQuest sSubQuests_Koraidon[QUEST_KORAIDON_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    253,
+	    189, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2876,7 +2095,7 @@ static const struct SubQuest sSubQuests_Koraidon[QUEST_KORAIDON_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    254,
+	    190, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2886,10 +2105,10 @@ static const struct SubQuest sSubQuests_Koraidon[QUEST_KORAIDON_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Miraidon[QUEST_MIRAIDON_SUB_COUNT] =
+static const struct SubQuest sSubQuests_BurningWater[QUEST_BURNING_WATER_SUB_COUNT] =
 {
 	sub_quest(
-	    255,
+	    191, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2898,7 +2117,7 @@ static const struct SubQuest sSubQuests_Miraidon[QUEST_MIRAIDON_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    256,
+	    192, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2907,7 +2126,7 @@ static const struct SubQuest sSubQuests_Miraidon[QUEST_MIRAIDON_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    257,
+	    193, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2917,10 +2136,10 @@ static const struct SubQuest sSubQuests_Miraidon[QUEST_MIRAIDON_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Okidogi[QUEST_OKIDOGI_SUB_COUNT] =
+static const struct SubQuest sSubQuests_ArtificialSoul[QUEST_ARTIFICIAL_SOUL_SUB_COUNT] =
 {
 	sub_quest(
-	    258,
+	    194, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2929,7 +2148,7 @@ static const struct SubQuest sSubQuests_Okidogi[QUEST_OKIDOGI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    259,
+	    195, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2938,7 +2157,7 @@ static const struct SubQuest sSubQuests_Okidogi[QUEST_OKIDOGI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    260,
+	    196, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2948,10 +2167,10 @@ static const struct SubQuest sSubQuests_Okidogi[QUEST_OKIDOGI_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Munkidori[QUEST_MUNKIDORI_SUB_COUNT] =
+static const struct SubQuest sSubQuests_HiddenShadow[QUEST_HIDDEN_SHADOW_SUB_COUNT] =
 {
 	sub_quest(
-	    261,
+	    197, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2960,7 +2179,7 @@ static const struct SubQuest sSubQuests_Munkidori[QUEST_MUNKIDORI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    262,
+	    198, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2969,7 +2188,7 @@ static const struct SubQuest sSubQuests_Munkidori[QUEST_MUNKIDORI_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    263,
+	    199, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2979,10 +2198,10 @@ static const struct SubQuest sSubQuests_Munkidori[QUEST_MUNKIDORI_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Fezandipiti[QUEST_FEZANDIPITI_SUB_COUNT] =
+static const struct SubQuest sSubQuests_ZeraoraQuest[QUEST_ZERAORA_QUEST_SUB_COUNT] =
 {
 	sub_quest(
-	    264,
+	    200, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -2991,7 +2210,7 @@ static const struct SubQuest sSubQuests_Fezandipiti[QUEST_FEZANDIPITI_SUB_COUNT]
 	    sText_Ready
 	),
 	sub_quest(
-	    265,
+	    201, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3000,7 +2219,7 @@ static const struct SubQuest sSubQuests_Fezandipiti[QUEST_FEZANDIPITI_SUB_COUNT]
 	    sText_Ready
 	),
 	sub_quest(
-	    266,
+	    202, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3010,10 +2229,10 @@ static const struct SubQuest sSubQuests_Fezandipiti[QUEST_FEZANDIPITI_SUB_COUNT]
 	),
 };
 
-static const struct SubQuest sSubQuests_Ogerpon[QUEST_OGERPON_SUB_COUNT] =
+static const struct SubQuest sSubQuests_MysteryMetal[QUEST_MYSTERY_METAL_SUB_COUNT] =
 {
 	sub_quest(
-	    267,
+	    203, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3022,7 +2241,7 @@ static const struct SubQuest sSubQuests_Ogerpon[QUEST_OGERPON_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    268,
+	    204, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3031,7 +2250,7 @@ static const struct SubQuest sSubQuests_Ogerpon[QUEST_OGERPON_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    269,
+	    205, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3041,10 +2260,10 @@ static const struct SubQuest sSubQuests_Ogerpon[QUEST_OGERPON_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Terapagos[QUEST_TERAPAGOS_SUB_COUNT] =
+static const struct SubQuest sSubQuests_ZarudeQuest[QUEST_ZARUDE_QUEST_SUB_COUNT] =
 {
 	sub_quest(
-	    270,
+	    206, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3053,7 +2272,7 @@ static const struct SubQuest sSubQuests_Terapagos[QUEST_TERAPAGOS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    271,
+	    207, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3062,7 +2281,7 @@ static const struct SubQuest sSubQuests_Terapagos[QUEST_TERAPAGOS_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    272,
+	    208, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3072,10 +2291,10 @@ static const struct SubQuest sSubQuests_Terapagos[QUEST_TERAPAGOS_SUB_COUNT] =
 	),
 };
 
-static const struct SubQuest sSubQuests_Pecharunt[QUEST_PECHARUNT_SUB_COUNT] =
+static const struct SubQuest sSubQuests_CorruptedPecha[QUEST_CORRUPTED_PECHA_SUB_COUNT] =
 {
 	sub_quest(
-	    273,
+	    209, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3084,7 +2303,7 @@ static const struct SubQuest sSubQuests_Pecharunt[QUEST_PECHARUNT_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    274,
+	    210, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3093,7 +2312,7 @@ static const struct SubQuest sSubQuests_Pecharunt[QUEST_PECHARUNT_SUB_COUNT] =
 	    sText_Ready
 	),
 	sub_quest(
-	    275,
+	    211, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
 	    gText_SideQuestMap1,
@@ -3102,7 +2321,7 @@ static const struct SubQuest sSubQuests_Pecharunt[QUEST_PECHARUNT_SUB_COUNT] =
 	    sText_Ready
 	),
 };
- */
+
 ////////////////////////END SUBQUEST CUSTOMIZATION/////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -3114,925 +2333,425 @@ static const struct SubQuest sSubQuests_Pecharunt[QUEST_PECHARUNT_SUB_COUNT] =
 static const struct SideQuest sSideQuests[QUEST_COUNT] =
 {
 	side_quest(
-	    gText_SideQuestName_Articuno,
-	    gText_SideQuestDesc_Articuno,
-	    gText_SideQuestDoneDesc_Articuno,
-	    gText_SideQuestMap_Articuno,
-	    SPECIES_ARTICUNO,
-	    PKMN,
-	    sSubQuests_Articuno,
-	    QUEST_ARTICUNO_SUB_COUNT
-	),
-	side_quest(
-	    gText_SideQuestName_Zapdos,
-	    gText_SideQuestDesc_Zapdos,
-	    gText_SideQuestDoneDesc_Zapdos,
-	    gText_SideQuestMap_Zapdos,
-	    SPECIES_ZAPDOS,
-	    PKMN,
-	    sSubQuests_Zapdos,
-	    QUEST_ZAPDOS_SUB_COUNT
-	),
-	side_quest(
-	    gText_SideQuestName_Moltres,
-	    gText_SideQuestDesc_Moltres,
-	    gText_SideQuestDoneDesc_Moltres,
-	    gText_SideQuestMap_Moltres,
+	    gText_SideQuestName_WingsOfPower,
+	    gText_SideQuestDesc_WingsOfPower,
+	    gText_SideQuestDoneDesc_WingsOfPower,
+	    gText_SideQuestMap_WingsOfPower,
 	    SPECIES_MOLTRES,
 	    PKMN,
-	    sSubQuests_Moltres,
-	    QUEST_MOLTRES_SUB_COUNT
+	    sSubQuests_WingsOfPower,
+	    QUEST_WINGS_OF_POWER_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MEWTWO,
-	    PKMN,
-	    sSubQuests_Mewtwo,
-	    QUEST_MEWTWO_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MEW,
-	    PKMN,
-	    sSubQuests_Mew,
-	    QUEST_MEW_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_RAIKOU,
-	    PKMN,
-	    sSubQuests_Raikou,
-	    QUEST_RAIKOU_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ENTEI,
-	    PKMN,
-	    sSubQuests_Entei,
-	    QUEST_ENTEI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_SUICUNE,
-	    PKMN,
-	    sSubQuests_Suicune,
-	    QUEST_SUICUNE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_LUGIA,
-	    PKMN,
-	    sSubQuests_Lugia,
-	    QUEST_LUGIA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_HO_OH,
-	    PKMN,
-	    sSubQuests_Ho_Oh,
-	    QUEST_HO_OH_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_CELEBI,
-	    PKMN,
-	    sSubQuests_Celebi,
-	    QUEST_CELEBI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_REGIROCK,
-	    PKMN,
-	    sSubQuests_Regirock,
-	    QUEST_REGIROCK_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_REGICE,
-	    PKMN,
-	    sSubQuests_Regice,
-	    QUEST_REGICE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_REGISTEEL,
-	    PKMN,
-	    sSubQuests_Registeel,
-	    QUEST_REGISTEEL_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_LATIAS,
-	    PKMN,
-	    sSubQuests_Latias,
-	    QUEST_LATIAS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_LATIOS,
-	    PKMN,
-	    sSubQuests_Latios,
-	    QUEST_LATIOS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_KYOGRE,
-	    PKMN,
-	    sSubQuests_Kyogre,
-	    QUEST_KYOGRE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_GROUDON,
-	    PKMN,
-	    sSubQuests_Groudon,
-	    QUEST_GROUDON_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_RAYQUAZA,
-	    PKMN,
-	    sSubQuests_Rayquaza,
-	    QUEST_RAYQUAZA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_JIRACHI,
-	    PKMN,
-	    sSubQuests_Jirachi,
-	    QUEST_JIRACHI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_DEOXYS,
-	    PKMN,
-	    sSubQuests_Deoxys,
-	    QUEST_DEOXYS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_UXIE,
-	    PKMN,
-	    sSubQuests_Uxie,
-	    QUEST_UXIE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MESPRIT,
-	    PKMN,
-	    sSubQuests_Mesprit,
-	    QUEST_MESPRIT_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_AZELF,
-	    PKMN,
-	    sSubQuests_Azelf,
-	    QUEST_AZELF_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_DIALGA,
-	    PKMN,
-	    sSubQuests_Dialga,
-	    QUEST_DIALGA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_PALKIA,
-	    PKMN,
-	    sSubQuests_Palkia,
-	    QUEST_PALKIA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_HEATRAN,
-	    PKMN,
-	    sSubQuests_Heatran,
-	    QUEST_HEATRAN_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_REGIGIGAS,
-	    PKMN,
-	    sSubQuests_Regigigas,
-	    QUEST_REGIGIGAS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_GIRATINA,
-	    PKMN,
-	    sSubQuests_Giratina,
-	    QUEST_GIRATINA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_CRESSELIA,
-	    PKMN,
-	    sSubQuests_Cresselia,
-	    QUEST_CRESSELIA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_PHIONE,
-	    PKMN,
-	    sSubQuests_Phione,
-	    QUEST_PHIONE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MANAPHY,
-	    PKMN,
-	    sSubQuests_Manaphy,
-	    QUEST_MANAPHY_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_DARKRAI,
-	    PKMN,
-	    sSubQuests_Darkrai,
-	    QUEST_DARKRAI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_SHAYMIN,
-	    PKMN,
-	    sSubQuests_Shaymin,
-	    QUEST_SHAYMIN_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ARCEUS,
-	    PKMN,
-	    sSubQuests_Arceus,
-	    QUEST_ARCEUS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_VICTINI,
-	    PKMN,
-	    sSubQuests_Victini,
-	    QUEST_VICTINI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_COBALION,
-	    PKMN,
-	    sSubQuests_Cobalion,
-	    QUEST_COBALION_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_TERRAKION,
-	    PKMN,
-	    sSubQuests_Terrakion,
-	    QUEST_TERRAKION_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_VIRIZION,
-	    PKMN,
-	    sSubQuests_Virizion,
-	    QUEST_VIRIZION_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_TORNADUS,
-	    PKMN,
-	    sSubQuests_Tornadus,
-	    QUEST_TORNADUS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_THUNDURUS,
-	    PKMN,
-	    sSubQuests_Thundurus,
-	    QUEST_THUNDURUS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_RESHIRAM,
-	    PKMN,
-	    sSubQuests_Reshiram,
-	    QUEST_RESHIRAM_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ZEKROM,
-	    PKMN,
-	    sSubQuests_Zekrom,
-	    QUEST_ZEKROM_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_LANDORUS,
-	    PKMN,
-	    sSubQuests_Landorus,
-	    QUEST_LANDORUS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_KYUREM,
-	    PKMN,
-	    sSubQuests_Kyurem,
-	    QUEST_KYUREM_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_KELDEO,
-	    PKMN,
-	    sSubQuests_Keldeo,
-	    QUEST_KELDEO_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MELOETTA,
-	    PKMN,
-	    sSubQuests_Meloetta,
-	    QUEST_MELOETTA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_GENESECT,
-	    PKMN,
-	    sSubQuests_Genesect,
-	    QUEST_GENESECT_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_XERNEAS,
-	    PKMN,
-	    sSubQuests_Xerneas,
-	    QUEST_XERNEAS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_YVELTAL,
-	    PKMN,
-	    sSubQuests_Yveltal,
-	    QUEST_YVELTAL_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ZYGARDE,
-	    PKMN,
-	    sSubQuests_Zygarde,
-	    QUEST_ZYGARDE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_DIANCIE,
-	    PKMN,
-	    sSubQuests_Diancie,
-	    QUEST_DIANCIE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_HOOPA,
-	    PKMN,
-	    sSubQuests_Hoopa,
-	    QUEST_HOOPA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_VOLCANION,
-	    PKMN,
-	    sSubQuests_Volcanion,
-	    QUEST_VOLCANION_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_TAPU_KOKO,
-	    PKMN,
-	    sSubQuests_Tapu_Koko,
-	    QUEST_TAPU_KOKO_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_TAPU_LELE,
-	    PKMN,
-	    sSubQuests_Tapu_Lele,
-	    QUEST_TAPU_LELE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_TAPU_BULU,
-	    PKMN,
-	    sSubQuests_Tapu_Bulu,
-	    QUEST_TAPU_BULU_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_TAPU_FINI,
-	    PKMN,
-	    sSubQuests_Tapu_Fini,
-	    QUEST_TAPU_FINI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_COSMOG,
-	    PKMN,
-	    sSubQuests_Cosmog,
-	    QUEST_COSMOG_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_SOLGALEO,
-	    PKMN,
-	    sSubQuests_Solgaleo,
-	    QUEST_SOLGALEO_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_LUNALA,
-	    PKMN,
-	    sSubQuests_Lunala,
-	    QUEST_LUNALA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_NECROZMA,
-	    PKMN,
-	    sSubQuests_Necrozma,
-	    QUEST_NECROZMA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MAGEARNA,
-	    PKMN,
-	    sSubQuests_Magearna,
-	    QUEST_MAGEARNA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MARSHADOW,
-	    PKMN,
-	    sSubQuests_Marshadow,
-	    QUEST_MARSHADOW_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ZERAORA,
-	    PKMN,
-	    sSubQuests_Zeraora,
-	    QUEST_ZERAORA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MELTAN,
-	    PKMN,
-	    sSubQuests_Meltan,
-	    QUEST_MELTAN_SUB_COUNT
-	),/* 
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ZACIAN,
-	    PKMN,
-	    sSubQuests_Zacian,
-	    QUEST_ZACIAN_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ZAMAZENTA,
-	    PKMN,
-	    sSubQuests_Zamazenta,
-	    QUEST_ZAMAZENTA_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ETERNATUS,
-	    PKMN,
-	    sSubQuests_Eternatus,
-	    QUEST_ETERNATUS_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_KUBFU,
-	    PKMN,
-	    sSubQuests_Kubfu,
-	    QUEST_KUBFU_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ZARUDE,
-	    PKMN,
-	    sSubQuests_Zarude,
-	    QUEST_ZARUDE_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ARTICUNO_GALAR,
-	    PKMN,
-	    sSubQuests_Articuno_Galar,
-	    QUEST_ARTICUNO_GALAR_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ZAPDOS_GALAR,
-	    PKMN,
-	    sSubQuests_Zapdos_Galar,
-	    QUEST_ZAPDOS_GALAR_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
+		gText_SideQuestName_MutatedWings,
+	    gText_SideQuestDesc_MutatedWings,
+	    gText_SideQuestDoneDesc_MutatedWings,
+	    gText_SideQuestMap_MutatedWings,
 	    SPECIES_MOLTRES_GALAR,
 	    PKMN,
-	    sSubQuests_Moltres_Galar,
-	    QUEST_MOLTRES_GALAR_SUB_COUNT
+	    sSubQuests_MutatedWings,
+	    QUEST_MUTATED_WINGS_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_REGIELEKI,
+		gText_SideQuestName_BeastsOfResurrection,
+	    gText_SideQuestDesc_BeastsOfResurrection,
+	    gText_SideQuestDoneDesc_BeastsOfResurrection,
+	    gText_SideQuestMap_BeastsOfResurrection,
+	    SPECIES_SUICUNE,
 	    PKMN,
-	    sSubQuests_Regieleki,
-	    QUEST_REGIELEKI_SUB_COUNT
+	    sSubQuests_BeastsOfResurrection,
+	    QUEST_BEASTS_OF_RESURRECTION_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_REGIDRAGO,
+		gText_SideQuestName_GolemsOfTheEras,
+	    gText_SideQuestDesc_GolemsOfTheEras,
+	    gText_SideQuestDoneDesc_GolemsOfTheEras,
+	    gText_SideQuestMap_GolemsOfTheEras,
+	    SPECIES_REGIGIGAS,
 	    PKMN,
-	    sSubQuests_Regidrago,
-	    QUEST_REGIDRAGO_SUB_COUNT
+	    sSubQuests_GolemsOfTheEras,
+	    QUEST_GOLEMS_OF_THE_ERAS_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_GLASTRIER,
+		gText_SideQuestName_SpiritsOfTheSoul,
+	    gText_SideQuestDesc_SpiritsOfTheSoul,
+	    gText_SideQuestDoneDesc_SpiritsOfTheSoul,
+	    gText_SideQuestMap_SpiritsOfTheSoul,
+	    SPECIES_UXIE,
 	    PKMN,
-	    sSubQuests_Glastrier,
-	    QUEST_GLASTRIER_SUB_COUNT
+	    sSubQuests_SpiritsOfTheSoul,
+	    QUEST_SPIRITS_OF_THE_SOUL_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_SPECTRIER,
-	    PKMN,
-	    sSubQuests_Spectrier,
-	    QUEST_SPECTRIER_SUB_COUNT
+		gText_SideQuestName_PrimordialSea,
+	    gText_SideQuestDesc_PrimordialSea,
+	    gText_SideQuestDoneDesc_PrimordialSea,
+	    gText_SideQuestMap_PrimordialSea,
+	    ITEM_BLUE_ORB,
+	    ITEM,
+	    sSubQuests_PrimordialSea,
+	    QUEST_PRIMORDIAL_SEA_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_CALYREX,
-	    PKMN,
-	    sSubQuests_Calyrex,
-	    QUEST_CALYREX_SUB_COUNT
+		gText_SideQuestName_DesolateLand,
+	    gText_SideQuestDesc_DesolateLand,
+	    gText_SideQuestDoneDesc_DesolateLand,
+	    gText_SideQuestMap_DesolateLand,
+	    ITEM_RED_ORB,
+	    ITEM,
+	    sSubQuests_DesolateLand,
+	    QUEST_DESOLATE_LAND_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_ENAMORUS,
+		gText_SideQuestName_AncientDragonOfConquest,
+	    gText_SideQuestDesc_AncientDragonOfConquest,
+	    gText_SideQuestDoneDesc_AncientDragonOfConquest,
+	    gText_SideQuestMap_AncientDragonOfConquest,
+	    SPECIES_RAYQUAZA_MEGA,
 	    PKMN,
-	    sSubQuests_Enamorus,
-	    QUEST_ENAMORUS_SUB_COUNT
-	),
- 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_WO_CHIEN,
-	    PKMN,
-	    sSubQuests_Wo_Chien,
-	    QUEST_WO_CHIEN_SUB_COUNT
+	    sSubQuests_AncientDragonOfConquest,
+	    QUEST_ANCIENT_DRAGON_OF_CONQUEST_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_CHIEN_PAO,
-	    PKMN,
-	    sSubQuests_Chien_Pao,
-	    QUEST_CHIEN_PAO_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_TING_LU,
-	    PKMN,
-	    sSubQuests_Ting_Lu,
-	    QUEST_TING_LU_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_CHI_YU,
-	    PKMN,
-	    sSubQuests_Chi_Yu,
-	    QUEST_CHI_YU_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_KORAIDON,
-	    PKMN,
-	    sSubQuests_Koraidon,
-	    QUEST_KORAIDON_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MIRAIDON,
-	    PKMN,
-	    sSubQuests_Miraidon,
-	    QUEST_MIRAIDON_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_OKIDOGI,
-	    PKMN,
-	    sSubQuests_Okidogi,
-	    QUEST_OKIDOGI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_MUNKIDORI,
-	    PKMN,
-	    sSubQuests_Munkidori,
-	    QUEST_MUNKIDORI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
-	    SPECIES_FEZANDIPITI,
-	    PKMN,
-	    sSubQuests_Fezandipiti,
-	    QUEST_FEZANDIPITI_SUB_COUNT
-	),
-	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
+		gText_SideQuestName_LegendsLie,
+	    gText_SideQuestDesc_LegendsLie,
+	    gText_SideQuestDoneDesc_LegendsLie,
+	    gText_SideQuestMap_LegendsLie,
 	    SPECIES_OGERPON,
 	    PKMN,
-	    sSubQuests_Ogerpon,
-	    QUEST_OGERPON_SUB_COUNT
+	    sSubQuests_LegendsLie,
+	    QUEST_LEGENDS_LIE_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
+		gText_SideQuestName_ImprisonedCurses,
+	    gText_SideQuestDesc_ImprisonedCurses,
+	    gText_SideQuestDoneDesc_ImprisonedCurses,
+	    gText_SideQuestMap_ImprisonedCurses,
+	    SPECIES_CHIEN_PAO,
+	    PKMN,
+	    sSubQuests_ImprisonedCurses,
+	    QUEST_IMPRISONED_CURSES_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_SentinelsOfTheWilds,
+	    gText_SideQuestDesc_SentinelsOfTheWilds,
+	    gText_SideQuestDoneDesc_SentinelsOfTheWilds,
+	    gText_SideQuestMap_SentinelsOfTheWilds,
+	    SPECIES_KELDEO,
+	    PKMN,
+	    sSubQuests_SentinelsOfTheWilds,
+	    QUEST_SENTINELS_OF_THE_WILDS_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_GeniesOfNature,
+	    gText_SideQuestDesc_GeniesOfNature,
+	    gText_SideQuestDoneDesc_GeniesOfNature,
+	    gText_SideQuestMap_GeniesOfNature,
+	    SPECIES_LANDORUS,
+	    PKMN,
+	    sSubQuests_GeniesOfNature,
+	    QUEST_GENIES_OF_NATURE_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_ChronoAlchemy,
+	    gText_SideQuestDesc_ChronoAlchemy,
+	    gText_SideQuestDoneDesc_ChronoAlchemy,
+	    gText_SideQuestMap_ChronoAlchemy,
+	    SPECIES_CYCLIZAR,
+	    PKMN,
+	    sSubQuests_ChronoAlchemy,
+	    QUEST_CHRONO_ALCHEMY_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_TechnoRebirth,
+	    gText_SideQuestDesc_TechnoRebirth,
+	    gText_SideQuestDoneDesc_TechnoRebirth,
+	    gText_SideQuestMap_TechnoRebirth,
+	    SPECIES_GENESECT,
+	    PKMN,
+	    sSubQuests_TechnoRebirth,
+	    QUEST_TECHNO_REBIRTH_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_ConcealedForcesOfExistence,
+	    gText_SideQuestDesc_ConcealedForcesOfExistence,
+	    gText_SideQuestDoneDesc_ConcealedForcesOfExistence,
+	    gText_SideQuestMap_ConcealedForcesOfExistence,
+	    SPECIES_ZYGARDE,
+	    PKMN,
+	    sSubQuests_ConcealedForcesOfExistence,
+	    QUEST_CONCEALED_FORCES_OF_EXISTENCE_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_BrokenWormholes,
+	    gText_SideQuestDesc_BrokenWormholes,
+	    gText_SideQuestDoneDesc_BrokenWormholes,
+	    gText_SideQuestMap_BrokenWormholes,
+	    SPECIES_HOOPA,
+	    PKMN,
+	    sSubQuests_BrokenWormholes,
+	    QUEST_BROKEN_WORMHOLES_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_CelestialEclipse,
+	    gText_SideQuestDesc_CelestialEclipse,
+	    gText_SideQuestDoneDesc_CelestialEclipse,
+	    gText_SideQuestMap_CelestialEclipse,
+	    SPECIES_COSMOG,
+	    PKMN,
+	    sSubQuests_CelestialEclipse,
+	    QUEST_CELESTIAL_ECLIPSE_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_WardensOfTheNebula,
+	    gText_SideQuestDesc_WardensOfTheNebula,
+	    gText_SideQuestDoneDesc_WardensOfTheNebula,
+	    gText_SideQuestMap_WardensOfTheNebula,
+	    SPECIES_TAPU_KOKO,
+	    PKMN,
+	    sSubQuests_WardensOfTheNebula,
+	    QUEST_WARDENS_OF_THE_NEBULA_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_TwinSouls,
+	    gText_SideQuestDesc_TwinSouls,
+	    gText_SideQuestDoneDesc_TwinSouls,
+	    gText_SideQuestMap_TwinSouls,
+	    ITEM_SOUL_DEW,
+	    ITEM,
+	    sSubQuests_TwinSouls,
+	    QUEST_TWIN_SOULS_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_ArtificialPower,
+	    gText_SideQuestDesc_ArtificialPower,
+	    gText_SideQuestDoneDesc_ArtificialPower,
+	    gText_SideQuestMap_ArtificialPower,
+	    SPECIES_MEWTWO,
+	    PKMN,
+	    sSubQuests_ArtificialPower,
+	    QUEST_ARTIFICIAL_POWER_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_TaoKings,
+	    gText_SideQuestDesc_TaoKings,
+	    gText_SideQuestDoneDesc_TaoKings,
+	    gText_SideQuestMap_TaoKings,
+	    SPECIES_KYUREM,
+	    PKMN,
+	    sSubQuests_TaoKings,
+	    QUEST_TAO_KINGS_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_DistortedDimensions,
+	    gText_SideQuestDesc_DistortedDimensions,
+	    gText_SideQuestDoneDesc_DistortedDimensions,
+	    gText_SideQuestMap_DistortedDimensions,
+	    SPECIES_GIRATINA,
+	    PKMN,
+	    sSubQuests_DistortedDimensions,
+	    QUEST_DISTORTED_DIMENSIONS_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_GoldenHeartSilverSoul,
+	    gText_SideQuestDesc_GoldenHeartSilverSoul,
+	    gText_SideQuestDoneDesc_GoldenHeartSilverSoul,
+	    gText_SideQuestMap_GoldenHeartSilverSoul,
+	    SPECIES_HO_OH,
+	    PKMN,
+	    sSubQuests_GoldenHeartSilverSoul,
+	    QUEST_GOLDEN_HEART_SILVER_SOUL_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_LoneFire,
+	    gText_SideQuestDesc_LoneFire,
+	    gText_SideQuestDoneDesc_LoneFire,
+	    gText_SideQuestMap_LoneFire,
+	    SPECIES_HEATRAN,
+	    PKMN,
+	    sSubQuests_LoneFire,
+	    QUEST_LONE_FIRE_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_LunarSpirits,
+	    gText_SideQuestDesc_LunarSpirits,
+	    gText_SideQuestDoneDesc_LunarSpirits,
+	    gText_SideQuestMap_LunarSpirits,
+	    SPECIES_CRESSELIA,
+	    PKMN,
+	    sSubQuests_LunarSpirits,
+	    QUEST_LUNAR_SPIRITS_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_HeartsOfTheSea,
+	    gText_SideQuestDesc_HeartsOfTheSea,
+	    gText_SideQuestDoneDesc_HeartsOfTheSea,
+	    gText_SideQuestMap_HeartsOfTheSea,
+	    SPECIES_MANAPHY,
+	    PKMN,
+	    sSubQuests_HeartsOfTheSea,
+	    QUEST_HEARTS_OF_THE_SEA_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_StalwartSoldiers,
+	    gText_SideQuestDesc_StalwartSoldiers,
+	    gText_SideQuestDoneDesc_StalwartSoldiers,
+	    gText_SideQuestMap_StalwartSoldiers,
+	    SPECIES_ZAMAZENTA_CROWNED,
+	    PKMN,
+	    sSubQuests_StalwartSoldiers,
+	    QUEST_STALWART_SOLDIERS_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_MartialStudent,
+	    gText_SideQuestDesc_MartialStudent,
+	    gText_SideQuestDoneDesc_MartialStudent,
+	    gText_SideQuestMap_MartialStudent,
+	    SPECIES_KUBFU,
+	    PKMN,
+	    sSubQuests_MartialStudent,
+	    QUEST_MARTIAL_STUDENT_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_KingsSteed,
+	    gText_SideQuestDesc_KingsSteed,
+	    gText_SideQuestDoneDesc_KingsSteed,
+	    gText_SideQuestMap_KingsSteed,
+	    SPECIES_CALYREX,
+	    PKMN,
+	    sSubQuests_KingsSteed,
+	    QUEST_KINGS_STEED_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_StellarShrine,
+	    gText_SideQuestDesc_StellarShrine,
+	    gText_SideQuestDoneDesc_StellarShrine,
+	    gText_SideQuestMap_StellarShrine,
 	    SPECIES_TERAPAGOS,
 	    PKMN,
-	    sSubQuests_Terapagos,
-	    QUEST_TERAPAGOS_SUB_COUNT
+	    sSubQuests_StellarShrine,
+	    QUEST_STELLAR_SHRINE_SUB_COUNT
 	),
 	side_quest(
-		gText_SideQuestName_1,
-	    gText_SideQuestDesc_1,
-	    gText_SideQuestDoneDesc_1,
-	    gText_SideQuestMap1,
+		gText_SideQuestName_MythicalPixies,
+	    gText_SideQuestDesc_MythicalPixies,
+	    gText_SideQuestDoneDesc_MythicalPixies,
+	    gText_SideQuestMap_MythicalPixies,
+	    SPECIES_CELEBI,
+	    PKMN,
+	    sSubQuests_MythicalPixies,
+	    QUEST_MYTHICAL_PIXIES_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_FragmentedDNA,
+	    gText_SideQuestDesc_FragmentedDNA,
+	    gText_SideQuestDoneDesc_FragmentedDNA,
+	    gText_SideQuestMap_FragmentedDNA,
+	    SPECIES_DEOXYS,
+	    PKMN,
+	    sSubQuests_FragmentedDNA,
+	    QUEST_FRAGMENTED_DNA_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_ChallengeTheProgenitor,
+	    gText_SideQuestDesc_ChallengeTheProgenitor,
+	    gText_SideQuestDoneDesc_ChallengeTheProgenitor,
+	    gText_SideQuestMap_ChallengeTheProgenitor,
+	    SPECIES_ARCEUS,
+	    PKMN,
+	    sSubQuests_ChallengeTheProgenitor,
+	    QUEST_CHALLENGE_THE_PROGENITOR_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_FallenIdol,
+	    gText_SideQuestDesc_FallenIdol,
+	    gText_SideQuestDoneDesc_FallenIdol,
+	    gText_SideQuestMap_FallenIdol,
+	    SPECIES_MELOETTA, //TODO - set this to Lissa
+	    PKMN,
+	    sSubQuests_FallenIdol,
+	    QUEST_FALLEN_IDOL_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_PrincessJewel,
+	    gText_SideQuestDesc_PrincessJewel,
+	    gText_SideQuestDoneDesc_PrincessJewel,
+	    gText_SideQuestMap_PrincessJewel,
+	    SPECIES_DIANCIE,
+	    PKMN,
+	    sSubQuests_PrincessJewel,
+	    QUEST_PRINCESS_JEWEL_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_BurningWater,
+	    gText_SideQuestDesc_BurningWater,
+	    gText_SideQuestDoneDesc_BurningWater,
+	    gText_SideQuestMap_BurningWater,
+	    SPECIES_VOLCANION,
+	    PKMN,
+	    sSubQuests_BurningWater,
+	    QUEST_BURNING_WATER_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_ArtificialSoul,
+	    gText_SideQuestDesc_ArtificialSoul,
+	    gText_SideQuestDoneDesc_ArtificialSoul,
+	    gText_SideQuestMap_ArtificialSoul,
+	    SPECIES_MAGEARNA,
+	    PKMN,
+	    sSubQuests_ArtificialSoul,
+	    QUEST_ARTIFICIAL_SOUL_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_HiddenShadow,
+	    gText_SideQuestDesc_HiddenShadow,
+	    gText_SideQuestDoneDesc_HiddenShadow,
+	    gText_SideQuestMap_HiddenShadow,
+	    SPECIES_MARSHADOW,
+	    PKMN,
+	    sSubQuests_HiddenShadow,
+	    QUEST_HIDDEN_SHADOW_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_ZeraoraQuest,
+	    gText_SideQuestDesc_ZeraoraQuest,
+	    gText_SideQuestDoneDesc_ZeraoraQuest,
+	    gText_SideQuestMap_ZeraoraQuest,
+	    SPECIES_ZERAORA,
+	    PKMN,
+	    sSubQuests_ZeraoraQuest,
+	    QUEST_ZERAORA_QUEST_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_MysteryMetal,
+	    gText_SideQuestDesc_MysteryMetal,
+	    gText_SideQuestDoneDesc_MysteryMetal,
+	    gText_SideQuestMap_MysteryMetal,
+	    SPECIES_MELTAN,
+	    PKMN,
+	    sSubQuests_MysteryMetal,
+	    QUEST_MYSTERY_METAL_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_ZarudeQuest,
+	    gText_SideQuestDesc_ZarudeQuest,
+	    gText_SideQuestDoneDesc_ZarudeQuest,
+	    gText_SideQuestMap_ZarudeQuest,
+	    SPECIES_ZARUDE,
+	    PKMN,
+	    sSubQuests_ZarudeQuest,
+	    QUEST_ZARUDE_QUEST_SUB_COUNT
+	),
+	side_quest(
+		gText_SideQuestName_CorruptedPecha,
+	    gText_SideQuestDesc_CorruptedPecha,
+	    gText_SideQuestDoneDesc_CorruptedPecha,
+	    gText_SideQuestMap_CorruptedPecha,
 	    SPECIES_PECHARUNT,
 	    PKMN,
-	    sSubQuests_Pecharunt,
-	    QUEST_PECHARUNT_SUB_COUNT
-	), */
+	    sSubQuests_CorruptedPecha,
+	    QUEST_CORRUPTED_PECHA_SUB_COUNT
+	),
 };
 
 ////////////////////////END QUEST CUSTOMIZATION////////////////////////////////
@@ -5368,6 +4087,7 @@ static void QuestMenu_CreateSprite(u16 itemId, u8 idx, u8 spriteType)
 			default:
 				break;
 		}
+		sItemMenuSpriteTypes[idx] = spriteType;
 
 		gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
 
@@ -5402,7 +4122,10 @@ static void QuestMenu_DestroySprite(u8 idx)
 	{
 		u16 palTag = GetSpritePaletteTagByPaletteNum(
 		                   gSprites[ptr[idx]].oam.paletteNum);
-		DestroySprite(&gSprites[ptr[idx]]);
+		if (sItemMenuSpriteTypes[idx] == PKMN)
+			FreeAndDestroyMonIconSprite(&gSprites[ptr[idx]]);
+		else
+			DestroySprite(&gSprites[ptr[idx]]);
 		ptr[idx] = 0xFF;
 
 		if (sStateDataPtr->oldPaletteTag != palTag)

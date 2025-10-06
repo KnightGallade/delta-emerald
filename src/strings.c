@@ -1308,50 +1308,216 @@ const u8 gText_QuestAnnounce[] = _("The quest '{STR_VAR_1}'\nis now {STR_VAR_2}.
 const u8 gText_QuestComplete[] =_("complete");
 const u8 gText_QuestActive[] =_("active");
 
-// Articuno
-const u8 gText_SideQuestName_Articuno[] = _("Frozen Sky");
-const u8 gText_SideQuestDesc_Articuno[] = _("Legends tell of a legendary raptor,\nborn as the very embodiment of ice.");
-const u8 gText_SideQuestDoneDesc_Articuno[] = _("You caught the legendary Freeze Pokémon,\nArticuno!");
-const u8 gText_SideQuestMap_Articuno[] = _("Hidden Cave");
-const u8 gText_SubQuest_Articuno_Name1[] = _("Prove your strength");
-const u8 gText_SubQuest_Articuno_Desc1[] = _("Legends do not care for the weak.\nProve your strength with 4 badges.");
-const u8 gText_SubQuest_Articuno_Map1[] = _("Hoenn Gyms");
-const u8 gText_SubQuest_Articuno_Name2[] = _("Master the cold");
-const u8 gText_SubQuest_Articuno_Desc2[] = _("Catch 50 ice types.");
-const u8 gText_SubQuest_Articuno_Map2[] = _("Hoenn");
-const u8 gText_SubQuest_Articuno_Name3[] = _("Prepare for battle");
-const u8 gText_SubQuest_Articuno_Desc3[] = _("Rumors say a powerful Pokémon\nhas been seen in Shoal Cave.");
-const u8 gText_SubQuest_Articuno_Map3[] = _("Shoal Cave");
+// Main Quest Stings
+const u8 gText_SideQuestName_WingsOfPower[] = _("Wings of Power");
+const u8 gText_SideQuestDesc_WingsOfPower[] = _("Legends tell of legendary raptors,\nborn as the very embodiment of the\nelements.");
+const u8 gText_SideQuestDoneDesc_WingsOfPower[] = _("You caught the legendary Freeze Pokémon,\nArticuno!");
+const u8 gText_SideQuestMap_WingsOfPower[] = _("Hidden Caves");
 
-// Zapdos
-const u8 gText_SideQuestName_Zapdos[] = _("Thundurous Sky");
-const u8 gText_SideQuestDesc_Zapdos[] = _("Legends tell of a legendary raptor,\nborn as the very embodiment of lightning.");
-const u8 gText_SideQuestDoneDesc_Zapdos[] = _("You caught the legendary Electric Pokémon,\nZapdos!");
-const u8 gText_SideQuestMap_Zapdos[] = _("Hidden Cave");
-const u8 gText_SubQuest_Zapdos_Name1[] = _("Prove your strength");
-const u8 gText_SubQuest_Zapdos_Desc1[] = _("Legends do not care for the weak.\nProve your strength with 4 badges.");
-const u8 gText_SubQuest_Zapdos_Map1[] = _("Hoenn Gyms");
-const u8 gText_SubQuest_Zapdos_Name2[] = _("Master the lightning");
-const u8 gText_SubQuest_Zapdos_Desc2[] = _("Catch 50 electric types.");
-const u8 gText_SubQuest_Zapdos_Map2[] = _("Hoenn");
-const u8 gText_SubQuest_Zapdos_Name3[] = _("Prepare for battle");
-const u8 gText_SubQuest_Zapdos_Desc3[] = _("Rumors say a powerful Pokémon\nhas been seen in New Mauville.");
-const u8 gText_SubQuest_Zapdos_Map3[] = _("New Mauville");
+const u8 gText_SideQuestName_MutatedWings[] = _("Mutated Wings");
+const u8 gText_SideQuestDesc_MutatedWings[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_MutatedWings[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_MutatedWings[] = _("LOCATION");
 
-// Moltres
-const u8 gText_SideQuestName_Moltres[] = _("Burning Sky");
-const u8 gText_SideQuestDesc_Moltres[] = _("Legends tell of a legendary raptor,\nborn as the very embodiment of fire.");
-const u8 gText_SideQuestDoneDesc_Moltres[] = _("You caught the legendary Flame Pokémon,\nMoltres!");
-const u8 gText_SideQuestMap_Moltres[] = _("Hidden Cave");
-const u8 gText_SubQuest_Moltres_Name1[] = _("Prove your strength");
-const u8 gText_SubQuest_Moltres_Desc1[] = _("Legends do not care for the weak.\nProve your strength with 4 badges.");
-const u8 gText_SubQuest_Moltres_Map1[] = _("Hoenn Gyms");
-const u8 gText_SubQuest_Moltres_Name2[] = _("Master the flames");
-const u8 gText_SubQuest_Moltres_Desc2[] = _("Catch 50 fire types.");
-const u8 gText_SubQuest_Moltres_Map2[] = _("Hoenn");
-const u8 gText_SubQuest_Moltres_Name3[] = _("Prepare for battle");
-const u8 gText_SubQuest_Moltres_Desc3[] = _("Rumors say a powerful Pokémon\nhas been seen in Fiery Path.");
-const u8 gText_SubQuest_Moltres_Map3[] = _("Fiery Path");
+const u8 gText_SideQuestName_BeastsOfResurrection[] = _("Beasts of Resurrection");
+const u8 gText_SideQuestDesc_BeastsOfResurrection[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_BeastsOfResurrection[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_BeastsOfResurrection[] = _("LOCATION");
+
+const u8 gText_SideQuestName_GolemsOfTheEras[] = _("Golems of the Eras");
+const u8 gText_SideQuestDesc_GolemsOfTheEras[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_GolemsOfTheEras[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_GolemsOfTheEras[] = _("LOCATION");
+
+const u8 gText_SideQuestName_SpiritsOfTheSoul[] = _("Spirits of the Soul");
+const u8 gText_SideQuestDesc_SpiritsOfTheSoul[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_SpiritsOfTheSoul[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_SpiritsOfTheSoul[] = _("LOCATION");
+
+const u8 gText_SideQuestName_PrimordialSea[] = _("Primordial Sea");
+const u8 gText_SideQuestDesc_PrimordialSea[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_PrimordialSea[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_PrimordialSea[] = _("LOCATION");
+
+const u8 gText_SideQuestName_DesolateLand[] = _("Desolate Land");
+const u8 gText_SideQuestDesc_DesolateLand[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_DesolateLand[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_DesolateLand[] = _("LOCATION");
+
+const u8 gText_SideQuestName_AncientDragonOfConquest[] = _("Ancient Dragon of Conquest");
+const u8 gText_SideQuestDesc_AncientDragonOfConquest[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_AncientDragonOfConquest[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_AncientDragonOfConquest[] = _("LOCATION");
+
+const u8 gText_SideQuestName_LegendsLie[] = _("Legend's Lie");
+const u8 gText_SideQuestDesc_LegendsLie[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_LegendsLie[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_LegendsLie[] = _("LOCATION");
+
+const u8 gText_SideQuestName_ImprisonedCurses[] = _("Imprisoned Curses");
+const u8 gText_SideQuestDesc_ImprisonedCurses[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_ImprisonedCurses[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_ImprisonedCurses[] = _("LOCATION");
+
+const u8 gText_SideQuestName_SentinelsOfTheWilds[] = _("Sentinels of the Wild");
+const u8 gText_SideQuestDesc_SentinelsOfTheWilds[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_SentinelsOfTheWilds[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_SentinelsOfTheWilds[] = _("LOCATION");
+
+const u8 gText_SideQuestName_GeniesOfNature[] = _("Genies of Nature");
+const u8 gText_SideQuestDesc_GeniesOfNature[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_GeniesOfNature[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_GeniesOfNature[] = _("LOCATION");
+
+const u8 gText_SideQuestName_ChronoAlchemy[] = _("Chrono-Alchemy");
+const u8 gText_SideQuestDesc_ChronoAlchemy[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_ChronoAlchemy[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_ChronoAlchemy[] = _("LOCATION");
+
+const u8 gText_SideQuestName_TechnoRebirth[] = _("Techno-Rebirth");
+const u8 gText_SideQuestDesc_TechnoRebirth[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_TechnoRebirth[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_TechnoRebirth[] = _("LOCATION");
+
+const u8 gText_SideQuestName_ConcealedForcesOfExistence[] = _("Concealed Forces of Existence");
+const u8 gText_SideQuestDesc_ConcealedForcesOfExistence[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_ConcealedForcesOfExistence[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_ConcealedForcesOfExistence[] = _("LOCATION");
+
+const u8 gText_SideQuestName_BrokenWormholes[] = _("Broken Wormholes");
+const u8 gText_SideQuestDesc_BrokenWormholes[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_BrokenWormholes[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_BrokenWormholes[] = _("LOCATION");
+
+const u8 gText_SideQuestName_CelestialEclipse[] = _("Celestial Eclipse");
+const u8 gText_SideQuestDesc_CelestialEclipse[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_CelestialEclipse[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_CelestialEclipse[] = _("LOCATION");
+
+const u8 gText_SideQuestName_WardensOfTheNebula[] = _("Wardens of the Nebula");
+const u8 gText_SideQuestDesc_WardensOfTheNebula[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_WardensOfTheNebula[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_WardensOfTheNebula[] = _("LOCATION");
+
+const u8 gText_SideQuestName_TwinSouls[] = _("Twin Souls");
+const u8 gText_SideQuestDesc_TwinSouls[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_TwinSouls[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_TwinSouls[] = _("LOCATION");
+
+const u8 gText_SideQuestName_ArtificialPower[] = _("Artificial Power");
+const u8 gText_SideQuestDesc_ArtificialPower[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_ArtificialPower[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_ArtificialPower[] = _("LOCATION");
+
+const u8 gText_SideQuestName_TaoKings[] = _("Tao Kings");
+const u8 gText_SideQuestDesc_TaoKings[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_TaoKings[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_TaoKings[] = _("LOCATION");
+
+const u8 gText_SideQuestName_DistortedDimensions[] = _("Distorted Dimensions");
+const u8 gText_SideQuestDesc_DistortedDimensions[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_DistortedDimensions[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_DistortedDimensions[] = _("LOCATION");
+
+const u8 gText_SideQuestName_GoldenHeartSilverSoul[] = _("Golden Heart, Silver Soul");
+const u8 gText_SideQuestDesc_GoldenHeartSilverSoul[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_GoldenHeartSilverSoul[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_GoldenHeartSilverSoul[] = _("LOCATION");
+
+const u8 gText_SideQuestName_LoneFire[] = _("Lone Fire");
+const u8 gText_SideQuestDesc_LoneFire[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_LoneFire[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_LoneFire[] = _("LOCATION");
+
+const u8 gText_SideQuestName_LunarSpirits[] = _("Lunar Spirits");
+const u8 gText_SideQuestDesc_LunarSpirits[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_LunarSpirits[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_LunarSpirits[] = _("LOCATION");
+
+const u8 gText_SideQuestName_HeartsOfTheSea[] = _("Hearts of the Sea");
+const u8 gText_SideQuestDesc_HeartsOfTheSea[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_HeartsOfTheSea[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_HeartsOfTheSea[] = _("LOCATION");
+
+const u8 gText_SideQuestName_StalwartSoldiers[] = _("Stalwart Soldiers");
+const u8 gText_SideQuestDesc_StalwartSoldiers[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_StalwartSoldiers[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_StalwartSoldiers[] = _("LOCATION");
+
+const u8 gText_SideQuestName_MartialStudent[] = _("Martial Student");
+const u8 gText_SideQuestDesc_MartialStudent[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_MartialStudent[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_MartialStudent[] = _("LOCATION");
+
+const u8 gText_SideQuestName_KingsSteed[] = _("King's Steed");
+const u8 gText_SideQuestDesc_KingsSteed[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_KingsSteed[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_KingsSteed[] = _("LOCATION");
+
+const u8 gText_SideQuestName_StellarShrine[] = _("Stellar Shrine");
+const u8 gText_SideQuestDesc_StellarShrine[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_StellarShrine[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_StellarShrine[] = _("LOCATION");
+
+const u8 gText_SideQuestName_MythicalPixies[] = _("Mythical Pixies");
+const u8 gText_SideQuestDesc_MythicalPixies[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_MythicalPixies[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_MythicalPixies[] = _("LOCATION");
+
+const u8 gText_SideQuestName_FragmentedDNA[] = _("Fragmented DNA");
+const u8 gText_SideQuestDesc_FragmentedDNA[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_FragmentedDNA[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_FragmentedDNA[] = _("LOCATION");
+
+const u8 gText_SideQuestName_ChallengeTheProgenitor[] = _("Challenge the Progenitor");
+const u8 gText_SideQuestDesc_ChallengeTheProgenitor[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_ChallengeTheProgenitor[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_ChallengeTheProgenitor[] = _("LOCATION");
+
+const u8 gText_SideQuestName_FallenIdol[] = _("Fallen Idol");
+const u8 gText_SideQuestDesc_FallenIdol[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_FallenIdol[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_FallenIdol[] = _("LOCATION");
+
+const u8 gText_SideQuestName_PrincessJewel[] = _("Princess Jewel");
+const u8 gText_SideQuestDesc_PrincessJewel[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_PrincessJewel[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_PrincessJewel[] = _("LOCATION");
+
+const u8 gText_SideQuestName_BurningWater[] = _("Burning Water");
+const u8 gText_SideQuestDesc_BurningWater[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_BurningWater[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_BurningWater[] = _("LOCATION");
+
+const u8 gText_SideQuestName_ArtificialSoul[] = _("Artificial Soul");
+const u8 gText_SideQuestDesc_ArtificialSoul[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_ArtificialSoul[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_ArtificialSoul[] = _("LOCATION");
+
+const u8 gText_SideQuestName_HiddenShadow[] = _("Hidden Shadow");
+const u8 gText_SideQuestDesc_HiddenShadow[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_HiddenShadow[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_HiddenShadow[] = _("LOCATION");
+
+const u8 gText_SideQuestName_ZeraoraQuest[] = _("Zeraora Quest - TBD");
+const u8 gText_SideQuestDesc_ZeraoraQuest[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_ZeraoraQuest[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_ZeraoraQuest[] = _("LOCATION");
+
+const u8 gText_SideQuestName_MysteryMetal[] = _("Mystery Metal");
+const u8 gText_SideQuestDesc_MysteryMetal[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_MysteryMetal[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_MysteryMetal[] = _("LOCATION");
+
+const u8 gText_SideQuestName_ZarudeQuest[] = _("Zarude Quest - TBD");
+const u8 gText_SideQuestDesc_ZarudeQuest[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_ZarudeQuest[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_ZarudeQuest[] = _("LOCATION");
+
+const u8 gText_SideQuestName_CorruptedPecha[] = _("Corrupted Pecha");
+const u8 gText_SideQuestDesc_CorruptedPecha[] = _("DESCRIPTION");
+const u8 gText_SideQuestDoneDesc_CorruptedPecha[] = _("COMPLETED DESCRIPTION");
+const u8 gText_SideQuestMap_CorruptedPecha[] = _("LOCATION");
 
 //names
 const u8 gText_SideQuestName_1[] = _("Side Quest 1");

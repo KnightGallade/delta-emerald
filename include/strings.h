@@ -2371,7 +2371,232 @@ extern const u8 gText_QuestAnnounce[];
 extern const u8 gText_QuestComplete[];
 extern const u8 gText_QuestActive[];
 
-// Articuno
+// Main Quest Stings
+extern const u8 gText_SideQuestName_WingsOfPower[];
+extern const u8 gText_SideQuestDesc_WingsOfPower[];
+extern const u8 gText_SideQuestDoneDesc_WingsOfPower[];
+extern const u8 gText_SideQuestMap_WingsOfPower[];
+
+extern const u8 gText_SideQuestName_MutatedWings[];
+extern const u8 gText_SideQuestDesc_MutatedWings[];
+extern const u8 gText_SideQuestDoneDesc_MutatedWings[];
+extern const u8 gText_SideQuestMap_MutatedWings[];
+
+extern const u8 gText_SideQuestName_BeastsOfResurrection[];
+extern const u8 gText_SideQuestDesc_BeastsOfResurrection[];
+extern const u8 gText_SideQuestDoneDesc_BeastsOfResurrection[];
+extern const u8 gText_SideQuestMap_BeastsOfResurrection[];
+
+extern const u8 gText_SideQuestName_GolemsOfTheEras[];
+extern const u8 gText_SideQuestDesc_GolemsOfTheEras[];
+extern const u8 gText_SideQuestDoneDesc_GolemsOfTheEras[];
+extern const u8 gText_SideQuestMap_GolemsOfTheEras[];
+
+extern const u8 gText_SideQuestName_SpiritsOfTheSoul[];
+extern const u8 gText_SideQuestDesc_SpiritsOfTheSoul[];
+extern const u8 gText_SideQuestDoneDesc_SpiritsOfTheSoul[];
+extern const u8 gText_SideQuestMap_SpiritsOfTheSoul[];
+
+extern const u8 gText_SideQuestName_PrimordialSea[];
+extern const u8 gText_SideQuestDesc_PrimordialSea[];
+extern const u8 gText_SideQuestDoneDesc_PrimordialSea[];
+extern const u8 gText_SideQuestMap_PrimordialSea[];
+
+extern const u8 gText_SideQuestName_DesolateLand[];
+extern const u8 gText_SideQuestDesc_DesolateLand[];
+extern const u8 gText_SideQuestDoneDesc_DesolateLand[];
+extern const u8 gText_SideQuestMap_DesolateLand[];
+
+extern const u8 gText_SideQuestName_AncientDragonOfConquest[];
+extern const u8 gText_SideQuestDesc_AncientDragonOfConquest[];
+extern const u8 gText_SideQuestDoneDesc_AncientDragonOfConquest[];
+extern const u8 gText_SideQuestMap_AncientDragonOfConquest[];
+
+extern const u8 gText_SideQuestName_LegendsLie[];
+extern const u8 gText_SideQuestDesc_LegendsLie[];
+extern const u8 gText_SideQuestDoneDesc_LegendsLie[];
+extern const u8 gText_SideQuestMap_LegendsLie[];
+
+extern const u8 gText_SideQuestName_ImprisonedCurses[];
+extern const u8 gText_SideQuestDesc_ImprisonedCurses[];
+extern const u8 gText_SideQuestDoneDesc_ImprisonedCurses[];
+extern const u8 gText_SideQuestMap_ImprisonedCurses[];
+
+extern const u8 gText_SideQuestName_SentinelsOfTheWilds[];
+extern const u8 gText_SideQuestDesc_SentinelsOfTheWilds[];
+extern const u8 gText_SideQuestDoneDesc_SentinelsOfTheWilds[];
+extern const u8 gText_SideQuestMap_SentinelsOfTheWilds[];
+
+extern const u8 gText_SideQuestName_GeniesOfNature[];
+extern const u8 gText_SideQuestDesc_GeniesOfNature[];
+extern const u8 gText_SideQuestDoneDesc_GeniesOfNature[];
+extern const u8 gText_SideQuestMap_GeniesOfNature[];
+
+extern const u8 gText_SideQuestName_ChronoAlchemy[];
+extern const u8 gText_SideQuestDesc_ChronoAlchemy[];
+extern const u8 gText_SideQuestDoneDesc_ChronoAlchemy[];
+extern const u8 gText_SideQuestMap_ChronoAlchemy[];
+
+extern const u8 gText_SideQuestName_TechnoRebirth[];
+extern const u8 gText_SideQuestDesc_TechnoRebirth[];
+extern const u8 gText_SideQuestDoneDesc_TechnoRebirth[];
+extern const u8 gText_SideQuestMap_TechnoRebirth[];
+
+extern const u8 gText_SideQuestName_ConcealedForcesOfExistence[];
+extern const u8 gText_SideQuestDesc_ConcealedForcesOfExistence[];
+extern const u8 gText_SideQuestDoneDesc_ConcealedForcesOfExistence[];
+extern const u8 gText_SideQuestMap_ConcealedForcesOfExistence[];
+
+extern const u8 gText_SideQuestName_BrokenWormholes[];
+extern const u8 gText_SideQuestDesc_BrokenWormholes[];
+extern const u8 gText_SideQuestDoneDesc_BrokenWormholes[];
+extern const u8 gText_SideQuestMap_BrokenWormholes[];
+
+extern const u8 gText_SideQuestName_CelestialEclipse[];
+extern const u8 gText_SideQuestDesc_CelestialEclipse[];
+extern const u8 gText_SideQuestDoneDesc_CelestialEclipse[];
+extern const u8 gText_SideQuestMap_CelestialEclipse[];
+
+extern const u8 gText_SideQuestName_WardensOfTheNebula[];
+extern const u8 gText_SideQuestDesc_WardensOfTheNebula[];
+extern const u8 gText_SideQuestDoneDesc_WardensOfTheNebula[];
+extern const u8 gText_SideQuestMap_WardensOfTheNebula[];
+
+extern const u8 gText_SideQuestName_TwinSouls[];
+extern const u8 gText_SideQuestDesc_TwinSouls[];
+extern const u8 gText_SideQuestDoneDesc_TwinSouls[];
+extern const u8 gText_SideQuestMap_TwinSouls[];
+
+extern const u8 gText_SideQuestName_ArtificialPower[];
+extern const u8 gText_SideQuestDesc_ArtificialPower[];
+extern const u8 gText_SideQuestDoneDesc_ArtificialPower[];
+extern const u8 gText_SideQuestMap_ArtificialPower[];
+
+extern const u8 gText_SideQuestName_TaoKings[];
+extern const u8 gText_SideQuestDesc_TaoKings[];
+extern const u8 gText_SideQuestDoneDesc_TaoKings[];
+extern const u8 gText_SideQuestMap_TaoKings[];
+
+extern const u8 gText_SideQuestName_DistortedDimensions[];
+extern const u8 gText_SideQuestDesc_DistortedDimensions[];
+extern const u8 gText_SideQuestDoneDesc_DistortedDimensions[];
+extern const u8 gText_SideQuestMap_DistortedDimensions[];
+
+extern const u8 gText_SideQuestName_GoldenHeartSilverSoul[];
+extern const u8 gText_SideQuestDesc_GoldenHeartSilverSoul[];
+extern const u8 gText_SideQuestDoneDesc_GoldenHeartSilverSoul[];
+extern const u8 gText_SideQuestMap_GoldenHeartSilverSoul[];
+
+extern const u8 gText_SideQuestName_LoneFire[];
+extern const u8 gText_SideQuestDesc_LoneFire[];
+extern const u8 gText_SideQuestDoneDesc_LoneFire[];
+extern const u8 gText_SideQuestMap_LoneFire[];
+
+extern const u8 gText_SideQuestName_LunarSpirits[];
+extern const u8 gText_SideQuestDesc_LunarSpirits[];
+extern const u8 gText_SideQuestDoneDesc_LunarSpirits[];
+extern const u8 gText_SideQuestMap_LunarSpirits[];
+
+extern const u8 gText_SideQuestName_HeartsOfTheSea[];
+extern const u8 gText_SideQuestDesc_HeartsOfTheSea[];
+extern const u8 gText_SideQuestDoneDesc_HeartsOfTheSea[];
+extern const u8 gText_SideQuestMap_HeartsOfTheSea[];
+
+extern const u8 gText_SideQuestName_StalwartSoldiers[];
+extern const u8 gText_SideQuestDesc_StalwartSoldiers[];
+extern const u8 gText_SideQuestDoneDesc_StalwartSoldiers[];
+extern const u8 gText_SideQuestMap_StalwartSoldiers[];
+
+extern const u8 gText_SideQuestName_MartialStudent[];
+extern const u8 gText_SideQuestDesc_MartialStudent[];
+extern const u8 gText_SideQuestDoneDesc_MartialStudent[];
+extern const u8 gText_SideQuestMap_MartialStudent[];
+
+extern const u8 gText_SideQuestName_KingsSteed[];
+extern const u8 gText_SideQuestDesc_KingsSteed[];
+extern const u8 gText_SideQuestDoneDesc_KingsSteed[];
+extern const u8 gText_SideQuestMap_KingsSteed[];
+
+extern const u8 gText_SideQuestName_StellarShrine[];
+extern const u8 gText_SideQuestDesc_StellarShrine[];
+extern const u8 gText_SideQuestDoneDesc_StellarShrine[];
+extern const u8 gText_SideQuestMap_StellarShrine[];
+
+extern const u8 gText_SideQuestName_MythicalPixies[];
+extern const u8 gText_SideQuestDesc_MythicalPixies[];
+extern const u8 gText_SideQuestDoneDesc_MythicalPixies[];
+extern const u8 gText_SideQuestMap_MythicalPixies[];
+
+extern const u8 gText_SideQuestName_FragmentedDNA[];
+extern const u8 gText_SideQuestDesc_FragmentedDNA[];
+extern const u8 gText_SideQuestDoneDesc_FragmentedDNA[];
+extern const u8 gText_SideQuestMap_FragmentedDNA[];
+
+extern const u8 gText_SideQuestName_ChallengeTheProgenitor[];
+extern const u8 gText_SideQuestDesc_ChallengeTheProgenitor[];
+extern const u8 gText_SideQuestDoneDesc_ChallengeTheProgenitor[];
+extern const u8 gText_SideQuestMap_ChallengeTheProgenitor[];
+
+extern const u8 gText_SideQuestName_FallenIdol[];
+extern const u8 gText_SideQuestDesc_FallenIdol[];
+extern const u8 gText_SideQuestDoneDesc_FallenIdol[];
+extern const u8 gText_SideQuestMap_FallenIdol[];
+
+extern const u8 gText_SideQuestName_PrincessJewel[];
+extern const u8 gText_SideQuestDesc_PrincessJewel[];
+extern const u8 gText_SideQuestDoneDesc_PrincessJewel[];
+extern const u8 gText_SideQuestMap_PrincessJewel[];
+
+extern const u8 gText_SideQuestName_BurningWater[];
+extern const u8 gText_SideQuestDesc_BurningWater[];
+extern const u8 gText_SideQuestDoneDesc_BurningWater[];
+extern const u8 gText_SideQuestMap_BurningWater[];
+
+extern const u8 gText_SideQuestName_ArtificialSoul[];
+extern const u8 gText_SideQuestDesc_ArtificialSoul[];
+extern const u8 gText_SideQuestDoneDesc_ArtificialSoul[];
+extern const u8 gText_SideQuestMap_ArtificialSoul[];
+
+extern const u8 gText_SideQuestName_HiddenShadow[];
+extern const u8 gText_SideQuestDesc_HiddenShadow[];
+extern const u8 gText_SideQuestDoneDesc_HiddenShadow[];
+extern const u8 gText_SideQuestMap_HiddenShadow[];
+
+extern const u8 gText_SideQuestName_ZeraoraQuest[];
+extern const u8 gText_SideQuestDesc_ZeraoraQuest[];
+extern const u8 gText_SideQuestDoneDesc_ZeraoraQuest[];
+extern const u8 gText_SideQuestMap_ZeraoraQuest[];
+
+extern const u8 gText_SideQuestName_MysteryMetal[];
+extern const u8 gText_SideQuestDesc_MysteryMetal[];
+extern const u8 gText_SideQuestDoneDesc_MysteryMetal[];
+extern const u8 gText_SideQuestMap_MysteryMetal[];
+
+extern const u8 gText_SideQuestName_ZarudeQuest[];
+extern const u8 gText_SideQuestDesc_ZarudeQuest[];
+extern const u8 gText_SideQuestDoneDesc_ZarudeQuest[];
+extern const u8 gText_SideQuestMap_ZarudeQuest[];
+
+extern const u8 gText_SideQuestName_CorruptedPecha[];
+extern const u8 gText_SideQuestDesc_CorruptedPecha[];
+extern const u8 gText_SideQuestDoneDesc_CorruptedPecha[];
+extern const u8 gText_SideQuestMap_CorruptedPecha[];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 extern const u8 gText_SideQuestName_Articuno[];
 extern const u8 gText_SideQuestDesc_Articuno[];
 extern const u8 gText_SideQuestDoneDesc_Articuno[];
