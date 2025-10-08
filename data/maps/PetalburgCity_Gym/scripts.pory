@@ -1,4 +1,4 @@
-
+raw `
 PetalburgCity_Gym_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, PetalburgCity_Gym_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_Gym_OnTransition
@@ -1584,89 +1584,93 @@ PetalburgCity_Gym_Text_NormanRematchNeedTwoMons:
 	.string "capable of battle?\p"
 	.string "Sorry, but you'll have to come back\n"
 	.string "with at least two POKéMON.$"
+`
 
-PetalburgCity_Gym_EventScript_MeetWally::
+script PetalburgCity_Gym_EventScript_MeetWally {
 	lock
 	faceplayer
-	compare VAR_TRACK_WALLY_QUEST_PROGRESSION, 0
-	goto_if_eq PetalburgCity_Gym_EventScript_MeetWally_2
-	msgbox PetalburgCity_Gym_Text_WallyReIntroduction, MSGBOX_DEFAULT
-	msgbox PetalburgCity_Gym_Text_WallyReRequest, MSGBOX_YESNO
-PetalburgCity_Gym_EventScript_MeetWally_1:
-	compare VAR_RESULT, 0
-	goto_if_eq PetalburgCity_Gym_EventScript_MeetWally_6
-	setvar VAR_TRACK_WALLY_QUEST_PROGRESSION, 2
-	msgbox PetalburgCity_Gym_Text_WallyAccepted, MSGBOX_DEFAULT
+	// If talking to him for the first time
+	if (var(VAR_TRACK_WALLY_QUEST_PROGRESSION) == 0) {
+		msgbox(PetalburgCity_Gym_Text_WallyIntroduction, MSGBOX_DEFAULT)
+		setvar(VAR_TRACK_WALLY_QUEST_PROGRESSION, 1)
+		msgbox(PetalburgCity_Gym_Text_WallyRequest, MSGBOX_YESNO)
+	}
+	else {
+		msgbox(PetalburgCity_Gym_Text_WallyReIntroduction, MSGBOX_DEFAULT)
+		msgbox(PetalburgCity_Gym_Text_WallyReRequest, MSGBOX_YESNO)
+	}
+	if (var(VAR_RESULT) == 0) {// No
+		msgbox(PetalburgCity_Gym_Text_WallyRefused, MSGBOX_DEFAULT)
+		release
+		end
+	}
+	setvar(VAR_TRACK_WALLY_QUEST_PROGRESSION, 2)
+	msgbox(PetalburgCity_Gym_Text_WallyAccepted, MSGBOX_DEFAULT)
 	release
 	end
+}
 
-PetalburgCity_Gym_EventScript_MeetWally_2:
-	msgbox PetalburgCity_Gym_Text_WallyIntroduction, MSGBOX_DEFAULT
-	setvar VAR_TRACK_WALLY_QUEST_PROGRESSION, 1
-	msgbox PetalburgCity_Gym_Text_WallyRequest, MSGBOX_YESNO
-	goto PetalburgCity_Gym_EventScript_MeetWally_1
+text PetalburgCity_Gym_Text_WallyIntroduction {
+	"Umm… hello…\n"
+	"…\l"
+	"…\p"
+	"Oh, uh … it's nice to meet you.\n"
+	"My name is WALLY, how about you?\p"
+	"…\n"
+	"…\p"
+	"Oh, nice to meet you {PLAYER} …\p"
+	"…\n"
+	"…\l"
+	"Huh, are those Pokéballs on your belt?\p"
+	"Does that... does that mean you're a\n"
+	"POKéMON TRAINER?\p"
+	"…\n"
+	"…\p"
+	"Actually, I … I was wondering …\n"
+	"Could you help me catch a POKéMON!\p"
+	"You see: I'm going to go stay with my\n"
+	"relatives in VERDANTURF TOWN.\p"
+	"I thought I would be lonely by myself,\n"
+	"so I wanted to take a POKéMON along.\p"
+	"But I've never caught a POKéMON before.\n"
+	"I don't know how…\p"
+	"My Dad let me borrow his Zigzagoon\n"
+	"to help, but it's scary out there …\p"
+	"I came here to ask for the GYM LEADER's\n"
+	"help, but with his busy schedule …\p"
+	"…\n"
+	"…"
+}
 
-PetalburgCity_Gym_EventScript_MeetWally_6:
-	msgbox PetalburgCity_Gym_Text_WallyRefused, MSGBOX_DEFAULT
-	release
-	end
+text PetalburgCity_Gym_Text_WallyRequest {
+	"Could you, … would you be willing to\n"
+	"go with me?"
+}
 
+text PetalburgCity_Gym_Text_WallyRefused {
+	"Oh, sorry …\n"
+	"Yeah, I guess it was a weird request to\l"
+	"receive from a stranger …"
+}
 
-PetalburgCity_Gym_Text_WallyIntroduction::
-	.string "Umm… hello…\n"
-	.string "…\l"
-	.string "…\p"
-	.string "Oh, uh … it's nice to meet you.\n"
-	.string "My name is WALLY, how about you?\p"
-	.string "…\n"
-	.string "…\p"
-	.string "Oh, nice to meet you {PLAYER} …\p"
-	.string "…\n"
-	.string "…\l"
-	.string "Huh, are those Pokéballs on your belt?\p"
-	.string "Does that... does that mean you're a\n"
-	.string "POKéMON TRAINER?\p"
-	.string "…\n"
-	.string "…\p"
-	.string "Actually, I … I was wondering …\n"
-	.string "Could you help me catch a POKéMON!\p"
-	.string "You see: I'm going to go stay with my\n"
-	.string "relatives in VERDANTURF TOWN.\p"
-	.string "I thought I would be lonely by myself,\n"
-	.string "so I wanted to take a POKéMON along.\p"
-	.string "But I've never caught a POKéMON before.\n"
-	.string "I don't know how…\p"
-	.string "My Dad let me borrow his Zigzagoon\n"
-	.string "to help, but it's scary out there …\p"
-	.string "I came here to ask for the GYM LEADER's\n"
-	.string "help, but with his busy schedule …\p"
-	.string "…\n"
-	.string "…$"
+text PetalburgCity_Gym_Text_WallyReIntroduction {
+	"WALLY: Ah, {PLAYER} …!\n"
+	"You came back …\p"
+	"I, um …\n"
+	"I know you said no before, but …\l"
+	"could I maybe ask again?\p"
+	"I really want to try catching one … I\n"
+	"just can't do it alone."
+}
 
-PetalburgCity_Gym_Text_WallyRequest::
-	.string "Could you, … would you be willing to\n"
-	.string "go with me?$"
+text PetalburgCity_Gym_Text_WallyReRequest {
+	"Um… would you help me catch a\n"
+	"POKéMON, please?"
+}
 
-PetalburgCity_Gym_Text_WallyRefused::
-	.string "Oh, sorry …\n"
-	.string "Yeah, I guess it was a weird request to\l"
-	.string "receive from a stranger …$"
-
-PetalburgCity_Gym_Text_WallyReIntroduction::
-	.string "WALLY: Ah, {PLAYER} …!\n"
-	.string "You came back …\p"
-	.string "I, um …\n"
-	.string "I know you said no before, but …\l"
-	.string "could I maybe ask again?\p"
-	.string "I really want to try catching one … I\n"
-	.string "just can't do it alone.$"
-
-PetalburgCity_Gym_Text_WallyReRequest::
-	.string "Um… would you help me catch a\n"
-	.string "POKéMON, please?$"
-
-PetalburgCity_Gym_Text_WallyAccepted::
-	.string "{PLAYER}… Would you really come\n"
-	.string "with me?\p"
-	.string "Oh, wow!\n"
-	.string "Thank you!$"
+text PetalburgCity_Gym_Text_WallyAccepted {
+	"{PLAYER}… Would you really come\n"
+	"with me?\p"
+	"Oh, wow!\n"
+	"Thank you!"
+}
