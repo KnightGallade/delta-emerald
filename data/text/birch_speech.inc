@@ -35,12 +35,35 @@ gText_Birch_BoyOrGirl::
 	.string "Are you a boy?\n"
 	.string "Or are you a girl?$"
 
+gText_Birch_WhatsYourStyle::
+	.string "What kind of style of\n"
+	.string "clothes do you prefer?$"
+
 gText_Birch_WhatsYourName::
 	.string "All right.\n"
 	.string "What's your name?$"
 
 gText_Birch_SoItsPlayer::
 	.string "So it's {PLAYER}{KUN}?$"
+
+gText_Birch_WhatsBrendanStyle::
+	.string "What about my son? What\n"
+	.string "do you think fits him best?$"
+
+gText_Birch_WhatsMayStyle::
+	.string "What about my daughter? What\n"
+	.string "do you think fits her best?$"
+
+gText_Birch_WhatsBrendanName::
+	.string "All right.\n"
+	.string "Do you know his name?$"
+
+gText_Birch_WhatsMayName::
+	.string "All right.\n"
+	.string "Do you know her name?$"
+
+gText_Birch_SoItsRival::
+	.string "So it's {RIVAL}{KUN}?$"
 
 gText_Birch_YourePlayer::
 	.string "Ah, okay!\p"

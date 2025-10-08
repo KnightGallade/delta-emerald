@@ -4,12 +4,38 @@ LittlerootTown_MaysHouse_2F_MapScripts::
 	.byte 0
 
 LittlerootTown_MaysHouse_2F_OnTransition:
+	checkrivalavatar
+	call_if_eq VAR_RESULT, BRENDAN_EMERALD_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdBrendanEmerald
+	call_if_eq VAR_RESULT, BRENDAN_RS_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdBrendanRS
+	call_if_eq VAR_RESULT, BRENDAN_ORAS_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdBrendanORAS
+	call_if_eq VAR_RESULT, MAY_EMERALD_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayEmerald
+	call_if_eq VAR_RESULT, MAY_RS_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayRS
+	call_if_eq VAR_RESULT, MAY_ORAS_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayORAS
 	call_if_lt VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_CheckSetReadyToMeetMay
 	call_if_ge VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 4, PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet
 	call SecretBase_EventScript_SetDecorationFlags
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
+
+LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdBrendanEmerald::
+	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL
+	return
+LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdBrendanRS::
+	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_RIVAL_BRENDAN_RS_NORMAL
+	return
+LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdBrendanORAS::
+	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_RIVAL_BRENDAN_ORAS_NORMAL
+	return
+LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayEmerald::
+	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL
+	return
+LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayRS::
+	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_RIVAL_MAY_RS_NORMAL
+	return
+LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayORAS::
+	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_RIVAL_MAY_ORAS_NORMAL
+	return
 
 LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos::
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, LittlerootTown_MaysHouse_2F_EventScript_TryUpdateMayPos
@@ -315,7 +341,7 @@ RivalsHouse_2F_Text_MayWhoAreYou:
 	.string "… … … … … … … …\p"
 	.string "Oh, you're {PLAYER}{KUN}.\n"
 	.string "So your move was today.\p"
-	.string "Um… I'm MAY.\n"
+	.string "Um… I'm {RIVAL}.\n"
 	.string "Glad to meet you!\p"
 	.string "I…\n"
 	.string "I have this dream of becoming friends\l"
@@ -346,7 +372,7 @@ RivalsHouse_2F_Text_BrendanWhoAreYou:
 	.string "Dad, PROF. BIRCH, said that our new\n"
 	.string "next-door neighbor is a GYM LEADER's\l"
 	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
+	.string "My name's {RIVAL}.\n"
 	.string "So, hi, neighbor!\p"
 	.string "Huh? Hey, {PLAYER}, don't you have\n"
 	.string "a POKéMON?\p"
@@ -365,7 +391,7 @@ RivalsHouse_2F_Text_ItsRivalsPokeBall:
 	.string "Better leave it right where it is.$"
 
 RivalsHouse_2F_Text_MayJustCheckingMyPokedex:
-	.string "MAY: {PLAYER}{KUN}!\p"
+	.string "{RIVAL}: {PLAYER}{KUN}!\p"
 	.string "I was just checking my POKéDEX.\p"
 	.string "There's still a lot of POKéMON that\n"
 	.string "I've seen but haven't caught.\p"
@@ -375,7 +401,7 @@ RivalsHouse_2F_Text_MayJustCheckingMyPokedex:
 	.string "some POKéMON next?$"
 
 RivalsHouse_2F_Text_MayWhereShouldIGoNext:
-	.string "MAY: I wonder where I should go catch\n"
+	.string "{RIVAL}: I wonder where I should go catch\n"
 	.string "some POKéMON next?\p"
 	.string "Wouldn't it be funny if we ran into each\n"
 	.string "other, {PLAYER}{KUN}?$"

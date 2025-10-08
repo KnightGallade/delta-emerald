@@ -72,5 +72,6 @@ void RestoreSerialTimer3IntrHandlers(void);
 void StartTimer1(void);
 void SeedRngAndSetTrainerId(void);
 u16 GetGeneratedTrainerIdLower(void);
+u8 GetGenderFromSave(void);
 
 #endif // GUARD_MAIN_H

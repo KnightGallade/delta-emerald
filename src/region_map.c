@@ -122,10 +122,26 @@ static const u32 sRegionMapCursorLargeGfxLZ[] = INCBIN_U32("graphics/pokenav/reg
 static const u16 sRegionMapBg_Pal[] = INCBIN_U16("graphics/pokenav/region_map/map.gbapal");
 static const u32 sRegionMapBg_GfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/map.8bpp.smol");
 static const u32 sRegionMapBg_TilemapLZ[] = INCBIN_U32("graphics/pokenav/region_map/map.bin.smolTM");
-static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/pokenav/region_map/brendan_icon.gbapal");
-static const u8 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U8("graphics/pokenav/region_map/brendan_icon.4bpp");
-static const u16 sRegionMapPlayerIcon_MayPal[] = INCBIN_U16("graphics/pokenav/region_map/may_icon.gbapal");
-static const u8 sRegionMapPlayerIcon_MayGfx[] = INCBIN_U8("graphics/pokenav/region_map/may_icon.4bpp");
+// PLAYERS START
+// Brendan - Emerald
+static const u16 sRegionMapPlayerIcon_Brendan_Emerald_Pal[] = INCBIN_U16("graphics/pokenav/region_map/brendan_emerald_icon.gbapal");
+static const u8 sRegionMapPlayerIcon_Brendan_Emerald_Gfx[] = INCBIN_U8("graphics/pokenav/region_map/brendan_emerald_icon.4bpp");
+// Brendan - RS
+static const u16 sRegionMapPlayerIcon_Brendan_RS_Pal[] = INCBIN_U16("graphics/pokenav/region_map/brendan_rs_icon.gbapal");
+static const u8 sRegionMapPlayerIcon_Brendan_RS_Gfx[] = INCBIN_U8("graphics/pokenav/region_map/brendan_rs_icon.4bpp");
+// Brendan - ORAS
+static const u16 sRegionMapPlayerIcon_Brendan_ORAS_Pal[] = INCBIN_U16("graphics/pokenav/region_map/brendan_oras_icon.gbapal");
+static const u8 sRegionMapPlayerIcon_Brendan_ORAS_Gfx[] = INCBIN_U8("graphics/pokenav/region_map/brendan_oras_icon.4bpp");
+// May - Emerald
+static const u16 sRegionMapPlayerIcon_May_Emerald_Pal[] = INCBIN_U16("graphics/pokenav/region_map/may_emerald_icon.gbapal");
+static const u8 sRegionMapPlayerIcon_May_Emerald_Gfx[] = INCBIN_U8("graphics/pokenav/region_map/may_emerald_icon.4bpp");
+// May - RS
+static const u16 sRegionMapPlayerIcon_May_RS_Pal[] = INCBIN_U16("graphics/pokenav/region_map/may_rs_icon.gbapal");
+static const u8 sRegionMapPlayerIcon_May_RS_Gfx[] = INCBIN_U8("graphics/pokenav/region_map/may_rs_icon.4bpp");
+// May - ORAS
+static const u16 sRegionMapPlayerIcon_May_ORAS_Pal[] = INCBIN_U16("graphics/pokenav/region_map/may_oras_icon.gbapal");
+static const u8 sRegionMapPlayerIcon_May_ORAS_Gfx[] = INCBIN_U8("graphics/pokenav/region_map/may_oras_icon.4bpp");
+// PLAYERS END
 
 #include "data/region_map/region_map_layout.h"
 #include "data/region_map/region_map_entries.h"
@@ -1455,8 +1471,8 @@ static void UNUSED ClearUnkCursorSpriteData(void)
 void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
 {
     u8 spriteId;
-    struct SpriteSheet sheet = {sRegionMapPlayerIcon_BrendanGfx, 0x80, tileTag};
-    struct SpritePalette palette = {sRegionMapPlayerIcon_BrendanPal, paletteTag};
+    struct SpriteSheet sheet = {sRegionMapPlayerIcon_Brendan_Emerald_Gfx, 0x80, tileTag};
+    struct SpritePalette palette = {sRegionMapPlayerIcon_Brendan_Emerald_Pal, paletteTag};
     struct SpriteTemplate template = {tileTag, paletteTag, &sRegionMapPlayerIconOam, sRegionMapPlayerIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy};
 
     if (IsEventIslandMapSecId(gMapHeader.regionMapSectionId))
@@ -1464,10 +1480,28 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
         sRegionMap->playerIconSprite = NULL;
         return;
     }
-    if (gSaveBlock2Ptr->playerGender == FEMALE)
-    {
-        sheet.data = sRegionMapPlayerIcon_MayGfx;
-        palette.data = sRegionMapPlayerIcon_MayPal;
+    switch (gSaveBlock2Ptr->playerAvatar) {
+        // Initialized as Brendan Emerald
+        case BRENDAN_RS_STYLE:
+            sheet.data = sRegionMapPlayerIcon_Brendan_RS_Gfx;
+            palette.data = sRegionMapPlayerIcon_Brendan_RS_Pal;
+            break;
+        case BRENDAN_ORAS_STYLE:
+            sheet.data = sRegionMapPlayerIcon_Brendan_ORAS_Gfx;
+            palette.data = sRegionMapPlayerIcon_Brendan_ORAS_Pal;
+            break;
+        case MAY_EMERALD_STYLE:
+            sheet.data = sRegionMapPlayerIcon_May_Emerald_Gfx;
+            palette.data = sRegionMapPlayerIcon_May_Emerald_Pal;
+            break;
+        case MAY_RS_STYLE:
+            sheet.data = sRegionMapPlayerIcon_May_RS_Gfx;
+            palette.data = sRegionMapPlayerIcon_May_RS_Pal;
+            break;
+        case MAY_ORAS_STYLE:
+            sheet.data = sRegionMapPlayerIcon_May_ORAS_Gfx;
+            palette.data = sRegionMapPlayerIcon_May_ORAS_Pal;
+            break;
     }
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&palette);
@@ -2025,7 +2059,7 @@ u32 FilterFlyDestination(struct RegionMap* regionMap)
     case MAPSEC_BATTLE_FRONTIER:
         return HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST;
     case MAPSEC_LITTLEROOT_TOWN:
-        return (gSaveBlock2Ptr->playerGender == MALE ? HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE : HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE);
+        return (GetGenderFromSave() == MALE ? HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE : HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE);
     case MAPSEC_EVER_GRANDE_CITY:
         return (FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) && regionMap->posWithinMapSec == 0 ? HEAL_LOCATION_EVER_GRANDE_CITY_POKEMON_LEAGUE : HEAL_LOCATION_EVER_GRANDE_CITY);
     default:

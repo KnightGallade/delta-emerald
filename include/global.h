@@ -570,7 +570,7 @@ struct RankingHall2P
 struct SaveBlock2
 {
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x08*/ u8 playerGender; // MALE, FEMALE
+    /*0x08*/ u8 playerAvatar; // defined in constants\global.h, AVATAR_COUNT
     /*0x09*/ u8 specialSaveWarpFlags;
     /*0x0A*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
     /*0x0E*/ u16 playTimeHours;
@@ -612,6 +612,8 @@ struct SaveBlock2
 
     u8 questData[QUEST_FLAGS_COUNT * QUEST_STATES];
     u8 subQuests[SUB_FLAGS_COUNT];
+    u8 rivalName[PLAYER_NAME_LENGTH + 1];
+    u8 rivalAvatar;
 }; 
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;

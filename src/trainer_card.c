@@ -285,36 +285,56 @@ static const u8 sTrainerCardTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_D
 static const u8 sTrainerCardStatColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED, TEXT_COLOR_LIGHT_RED};
 static const u8 sTimeColonInvisibleTextColors[6] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_TRANSPARENT};
 
-static const u8 sTrainerPicOffset[2][GENDER_COUNT][2] =
+static const u8 sTrainerPicOffset[2][AVATAR_COUNT][2] =
 {
     // Kanto
     {
-        [MALE]   = {13, 4},
-        [FEMALE] = {13, 4}
+        [BRENDAN_EMERALD_STYLE] = {13, 4},
+        [BRENDAN_RS_STYLE]      = {13, 4},
+        [BRENDAN_ORAS_STYLE]    = {13, 4},
+        [MAY_EMERALD_STYLE]     = {13, 4},
+        [MAY_RS_STYLE]          = {13, 4},
+        [MAY_ORAS_STYLE]        = {13, 4}
     },
     // Hoenn
     {
-        [MALE]   = {1, 0},
-        [FEMALE] = {1, 0}
+        [BRENDAN_EMERALD_STYLE] = {1, 0},
+        [BRENDAN_RS_STYLE]      = {1, 0},
+        [BRENDAN_ORAS_STYLE]    = {1, 0},
+        [MAY_EMERALD_STYLE]     = {1, 0},
+        [MAY_RS_STYLE]          = {1, 0},
+        [MAY_ORAS_STYLE]        = {1, 0}
     },
 };
 
-static const u8 sTrainerPicFacilityClass[][GENDER_COUNT] =
+static const u8 sTrainerPicFacilityClass[][AVATAR_COUNT] =
 {
     [CARD_TYPE_FRLG] =
     {
-        [MALE]   = FACILITY_CLASS_RED,
-        [FEMALE] = FACILITY_CLASS_LEAF
+        [BRENDAN_EMERALD_STYLE] = FACILITY_CLASS_RED,
+        [BRENDAN_RS_STYLE]      = FACILITY_CLASS_RED,
+        [BRENDAN_ORAS_STYLE]    = FACILITY_CLASS_RED,
+        [MAY_EMERALD_STYLE]     = FACILITY_CLASS_LEAF,
+        [MAY_RS_STYLE]          = FACILITY_CLASS_LEAF,
+        [MAY_ORAS_STYLE]        = FACILITY_CLASS_LEAF
     },
     [CARD_TYPE_RS] =
     {
-        [MALE]   = FACILITY_CLASS_RS_BRENDAN,
-        [FEMALE] = FACILITY_CLASS_RS_MAY
+        [BRENDAN_EMERALD_STYLE] = FACILITY_CLASS_BRENDAN_RS,
+        [BRENDAN_RS_STYLE]      = FACILITY_CLASS_BRENDAN_RS,
+        [BRENDAN_ORAS_STYLE]    = FACILITY_CLASS_BRENDAN_RS,
+        [MAY_EMERALD_STYLE]     = FACILITY_CLASS_MAY_RS,
+        [MAY_RS_STYLE]          = FACILITY_CLASS_MAY_RS,
+        [MAY_ORAS_STYLE]        = FACILITY_CLASS_MAY_RS
     },
     [CARD_TYPE_EMERALD] =
     {
-        [MALE]   = FACILITY_CLASS_BRENDAN,
-        [FEMALE] = FACILITY_CLASS_MAY
+        [BRENDAN_EMERALD_STYLE] = FACILITY_CLASS_BRENDAN_EMERALD,
+        [BRENDAN_RS_STYLE]      = FACILITY_CLASS_BRENDAN_RS,
+        [BRENDAN_ORAS_STYLE]    = FACILITY_CLASS_BRENDAN_ORAS,
+        [MAY_EMERALD_STYLE]     = FACILITY_CLASS_MAY_EMERALD,
+        [MAY_RS_STYLE]          = FACILITY_CLASS_MAY_RS,
+        [MAY_ORAS_STYLE]        = FACILITY_CLASS_MAY_ORAS
     }
 };
 
@@ -698,7 +718,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     u32 playTime;
     u8 i;
 
-    trainerCard->gender = gSaveBlock2Ptr->playerGender;
+    trainerCard->avatar = gSaveBlock2Ptr->playerAvatar;
     trainerCard->playTimeHours = gSaveBlock2Ptr->playTimeHours;
     trainerCard->playTimeMinutes = gSaveBlock2Ptr->playTimeMinutes;
 
@@ -768,7 +788,7 @@ static void TrainerCard_GenerateCardForPlayer(struct TrainerCard *trainerCard)
     if (trainerCard->hasAllFrontierSymbols)
         trainerCard->stars++;
 
-    if (trainerCard->gender == FEMALE)
+    if (sData->trainerCard.avatar == MAY_EMERALD_STYLE || sData->trainerCard.avatar == MAY_RS_STYLE || sData->trainerCard.avatar == MAY_ORAS_STYLE)
         trainerCard->unionRoomClass = gUnionRoomFacilityClasses[(trainerCard->trainerId % NUM_UNION_ROOM_CLASSES) + NUM_UNION_ROOM_CLASSES];
     else
         trainerCard->unionRoomClass = gUnionRoomFacilityClasses[trainerCard->trainerId % NUM_UNION_ROOM_CLASSES];
@@ -784,7 +804,7 @@ void TrainerCard_GenerateCardForLinkPlayer(struct TrainerCard *trainerCard)
     if (trainerCard->linkHasAllFrontierSymbols)
         trainerCard->stars++;
 
-    if (trainerCard->gender == FEMALE)
+    if (sData->trainerCard.avatar == MAY_EMERALD_STYLE || sData->trainerCard.avatar == MAY_RS_STYLE || sData->trainerCard.avatar == MAY_ORAS_STYLE)
         trainerCard->unionRoomClass = gUnionRoomFacilityClasses[(trainerCard->trainerId % NUM_UNION_ROOM_CLASSES) + NUM_UNION_ROOM_CLASSES];
     else
         trainerCard->unionRoomClass = gUnionRoomFacilityClasses[trainerCard->trainerId % NUM_UNION_ROOM_CLASSES];
@@ -1434,14 +1454,14 @@ static u8 SetCardBgsAndPals(void)
         {
             LoadPalette(sHoennTrainerCardPals[sData->trainerCard.stars], BG_PLTT_ID(0), 3 * PLTT_SIZE_4BPP);
             LoadPalette(sHoennTrainerCardBadges_Pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
-            if (sData->trainerCard.gender != MALE)
+            if (sData->trainerCard.avatar == MAY_EMERALD_STYLE || sData->trainerCard.avatar == MAY_RS_STYLE || sData->trainerCard.avatar == MAY_ORAS_STYLE)
                 LoadPalette(sHoennTrainerCardFemaleBg_Pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
         else
         {
             LoadPalette(sKantoTrainerCardPals[sData->trainerCard.stars], BG_PLTT_ID(0), 3 * PLTT_SIZE_4BPP);
             LoadPalette(sKantoTrainerCardBadges_Pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
-            if (sData->trainerCard.gender != MALE)
+            if (sData->trainerCard.avatar == MAY_EMERALD_STYLE || sData->trainerCard.avatar == MAY_RS_STYLE || sData->trainerCard.avatar == MAY_ORAS_STYLE)
                 LoadPalette(sKantoTrainerCardFemaleBg_Pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
         LoadPalette(sTrainerCardStar_Pal, BG_PLTT_ID(4), PLTT_SIZE_4BPP);
@@ -1886,17 +1906,17 @@ static void CreateTrainerCardTrainerPic(void)
     {
         CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sData->trainerCard.unionRoomClass),
                     TRUE,
-                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],
-                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][1],
+                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.avatar][0],
+                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.avatar][1],
                     8,
                     WIN_TRAINER_PIC);
     }
     else
     {
-        CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sTrainerPicFacilityClass[sData->cardType][sData->trainerCard.gender]),
+        CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sTrainerPicFacilityClass[sData->cardType][sData->trainerCard.avatar]),
                     TRUE,
-                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],
-                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][1],
+                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.avatar][0],
+                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.avatar][1],
                     8,
                     WIN_TRAINER_PIC);
     }

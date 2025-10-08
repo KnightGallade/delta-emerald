@@ -351,6 +351,28 @@ int GetMatchCallTrainerPic(int index)
     }
 
     index = MatchCall_GetOverrideFacilityClass(headerId);
+    if (index == FACILITY_CLASS_BRENDAN_EMERALD || FACILITY_CLASS_MAY_EMERALD) {
+        switch (gSaveBlock2Ptr->rivalAvatar) {
+            case BRENDAN_EMERALD_STYLE:
+                index = FACILITY_CLASS_BRENDAN_EMERALD;
+                break;
+            case BRENDAN_RS_STYLE:
+                index = FACILITY_CLASS_BRENDAN_RS;
+                break;
+            case BRENDAN_ORAS_STYLE:
+                index = FACILITY_CLASS_BRENDAN_ORAS;
+                break;
+            case MAY_EMERALD_STYLE:
+                index = FACILITY_CLASS_MAY_EMERALD;
+                break;
+            case MAY_RS_STYLE:
+                index = FACILITY_CLASS_MAY_RS;
+                break;
+            case MAY_ORAS_STYLE:
+                index = FACILITY_CLASS_MAY_ORAS;
+                break;
+        }
+    }
     return gFacilityClassToPicIndex[index];
 }
 
@@ -421,6 +443,8 @@ void BufferMatchCallNameAndDesc(struct PokenavMatchCallEntry *matchCallEntry, u8
 
     if (className && trainerName)
     {
+        if (trainerName == gText_ExpandedPlaceholder_Rival)
+            trainerName = gSaveBlock2Ptr->rivalName;
         u8 *str2 = GetStringClearToWidth(str, FONT_NARROW, className, 69);
         GetStringClearToWidth(str2, FONT_NARROW, trainerName, 51);
     }

@@ -139,6 +139,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_MeetRival2::
 
 LittlerootTown_BrendansHouse_1F_EventScript_MeetRival::
 	playse SE_EXIT
+	call Common_EventScript_SetupRivalGfxId
 	delay 10
 	addobject LOCALID_RIVALS_HOUSE_1F_RIVAL
 	delay 30

@@ -2692,7 +2692,23 @@ bool8 ScrCmd_checkplayergender(struct ScriptContext *ctx)
 {
     Script_RequestEffects(SCREFF_V1);
 
-    gSpecialVar_Result = gSaveBlock2Ptr->playerGender;
+    gSpecialVar_Result = GetGenderFromSave();
+    return FALSE;
+}
+
+bool8 ScrCmd_checkplayeravatar(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1);
+
+    gSpecialVar_Result = gSaveBlock2Ptr->playerAvatar;
+    return FALSE;
+}
+
+bool8 ScrCmd_checkrivalavatar(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1);
+
+    gSpecialVar_Result = gSaveBlock2Ptr->rivalAvatar;
     return FALSE;
 }
 

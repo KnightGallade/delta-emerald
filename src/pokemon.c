@@ -1128,7 +1128,8 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     SetBoxMonData(boxMon, MON_DATA_MET_GAME, &gGameVersion);
     value = ITEM_POKE_BALL;
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
-    SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    u8 gender = GetGenderFromSave();
+    SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gender);
 
     u32 teraType = (boxMon->personality & 0x1) == 0 ? GetSpeciesType(species, 0) : GetSpeciesType(species, 1);
     SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &teraType);
@@ -3251,7 +3252,8 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
     s32 i;
 
     SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
-    SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    u8 gender = GetGenderFromSave();
+    SetMonData(mon, MON_DATA_OT_GENDER, &gender);
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
 
     for (i = 0; i < PARTY_SIZE; i++)
@@ -5877,7 +5879,7 @@ u16 GetBattleBGM(void)
         else if (dexNum >= 906 && dexNum <= 1025)
             return MUS_VS_RIVAL; // Gen 9
         else
-            return MUS_RG_SLOW_PALLET; // Error condition
+            return MUS_VS_WILD; // Error condition, catches on enemy zigzagoon tutorial
     }
 }
 
@@ -6353,12 +6355,23 @@ u16 FacilityClassToPicIndex(u16 facilityClass)
     return gFacilityClassToPicIndex[facilityClass];
 }
 
-u16 PlayerGenderToFrontTrainerPicId(u8 playerGender)
+u16 PlayerAvatarToFrontTrainerPicId(u8 playerAvatar)
 {
-    if (playerGender != MALE)
-        return FacilityClassToPicIndex(FACILITY_CLASS_MAY);
-    else
-        return FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN);
+    switch (playerAvatar) {
+        default:
+        case BRENDAN_EMERALD_STYLE:
+            return FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN_EMERALD);
+        case BRENDAN_RS_STYLE:
+            return FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN_RS);
+        case BRENDAN_ORAS_STYLE:
+            return FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN_ORAS);
+        case MAY_EMERALD_STYLE:
+            return FacilityClassToPicIndex(FACILITY_CLASS_MAY_EMERALD);
+        case MAY_RS_STYLE:
+            return FacilityClassToPicIndex(FACILITY_CLASS_MAY_RS);
+        case MAY_ORAS_STYLE:
+            return FacilityClassToPicIndex(FACILITY_CLASS_MAY_ORAS);
+    }
 }
 
 void HandleSetPokedexFlag(enum NationalDexOrder nationalNum, u8 caseId, u32 personality)

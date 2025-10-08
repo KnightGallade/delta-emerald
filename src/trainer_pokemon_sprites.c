@@ -346,16 +346,26 @@ u16 CreateTrainerCardTrainerPicSprite(u16 species, bool8 isFrontPic, u16 destX, 
     return CreateTrainerCardSprite(species, FALSE, 0, isFrontPic, destX, destY, paletteSlot, windowId, TRUE);
 }
 
-u16 PlayerGenderToFrontTrainerPicId_Debug(u8 gender, bool8 getClass)
+u16 PlayerAvatarToFrontTrainerPicId_Debug(u8 avatar, bool8 getClass)
 {
     if (getClass == TRUE)
     {
-        if (gender != MALE)
-            return gFacilityClassToPicIndex[FACILITY_CLASS_MAY];
-        else
-            return gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN];
+        switch (avatar) {
+            case BRENDAN_EMERALD_STYLE:
+                return gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN_EMERALD];
+            case BRENDAN_RS_STYLE:
+                return gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN_RS];
+            case BRENDAN_ORAS_STYLE:
+                return gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN_ORAS];
+            case MAY_EMERALD_STYLE:
+                return gFacilityClassToPicIndex[FACILITY_CLASS_MAY_EMERALD];
+            case MAY_RS_STYLE:
+                return gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN_RS];
+            case MAY_ORAS_STYLE:
+                return gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN_ORAS];
+        }
     }
-    return gender;
+    return avatar;
 }
 
 void CopyTrainerBackspriteFramesToDest(u8 trainerPicId, u8 *dest)

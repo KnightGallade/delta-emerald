@@ -1,42 +1,57 @@
 Common_EventScript_SetupRivalGfxId::
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, EventScript_SetupRivalGfxIdFemale
-	goto_if_eq VAR_RESULT, FEMALE, EventScript_SetupRivalGfxIdMale
+	checkrivalavatar
+	goto_if_eq VAR_RESULT, BRENDAN_EMERALD_STYLE, EventScript_SetupRivalGfxIdBrendanEmerald
+	goto_if_eq VAR_RESULT, BRENDAN_RS_STYLE, EventScript_SetupRivalGfxIdBrendanRS
+	goto_if_eq VAR_RESULT, BRENDAN_ORAS_STYLE, EventScript_SetupRivalGfxIdBrendanORAS
+	goto_if_eq VAR_RESULT, MAY_EMERALD_STYLE, EventScript_SetupRivalGfxIdMayEmerald
+	goto_if_eq VAR_RESULT, MAY_RS_STYLE, EventScript_SetupRivalGfxIdMayRS
+	goto_if_eq VAR_RESULT, MAY_ORAS_STYLE, EventScript_SetupRivalGfxIdMayORAS
 	end
 
-EventScript_SetupRivalGfxIdFemale::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
+EventScript_SetupRivalGfxIdBrendanEmerald::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL
 	return
-
-EventScript_SetupRivalGfxIdMale::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL
+EventScript_SetupRivalGfxIdBrendanRS::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_RS_NORMAL
+	return
+EventScript_SetupRivalGfxIdBrendanORAS::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_ORAS_NORMAL
+	return
+EventScript_SetupRivalGfxIdMayEmerald::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL
+	return
+EventScript_SetupRivalGfxIdMayRS::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_RS_NORMAL
+	return
+EventScript_SetupRivalGfxIdMayORAS::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_ORAS_NORMAL
 	return
 
 Common_EventScript_SetupRivalOnBikeGfxId::
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, EventScript_SetupRivalOnBikeGfxIdFemale
-	goto_if_eq VAR_RESULT, FEMALE, EventScript_SetupRivalOnBikeGfxIdMale
+	checkrivalavatar
+	goto_if_eq VAR_RESULT, BRENDAN_EMERALD_STYLE, EventScript_SetupRivalOnBikeGfxIdBrendanEmerald
+	goto_if_eq VAR_RESULT, BRENDAN_RS_STYLE, EventScript_SetupRivalOnBikeGfxIdBrendanRS
+	goto_if_eq VAR_RESULT, BRENDAN_ORAS_STYLE, EventScript_SetupRivalOnBikeGfxIdBrendanORAS
+	goto_if_eq VAR_RESULT, MAY_EMERALD_STYLE, EventScript_SetupRivalOnBikeGfxIdMayEmerald
+	goto_if_eq VAR_RESULT, MAY_RS_STYLE, EventScript_SetupRivalOnBikeGfxIdMayRS
+	goto_if_eq VAR_RESULT, MAY_ORAS_STYLE, EventScript_SetupRivalOnBikeGfxIdMayORAS
 	end
 
-EventScript_SetupRivalOnBikeGfxIdFemale::
-	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE
+EventScript_SetupRivalOnBikeGfxIdBrendanEmerald::
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_MACH_BIKE
 	return
-
-EventScript_SetupRivalOnBikeGfxIdMale::
-	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE
+EventScript_SetupRivalOnBikeGfxIdBrendanRS::
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_BRENDAN_RS_MACH_BIKE
 	return
-
-@ Unused
-Common_EventScript_SetupRivalGfxIdSameGender::
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, EventScript_SetupRivalGfxIdMale2
-	goto_if_eq VAR_RESULT, FEMALE, EventScript_SetupRivalGfxIdFemale2
-	end
-
-EventScript_SetupRivalGfxIdMale2::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL
+EventScript_SetupRivalOnBikeGfxIdBrendanORAS::
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_BRENDAN_ORAS_MACH_BIKE
 	return
-
-EventScript_SetupRivalGfxIdFemale2::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
+EventScript_SetupRivalOnBikeGfxIdMayEmerald::
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_MACH_BIKE
+	return
+EventScript_SetupRivalOnBikeGfxIdMayRS::
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_RS_MACH_BIKE
+	return
+EventScript_SetupRivalOnBikeGfxIdMayORAS::
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_ORAS_MACH_BIKE
 	return

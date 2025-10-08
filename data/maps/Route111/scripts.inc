@@ -49,17 +49,7 @@ Route111_OnTransition:
 	end
 
 Route111_EventScript_SetFallingPlayerGfx::
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, Route111_EventScript_SetFallingPlayerGfxMale
-	goto_if_eq VAR_RESULT, FEMALE, Route111_EventScript_SetFallingPlayerGfxFemale
-	return
-
-Route111_EventScript_SetFallingPlayerGfxMale::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL
-	return
-
-Route111_EventScript_SetFallingPlayerGfxFemale::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
+	loadplayeravatarsimple VAR_OBJ_GFX_ID_0
 	return
 
 Route111_EventScript_CheckSetSandstorm::

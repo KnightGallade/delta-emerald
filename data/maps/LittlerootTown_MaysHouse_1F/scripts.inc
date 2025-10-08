@@ -172,6 +172,7 @@ LittlerootTown_MaysHouse_1F_EventScript_MeetRival2::
 
 LittlerootTown_MaysHouse_1F_EventScript_MeetRival::
 	playse SE_EXIT
+	call Common_EventScript_SetupRivalGfxId
 	delay 10
 	addobject LOCALID_RIVALS_HOUSE_1F_RIVAL
 	delay 30
@@ -362,7 +363,7 @@ RivalsHouse_1F_Text_MayWhoAreYou:
 	.string "… … … … … … … …\p"
 	.string "Oh, you're {PLAYER}{KUN}.\n"
 	.string "So your move was today.\p"
-	.string "Um… I'm MAY.\n"
+	.string "Um… I'm {RIVAL}.\n"
 	.string "Glad to meet you!\p"
 	.string "I…\n"
 	.string "I have this dream of becoming friends\l"
@@ -389,7 +390,7 @@ RivalsHouse_1F_Text_BrendanWhoAreYou:
 	.string "Dad, PROF. BIRCH, said that our new\n"
 	.string "next-door neighbor is a GYM LEADER's\l"
 	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
+	.string "My name's {RIVAL}.\n"
 	.string "So, hi, neighbor!\p"
 	.string "Huh? Hey, {PLAYER}, don't you have\n"
 	.string "a POKéMON?\p"

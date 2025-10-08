@@ -4501,7 +4501,7 @@ static void ViewURoomPartnerTrainerCard(u8 *unused, struct WirelessLink_URoom *d
     }
     else if (isParent == FALSE)
     {
-        DynamicPlaceholderTextUtil_ExpandPlaceholders(data->trainerCardMsgStrBuffer, sGladToMeetYouTexts[trainerCard->gender]);
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(data->trainerCardMsgStrBuffer, sGladToMeetYouTexts[trainerCard->avatar]);
         StringAppend(gStringVar4, data->trainerCardMsgStrBuffer);
     }
 }

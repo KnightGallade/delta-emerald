@@ -290,7 +290,7 @@ static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
         }
         else
         {
-            trainerPicId = PlayerGenderToFrontTrainerPicId(GetBattlerLinkPlayerGender(battler));
+            trainerPicId = GetBattlerLinkPlayerGender(battler) == MALE ? FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN_EMERALD) : FacilityClassToPicIndex(FACILITY_CLASS_MAY_EMERALD);
         }
     }
     else
@@ -302,7 +302,7 @@ static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
         }
         else
         {
-            trainerPicId = PlayerGenderToFrontTrainerPicId(gLinkPlayers[gRecordedBattleMultiplayerId ^ BIT_SIDE].gender);
+            trainerPicId = gLinkPlayers[gRecordedBattleMultiplayerId ^ BIT_SIDE].gender == MALE ? FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN_EMERALD) : FacilityClassToPicIndex(FACILITY_CLASS_MAY_EMERALD);
         }
     }
 

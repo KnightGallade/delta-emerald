@@ -1867,7 +1867,7 @@ void TryPutTrendWatcherOnAir(const u16 *words)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->trendWatcher.kind = TVSHOW_TREND_WATCHER;
         show->trendWatcher.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        show->trendWatcher.gender = gSaveBlock2Ptr->playerGender;
+        show->trendWatcher.gender = GetGenderFromSave();
         show->trendWatcher.words[0] = words[0];
         show->trendWatcher.words[1] = words[1];
         StringCopy(show->trendWatcher.playerName, gSaveBlock2Ptr->playerName);
@@ -3333,7 +3333,7 @@ u8 CheckForPlayersHouseNews(void)
         return PLAYERS_HOUSE_TV_NONE;
 
     // Check if not in player's house (dependent on gender)
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetGenderFromSave() == MALE)
     {
         if (gSaveBlock1Ptr->location.mapNum != MAP_NUM(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
             return PLAYERS_HOUSE_TV_NONE;
@@ -3358,7 +3358,7 @@ void GetMomOrDadStringForTVMessage(void)
     // If the player is checking the TV in their house it will only refer to their Mom.
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
     {
-        if (gSaveBlock2Ptr->playerGender == MALE)
+        if (GetGenderFromSave() == MALE)
         {
             if (gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
             {

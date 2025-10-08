@@ -5035,8 +5035,30 @@ static void TryAddInterviewObjectEvents(void)
     }
 
     // Add object for player (facing right)
+    u16 characterObject;
+    switch (gSaveBlock2Ptr->playerAvatar) {
+        default:
+        case BRENDAN_EMERALD_STYLE:
+            characterObject = OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL;
+            break;
+        case BRENDAN_RS_STYLE:
+            characterObject = OBJ_EVENT_GFX_RIVAL_BRENDAN_RS_NORMAL;
+            break;
+        case BRENDAN_ORAS_STYLE:
+            characterObject = OBJ_EVENT_GFX_RIVAL_BRENDAN_ORAS_NORMAL;
+            break;
+        case MAY_EMERALD_STYLE:
+            characterObject = OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL;
+            break;
+        case MAY_RS_STYLE:
+            characterObject = OBJ_EVENT_GFX_RIVAL_MAY_RS_NORMAL;
+            break;
+        case MAY_ORAS_STYLE:
+            characterObject = OBJ_EVENT_GFX_RIVAL_MAY_ORAS_NORMAL;
+            break;
+    }
     spriteId = CreateObjectGraphicsSprite(
-        gSaveBlock2Ptr->playerGender == MALE ? OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL : OBJ_EVENT_GFX_RIVAL_MAY_NORMAL,
+        characterObject,
         SpriteCallbackDummy,
         52,
         40,

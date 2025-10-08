@@ -135,6 +135,19 @@
 #define FEMALE 1
 #define GENDER_COUNT 2
 
+#define STYLE_EMERALD 0
+#define STYLE_RS 1
+#define STYLE_ORAS 2
+#define STYLE_COUNT 3
+
+#define BRENDAN_EMERALD_STYLE 0
+#define BRENDAN_RS_STYLE 1
+#define BRENDAN_ORAS_STYLE 2
+#define MAY_EMERALD_STYLE 3
+#define MAY_RS_STYLE 4
+#define MAY_ORAS_STYLE 5
+#define AVATAR_COUNT 6
+
 #define NUM_BARD_SONG_WORDS    6
 #define NUM_STORYTELLER_TALES  4
 #define NUM_TRADER_ITEMS       4

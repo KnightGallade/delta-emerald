@@ -409,7 +409,7 @@ void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGende
         sNamingScreen->destBuffer = destBuffer;
         sNamingScreen->returnCallback = returnCallback;
 
-        if (templateNum == NAMING_SCREEN_PLAYER)
+        if (templateNum == NAMING_SCREEN_PLAYER || templateNum == NAMING_SCREEN_RIVAL)
             StartTimer1();
 
         SetMainCallback2(CB2_LoadNamingScreen);
@@ -1395,7 +1395,7 @@ static void NamingScreen_CreatePlayerIcon(void)
     u16 rivalGfxId;
     u8 spriteId;
 
-    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, sNamingScreen->monSpecies);
+    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndAvatar(PLAYER_AVATAR_STATE_NORMAL, sNamingScreen->monSpecies);
     spriteId = CreateObjectGraphicsSprite(rivalGfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);
@@ -1744,6 +1744,7 @@ static void DrawMonTextEntryBox(void)
 static void (*const sDrawTextEntryBoxFuncs[])(void) =
 {
     [NAMING_SCREEN_PLAYER]     = DrawNormalTextEntryBox,
+    [NAMING_SCREEN_RIVAL]     = DrawNormalTextEntryBox,
     [NAMING_SCREEN_BOX]        = DrawNormalTextEntryBox,
     [NAMING_SCREEN_CAUGHT_MON] = DrawMonTextEntryBox,
     [NAMING_SCREEN_NICKNAME]   = DrawMonTextEntryBox,
@@ -2084,22 +2085,27 @@ static bool8 IsWideLetter(u8 character)
 // Debug? Arguments aren't sensible for non-player screens.
 static void UNUSED Debug_NamingScreenPlayer(void)
 {
-    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerAvatar, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+}
+
+static void UNUSED Debug_NamingScreenRival(void)
+{
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, gSaveBlock2Ptr->rivalAvatar, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void UNUSED Debug_NamingScreenBox(void)
 {
-    DoNamingScreen(NAMING_SCREEN_BOX, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_BOX, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerAvatar, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void UNUSED Debug_NamingScreenCaughtMon(void)
 {
-    DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerAvatar, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void UNUSED Debug_NamingScreenNickname(void)
 {
-    DoNamingScreen(NAMING_SCREEN_NICKNAME, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_NICKNAME, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerAvatar, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 //--------------------------------------------------
@@ -2116,6 +2122,17 @@ static const struct NamingScreenTemplate sPlayerNamingScreenTemplate =
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
     .title = gText_YourName,
+};
+
+static const struct NamingScreenTemplate sRivalNamingScreenTemplate =
+{
+    .copyExistingString = FALSE,
+    .maxChars = PLAYER_NAME_LENGTH,
+    .iconFunction = 1,
+    .addGenderIcon = FALSE,
+    .initialPage = KBPAGE_LETTERS_UPPER,
+    .unused = 35,
+    .title = gText_RivalName,
 };
 
 static const struct NamingScreenTemplate sPCBoxNamingTemplate =
@@ -2166,6 +2183,7 @@ static const struct NamingScreenTemplate sCodeScreenTemplate =
 static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
 {
     [NAMING_SCREEN_PLAYER]     = &sPlayerNamingScreenTemplate,
+    [NAMING_SCREEN_RIVAL]     = &sRivalNamingScreenTemplate,
     [NAMING_SCREEN_BOX]        = &sPCBoxNamingTemplate,
     [NAMING_SCREEN_CAUGHT_MON] = &sMonNamingScreenTemplate,
     [NAMING_SCREEN_NICKNAME]   = &sMonNamingScreenTemplate,

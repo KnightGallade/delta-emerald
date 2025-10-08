@@ -1400,6 +1400,47 @@
 	.byte SCR_OP_CHECKPLAYERGENDER
 	.endm
 
+	@ Checks the player's avatar. Stores the result in VAR_RESULT.
+	.macro checkplayeravatar
+	.byte SCR_OP_CHECKPLAYERAVATAR
+	.endm
+
+	@ loads the simplified (rival) sprite corresponding to the player's avatar to destination var
+	.macro loadplayeravatarsimple destination:req
+		checkplayeravatar
+		goto_if_eq VAR_RESULT, BRENDAN_EMERALD_STYLE
+		goto_if_eq VAR_RESULT, BRENDAN_RS_STYLE
+		goto_if_eq VAR_RESULT, BRENDAN_ORAS_STYLE
+		goto_if_eq VAR_RESULT, MAY_EMERALD_STYLE
+		goto_if_eq VAR_RESULT, MAY_RS_STYLE
+		goto_if_eq VAR_RESULT, MAY_ORAS_STYLE
+		goto 7f
+	1:
+		setvar \destination, OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL
+		goto 7f
+	2:
+		setvar \destination, OBJ_EVENT_GFX_RIVAL_BRENDAN_RS_NORMAL
+		goto 7f
+	3:
+		setvar \destination, OBJ_EVENT_GFX_RIVAL_BRENDAN_ORAS_NORMAL
+		goto 7f
+	4:
+		setvar \destination, OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL
+		goto 7f
+	5:
+		setvar \destination, OBJ_EVENT_GFX_RIVAL_MAY_RS_NORMAL
+		goto 7f
+	6:
+		setvar \destination, OBJ_EVENT_GFX_RIVAL_MAY_ORAS_NORMAL
+		goto 7f
+	7:
+	.endm
+
+	@ Checks the rival's avatar. Stores the result in VAR_RESULT.
+	.macro checkrivalavatar
+	.byte SCR_OP_CHECKRIVALAVATAR
+	.endm
+
 	@ Plays the cry of the given species. Mode is any CRY_MODE_* constant.
 	@ You can use waitmoncry to block script execution until the cry finishes.
 	.macro playmoncry species:req, mode:req
@@ -1938,7 +1979,7 @@
 	waitfanfare
 	.endm
 
-.macro goto_if_quest_inactive quest:req, dest:req
+	.macro goto_if_quest_inactive quest:req, dest:req
 	questmenu QUEST_MENU_CHECK_INACTIVE \quest
 	goto_if_eq VAR_RESULT, TRUE, \dest
 	.endm

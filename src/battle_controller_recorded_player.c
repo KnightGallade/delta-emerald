@@ -402,11 +402,32 @@ static void RecordedPlayerHandleIntroTrainerBallThrow(u32 battler)
     u32 trainerPicId;
     const u16 *trainerPal;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK)
-        trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(battler)].gender + TRAINER_BACK_PIC_BRENDAN;
-    else
-        trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
-
+    if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK) {
+        trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(battler)].gender == MALE ? TRAINER_BACK_PIC_BRENDAN_EMERALD : TRAINER_BACK_PIC_MAY_EMERALD;
+    }
+    else {
+        switch (gSaveBlock2Ptr->playerAvatar) {
+            default:
+            case BRENDAN_EMERALD_STYLE:
+                trainerPicId = FacilityClassToPicIndex(TRAINER_BACK_PIC_BRENDAN_EMERALD);
+                break;
+            case BRENDAN_RS_STYLE:
+                trainerPicId = FacilityClassToPicIndex(TRAINER_BACK_PIC_BRENDAN_RS);
+                break;
+            case BRENDAN_ORAS_STYLE:
+                trainerPicId = FacilityClassToPicIndex(TRAINER_BACK_PIC_BRENDAN_ORAS);
+                break;
+            case MAY_EMERALD_STYLE:
+                trainerPicId = FacilityClassToPicIndex(TRAINER_BACK_PIC_MAY_EMERALD);
+                break;
+            case MAY_RS_STYLE:
+                trainerPicId = FacilityClassToPicIndex(TRAINER_BACK_PIC_MAY_RS);
+                break;
+            case MAY_ORAS_STYLE:
+                trainerPicId = FacilityClassToPicIndex(TRAINER_BACK_PIC_MAY_ORAS);
+                break;
+        }
+    }
     trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
     BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F9, trainerPal, 24, Intro_TryShinyAnimShowHealthbox);
 }

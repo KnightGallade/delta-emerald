@@ -310,13 +310,13 @@ static void LinkOpponentHandleDrawTrainerPic(u32 battler)
                      || (gLinkPlayers[GetBattlerMultiplayerId(battler)].version & 0xFF) == VERSION_SAPPHIRE)
             {
                 if (gLinkPlayers[GetBattlerMultiplayerId(battler)].gender != MALE)
-                    trainerPicId = gFacilityClassToPicIndex[FACILITY_CLASS_RS_MAY];
+                    trainerPicId = gFacilityClassToPicIndex[FACILITY_CLASS_MAY_RS];
                 else
-                    trainerPicId = gFacilityClassToPicIndex[FACILITY_CLASS_RS_BRENDAN];
+                    trainerPicId = gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN_RS];
             }
             else
             {
-                trainerPicId = PlayerGenderToFrontTrainerPicId(gLinkPlayers[GetBattlerMultiplayerId(battler)].gender);
+                trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(battler)].gender == MALE ? FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN_EMERALD) : FacilityClassToPicIndex(FACILITY_CLASS_MAY_EMERALD);
             }
         }
     }
@@ -339,13 +339,13 @@ static void LinkOpponentHandleDrawTrainerPic(u32 battler)
                  || (gLinkPlayers[GetMultiplayerId() ^ BIT_SIDE].version & 0xFF) == VERSION_SAPPHIRE)
         {
             if (gLinkPlayers[GetMultiplayerId() ^ BIT_SIDE].gender != MALE)
-                trainerPicId = gFacilityClassToPicIndex[FACILITY_CLASS_RS_MAY];
+                trainerPicId = gFacilityClassToPicIndex[FACILITY_CLASS_MAY_RS];
             else
-                trainerPicId = gFacilityClassToPicIndex[FACILITY_CLASS_RS_BRENDAN];
+                trainerPicId = gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN_RS];
         }
         else
         {
-            trainerPicId = PlayerGenderToFrontTrainerPicId(gLinkPlayers[GetMultiplayerId() ^ BIT_SIDE].gender);
+            trainerPicId = gLinkPlayers[GetMultiplayerId() ^ BIT_SIDE].gender == MALE ? FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN_EMERALD) : FacilityClassToPicIndex(FACILITY_CLASS_MAY_EMERALD);
         }
     }
 
