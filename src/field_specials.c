@@ -1467,6 +1467,7 @@ void LoadWallyZigzagoon(void)
     SetMonData(&gPlayerParty[0], MON_DATA_MOVE2, &monData);
     SetMonData(&gPlayerParty[0], MON_DATA_MOVE3, &monData);
     SetMonData(&gPlayerParty[0], MON_DATA_MOVE4, &monData);
+    SetMonData(&gPlayerParty[0], MON_DATA_NICKNAME, gText_WallyZigzagoonNickname);
 }
 
 bool8 IsStarterInParty(void)

@@ -2370,6 +2370,9 @@ extern const u8 gText_Smartness[];
 extern const u8 gText_Cuteness[];
 extern const u8 gText_Beauty3[];
 
+// Random nicknames
+extern const u8 gText_WallyZigzagoonNickname[];
+
 ////side quests
 //generic strings
 extern const u8 gText_QuestAnnounce[];
