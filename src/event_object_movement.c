@@ -3028,7 +3028,7 @@ static void SetBerryTreeGraphicsById(struct ObjectEvent *objectEvent, u8 berryId
     const u16 graphicsId = gBerryTreeObjectEventGraphicsIdTable[berryStage];
     const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     struct Sprite *sprite = &gSprites[objectEvent->spriteId];
-    UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteSlotTablePointers[berryId][berryStage]-2], sprite);
+    // UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteSlotTablePointers[berryId][berryStage]-2], sprite);
     sprite->oam.shape = graphicsInfo->oam->shape;
     sprite->oam.size = graphicsInfo->oam->size;
     sprite->images = gBerryTreePicTablePointers[berryId];
