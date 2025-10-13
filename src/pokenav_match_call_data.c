@@ -699,13 +699,13 @@ static const struct MatchCallCheckPageOverride sCheckPageOverrides[] = {
     },
     {
         .idx = MC_HEADER_BRENDAN,
-        .facilityClass = FACILITY_CLASS_BRENDAN_EMERALD,
+        .facilityClass = FACILITY_CLASS_RIVAL_DYNAMIC,
         .flag = 0xFFFF,
         .flavorTexts = MCFLAVOR(Brendan)
     },
     {
         .idx = MC_HEADER_MAY,
-        .facilityClass = FACILITY_CLASS_MAY_EMERALD,
+        .facilityClass = FACILITY_CLASS_RIVAL_DYNAMIC,
         .flag = 0xFFFF,
         .flavorTexts = MCFLAVOR(May)
     }
