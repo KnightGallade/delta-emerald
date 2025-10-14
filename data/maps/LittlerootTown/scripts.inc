@@ -4,7 +4,7 @@ LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
 	.byte 0
 
-	@ State descriptions for VAR_LITTLEROOT_TOWN_STATE
+	@ OLD State descriptions for VAR_LITTLEROOT_TOWN_STATE
 	@ 1: Met Rival
 	@ 2: Saving Birch
 	@ 3: Received Pokedex
@@ -18,8 +18,14 @@ LittlerootTown_MapScripts::
 	@ 5: Entered 2F to set clock
 	@ 6: Set clock
 	@ 7: Told to go meet rival
+	@ 8: Saved Birch
+	@ 9: Received Pokedex
+	@10: Received Running Shoes
+	@11: Entered Hall of Fame
+	@12: Completed Lati TV / SS Ticket event
+	@13: Exited house after above event
 
-	@ State descriptions for VAR_LITTLEROOT_HOUSES_STATE_MAY
+	@ OLD State descriptions for VAR_LITTLEROOT_HOUSES_STATE_MAY
 	@                    and VAR_LITTLEROOT_HOUSES_STATE_BRENDAN
 	@ 1: On Truck (and is corresponding gender)
 	@ 2: Met Rival's Mom (and is corresponding gender)
@@ -27,7 +33,7 @@ LittlerootTown_MapScripts::
 	@ 4: Completed Lati TV / SS Ticket event
 	@ 5: Exited house after above event
 
-	@ State descriptions for VAR_LITTLEROOT_RIVAL_STATE
+	@ OLD State descriptions for VAR_LITTLEROOT_RIVAL_STATE
 	@ 1: Never occurs
 	@ 2: Entered Rival's bedroom
 	@ 3: Met Rival
@@ -38,12 +44,9 @@ LittlerootTown_OnTransition:
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
-	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
-	call_if_eq VAR_LITTLEROOT_TOWN_STATE, 3, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
-	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	call_if_eq VAR_OLDALE_RIVAL_STATE, 1, LittlerootTown_EventScript_MoveRivalFromOldale
-	call_if_eq VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103
+	call_if_le VAR_LITTLEROOT_INTRO_STATE, 7, LittlerootTown_EventScript_SetTwinPos
+	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 9, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
+	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 12, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
 	end
@@ -56,18 +59,8 @@ LittlerootTown_EventScript_HideMapNamePopup::
 	setflag FLAG_HIDE_MAP_NAME_POPUP
 	return
 
-LittlerootTown_EventScript_SetRivalLeftForRoute103::
-	setflag FLAG_RIVAL_LEFT_FOR_ROUTE103
-	return
-
-LittlerootTown_EventScript_MoveRivalFromOldale::
-	setvar VAR_OLDALE_RIVAL_STATE, 2
-	setflag FLAG_HIDE_OLDALE_TOWN_RIVAL
-	return
-
 LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent::
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 5
-	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 5
+	setvar VAR_LITTLEROOT_INTRO_STATE, 13
 	return
 
 LittlerootTown_EventScript_MoveMomToMaysDoor::
@@ -75,14 +68,8 @@ LittlerootTown_EventScript_MoveMomToMaysDoor::
 	return
 
 LittlerootTown_EventScript_SetTwinPos::
-	goto_if_eq VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_SetTwinGuardingRoutePos
 	setobjectxyperm LOCALID_LITTLEROOT_TWIN, 10, 1
 	setobjectmovementtype LOCALID_LITTLEROOT_TWIN, MOVEMENT_TYPE_FACE_UP
-	return
-
-LittlerootTown_EventScript_SetTwinGuardingRoutePos::
-	setobjectxyperm LOCALID_LITTLEROOT_TWIN, 7, 2
-	setobjectmovementtype LOCALID_LITTLEROOT_TWIN, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos::
@@ -254,7 +241,7 @@ LittlerootTown_EventScript_Twin::
 	faceplayer
 	goto_if_set FLAG_ADVENTURE_STARTED, LittlerootTown_EventScript_GoodLuck
 	goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_YouSavedBirch
-	goto_if_ne VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_GoSaveBirch
+	goto_if_lt VAR_LITTLEROOT_INTRO_STATE, 8, LittlerootTown_EventScript_GoSaveBirch
 	msgbox LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
 	release
 	end
@@ -265,7 +252,6 @@ LittlerootTown_EventScript_GoSaveBirch::
 	closemessage
 	applymovement LOCALID_LITTLEROOT_TWIN, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setvar VAR_LITTLEROOT_TOWN_STATE, 2
 	release
 	end
 
@@ -383,7 +369,6 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 	closemessage
 	applymovement LOCALID_LITTLEROOT_TWIN, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setvar VAR_LITTLEROOT_TOWN_STATE, 2
 	releaseall
 	end
 
@@ -888,7 +873,7 @@ LittlerootTown_EventScript_Mom::
 LittlerootTown_EventScript_SetReceivedRunningShoes::
 	removeobject LOCALID_LITTLEROOT_MOM
 	setflag FLAG_SYS_B_DASH
-	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	setvar VAR_LITTLEROOT_INTRO_STATE, 10
 	release
 	end
 

@@ -50,8 +50,8 @@ LittlerootTown_BrendansHouse_1F_OnFrame:
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+	map_script_2 VAR_TRACK_RIVAL_QUEST_PROGRESSION, 0, LittlerootTown_BrendansHouse_1F_EventScript_CheckYoureNewNeighbor
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 11, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
 
 LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock::
@@ -84,6 +84,11 @@ LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
 	goto PlayersHouse_1F_EventScript_PetalburgGymReportMale
 	end
 
+LittlerootTown_BrendansHouse_1F_EventScript_CheckYoureNewNeighbor::
+	checkplayergender
+	goto_if_eq VAR_RESULT, FEMALE, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
+	return
+
 LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor::
 	lockall
 	playse SE_PIN
@@ -96,8 +101,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor::
 	waitmovement 0
 	special GetRivalSonDaughterString
 	msgbox RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT
-	setflag FLAG_MET_RIVAL_MOM
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
+	setvar VAR_TRACK_RIVAL_QUEST_PROGRESSION, 1
 	releaseall
 	end
 
@@ -164,8 +168,8 @@ LittlerootTown_BrendansHouse_1F_EventScript_MeetRival::
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
 	delay 30
-	setvar VAR_LITTLEROOT_RIVAL_STATE, 3
-	setvar VAR_LITTLEROOT_TOWN_STATE, 1
+	setvar VAR_TRACK_RIVAL_QUEST_PROGRESSION, 3
+	clearflag FLAG_HIDE_ROUTE_103_RIVAL
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall

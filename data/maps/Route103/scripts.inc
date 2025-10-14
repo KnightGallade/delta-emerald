@@ -19,6 +19,7 @@ Route103_EventScript_OpenAlteringCave::
 
 Route103_EventScript_Rival::
 	lockall
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, Route103_EventScript_RivalMay
 	goto_if_eq VAR_RESULT, FEMALE, Route103_EventScript_RivalBrendan
@@ -138,11 +139,8 @@ Route103_EventScript_RivalExitFacingSouth::
 
 Route103_EventScript_RivalEnd::
 	removeobject LOCALID_ROUTE103_RIVAL
-	setvar VAR_BIRCH_LAB_STATE, 4
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL
 	setflag FLAG_DEFEATED_RIVAL_ROUTE103
-	setvar VAR_OLDALE_RIVAL_STATE, 1
-	clearflag FLAG_HIDE_OLDALE_TOWN_RIVAL
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall

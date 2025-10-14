@@ -223,12 +223,12 @@ Route101_EventScript_BirchsBag::
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
-	setvar VAR_BIRCH_LAB_STATE, 2
 	setvar VAR_ROUTE101_STATE, 3
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, Route101_EventScript_HideMayInBedroom
 	call_if_eq VAR_RESULT, FEMALE, Route101_EventScript_HideBrendanInBedroom
+	setvar VAR_LITTLEROOT_INTRO_STATE, 8
 	warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 5
 	waitstate
 	release

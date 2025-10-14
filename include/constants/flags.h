@@ -102,7 +102,7 @@
 #define FLAG_UNUSED_0x055                    0x55  // Unused Flag
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly
-#define FLAG_MET_RIVAL_MOM                   0x57
+#define FLAG_MET_RIVAL_MOM_NOW_UNUSED        0x57
 #define FLAG_BIRCH_AIDE_MET                  0x58
 #define FLAG_DECLINED_BIKE                   0x59
 #define FLAG_RECEIVED_BIKE                   0x5A
@@ -324,7 +324,7 @@
 #define FLAG_RECEIVED_BELDUM                 0x12A
 #define FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK   0x12B
 #define FLAG_MET_FANCLUB_YOUNGER_BROTHER     0x12C
-#define FLAG_RIVAL_LEFT_FOR_ROUTE103         0x12D
+#define FLAG_RIVAL_LEFT_FOR_ROUTE103_NOW_UNUSED 0x12D
 #define FLAG_OMIT_DIVE_FROM_STEVEN_LETTER    0x12E
 #define FLAG_HAS_MATCH_CALL                  0x12F
 #define FLAG_ADDED_MATCH_CALL_TO_POKENAV     0x130
@@ -1027,7 +1027,7 @@
 #define FLAG_HIDE_NEW_MAUVILLE_VOLTORB_3                            0x3D0
 #define FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_1                      0x3D1
 #define FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_2                      0x3D2
-#define FLAG_HIDE_OLDALE_TOWN_RIVAL                                 0x3D3
+#define FLAG_HIDE_OLDALE_TOWN_RIVAL_NOW_UNUSED                      0x3D3
 #define FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE      0x3D4
 #define FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_SHADOW                   0x3D5
 #define FLAG_HIDE_ROUTE_120_KECLEON_1                               0x3D6
@@ -1350,7 +1350,7 @@
 #define FLAG_SYS_POKEMON_GET                         (SYSTEM_FLAGS + 0x0) // FLAG_0x860
 #define FLAG_SYS_POKEDEX_GET                         (SYSTEM_FLAGS + 0x1)
 #define FLAG_SYS_POKENAV_GET                         (SYSTEM_FLAGS + 0x2)
-#define FLAG_SYS_QUEST_MENU_GET                      (SYSTEM_FLAGS + 0x3)
+#define FLAG_UNUSED_0x863                            (SYSTEM_FLAGS + 0x3) // Unused Flag
 #define FLAG_SYS_GAME_CLEAR                          (SYSTEM_FLAGS + 0x4)
 #define FLAG_SYS_CHAT_USED                           (SYSTEM_FLAGS + 0x5)
 #define FLAG_UNLOCKED_TRENDY_SAYINGS                 (SYSTEM_FLAGS + 0x6)

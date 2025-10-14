@@ -3,6 +3,7 @@ LittlerootTown_MaysHouse_2F_MapScripts::
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_MaysHouse_2F_OnWarp
 	.byte 0
 
+@ Necessary because, unlike the common load function, needs to set to VAR_OBJ_GFX_ID_C
 LittlerootTown_MaysHouse_2F_OnTransition:
 	checkrivalavatar
 	call_if_eq VAR_RESULT, BRENDAN_EMERALD_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdBrendanEmerald
@@ -11,8 +12,8 @@ LittlerootTown_MaysHouse_2F_OnTransition:
 	call_if_eq VAR_RESULT, MAY_EMERALD_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayEmerald
 	call_if_eq VAR_RESULT, MAY_RS_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayRS
 	call_if_eq VAR_RESULT, MAY_ORAS_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayORAS
-	call_if_lt VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_CheckSetReadyToMeetMay
-	call_if_ge VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos
+	call_if_eq VAR_TRACK_RIVAL_QUEST_PROGRESSION, 1, LittlerootTown_MaysHouse_2F_EventScript_CheckSetReadyToMeetMay
+	call_if_ge VAR_TRACK_RIVAL_QUEST_PROGRESSION, 4, LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos @ TODO - handle once rest of quest is handled
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 4, PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet
 	call SecretBase_EventScript_SetDecorationFlags
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
@@ -37,15 +38,13 @@ LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayORAS::
 	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_RIVAL_MAY_ORAS_NORMAL
 	return
 
-LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos::
-	goto_if_set FLAG_MET_RIVAL_LILYCOVE, LittlerootTown_MaysHouse_2F_EventScript_TryUpdateMayPos
-	goto_if_ge VAR_BIRCH_LAB_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_Ret
-	goto LittlerootTown_MaysHouse_2F_EventScript_TryUpdateMayPos
-
-LittlerootTown_MaysHouse_2F_EventScript_TryUpdateMayPos::
+LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos:: @ TODO - handle once rest of quest coded
 	checkplayergender
 	goto_if_eq VAR_RESULT, FEMALE, LittlerootTown_MaysHouse_2F_EventScript_Ret
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_Ret
+	goto LittlerootTown_MaysHouse_2F_EventScript_TryUpdateMayPos
+
+LittlerootTown_MaysHouse_2F_EventScript_TryUpdateMayPos::
 	setobjectxyperm LOCALID_RIVALS_HOUSE_2F_RIVAL, 8, 2
 	setobjectmovementtype LOCALID_RIVALS_HOUSE_2F_RIVAL, MOVEMENT_TYPE_FACE_UP
 	return
@@ -59,7 +58,7 @@ LittlerootTown_MaysHouse_2F_EventScript_CheckSetReadyToMeetMay::
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_SetReadyToMeetMay::
-	setvar VAR_LITTLEROOT_RIVAL_STATE, 2
+	setvar VAR_TRACK_RIVAL_QUEST_PROGRESSION, 2
 	return
 
 LittlerootTown_MaysHouse_2F_OnWarp:
@@ -73,7 +72,7 @@ LittlerootTown_MaysHouse_2F_EventScript_CheckInitDecor::
 
 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall::
 	lockall
-	goto_if_eq VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_MeetMay
+	goto_if_eq VAR_TRACK_RIVAL_QUEST_PROGRESSION, 2, LittlerootTown_MaysHouse_2F_EventScript_MeetMay
 	msgbox RivalsHouse_2F_Text_ItsRivalsPokeBall, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -94,10 +93,10 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMay::
 	call_if_eq VAR_FACING, DIR_SOUTH, LittlerootTown_MaysHouse_2F_EventScript_MeetMaySouth
 	call_if_eq VAR_FACING, DIR_WEST, LittlerootTown_MaysHouse_2F_EventScript_MeetMayWest
 	call_if_eq VAR_FACING, DIR_EAST, LittlerootTown_MaysHouse_2F_EventScript_MeetMayEast
-	setvar VAR_LITTLEROOT_RIVAL_STATE, 3
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
-	setvar VAR_LITTLEROOT_TOWN_STATE, 1
+	setvar VAR_TRACK_RIVAL_QUEST_PROGRESSION, 3
+	clearflag FLAG_HIDE_ROUTE_103_RIVAL
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall

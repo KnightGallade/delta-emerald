@@ -301,8 +301,7 @@ PlayersHouse_1F_Movement_MomReturnToSeatFemale:
 PlayersHouse_1F_EventScript_Mom::
 	lock
 	faceplayer
-	goto_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, PlayersHouse_1F_EventScript_DontPushYourselfTooHard
-	goto_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, PlayersHouse_1F_EventScript_DontPushYourselfTooHard
+	goto_if_eq VAR_LITTLEROOT_INTRO_STATE, 12, PlayersHouse_1F_EventScript_DontPushYourselfTooHard
 	goto_if_set FLAG_HAS_MATCH_CALL, PlayersHouse_1F_EventScript_TryRegisterMom
 	goto_if_set FLAG_RESCUED_BIRCH, PlayersHouse_1F_EventScript_MomHealsParty
 	goto_if_eq VAR_TEMP_1, 1, PlayersHouse_1F_EventScript_SeeYouHoney
@@ -475,8 +474,7 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV::
 	copyvar VAR_ROAMER_POKEMON, VAR_RESULT
 	msgbox PlayersHouse_1F_Text_StillUnknownPokemon, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
-	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
+	setvar VAR_LITTLEROOT_INTRO_STATE, 12
 	releaseall
 	end
 
