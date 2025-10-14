@@ -14589,6 +14589,22 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    [ITEM_JOURNAL] =
+    {
+        .name = ITEM_NAME("Journal"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Handwritten notes\n"
+            "to keep track\n"
+            "of various tasks."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Journal,
+        .iconPic = gItemIcon_Journal,
+        .iconPalette = gItemIconPalette_Journal,
+    },
 };
 
 #undef ITEM_NAME

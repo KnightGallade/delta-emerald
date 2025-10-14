@@ -45,6 +45,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "quests.h"
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -80,6 +81,8 @@ static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
 static bool32 IsValidLocationForVsSeeker(void);
+static void CB2_OpenJournalFromBag(void);
+static void Task_OpenRegisteredJournal(u8);
 
 static const u8 sText_CantDismountBike[] = _("You can't dismount your BIKE here.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_ItemFinderNearby[] = _("Huh?\nThe ITEMFINDER's responding!\pThere's an item buried around here!{PAUSE_UNTIL_PRESS}");
@@ -1596,6 +1599,36 @@ void ItemUseOutOfBattle_TownMap(u8 taskId)
     else
     {
         gTasks[taskId].func = ItemUseOnFieldCB_TownMap;
+    }
+}
+
+void ItemUseOutOfBattle_Journal(u8 taskId)
+{
+    if (!gTasks[taskId].tUsingRegisteredKeyItem)
+    {
+        gBagMenu->newScreenCallback = CB2_OpenJournalFromBag;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
+    else
+    {
+        gFieldCallback = FieldCB_ReturnToFieldNoScript;
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_OpenRegisteredJournal;
+    }
+}
+
+static void CB2_OpenJournalFromBag(void)
+{
+    QuestMenu_Init(0, CB2_ReturnToBagMenuPocket);
+}
+
+static void Task_OpenRegisteredJournal(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        QuestMenu_Init(0, CB2_ReturnToField);
+        DestroyTask(taskId);
     }
 }
 

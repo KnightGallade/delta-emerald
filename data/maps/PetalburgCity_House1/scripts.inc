@@ -10,8 +10,12 @@ PetalburgCity_House1_EventScript_Woman::
 	end
 
 PetalburgCity_House1_EventScript_AdvanceQuests::
-	msgbox PetalburgCity_House1_Text_TravelingIsWonderful, MSGBOX_NPC
-	setflag FLAG_SYS_QUEST_MENU_GET
+	lockall
+	faceplayer
+	msgbox PetalburgCity_House1_Text_TravelingIsWonderful, MSGBOX_DEFAULT
+	checkitem ITEM_JOURNAL
+	goto_if_eq VAR_RESULT, TRUE, PetalburgCity_House1_EventScript_AdvanceQuestsRelease
+	giveitem ITEM_JOURNAL
 	questmenu QUEST_MENU_SET_ACTIVE WINGS_OF_POWER
 	questmenu QUEST_MENU_SET_ACTIVE MUTATED_WINGS
 	questmenu QUEST_MENU_SET_ACTIVE BEASTS_OF_RESURRECTION
@@ -54,6 +58,11 @@ PetalburgCity_House1_EventScript_AdvanceQuests::
 	questmenu QUEST_MENU_SET_ACTIVE MYSTERY_METAL
 	questmenu QUEST_MENU_SET_ACTIVE ZARUDE_QUEST
 	questmenu QUEST_MENU_SET_ACTIVE CORRUPTED_PECHA
+	release
+	end
+
+PetalburgCity_House1_EventScript_AdvanceQuestsRelease::
+	release
 	end
 
 PetalburgCity_House1_Text_TravelingIsWonderful:
