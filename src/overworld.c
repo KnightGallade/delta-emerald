@@ -1194,6 +1194,7 @@ u16 GetLocationMusic(struct WarpData *warp)
                 break;
         }
     }
+    // Normal music
     else {
         switch (GetTimeOfDay()) {
             case TIME_MORNING:

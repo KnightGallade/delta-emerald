@@ -1111,7 +1111,6 @@
 
 #define MUS_CITY                    MUS_BW_ABYSSAL_RUINS  // Temporary placeholder to compile, should be removed once all songs selected
 #define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
-
 #define MUS_NONE                    0xFFFF
 
 #define FIRST_PHONEME_SONG          PH_TRAP_BLEND

@@ -184,7 +184,6 @@ struct MapHeader
     /* 0x1C */ u16 music_evening;
     /* 0x1E */ u16 music_morning;
     /* 0x20 */ u16 music_night;
-
 };
 
 
