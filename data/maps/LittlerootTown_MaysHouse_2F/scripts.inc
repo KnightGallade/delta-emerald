@@ -13,7 +13,7 @@ LittlerootTown_MaysHouse_2F_OnTransition:
 	call_if_eq VAR_RESULT, MAY_RS_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayRS
 	call_if_eq VAR_RESULT, MAY_ORAS_STYLE, LittlerootTown_MaysHouse_2F_EventScript_SetupRivalGfxIdMayORAS
 	call_if_eq VAR_TRACK_RIVAL_QUEST_PROGRESSION, 1, LittlerootTown_MaysHouse_2F_EventScript_CheckSetReadyToMeetMay
-	call_if_ge VAR_TRACK_RIVAL_QUEST_PROGRESSION, 4, LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos @ TODO - handle once rest of quest is handled
+	call_if_ge VAR_TRACK_RIVAL_QUEST_PROGRESSION, 3, LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos @ TODO - handle once rest of quest is handled
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 4, PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet
 	call SecretBase_EventScript_SetDecorationFlags
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
