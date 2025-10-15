@@ -479,44 +479,121 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
         return FALSE;
 
     u16 species = wildMonInfo->wildPokemon[wildMonIndex].species;
+
+    // Randomly evolve depending on badge count
     u8 evoOdds = 0;
     u8 i;
     // Get the number of badges obtained
-    for (i = 1; i <= 8; i++) {
-        if (FlagGet(FLAG_BADGE01_GET + i - 1)) {
+    for (i = 0; i < 8; i++) {
+        if (FlagGet(FLAG_BADGE01_GET + i)) {
             evoOdds += 10;
         }
     }
-
-    // Is the check even worth it?
-    // If the Pokémon can evolve, and you have at least 5 badges, run the odds to see if evolve
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
-    if (evoOdds < 50 || evolutions == NULL || evoOdds < (Random() % 100)) {
-        CreateWildMon(species, level);
-        return TRUE;
+    // If the Pokémon can evolve, and you have at least 5 badges, run the odds to see if evolve
+    if (evoOdds >= 50 && evolutions != gSpeciesInfo[SPECIES_NONE].evolutions && evoOdds >= (Random() % 100)) {
+        // Count the number of evolutions
+        u8 evoCount = 0;
+        while (evolutions[evoCount].targetSpecies != SPECIES_NONE) { evoCount++; }
+        // Pick a random evolution
+        u8 randomEvoIndex = Random() % evoCount;
+        species = evolutions[randomEvoIndex].targetSpecies;
+        // Now, run a second check for a potential second evolution
+        evolutions = GetSpeciesEvolutions(species);
+        if (evolutions != gSpeciesInfo[SPECIES_NONE].evolutions && evoOdds >= (Random() % 100)) {
+            u8 evoCount = 0;
+            while (evolutions[evoCount].targetSpecies != SPECIES_NONE) { evoCount++; }
+            u8 randomEvoIndex = Random() % evoCount;
+            species = evolutions[randomEvoIndex].targetSpecies;
+        }
     }
-    // Count the number of evolutions
-    u8 evoCount = 0;
-    while (evolutions[evoCount].targetSpecies != SPECIES_NONE) {
-        evoCount++;
-    }
-    // Pick a random evolution
-    u8 randomEvoIndex = Random() % evoCount;
-    species = evolutions[randomEvoIndex].targetSpecies;
 
-    // Run a second check for a second evolution
-    evolutions = GetSpeciesEvolutions(species);
-    if (evolutions == NULL || evoOdds < (Random() % 100)) {
-        CreateWildMon(species, level);
-        return TRUE;
+    // Handle the different possible forms
+    u8 formOdds = Random();
+    switch (GET_BASE_SPECIES_ID(species)) {
+        // Check the pokemon with equal chance per form
+        case SPECIES_TOXTRICITY:
+        case SPECIES_DEERLING:
+        case SPECIES_SAWSBUCK:
+        case SPECIES_SHELLOS:
+        case SPECIES_GASTRODON:
+        case SPECIES_SCATTERBUG:
+        case SPECIES_SPEWPA:
+        case SPECIES_VIVILLON:
+        case SPECIES_FLABEBE:
+        case SPECIES_FLOETTE:
+        case SPECIES_FLORGES:
+        case SPECIES_PUMPKABOO:
+        case SPECIES_GOURGEIST:
+        case SPECIES_ORICORIO:
+        case SPECIES_MINIOR:
+        case SPECIES_ALCREMIE:
+        case SPECIES_SQUAWKABILLY:
+        case SPECIES_TATSUGIRI:
+            u8 formCount = 0;
+            const u16* formTable = GetSpeciesFormTable(GET_BASE_SPECIES_ID(species));
+            for (u8 i = 0; formTable[i] != FORM_SPECIES_END; i++)
+            {
+                formCount++;
+            }
+            species = formTable[formOdds % formCount];
+            break;
+        // Now the special cases
+        case SPECIES_BASCULIN:
+            formOdds = formOdds % 10;
+            // basculin special case: since previous evolution check fails, have 30-30-30-5-5 per form
+            if (formOdds < 3)
+                species = SPECIES_BASCULIN_BLUE_STRIPED;
+            else if (formOdds < 6)
+                species = SPECIES_BASCULIN_RED_STRIPED;
+            else if (formOdds < 9)
+                species = SPECIES_BASCULIN_WHITE_STRIPED;
+            else
+                species = Random() % 2 == 0 ? SPECIES_BASCULEGION_F : SPECIES_BASCULEGION_M;
+            break;
+        case SPECIES_LYCANROC:
+            switch (GetTimeOfDay()) {
+                default:
+                case TIME_DAY:
+                    species = SPECIES_LYCANROC_MIDDAY;
+                    break;
+                case TIME_NIGHT:
+                    species = SPECIES_LYCANROC_MIDNIGHT;
+                    break;
+                case TIME_MORNING:
+                case TIME_EVENING:
+                    species = SPECIES_LYCANROC_DUSK;
+                    break;
+            }
+            break;
+        case SPECIES_SINISTEA:
+            species = formOdds % 5 == 0 ? SPECIES_SINISTEA_ANTIQUE : SPECIES_SINISTEA_PHONY;
+            break;
+        case SPECIES_POLTEAGEIST:
+            species = formOdds % 5 == 0 ? SPECIES_POLTEAGEIST_ANTIQUE : SPECIES_POLTEAGEIST_PHONY;
+            break;
+        case SPECIES_URSALUNA:
+            species = formOdds % 5 == 0 ? SPECIES_URSALUNA_BLOODMOON : SPECIES_URSALUNA;
+            break;
+        case SPECIES_MAUSHOLD:
+            species = formOdds % 5 == 0 ? SPECIES_MAUSHOLD_THREE : SPECIES_MAUSHOLD_FOUR;
+            break;
+        case SPECIES_DUDUNSPARCE:
+            species = formOdds % 5 == 0 ? SPECIES_DUDUNSPARCE_THREE_SEGMENT : SPECIES_DUDUNSPARCE_TWO_SEGMENT;
+            break;
+        case SPECIES_GIMMIGHOUL:
+            species = formOdds % 5 == 0 ? SPECIES_GIMMIGHOUL_ROAMING : SPECIES_GIMMIGHOUL_CHEST;
+            break;
+        case SPECIES_POLTCHAGEIST:
+            species = formOdds % 5 == 0 ? SPECIES_POLTCHAGEIST_ARTISAN : SPECIES_POLTCHAGEIST_COUNTERFEIT;
+            break;
+        case SPECIES_SINISTCHA:
+            species = formOdds % 5 == 0 ? SPECIES_SINISTCHA_MASTERPIECE : SPECIES_SINISTCHA_UNREMARKABLE;
+            break;
+        default:
+            break;
     }
-    evoCount = 0;
-    while (evolutions[evoCount].targetSpecies != SPECIES_NONE) {
-        evoCount++;
-    }
-    randomEvoIndex = Random() % evoCount;
 
-    species = evolutions[randomEvoIndex].targetSpecies;
     CreateWildMon(species, level);
     return TRUE;
 }

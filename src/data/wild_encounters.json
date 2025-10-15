@@ -4407,22 +4407,22 @@
               {
                 "min_level": 1,
                 "max_level": 1,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_SHELLOS"
               },
               {
                 "min_level": 1,
                 "max_level": 1,
-                "species": "SPECIES_CHEWTLE"
+                "species": "SPECIES_QWILFISH_HISUI"
               },
               {
                 "min_level": 1,
                 "max_level": 1,
-                "species": "SPECIES_TENTACOOL"
+                "species": "SPECIES_FINIZEN"
               },
               {
                 "min_level": 1,
                 "max_level": 1,
-                "species": "SPECIES_PSYDUCK"
+                "species": "SPECIES_KRABBY"
               }
             ]
           }

@@ -20,12 +20,12 @@
 #define P_GEN_9_POKEMON                  TRUE // Generation 9 Pokémon (SV)
 
 // Setting this to TRUE will add the new evolutions to the Regional Dex.
-#define P_NEW_EVOS_IN_REGIONAL_DEX       TRUE
+#define P_NEW_EVOS_IN_REGIONAL_DEX       FALSE
 
 // Battle gimmick specific Forms.
 #define P_MEGA_EVOLUTIONS                TRUE
 #define P_PRIMAL_REVERSIONS              TRUE // Groudon and Kyogre only.
-#define P_ULTRA_BURST_FORMS              FALSE // Ultra Necrozma only.
+#define P_ULTRA_BURST_FORMS              TRUE // Ultra Necrozma only.
 #define P_GIGANTAMAX_FORMS               FALSE
 #define P_TERA_FORMS                     FALSE
 
