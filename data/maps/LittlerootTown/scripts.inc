@@ -4,12 +4,6 @@ LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
 	.byte 0
 
-	@ OLD State descriptions for VAR_LITTLEROOT_TOWN_STATE
-	@ 1: Met Rival
-	@ 2: Saving Birch
-	@ 3: Received Pokedex
-	@ 4: Received Running Shoes
-
 	@ State descriptions for VAR_LITTLEROOT_INTRO_STATE
 	@ 1: In truck male
 	@ 2: In truck female
@@ -25,26 +19,11 @@ LittlerootTown_MapScripts::
 	@12: Completed Lati TV / SS Ticket event
 	@13: Exited house after above event
 
-	@ OLD State descriptions for VAR_LITTLEROOT_HOUSES_STATE_MAY
-	@                    and VAR_LITTLEROOT_HOUSES_STATE_BRENDAN
-	@ 1: On Truck (and is corresponding gender)
-	@ 2: Met Rival's Mom (and is corresponding gender)
-	@ 3: Entered Hall of Fame
-	@ 4: Completed Lati TV / SS Ticket event
-	@ 5: Exited house after above event
-
-	@ OLD State descriptions for VAR_LITTLEROOT_RIVAL_STATE
-	@ 1: Never occurs
-	@ 2: Entered Rival's bedroom
-	@ 3: Met Rival
-	@ 4: Received Pokedex
-
-
 LittlerootTown_OnTransition:
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
-	call_if_le VAR_LITTLEROOT_INTRO_STATE, 7, LittlerootTown_EventScript_SetTwinPos
+	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 7, LittlerootTown_EventScript_SetTwinPos
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 9, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 12, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
