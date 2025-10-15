@@ -78,5 +78,8 @@
       "script": "Route110_SeasideCyclingRoadNorthEntrance_EventScript_ClearCyclingRoad"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

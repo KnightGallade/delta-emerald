@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE123",
   "name": "Route123",
   "layout": "LAYOUT_ROUTE123",
-  "music": "MUS_ROUTE",
+  "music": "MUS_DP_ROUTE210_DAY",
   "region_map_section": "MAPSEC_ROUTE_123",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -836,5 +836,8 @@
       "item": "ITEM_RARE_CANDY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY"
     }
-  ]
+  ],
+  "music_evening": "MUS_DP_ROUTE210_NIGHT",
+  "music_morning": "MUS_DP_ROUTE210_DAY",
+  "music_night": "MUS_DP_ROUTE210_NIGHT"
 }

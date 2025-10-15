@@ -80,5 +80,8 @@
       "item": "ITEM_RED_SHARD",
       "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_127_RED_SHARD"
     }
-  ]
+  ],
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

@@ -237,5 +237,8 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "LittlerootTown_ProfessorBirchsLab_EventScript_PC"
     }
-  ]
+  ],
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

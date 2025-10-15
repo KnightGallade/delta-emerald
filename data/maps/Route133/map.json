@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE133",
   "name": "Route133",
   "layout": "LAYOUT_ROUTE133",
-  "music": "MUS_ROUTE",
+  "music": "MUS_HG_ROUTE34",
   "region_map_section": "MAPSEC_ROUTE_133",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -158,5 +158,8 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [],
+  "music_evening": "MUS_HG_ROUTE30",
+  "music_morning": "MUS_HG_ROUTE34",
+  "music_night": "MUS_HG_ROUTE30"
 }

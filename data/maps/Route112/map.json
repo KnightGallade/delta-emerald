@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE112",
   "name": "Route112",
   "layout": "LAYOUT_ROUTE112",
-  "music": "MUS_ROUTE",
+  "music": "MUS_BW_ROUTE6_SPRING",
   "region_map_section": "MAPSEC_ROUTE_112",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -285,5 +285,8 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route112_EventScript_RouteSignLavaridge"
     }
-  ]
+  ],
+  "music_evening": "MUS_BW_ROUTE6_AUTUMN",
+  "music_morning": "MUS_BW_ROUTE6_SPRING",
+  "music_night": "MUS_BW_ROUTE6_AUTUMN"
 }

@@ -520,5 +520,8 @@
       "item": "ITEM_POKE_BALL",
       "flag": "FLAG_HIDDEN_ITEM_LILYCOVE_CITY_POKE_BALL"
     }
-  ]
+  ],
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

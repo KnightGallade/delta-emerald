@@ -52,5 +52,8 @@
       "item": "ITEM_PEARL",
       "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_128_PEARL"
     }
-  ]
+  ],
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

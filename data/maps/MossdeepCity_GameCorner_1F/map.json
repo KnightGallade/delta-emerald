@@ -90,5 +90,8 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "MossdeepCity_GameCorner_1F_EventScript_PokemonJumpRecords"
     }
-  ]
+  ],
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

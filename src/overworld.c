@@ -1166,96 +1166,46 @@ u16 GetLocationMusic(struct WarpData *warp)
     else if (ShouldLegendaryMusicPlayAtLocation(warp) == TRUE) { return MUS_ABNORMAL_WEATHER; }
     else if (IsInflitratedSpaceCenter(warp) == TRUE) { return MUS_ENCOUNTER_MAGMA; }
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE) { return MUS_MT_CHIMNEY; }
+    // now handle werid locations
+    // desert area
+    else if (warp->mapGroup == MAP_GROUP(MAP_ROUTE111) && warp->mapNum == MAP_NUM(MAP_ROUTE111) && GetSavedWeather() == WEATHER_SANDSTORM) {
+        switch (GetTimeOfDay()) {
+            default:
+            case TIME_MORNING:
+            case TIME_DAY:
+                return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
+            case TIME_EVENING:
+            case TIME_NIGHT:
+                return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music_night;
+        }
+    }
+    // Route 118 split into 2 by river
+    else if (warp->mapGroup == MAP_GROUP(MAP_ROUTE118) && warp->mapNum == MAP_NUM(MAP_ROUTE118)) {
+        bool8 left = gSaveBlock1Ptr->pos.x < 24; // left side or right
+        switch (GetTimeOfDay()) {
+            default:
+            case TIME_MORNING:
+            case TIME_DAY:
+                return left ? MUS_DP_ROUTE206_DAY : MUS_BW_ROUTE6_SUMMER;
+                break;
+            case TIME_EVENING:
+            case TIME_NIGHT:
+                return left ? MUS_DP_ROUTE206_NIGHT : MUS_BW_ROUTE6_WINTER;
+                break;
+        }
+    }
     else {
-        u16 music;
-        music = Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
-        s32 hours;
-        RtcCalcLocalTime();
-        hours = sHoursOverride ? sHoursOverride : gLocalTime.hours;
-        bool8 nightTime;
-        nightTime = IsBetweenHours(hours, EVENING_HOUR_BEGIN, NIGHT_HOUR_END);
-        if (music == MUS_ROUTE) { // If it is a route, check for night song
-            switch (warp->mapNum) {
-                case MAP_NUM(MAP_ROUTE101):
-                    return nightTime ? MUS_HG_RADIO_ROUTE101 : MUS_ROUTE101;
-                case MAP_NUM(MAP_ROUTE102):
-                    return nightTime ? MUS_HG_ROUTE29 : MUS_HG_ROUTE1;
-                case MAP_NUM(MAP_ROUTE103):
-                    return nightTime ? MUS_DP_ROUTE201_NIGHT : MUS_DP_ROUTE201_DAY;
-                case MAP_NUM(MAP_ROUTE104):
-                    return nightTime ? MUS_HG_ROUTE38 : MUS_ROUTE104;
-                case MAP_NUM(MAP_ROUTE105):
-                    return nightTime ? MUS_BW_ROUTE12_AUTUMN : MUS_BW_ROUTE12_SPRING;
-                case MAP_NUM(MAP_ROUTE106):
-                    return nightTime ? MUS_BW_ROUTE12_WINTER : MUS_BW_ROUTE12_SUMMER;
-                case MAP_NUM(MAP_ROUTE107):
-                    return nightTime ? MUS_HG_RADIO_ROUTE201 : MUS_BW_ROUTE1;
-                case MAP_NUM(MAP_ROUTE108):
-                    return nightTime ? MUS_BW_ROUTE4_SUMMER : MUS_HG_ROUTE47;
-                case MAP_NUM(MAP_ROUTE109):
-                    return nightTime ? MUS_HG_ROUTE42 : MUS_HG_ROUTE26;
-                case MAP_NUM(MAP_ROUTE110):
-                    return nightTime ? MUS_DESERT : MUS_ROUTE110;
-                case MAP_NUM(MAP_ROUTE111): // check if in desert with sandstorm
-                    if (GetSavedWeather() == WEATHER_SANDSTORM) { return nightTime ? MUS_DP_ROUTE228_NIGHT : MUS_DP_ROUTE228_DAY; }
-                    else { return nightTime ? MUS_DP_ROUTE225_NIGHT : MUS_DP_ROUTE225_DAY; }
-                case MAP_NUM(MAP_ROUTE112):
-                    return nightTime ? MUS_BW_ROUTE6_AUTUMN : MUS_BW_ROUTE6_SPRING;
-                case MAP_NUM(MAP_ROUTE113):
-                    return nightTime ? MUS_ROUTE113 : MUS_BW_ROUTE4_SUMMER;
-                case MAP_NUM(MAP_ROUTE114):
-                    return nightTime ? MUS_BW_ROUTE4_SPRING : MUS_BW_ROUTE4_AUTUMN;
-                case MAP_NUM(MAP_ROUTE115):
-                    return nightTime ? MUS_DP_ROUTE209_NIGHT : MUS_DP_ROUTE209_DAY;
-                case MAP_NUM(MAP_ROUTE116):
-                    return nightTime ? MUS_BW_ROUTE2_WINTER : MUS_BW_ROUTE2_SPRING;
-                case MAP_NUM(MAP_ROUTE117):
-                    return nightTime ? MUS_DP_ROUTE205_NIGHT : MUS_DP_ROUTE205_DAY;
-                case MAP_NUM(MAP_ROUTE118):
-                    // left side
-                    if (gSaveBlock1Ptr->pos.x < 24) { return nightTime ? MUS_DP_ROUTE206_NIGHT : MUS_DP_ROUTE206_DAY; }
-                    // right side
-                    else { return nightTime ? MUS_BW_ROUTE6_WINTER : MUS_BW_ROUTE6_SUMMER; }
-                case MAP_NUM(MAP_ROUTE119):
-                    return nightTime ? MUS_DP_ROUTE203_NIGHT : MUS_ROUTE119;
-                case MAP_NUM(MAP_ROUTE120):
-                    return nightTime ? MUS_RG_SEVII_ROUTE : MUS_ROUTE120;
-                case MAP_NUM(MAP_ROUTE121):
-                    return nightTime ? MUS_DP_ROAD_B_D : MUS_BW_ROUTE10;
-                case MAP_NUM(MAP_ROUTE122):
-                    return nightTime ? MUS_RG_ROUTE1 : MUS_ROUTE122;
-                case MAP_NUM(MAP_ROUTE123):
-                    return nightTime ? MUS_DP_ROUTE210_NIGHT : MUS_DP_ROUTE210_DAY;
-                case MAP_NUM(MAP_ROUTE124):
-                    return nightTime ? MUS_RG_ROUTE3 : MUS_HG_ROUTE3;
-                case MAP_NUM(MAP_ROUTE125):
-                    return nightTime ? MUS_BW_ROUTE10 : MUS_BW_ROUTE10;
-                case MAP_NUM(MAP_ROUTE126):
-                    return nightTime ? MUS_BW_ROUTE2_AUTUMN : MUS_BW_ROUTE2_SUMMER;
-                case MAP_NUM(MAP_ROUTE127):
-                    return nightTime ? MUS_DP_ROUTE216_NIGHT : MUS_DP_ROUTE216_DAY;
-                case MAP_NUM(MAP_ROUTE128):
-                    return nightTime ? MUS_HG_ROUTE24 : MUS_RG_ROUTE24;
-                case MAP_NUM(MAP_ROUTE129):
-                    return nightTime ? MUS_HG_ROUTE30 : MUS_HG_ROUTE34;
-                case MAP_NUM(MAP_ROUTE130):
-                    return nightTime ? MUS_HG_ROUTE30 : MUS_HG_ROUTE34;
-                case MAP_NUM(MAP_ROUTE131):
-                    return nightTime ? MUS_HG_ROUTE30 : MUS_HG_ROUTE34;
-                case MAP_NUM(MAP_ROUTE132):
-                    return nightTime ? MUS_HG_ROUTE30 : MUS_HG_ROUTE34;
-                case MAP_NUM(MAP_ROUTE133):
-                    return nightTime ? MUS_HG_ROUTE30 : MUS_HG_ROUTE34;
-                case MAP_NUM(MAP_ROUTE134):
-                    return nightTime ? MUS_HG_ROUTE11 : MUS_RG_ROUTE11;
-                default:
-                    return MUS_VICTORY_WILD; // error
-            }
+        switch (GetTimeOfDay()) {
+            case TIME_MORNING:
+                return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music_morning;
+            default:
+            case TIME_DAY:
+                return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
+            case TIME_EVENING:
+                return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music_evening;
+            case TIME_NIGHT:
+                return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music_night;
         }
-        else if (music == MUS_CITY) { // If it is a city/town, check for night song
-            return MUS_DP_ROUTE216_DAY;
-        }
-        else { return music; }
     }
 }
 

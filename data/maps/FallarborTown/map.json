@@ -181,5 +181,8 @@
       "item": "ITEM_NUGGET",
       "flag": "FLAG_HIDDEN_ITEM_FALLARBOR_TOWN_NUGGET"
     }
-  ]
+  ],
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

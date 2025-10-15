@@ -214,5 +214,8 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "0x0"
     }
-  ]
+  ],
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

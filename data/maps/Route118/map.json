@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE118",
   "name": "Route118",
   "layout": "LAYOUT_ROUTE118",
-  "music": "MUS_ROUTE",
+  "music": "MUS_ROUTE118",
   "region_map_section": "MAPSEC_ROUTE_118",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -424,5 +424,8 @@
       "item": "ITEM_HEART_SCALE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_118_HEART_SCALE"
     }
-  ]
+  ],
+  "music_evening": "MUS_ROUTE118",
+  "music_morning": "MUS_ROUTE118",
+  "music_night": "MUS_ROUTE118"
 }
