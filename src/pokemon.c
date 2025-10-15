@@ -5881,7 +5881,7 @@ u16 GetBattleBGM(void)
         else if (dexNum >= 906 && dexNum <= 1025)
             return MUS_VS_RIVAL; // Gen 9
         else
-            return MUS_VS_WILD; // Error condition, catches on enemy zigzagoon tutorial
+            return MUS_BW_CREDITS; // Error condition, catches on enemy zigzagoon tutorial
     }
 }
 

@@ -1207,7 +1207,9 @@ u16 GetLocationMusic(struct WarpData *warp)
             case TIME_NIGHT:
                 return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music_night;
         }
+        return MUS_BW_ROUTE10; // Error condition
     }
+    return MUS_BW_ROUTE10; // Error condition
 }
 
 u16 GetCurrLocationDefaultMusic(void)

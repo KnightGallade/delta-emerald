@@ -173,7 +173,7 @@ struct MapHeader
     /* 0x15 */ u8 cave;
     /* 0x16 */ u8 weather;
     /* 0x17 */ u8 mapType;
-    /* 0x18 */ u8 filler_18[2];
+    /* 0x18 */ u16 music_morning;   // <--- Replacing filler_18
                // fields correspond to the arguments in the map_header_flags macro
     /* 0x1A */ bool8 allowCycling:1;
                bool8 allowEscaping:1; // Escape Rope and Dig
@@ -182,8 +182,7 @@ struct MapHeader
                                     // but the 5 bit sized bitfield is required to match
     /* 0x1B */ u8 battleType;
     /* 0x1C */ u16 music_evening;
-    /* 0x1E */ u16 music_morning;
-    /* 0x20 */ u16 music_night;
+    /* 0x1E */ u16 music_night;
 };
 
 
