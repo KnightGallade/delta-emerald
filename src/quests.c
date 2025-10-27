@@ -120,6 +120,7 @@ static u8 CountActiveQuests(void);
 static u8 CountRewardQuests(void);
 static u8 CountCompletedQuests(void);
 static u8 CountFavoriteQuests(void);
+static u8 CountActiveSubquests(void);
 
 static void PopulateEmptyRow(u8 countQuest);
 static void PrependQuestNumber(u8 countQuest);
@@ -210,8 +211,8 @@ static const u32 sQuestMenuTilemap[] =
 
 //Strings used for the Quest Menu
 static const u8 sText_Empty[] = _("");
-static const u8 sText_AllHeader[] = _("All Missions");
-static const u8 sText_InactiveHeader[] = _("Inactive Missions");
+static const u8 sText_AllHeader[] = _("Your Missions");
+static const u8 sText_InactiveHeader[] = _("Unknown Missions");
 static const u8 sText_ActiveHeader[] = _("Active Missions");
 static const u8 sText_RewardHeader[] = _("Reward Available");
 static const u8 sText_CompletedHeader[] =
@@ -222,7 +223,7 @@ static const u8 sText_Unk[] = _("??????");
 static const u8 sText_Active[] = _("Active");
 static const u8 sText_Reward[] = _("Reward");
 static const u8 sText_Complete[] = _("Done");
-static const u8 sText_Ready[] = _("Ready");
+static const u8 sText_Next[] = _("Next");
 static const u8 sText_ShowLocation[] =
       _("Location: {STR_VAR_2}");
 static const u8 sText_StartForMore[] =
@@ -244,7 +245,7 @@ static const u8 sText_AZ[] = _(" A-Z");
 //////////////////////BEGIN SUBQUEST CUSTOMIZATION/////////////////////////////
 
 //Declaration of subquest structures. Edits to subquests are made here.
-#define sub_quest(i, n, d, m, s, st, t) {.id = i, .name = n, .desc = d, .map = m, .sprite = s, .spritetype = st, .type = t}
+#define sub_quest(i, n, d, dd, m, s, st, t) {.id = i, .name = n, .desc = d, .donedesc = dd, .map = m, .sprite = s, .spritetype = st, .type = t}
 
 static const struct SubQuest sSubQuests_WingsOfPower[QUEST_WINGS_OF_POWER_SUB_COUNT] =
 {
@@ -252,82 +253,91 @@ static const struct SubQuest sSubQuests_WingsOfPower[QUEST_WINGS_OF_POWER_SUB_CO
 	    0, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    1, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
+	    gText_SubQuest1_Name2,
+	    gText_SubQuest1_Desc2,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    2, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
+	    gText_SubQuest1_Name3,
+	    gText_SubQuest1_Desc3,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    3, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
+	    gText_SubQuest1_Name4,
+	    gText_SubQuest1_Desc4,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    4, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    5, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    6, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    7, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    8, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -337,28 +347,31 @@ static const struct SubQuest sSubQuests_MutatedWings[QUEST_MUTATED_WINGS_SUB_COU
 	    9, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    10, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    11, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -368,28 +381,31 @@ static const struct SubQuest sSubQuests_BeastsOfResurrection[QUEST_BEASTS_OF_RES
 	    12, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    13, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    14, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -399,73 +415,81 @@ static const struct SubQuest sSubQuests_GolemsOfTheEras[QUEST_GOLEMS_OF_THE_ERAS
 	    15, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    16, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    17, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    18, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    19, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    20, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    21, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    22, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -475,64 +499,71 @@ static const struct SubQuest sSubQuests_SpiritsOfTheSoul[QUEST_SPIRITS_OF_THE_SO
 	    23, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    24, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    25, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    26, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    27, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    28, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    29, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -542,19 +573,21 @@ static const struct SubQuest sSubQuests_PrimordialSea[QUEST_PRIMORDIAL_SEA_SUB_C
 	    30, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    31, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -564,19 +597,21 @@ static const struct SubQuest sSubQuests_DesolateLand[QUEST_DESOLATE_LAND_SUB_COU
 	    32, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    33, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -586,19 +621,21 @@ static const struct SubQuest sSubQuests_AncientDragonOfConquest[QUEST_ANCIENT_DR
 	    34, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    35, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -608,73 +645,81 @@ static const struct SubQuest sSubQuests_LegendsLie[QUEST_LEGENDS_LIE_SUB_COUNT] 
 	    36, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    37, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    38, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    39, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    40, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    41, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    42, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    43, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -684,82 +729,91 @@ static const struct SubQuest sSubQuests_ImprisonedCurses[QUEST_IMPRISONED_CURSES
 	    44, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    45, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    46, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    47, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    48, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    49, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    50, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    51, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    52, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -769,55 +823,61 @@ static const struct SubQuest sSubQuests_SentinelsOfTheWilds[QUEST_SENTINELS_OF_T
 	    53, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    54, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    55, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    56, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    57, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    58, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -827,73 +887,81 @@ static const struct SubQuest sSubQuests_GeniesOfNature[QUEST_GENIES_OF_NATURE_SU
 	    59, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    60, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    61, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    62, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    63, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    64, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    65, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    66, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -903,28 +971,31 @@ static const struct SubQuest sSubQuests_ChronoAlchemy[QUEST_CHRONO_ALCHEMY_SUB_C
 	    67, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    68, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    69, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -934,64 +1005,71 @@ static const struct SubQuest sSubQuests_TechnoRebirth[QUEST_TECHNO_REBIRTH_SUB_C
 	    70, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    71, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    72, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    73, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    74, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    75, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    76, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1001,37 +1079,41 @@ static const struct SubQuest sSubQuests_ConcealedForcesOfExistence[QUEST_CONCEAL
 	    77, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    78, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    79, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    80, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1041,46 +1123,51 @@ static const struct SubQuest sSubQuests_BrokenWormholes[QUEST_BROKEN_WORMHOLES_S
 	    81, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    82, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    83, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    84, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    85, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1090,37 +1177,41 @@ static const struct SubQuest sSubQuests_CelestialEclipse[QUEST_CELESTIAL_ECLIPSE
 	    86, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    87, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    88, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    89, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1130,46 +1221,51 @@ static const struct SubQuest sSubQuests_WardensOfTheNebula[QUEST_WARDENS_OF_THE_
 	    90, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    91, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    92, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    93, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    94, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1179,28 +1275,31 @@ static const struct SubQuest sSubQuests_TwinSouls[QUEST_TWIN_SOULS_SUB_COUNT] =
 	    95, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    96, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    97, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1210,37 +1309,41 @@ static const struct SubQuest sSubQuests_ArtificialPower[QUEST_ARTIFICIAL_POWER_S
 	    98, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    99, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    100, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    101, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1250,64 +1353,71 @@ static const struct SubQuest sSubQuests_TaoKings[QUEST_TAO_KINGS_SUB_COUNT] =
 	    102, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    103, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    104, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    105, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    106, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    107, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    108, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1317,73 +1427,81 @@ static const struct SubQuest sSubQuests_DistortedDimensions[QUEST_DISTORTED_DIME
 	    109, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    110, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    111, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    112, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    113, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    114, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    115, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    116, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1393,55 +1511,61 @@ static const struct SubQuest sSubQuests_GoldenHeartSilverSoul[QUEST_GOLDEN_HEART
 	    117, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    118, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    119, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    120, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    121, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    122, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1451,28 +1575,31 @@ static const struct SubQuest sSubQuests_LoneFire[QUEST_LONE_FIRE_SUB_COUNT] =
 	    123, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    124, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    125, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1482,37 +1609,41 @@ static const struct SubQuest sSubQuests_LunarSpirits[QUEST_LUNAR_SPIRITS_SUB_COU
 	    126, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    127, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    128, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    129, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1522,55 +1653,61 @@ static const struct SubQuest sSubQuests_HeartsOfTheSea[QUEST_HEARTS_OF_THE_SEA_S
 	    130, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    131, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    132, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    133, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    134, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    135, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1580,55 +1717,61 @@ static const struct SubQuest sSubQuests_StalwartSoldiers[QUEST_STALWART_SOLDIERS
 	    136, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    137, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    138, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    139, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    140, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    141, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1638,19 +1781,21 @@ static const struct SubQuest sSubQuests_MartialStudent[QUEST_MARTIAL_STUDENT_SUB
 	    142, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    143, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1660,37 +1805,41 @@ static const struct SubQuest sSubQuests_KingsSteed[QUEST_KINGS_STEED_SUB_COUNT] 
 	    144, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    145, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    146, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    147, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1700,46 +1849,51 @@ static const struct SubQuest sSubQuests_StellarShrine[QUEST_STELLAR_SHRINE_SUB_C
 	    148, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    149, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    150, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    151, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    152, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1749,100 +1903,111 @@ static const struct SubQuest sSubQuests_MythicalPixies[QUEST_MYTHICAL_PIXIES_SUB
 	    153, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    154, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    155, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    156, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    157, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    158, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    159, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    160, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    161, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    162, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    163, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1852,91 +2017,101 @@ static const struct SubQuest sSubQuests_FragmentedDNA[QUEST_FRAGMENTED_DNA_SUB_C
 	    164, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    165, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    166, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    167, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    168, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    169, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    170, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    171, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    172, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    173, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1946,46 +2121,51 @@ static const struct SubQuest sSubQuests_ChallengeTheProgenitor[QUEST_CHALLENGE_T
 	    174, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    175, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    176, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    177, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    178, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -1995,55 +2175,61 @@ static const struct SubQuest sSubQuests_FallenIdol[QUEST_FALLEN_IDOL_SUB_COUNT] 
 	    179, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    180, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    181, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    182, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    183, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    184, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -2053,55 +2239,61 @@ static const struct SubQuest sSubQuests_PrincessJewel[QUEST_PRINCESS_JEWEL_SUB_C
 	    185, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    186, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    187, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    188, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    189, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    190, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -2111,28 +2303,31 @@ static const struct SubQuest sSubQuests_BurningWater[QUEST_BURNING_WATER_SUB_COU
 	    191, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    192, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    193, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -2142,28 +2337,31 @@ static const struct SubQuest sSubQuests_ArtificialSoul[QUEST_ARTIFICIAL_SOUL_SUB
 	    194, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    195, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    196, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -2173,28 +2371,31 @@ static const struct SubQuest sSubQuests_HiddenShadow[QUEST_HIDDEN_SHADOW_SUB_COU
 	    197, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    198, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    199, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -2204,28 +2405,31 @@ static const struct SubQuest sSubQuests_ZeraoraQuest[QUEST_ZERAORA_QUEST_SUB_COU
 	    200, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    201, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    202, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -2235,28 +2439,31 @@ static const struct SubQuest sSubQuests_MysteryMetal[QUEST_MYSTERY_METAL_SUB_COU
 	    203, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    204, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    205, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -2266,28 +2473,31 @@ static const struct SubQuest sSubQuests_ZarudeQuest[QUEST_ZARUDE_QUEST_SUB_COUNT
 	    206, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    207, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    208, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -2297,28 +2507,31 @@ static const struct SubQuest sSubQuests_CorruptedPecha[QUEST_CORRUPTED_PECHA_SUB
 	    209, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    210, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 	sub_quest(
 	    211, //subquestidx
 	    gText_SubQuest1_Name1,
 	    gText_SubQuest1_Desc1,
+		gText_SubQuestX_DoneDescX,
 	    gText_SideQuestMap1,
 	    OBJ_EVENT_GFX_WALLY,
 	    OBJECT,
-	    sText_Ready
+	    sText_Complete
 	),
 };
 
@@ -3399,13 +3612,13 @@ static u8 CountNumberListRows()
 
 	if (IsSubquestMode())
 	{
-		return sSideQuests[sStateDataPtr->parentQuest].numSubquests + 1;
+		return CountActiveSubquests() + 1;
 	}
 
 	switch (mode)
 	{
 		case SORT_DEFAULT:
-			return QUEST_COUNT + 1;
+			return CountUnlockedQuests() + 1;
 		case SORT_INACTIVE:
 			return CountInactiveQuests() + 1;
 		case SORT_ACTIVE:
@@ -3461,8 +3674,11 @@ u8 GenerateSubquestList()
 		PopulateSubquestName(parentQuest, countQuest);
 		PopulateListRowNameAndId(numRow, countQuest);
 
-		countQuest++;
 		lastRow = numRow + 1;
+		// If the quest was not completed, still have it print to show next step, but then stop printing
+		if (!IsSubquestCompletedState(countQuest))
+			break;
+		countQuest++;
 	}
 	return lastRow;
 }
@@ -3479,6 +3695,10 @@ u8 GenerateList(bool8 isFiltered)
 	for (countQuest = 0; countQuest < QUEST_COUNT; countQuest++)
 	{
 		selectedQuestId = *(sortedQuestList + countQuest);
+
+		// Skip locked quests entirely for main quest view (only called for main quests)
+    	if (!isFiltered && !QuestMenu_GetSetQuestState(selectedQuestId, FLAG_GET_UNLOCKED))
+        	continue;
 
 		if (isFiltered && !QuestMenu_GetSetQuestState(selectedQuestId, mode))
 		{
@@ -3761,6 +3981,22 @@ u8 CountFavoriteQuests(void)
 
 }
 
+u8 CountActiveSubquests(void)
+{
+	u8 q = 0, i = 0;
+	u8 parentQuest = sStateDataPtr->parentQuest;
+	for (i = 0; i < sSideQuests[parentQuest].numSubquests; i++)
+	{
+		if (QuestMenu_GetSetSubquestState(parentQuest, FLAG_GET_COMPLETED, i))
+		{
+			q++;
+		}
+	}
+	// add one for the extra uncompleted one printed, but avoid adding if all completed
+	q++;
+	return q < sSideQuests[sStateDataPtr->parentQuest].numSubquests ? q : sSideQuests[sStateDataPtr->parentQuest].numSubquests;
+}
+
 void PopulateEmptyRow(u8 countQuest)
 {
 	questNamePointer = StringCopy(questNameArray[countQuest], sText_Empty);
@@ -3795,15 +4031,8 @@ void PopulateQuestName(u8 countQuest)
 
 void PopulateSubquestName(u8 parentQuest, u8 countQuest)
 {
-	if (IsSubquestCompletedState(countQuest))
-	{
-		questNamePointer = StringAppend(questNamePointer,
+	questNamePointer = StringAppend(questNamePointer,
 		                                sSideQuests[parentQuest].subquests[countQuest].name);
-	}
-	else
-	{
-		questNamePointer = StringAppend(questNamePointer, sText_Unk);
-	}
 }
 
 void PopulateListRowNameAndId(u8 row, u8 countQuest)
@@ -3934,16 +4163,17 @@ void GenerateQuestFlavorText(s32 questId)
 			StringCopy(gStringVar1, sSideQuests[questId].donedesc);
 		}
 	}
-	else
+	else // since subquest no longer have ???, always print some text, but now between completed desc and todo dec
 	{
-		if (IsSubquestCompletedState(questId) == TRUE)
+		if (IsSubquestCompletedState(questId) == TRUE) 
 		{
 			StringCopy(gStringVar1,
-			           sSideQuests[sStateDataPtr->parentQuest].subquests[questId].desc);
+			           sSideQuests[sStateDataPtr->parentQuest].subquests[questId].donedesc);
 		}
 		else
 		{
-			StringCopy(gStringVar1, sText_Empty);
+			StringCopy(gStringVar1,
+			           sSideQuests[sStateDataPtr->parentQuest].subquests[questId].desc);
 		}
 	}
 
@@ -4045,7 +4275,7 @@ void DetermineSpriteType(s32 questId)
 		QuestMenu_CreateSprite(spriteId, sStateDataPtr->spriteIconSlot,
 		                       spriteType);
 	}
-	else if (IsSubquestCompletedState(questId) == TRUE)
+	else // always print for submenu now that submenu no longer has ???
 	{
 		spriteId =
 		      sSideQuests[sStateDataPtr->parentQuest].subquests[questId].sprite;
@@ -4053,10 +4283,6 @@ void DetermineSpriteType(s32 questId)
 		      sSideQuests[sStateDataPtr->parentQuest].subquests[questId].spritetype;
 		QuestMenu_CreateSprite(spriteId, sStateDataPtr->spriteIconSlot,
 		                       spriteType);
-	}
-	else
-	{
-		QuestMenu_CreateSprite(ITEM_NONE, sStateDataPtr->spriteIconSlot, ITEM);
 	}
 	QuestMenu_DestroySprite(sStateDataPtr->spriteIconSlot ^ 1);
 	sStateDataPtr->spriteIconSlot ^= 1;
@@ -4166,13 +4392,14 @@ u8 GenerateSubquestState(u8 questId)
 	                                  questId))
 	{
 		StringCopy(gStringVar4, sSideQuests[parentQuest].subquests[questId].type);
+		return 2; // prints in green for completed
 	}
+	// Since we no longer print the ???, if not done then next up to complete
 	else
 	{
-		StringCopy(gStringVar4, sText_Empty);
+		StringCopy(gStringVar4, sText_Next);
+		return 3; // prints in blue for next up
 	}
-
-	return 2;
 }
 
 u8 GenerateQuestState(u8 questId)
