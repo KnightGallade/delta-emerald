@@ -1737,6 +1737,12 @@ const u16 gShopMenu_Pal[] = INCBIN_U16("graphics/shop/menu.gbapal");
 const u32 gShopMenu_Tilemap[] = INCBIN_U32("graphics/shop/menu.bin.smolTM");
 const u32 gShopMenuMoney_Gfx[] = INCBIN_U32("graphics/shop/money.4bpp.smol");
 
+const u32 gUpgradeMenu_Gfx[] = INCBIN_U32("graphics/upgrade/menu.4bpp.smol");
+const u16 gUpgradeMenu_Pal[] = INCBIN_U16("graphics/upgrade/menu.gbapal");
+const u32 gUpgradeMenu_Tilemap[] = INCBIN_U32("graphics/upgrade/menu.bin.smolTM");
+const u32 gUpgradeMenu_ScrollGfx[] = INCBIN_U32("graphics/upgrade/scroll.4bpp.lz");
+const u32 gUpgradeMenu_ScrollTilemap[] = INCBIN_U32("graphics/upgrade/scroll.bin.lz");
+
 // Pokeblock
 
 const u32 gMenuPokeblock_Gfx[] = INCBIN_U32("graphics/pokeblock/menu.4bpp.smol");

@@ -33,6 +33,7 @@
 #include "rtc.h"
 #include "scanline_effect.h"
 #include "shop.h"
+#include "upgrade_shop.h"
 #include "sound.h"
 #include "sprite.h"
 #include "string_util.h"

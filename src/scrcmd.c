@@ -48,6 +48,7 @@
 #include "script_movement.h"
 #include "script_pokemon_util.h"
 #include "shop.h"
+#include "upgrade_shop.h"
 #include "slot_machine.h"
 #include "sound.h"
 #include "string_util.h"
@@ -3380,5 +3381,16 @@ bool8 ScrCmd_subquestmenu(struct ScriptContext *ctx)
             break;
     }
 
+    return TRUE;
+}
+
+bool8 ScrCmd_upgradeshop(struct ScriptContext *ctx)
+{
+    const void *ptr = (void *)ScriptReadWord(ctx);
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    CreateUpgradeMenu(ptr);
+    ScriptContext_Stop();
     return TRUE;
 }

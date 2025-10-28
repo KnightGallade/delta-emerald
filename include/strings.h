@@ -772,6 +772,17 @@ extern const u8 gText_ShopQuit[];
 extern const u8 gText_ThatItemIsSoldOut[];
 extern const u8 gText_SoldOut[];
 
+extern const u8 gText_UpgradeShopBuy[];
+extern const u8 gText_UpgradeShopQuit[];
+extern const u8 gText_QuitUpgrading[];
+extern const u8 gText_AnyOtherUpgrade[];
+extern const u8 gText_UpgradeAlreadyAcquired[];
+extern const u8 gText_UpgradeNotEnough[];
+extern const u8 gText_YouWantedUpgradeVar1ThatllBeVar2[];
+extern const u8 gText_UpgradeObtained[];
+extern const u8 gText_UpgradeNeedsRoom[];
+extern const u8 gText_UpgradeAcquired[];
+
 extern const u8 gText_OhABite[];
 extern const u8 gText_PokemonOnHook[];
 extern const u8 gText_NotEvenANibble[];

@@ -211,6 +211,18 @@ const u8 *const gPocketNamesStringsTable[] =
 const u8 gText_NumberItem_TMBerry[] = _("{NO}{STR_VAR_1}{CLEAR 0x07}{STR_VAR_2}");
 const u8 gText_NumberItem_HM[] = _("{CLEAR_TO 0x11}{STR_VAR_1}{CLEAR 0x05}{STR_VAR_2}");
 
+// Upgrade Menu
+const u8 gText_UpgradeShopBuy[] = _("BUY_UP");
+const u8 gText_UpgradeShopQuit[] = _("QUIT_UP");
+const u8 gText_QuitUpgrading[] = _("Quit upgrading.");
+const u8 gText_AnyOtherUpgrade[] = _("Would you like another upgrade?");
+const u8 gText_UpgradeAlreadyAcquired[] = _("Upgrade already acquired.{PAUSE_UNTIL_PRESS}");
+const u8 gText_UpgradeNotEnough[] = _("You do not have enough for this upgrade.{PAUSE_UNTIL_PRESS}");
+const u8 gText_YouWantedUpgradeVar1ThatllBeVar2[] = _("You wanted the {STR_VAR_1} upgrade?\nThat'll be ¥{STR_VAR_2}. Is this acceptable?");
+const u8 gText_UpgradeObtained[] = _("Upgrade obtained!");
+const u8 gText_UpgradeNeedsRoom[] = _("Upgrades require room in KEY ITEM pouch.{PAUSE_UNTIL_PRESS}");
+const u8 gText_UpgradeAcquired[] = _("ACQUIRED");
+
 const u8 gText_ShopBuy[] = _("BUY");
 const u8 gText_ShopSell[] = _("SELL");
 const u8 gText_ShopQuit[] = _("QUIT");

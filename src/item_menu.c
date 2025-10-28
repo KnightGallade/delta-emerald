@@ -38,6 +38,7 @@
 #include "scanline_effect.h"
 #include "script.h"
 #include "shop.h"
+#include "upgrade_shop.h"
 #include "sound.h"
 #include "sprite.h"
 #include "strings.h"

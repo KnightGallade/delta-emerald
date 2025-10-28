@@ -14605,6 +14605,214 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_Journal,
         .iconPalette = gItemIconPalette_Journal,
     },
+
+    // Upgrades
+    [ITEM_AXE] =
+    {
+        .name = ITEM_NAME("AXE"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A small axe.\n"
+            "Capable of cutting\n"
+            "down small trees."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Axe,
+        .iconPalette = gItemIconPalette_Axe,
+    },
+
+    [ITEM_LANTERN] =
+    {
+        .name = ITEM_NAME("LANTERN"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A gas lantern to\n"
+            "help light the way."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Lantern,
+        .iconPalette = gItemIconPalette_Lantern,
+    },
+
+    [ITEM_PICKAXE] =
+    {
+        .name = ITEM_NAME("PICKAXE"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "An iron pickaxe.\n"
+            "Use it to break\n"
+            "fragile rocks."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Pickaxe,
+        .iconPalette = gItemIconPalette_Pickaxe,
+    },
+
+    [ITEM_POWER_GLOVES] =
+    {
+        .name = ITEM_NAME("POWER GLOVES"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "Strength-enhacing\n"
+            "gloves. Use them\n"
+            "to move boulders."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_PowerGloves,
+        .iconPalette = gItemIconPalette_PowerGloves,
+    },
+
+    [ITEM_MOCK_WAILMER] =
+    {
+        .name = ITEM_NAME("MOCK WAILMER"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A small inflatable\n"
+            "float used to\n"
+            "cross water."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_MockWailmer,
+        .iconPalette = gItemIconPalette_MockWailmer,
+    },
+
+    [ITEM_RIDE_PAGER] =
+    {
+        .name = ITEM_NAME("RIDE PAGER"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A small pager to\n"
+            "call a flying\n"
+            "POKéMON for a ride."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_RidePager,
+        .iconPalette = gItemIconPalette_RidePager,
+    },
+
+    [ITEM_SCUBA_MASK] =
+    {
+        .name = ITEM_NAME("SCUBA GEAR"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A comfy scuba mask\n"
+            "to help you swim\n"
+            "underwater."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_ScubaGear,
+        .iconPalette = gItemIconPalette_ScubaGear,
+    },
+
+    [ITEM_MOCK_GYARADOS] =
+    {
+        .name = ITEM_NAME("MOCK GYARADOS"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A larger float\n"
+            "made to rise up\n"
+            "waterfalls."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_MockGyarados,
+        .iconPalette = gItemIconPalette_MockGyarados,
+    },
+
+    [ITEM_DIGGING_KIT] =
+    {
+        .name = ITEM_NAME("DIGGING KIT"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A bag filled with\n"
+            "digging tools. Can\n"
+            "help dig a tunnel."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_DiggingKit,
+        .iconPalette = gItemIconPalette_DiggingKit,
+    },
+
+    [ITEM_TIDAL_TICKET] =
+    {
+        .name = ITEM_NAME("TIDAL TICKET"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A ticket granting\n"
+            "unlimited use\n"
+            "of the SS Tidal."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_TidalTicket,
+        .iconPalette = gItemIconPalette_TidalTicket,
+    },
+
+    [ITEM_EGG_INCUBATOR] =
+    {
+        .name = ITEM_NAME("EGG INCUBATOR"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "An incubator to\n"
+            "help eggs hatch\n"
+            "faster."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_EggIncubator,
+        .iconPalette = gItemIconPalette_EggIncubator,
+    },
+
+    [ITEM_PLATINUM_CARD] =
+    {
+        .name = ITEM_NAME("PLATINUM CARD"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "Proof that you\n"
+            "DESERVE more\n"
+            "money."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_PlatinumCard,
+        .iconPalette = gItemIconPalette_PlatinumCard,
+    },
+
+    [ITEM_GYM_MEMBERSHIP] =
+    {
+        .name = ITEM_NAME("GYM MEMBERSHIP"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "Proof that you\n"
+            "train better\n"
+            "than others."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_GymMembership,
+        .iconPalette = gItemIconPalette_GymMembership,
+    },
 };
 
 #undef ITEM_NAME

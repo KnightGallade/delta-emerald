@@ -1743,6 +1743,33 @@ extern const u16 gItemIconPalette_TwiceSpicedRadish[];
 extern const u32 gItemIcon_Journal[];
 extern const u16 gItemIconPalette_Journal[];
 
+extern const u32 gItemIcon_Axe[];
+extern const u16 gItemIconPalette_Axe[];
+extern const u32 gItemIcon_Lantern[];
+extern const u16 gItemIconPalette_Lantern[];
+extern const u32 gItemIcon_Pickaxe[];
+extern const u16 gItemIconPalette_Pickaxe[];
+extern const u32 gItemIcon_PowerGloves[];
+extern const u16 gItemIconPalette_PowerGloves[];
+extern const u32 gItemIcon_MockWailmer[];
+extern const u16 gItemIconPalette_MockWailmer[];
+extern const u32 gItemIcon_RidePager[];
+extern const u16 gItemIconPalette_RidePager[];
+extern const u32 gItemIcon_ScubaGear[];
+extern const u16 gItemIconPalette_ScubaGear[];
+extern const u32 gItemIcon_MockGyarados[];
+extern const u16 gItemIconPalette_MockGyarados[];
+extern const u32 gItemIcon_DiggingKit[];
+extern const u16 gItemIconPalette_DiggingKit[];
+extern const u32 gItemIcon_TidalTicket[];
+extern const u16 gItemIconPalette_TidalTicket[];
+extern const u32 gItemIcon_EggIncubator[];
+extern const u16 gItemIconPalette_EggIncubator[];
+extern const u32 gItemIcon_PlatinumCard[];
+extern const u16 gItemIconPalette_PlatinumCard[];
+extern const u32 gItemIcon_GymMembership[];
+extern const u16 gItemIconPalette_GymMembership[];
+
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u16 gItemIconPalette_ReturnToFieldArrow[];
 
@@ -1998,6 +2025,12 @@ extern const u32 gShopMenu_Gfx[];
 extern const u32 gShopMenu_Tilemap[];
 extern const u16 gShopMenu_Pal[];
 extern const u32 gShopMenuMoney_Gfx[];
+
+extern const u32 gUpgradeMenu_Gfx[];
+extern const u16 gUpgradeMenu_Pal[];
+extern const u32 gUpgradeMenu_Tilemap[];
+extern const u32 gUpgradeMenu_ScrollGfx[];
+extern const u32 gUpgradeMenu_ScrollTilemap[];
 
 extern const u32 gBattleInterface_BallStatusBarGfx[];
 extern const u8 gBattleInterface_BallDisplayGfx[];

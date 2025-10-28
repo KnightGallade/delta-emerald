@@ -996,10 +996,24 @@
 
 #define ITEM_JOURNAL 829
 
+#define ITEM_AXE 830
+#define ITEM_LANTERN 831
+#define ITEM_PICKAXE 832
+#define ITEM_POWER_GLOVES 833
+#define ITEM_MOCK_WAILMER 834
+#define ITEM_RIDE_PAGER 835
+#define ITEM_SCUBA_MASK 836
+#define ITEM_MOCK_GYARADOS 837
+#define ITEM_DIGGING_KIT 838
+#define ITEM_TIDAL_TICKET 839
+#define ITEM_EGG_INCUBATOR 840
+#define ITEM_PLATINUM_CARD 841
+#define ITEM_GYM_MEMBERSHIP 842
+
 // HOPO BERRY
 // LEGEND PLATE
 
-#define ITEMS_COUNT 830
+#define ITEMS_COUNT 843
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

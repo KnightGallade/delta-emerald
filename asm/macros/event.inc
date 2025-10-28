@@ -1221,6 +1221,13 @@
 	.4byte \products
 	.endm
 
+	@ Opens the upgrade shop system, offering the specified products for sale.
+	@ Products should be a list of .2byte item values preceded by an .align 2
+	.macro upgradeshop products:req
+	.byte SCR_OP_UPGRADESHOP
+	.4byte \products
+	.endm
+
 	@ Used as the endpoint for a Pokemart item list
 	.macro pokemartlistend
 	.2byte ITEM_NONE

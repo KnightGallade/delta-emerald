@@ -256,6 +256,7 @@ gScriptCmdTable::
     script_cmd_table_entry SCR_OP_RETURNQUESTSTATE              ScrCmd_returnqueststate,            requests_effects=1  @ 0xe7
 	script_cmd_table_entry SCR_OP_CHECKPLAYERAVATAR             ScrCmd_checkplayeravatar,           requests_effects=1  @ 0xe8
 	script_cmd_table_entry SCR_OP_CHECKRIVALAVATAR              ScrCmd_checkrivalavatar,            requests_effects=1  @ 0xe9
+	script_cmd_table_entry SCR_OP_UPGRADESHOP                   ScrCmd_upgradeshop,                 requests_effects=1  @ 0xea
 
 	.if ALLOCATE_SCRIPT_CMD_TABLE
 gScriptCmdTableEnd::
