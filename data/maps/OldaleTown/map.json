@@ -2,7 +2,7 @@
   "id": "MAP_OLDALE_TOWN",
   "name": "OldaleTown",
   "layout": "LAYOUT_OLDALE_TOWN",
-  "music": "MUS_CITY",
+  "music": "MUS_OLDALE",
   "region_map_section": "MAPSEC_OLDALE_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -145,7 +145,7 @@
       "script": "Common_EventScript_ShowPokemartSign"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_DP_TWINLEAF_DAY",
+  "music_morning": "MUS_HG_NEW_BARK",
+  "music_night": "MUS_DP_TWINLEAF_NIGHT"
 }

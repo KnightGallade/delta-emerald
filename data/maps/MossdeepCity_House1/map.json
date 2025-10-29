@@ -2,7 +2,7 @@
   "id": "MAP_MOSSDEEP_CITY_HOUSE1",
   "name": "MossdeepCity_House1",
   "layout": "LAYOUT_HOUSE2",
-  "music": "MUS_RUSTBORO",
+  "music": "MUS_DP_SUNYSHORE_DAY",
   "region_map_section": "MAPSEC_MOSSDEEP_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -59,7 +59,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_BW_OPELUCID_BLACK",
+  "music_morning": "MUS_HG_GOLDENROD",
+  "music_night": "MUS_DP_ETERNA_NIGHT"
 }

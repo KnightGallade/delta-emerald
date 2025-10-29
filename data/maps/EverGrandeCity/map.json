@@ -2,7 +2,7 @@
   "id": "MAP_EVER_GRANDE_CITY",
   "name": "EverGrandeCity",
   "layout": "LAYOUT_EVER_GRANDE_CITY",
-  "music": "MUS_CITY",
+  "music": "MUS_EVER_GRANDE",
   "region_map_section": "MAPSEC_EVER_GRANDE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -193,7 +193,7 @@
       "script": "Common_EventScript_ShowPokemonCenterSign"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_HG_POKEMON_LEAGUE",
+  "music_morning": "MUS_BW_POKEMON_LEAGUE",
+  "music_night": "MUS_DP_POKEMON_LEAGUE_NIGHT"
 }

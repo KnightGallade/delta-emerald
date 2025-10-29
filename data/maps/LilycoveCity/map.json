@@ -2,7 +2,7 @@
   "id": "MAP_LILYCOVE_CITY",
   "name": "LilycoveCity",
   "layout": "LAYOUT_LILYCOVE_CITY",
-  "music": "MUS_CITY",
+  "music": "MUS_LILYCOVE",
   "region_map_section": "MAPSEC_LILYCOVE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -521,7 +521,7 @@
       "flag": "FLAG_HIDDEN_ITEM_LILYCOVE_CITY_POKE_BALL"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_HG_VERMILION",
+  "music_morning": "MUS_BW_CASTELIA",
+  "music_night": "MUS_RG_SEVII_67"
 }

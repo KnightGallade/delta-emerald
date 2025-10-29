@@ -2,7 +2,7 @@
   "id": "MAP_PACIFIDLOG_TOWN_HOUSE1",
   "name": "PacifidlogTown_House1",
   "layout": "LAYOUT_PACIFIDLOG_TOWN_HOUSE1",
-  "music": "MUS_LILYCOVE",
+  "music": "MUS_BW_UNDELLA_SUMMER",
   "region_map_section": "MAPSEC_PACIFIDLOG_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -59,7 +59,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_DP_CANALAVE_NIGHT",
+  "music_morning": "MUS_BW_UNDELLA_SPRING",
+  "music_night": "MUS_BW_VILLAGE_BRIDGE"
 }

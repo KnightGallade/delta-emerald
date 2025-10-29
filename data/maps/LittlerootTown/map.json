@@ -2,7 +2,7 @@
   "id": "MAP_LITTLEROOT_TOWN",
   "name": "LittlerootTown",
   "layout": "LAYOUT_LITTLEROOT_TOWN",
-  "music": "MUS_CITY",
+  "music": "MUS_LITTLEROOT",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -251,7 +251,7 @@
       "script": "LittlerootTown_EventScript_MaysHouseSign"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_RG_PALLET",
+  "music_morning": "MUS_HG_PALLET",
+  "music_night": "MUS_BW_NUVEMA"
 }

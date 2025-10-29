@@ -539,7 +539,7 @@
       "script": "LilycoveCity_ContestHall_EventScript_CuteStageSign"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_CONTEST_LOBBY",
+  "music_morning": "MUS_CONTEST_LOBBY",
+  "music_night": "MUS_CONTEST_LOBBY"
 }

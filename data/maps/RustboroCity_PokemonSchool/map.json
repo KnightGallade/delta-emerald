@@ -165,7 +165,7 @@
       "script": "RustboroCity_PokemonSchool_EventScript_StudentNotebook"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_SCHOOL",
+  "music_morning": "MUS_SCHOOL",
+  "music_night": "MUS_SCHOOL"
 }

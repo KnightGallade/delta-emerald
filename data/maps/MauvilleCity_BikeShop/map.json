@@ -2,7 +2,7 @@
   "id": "MAP_MAUVILLE_CITY_BIKE_SHOP",
   "name": "MauvilleCity_BikeShop",
   "layout": "LAYOUT_MAUVILLE_CITY_BIKE_SHOP",
-  "music": "MUS_RUSTBORO",
+  "music": "MUS_BW_NIMBASA",
   "region_map_section": "MAPSEC_MAUVILLE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -76,7 +76,7 @@
       "script": "MauvilleCity_BikeShop_EventScript_AcroBikeHandbook"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_BW_DRIFTVEIL",
+  "music_morning": "MUS_DP_OREBURGH_DAY",
+  "music_night": "MUS_DP_JUBILIFE_NIGHT"
 }

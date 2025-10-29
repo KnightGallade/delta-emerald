@@ -97,7 +97,7 @@
       "script": "RustboroCity_DevonCorp_1F_EventScript_RocksMetalDisplay"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_BW_NACRENE",
+  "music_morning": "MUS_BW_MISTRALTON",
+  "music_night": "MUS_HG_PEWTER"
 }

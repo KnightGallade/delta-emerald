@@ -47,7 +47,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_BW_BLACK_CITY",
+  "music_morning": "MUS_DP_SNOWPOINT_DAY",
+  "music_night": "MUS_DP_SNOWPOINT_NIGHT"
 }

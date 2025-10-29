@@ -54,7 +54,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_HG_AZALEA",
+  "music_morning": "MUS_DP_CANALAVE_DAY",
+  "music_night": "MUS_BW_LACUNOSA"
 }

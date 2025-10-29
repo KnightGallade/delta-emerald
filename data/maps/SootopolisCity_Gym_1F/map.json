@@ -83,7 +83,7 @@
       "script": "SootopolisCity_Gym_1F_EventScript_RightGymStatue"
     }
   ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "music_evening": "MUS_GYM",
+  "music_morning": "MUS_GYM",
+  "music_night": "MUS_GYM"
 }
