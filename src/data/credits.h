@@ -13,6 +13,7 @@ enum
     PAGE_FEATURES_STARTER_1,
     PAGE_FEATURES_STARTER_2,
     PAGE_FEATURES_QUEST,
+    PAGE_FEATURES_FIELD_MUGSHOTS,
     PAGE_GRAPHICS_START,
     PAGE_GRAPHICS_BRENDAN_MAY_ORAS_1,
     PAGE_GRAPHICS_BRENDAN_MAY_ORAS_2,
@@ -56,7 +57,6 @@ enum
     PAGE_PLACEHOLDER_36,
     PAGE_PLACEHOLDER_37,
     PAGE_PLACEHOLDER_38,
-    PAGE_PLACEHOLDER_39,
     PAGE_COUNT
 };
 
@@ -120,6 +120,9 @@ static const u8 sCreditsText_QuestSystem[]                    = _("QUEST SYSTEM"
 static const u8 sCreditsText_PokemonSanFran[]                 = _("PokemonSanFran");
 static const u8 sCreditsText_BasedOn[]                        = _("BASED ON");
 static const u8 sCreditsText_PokemonUnbound[]                 = _("Pokemon Unbound");
+// PAGE_FEATURES_FIELD_MUGSHOTS
+static const u8 sCreditsText_FieldMugshots[]                  = _("FIELD MUGSHOTS");
+// static const u8 sCreditsText_Mudskip[]                        = _("Mudskip");
 // PAGE_GRAPHICS_START
 static const u8 sCreditsText_GraphicsUsed[]                   = _("GRAPHICS USED:");
 // PAGE_GRAPHICS_BRENDAN_MAY_ORAS_1
@@ -189,6 +192,8 @@ static const struct CreditsEntry sCreditsEntry_KnowledgeDownload                
 static const struct CreditsEntry sCreditsEntry_GruntLucas                       = { 0, FALSE, sCreditsText_GruntLucas};
 static const struct CreditsEntry sCreditsEntry_QuestSystem                      = { 0, TRUE, sCreditsText_QuestSystem};
 static const struct CreditsEntry sCreditsEntry_PokemonSanFran                   = { 0, FALSE, sCreditsText_PokemonSanFran};
+static const struct CreditsEntry sCreditsEntry_FieldMugshots                    = { 0, TRUE, sCreditsText_FieldMugshots};
+// static const struct CreditsEntry sCreditsEntry_Mudskip                          = { 0, FALSE, sCreditsText_Mudskip};
 static const struct CreditsEntry sCreditsEntry_BasedOn                          = { 0, TRUE, sCreditsText_BasedOn};
 static const struct CreditsEntry sCreditsEntry_PokemonUnbound                   = { 0, FALSE, sCreditsText_PokemonUnbound};
 static const struct CreditsEntry sCreditsEntry_GraphicsUsed                     = { 0, TRUE, sCreditsText_GraphicsUsed};
@@ -304,6 +309,13 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         &sCreditsEntry_PokemonSanFran,
         &sCreditsEntry_BasedOn,
         &sCreditsEntry_PokemonUnbound,
+        _,
+    },
+    [PAGE_FEATURES_FIELD_MUGSHOTS] = {
+        _,
+        &sCreditsEntry_FieldMugshots,
+        &sCreditsEntry_Mudskip,
+        _,
         _,
     },
     [PAGE_GRAPHICS_START] = {
@@ -601,13 +613,6 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         _,
     },
     [PAGE_PLACEHOLDER_38] = {
-        _,
-        &sCreditsEntry_PlaceholderTitle,
-        &sCreditsEntry_PlaceholderName,
-        _,
-        _,
-    },
-    [PAGE_PLACEHOLDER_39] = {
         _,
         &sCreditsEntry_PlaceholderTitle,
         &sCreditsEntry_PlaceholderName,
