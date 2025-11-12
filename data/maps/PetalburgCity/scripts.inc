@@ -7,21 +7,6 @@ PetalburgCity_OnTransition:
 	setflag FLAG_VISITED_PETALBURG_CITY
 	call_if_eq VAR_TRACK_WALLY_QUEST_PROGRESSION, 2, PetalburgCity_EventScript_DisableMapNameAndMusic
 	call_if_eq VAR_PETALBURG_CITY_STATE, 4, PetalburgCity_EventScript_DisableMapNameAndMusic
-	checkitem ITEM_JOURNAL
-	call_if_eq VAR_RESULT, TRUE, PetalburgCity_SetCityRuins
-	end
-
-PetalburgCity_SetCityRuins::
-	setobjectxy 1, 1, 1
-	setobjectxy 2, 1, 1
-	setobjectxy 3, 1, 1
-	setobjectxy 4, 1, 1
-	setobjectxy 5, 1, 1
-	setobjectxy 6, 1, 1
-	setobjectxy 7, 1, 1
-	setobjectxy 8, 1, 1
-	setobjectxy 9, 1, 1
-	setmaplayoutindex LAYOUT_PETALBURG_CITY_UNDEVELOPED
 	end
 
 PetalburgCity_EventScript_DisableMapNameAndMusic::
