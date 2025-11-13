@@ -9,6 +9,7 @@ enum
     PAGE_MUSIC,
     PAGE_TILESET_START,
     PAGE_TILESET_ORAS,
+    PAGE_TILESET_DISTORTION,
     PAGE_FEATURES_START,
     PAGE_FEATURES_STARTER_1,
     PAGE_FEATURES_STARTER_2,
@@ -56,7 +57,6 @@ enum
     PAGE_PLACEHOLDER_35,
     PAGE_PLACEHOLDER_36,
     PAGE_PLACEHOLDER_37,
-    PAGE_PLACEHOLDER_38,
     PAGE_COUNT
 };
 
@@ -101,6 +101,11 @@ static const u8 sCreditsText_TilesetsUsed[]                   = _("TILESETS USED
 // PAGE_TILESET_ORAS
 static const u8 sCreditsText_ORASTileset[]                    = _("ORAS TILESET");
 static const u8 sCreditsText_leob0505[]                       = _("leob0505");
+// PAGE_TILESET_DISTORTION
+static const u8 sCreditsText_DistortionWorldTileset[]         = _("DISTORTION WORLD TILESET");
+static const u8 sCreditsText_Phyromatical[]                   = _("Phyromatical");
+static const u8 sCreditsText_spaceemotion[]                   = _("spaceemotion");
+static const u8 sCreditsText_rahtak[]                         = _("rahtak");
 // PAGE_FEATURES_START
 static const u8 sCreditsText_FeaturesUsed[]                   = _("FEATURES USED:");
 // PAGE_FEATURES_STARTER_1
@@ -179,6 +184,10 @@ static const struct CreditsEntry sCreditsEntry_BWB2W2                           
 static const struct CreditsEntry sCreditsEntry_TilesetsUsed                     = { 0, TRUE, sCreditsText_TilesetsUsed};
 static const struct CreditsEntry sCreditsEntry_ORASTileset                      = { 0, TRUE, sCreditsText_ORASTileset};
 static const struct CreditsEntry sCreditsEntry_leob0505                         = { 0, FALSE, sCreditsText_leob0505};
+static const struct CreditsEntry sCreditsEntry_DistortionWorldTileset           = { 0, TRUE, sCreditsText_DistortionWorldTileset};
+static const struct CreditsEntry sCreditsEntry_Phyromatical                     = { 0, FALSE, sCreditsText_Phyromatical};
+static const struct CreditsEntry sCreditsEntry_spaceemotion                     = { 0, FALSE, sCreditsText_spaceemotion};
+static const struct CreditsEntry sCreditsEntry_rahtak                           = { 0, FALSE, sCreditsText_rahtak};
 static const struct CreditsEntry sCreditsEntry_FeaturesUsed                     = { 0, TRUE, sCreditsText_FeaturesUsed};
 static const struct CreditsEntry sCreditsEntry_StarterSelection1                = { 0, TRUE, sCreditsText_StarterSelection1};
 static const struct CreditsEntry sCreditsEntry_Code                             = { 0, TRUE, sCreditsText_Code};
@@ -281,6 +290,13 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         &sCreditsEntry_ORASTileset,
         &sCreditsEntry_leob0505,
         _,
+        _,
+    },
+    [PAGE_TILESET_DISTORTION] = {
+        &sCreditsEntry_DistortionWorldTileset,
+        &sCreditsEntry_Phyromatical,
+        &sCreditsEntry_spaceemotion,
+        &sCreditsEntry_rahtak,
         _,
     },
     [PAGE_FEATURES_START] = {
@@ -606,13 +622,6 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         _,
     },
     [PAGE_PLACEHOLDER_37] = {
-        _,
-        &sCreditsEntry_PlaceholderTitle,
-        &sCreditsEntry_PlaceholderName,
-        _,
-        _,
-    },
-    [PAGE_PLACEHOLDER_38] = {
         _,
         &sCreditsEntry_PlaceholderTitle,
         &sCreditsEntry_PlaceholderName,
