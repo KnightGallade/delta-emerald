@@ -56,6 +56,7 @@
 #include "constants/trainer_types.h"
 #include "constants/union_room.h"
 #include "constants/weather.h"
+#include "constants/field_mugshots.h"
 
 #define SPECIAL_LOCALIDS_START (min(LOCALID_CAMERA, \
                                 min(LOCALID_PLAYER, \
@@ -2583,6 +2584,7 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
     {
         emotion = gFollowerConditionalMessages[multi].emotion;
         ObjectEventEmote(objEvent, emotion);
+        SetFollowerMugshot(emotion);
         ctx->data[0] = (u32) gFollowerConditionalMessages[multi].text;
         // text choices are spread across array; pick a random one
         if (gFollowerConditionalMessages[multi].textSpread)
@@ -2599,10 +2601,63 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
     }
     // otherwise, a basic or C-based message was picked
     ObjectEventEmote(objEvent, emotion);
+    SetFollowerMugshot(emotion);
     ctx->data[0] = (u32) gFollowerBasicMessages[emotion].messages[multi].text; // Load message text
     ScriptCall(ctx, gFollowerBasicMessages[emotion].messages[multi].script ?
                         gFollowerBasicMessages[emotion].messages[multi].script :
                         gFollowerBasicMessages[emotion].script);
+}
+
+void SetFollowerMugshot(u32 emotion) {
+    bool8 isShiny = GetMonData(GetFirstLiveMon(), MON_DATA_IS_SHINY);
+    switch (SanitizeSpeciesId(GetMonData(GetFirstLiveMon(), MON_DATA_SPECIES))) {
+        case SPECIES_MUDKIP:
+            isShiny ? VarSet(VAR_TEMP_E,3) : VarSet(VAR_TEMP_E,2);
+            break;
+        case SPECIES_MIMIKYU:
+            isShiny ? VarSet(VAR_TEMP_E,5) : VarSet(VAR_TEMP_E,4);
+            break;
+        default:
+            VarSet(VAR_TEMP_E,MUGSHOT_COUNT);
+            VarSet(VAR_TEMP_F,0);
+            return;
+    }
+    switch (emotion) {
+        case FOLLOWER_EMOTION_HAPPY:
+            VarSet(VAR_TEMP_F,0);
+            break;
+        case FOLLOWER_EMOTION_NEUTRAL:
+        default:
+            VarSet(VAR_TEMP_F,10);
+            break;
+        case FOLLOWER_EMOTION_SAD:
+            VarSet(VAR_TEMP_F,2);
+            break;
+        case FOLLOWER_EMOTION_UPSET:
+            VarSet(VAR_TEMP_F,3);
+            break;
+        case FOLLOWER_EMOTION_ANGRY:
+            VarSet(VAR_TEMP_F,4);
+            break;
+        case FOLLOWER_EMOTION_PENSIVE:
+            VarSet(VAR_TEMP_F,5);
+            break;
+        case FOLLOWER_EMOTION_LOVE:
+            VarSet(VAR_TEMP_F,6);
+            break;
+        case FOLLOWER_EMOTION_SURPRISE:
+            VarSet(VAR_TEMP_F,7);
+            break;
+        case FOLLOWER_EMOTION_CURIOUS:
+            VarSet(VAR_TEMP_F,8);
+            break;
+        case FOLLOWER_EMOTION_MUSIC:
+            VarSet(VAR_TEMP_F,9);
+            break;
+        case FOLLOWER_EMOTION_POISONED:
+            VarSet(VAR_TEMP_F,10);
+            break;
+    }
 }
 
 #define sLightType data[5]
