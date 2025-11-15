@@ -260,8 +260,5 @@
       "item": "ITEM_ICE_HEAL",
       "flag": "FLAG_HIDDEN_ITEM_LAVARIDGE_TOWN_ICE_HEAL"
     }
-  ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  ]
 }

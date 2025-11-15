@@ -181,9 +181,6 @@ struct MapHeader
                bool8 showMapName:5; // the last 4 bits are unused
                                     // but the 5 bit sized bitfield is required to match
     /* 0x1B */ u8 battleType;
-    /* 0x1C */ u16 music_evening;
-    /* 0x1E */ u16 music_morning;
-    /* 0x20 */ u16 music_night;
 };
 
 

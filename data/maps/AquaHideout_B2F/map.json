@@ -187,8 +187,5 @@
       "script": "AquaHideout_B2F_EventScript_MattNoticePlayer"
     }
   ],
-  "bg_events": [],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "bg_events": []
 }

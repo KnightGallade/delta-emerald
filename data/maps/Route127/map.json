@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE127",
   "name": "Route127",
   "layout": "LAYOUT_ROUTE127",
-  "music": "MUS_DP_ROUTE216_DAY",
+  "music": "MUS_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_127",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -217,8 +217,5 @@
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_YELLOW_CAVE1_3"
     }
-  ],
-  "music_evening": "MUS_DP_ROUTE216_NIGHT",
-  "music_morning": "MUS_DP_ROUTE216_DAY",
-  "music_night": "MUS_DP_ROUTE216_NIGHT"
+  ]
 }

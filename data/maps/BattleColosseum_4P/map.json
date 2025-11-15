@@ -82,8 +82,5 @@
       "script": "EventScript_BattleColosseum_4P_PlayerSpot3"
     }
   ],
-  "bg_events": [],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "bg_events": []
 }

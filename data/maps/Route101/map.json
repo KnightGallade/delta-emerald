@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE101",
   "name": "Route101",
   "layout": "LAYOUT_ROUTE101",
-  "music": "MUS_ROUTE101",
+  "music": "MUS_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_101",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -199,8 +199,5 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route101_EventScript_RouteSign"
     }
-  ],
-  "music_evening": "MUS_HG_RADIO_ROUTE101",
-  "music_morning": "MUS_ROUTE101",
-  "music_night": "MUS_HG_RADIO_ROUTE101"
+  ]
 }

@@ -49,8 +49,5 @@
       "script": "TerraCave_End_EventScript_Groudon"
     }
   ],
-  "bg_events": [],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "bg_events": []
 }

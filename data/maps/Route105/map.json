@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE105",
   "name": "Route105",
   "layout": "LAYOUT_ROUTE105",
-  "music": "MUS_BW_ROUTE12_SPRING",
+  "music": "MUS_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_105",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -162,8 +162,5 @@
       "item": "ITEM_BIG_PEARL",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL"
     }
-  ],
-  "music_evening": "MUS_BW_ROUTE12_AUTUMN",
-  "music_morning": "MUS_BW_ROUTE12_SPRING",
-  "music_night": "MUS_BW_ROUTE12_AUTUMN"
+  ]
 }

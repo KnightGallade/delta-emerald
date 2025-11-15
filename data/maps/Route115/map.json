@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE115",
   "name": "Route115",
   "layout": "LAYOUT_ROUTE115",
-  "music": "MUS_DP_ROUTE209_DAY",
+  "music": "MUS_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_115",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -451,8 +451,5 @@
       "item": "ITEM_HEART_SCALE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_115_HEART_SCALE"
     }
-  ],
-  "music_evening": "MUS_DP_ROUTE209_NIGHT",
-  "music_morning": "MUS_DP_ROUTE209_DAY",
-  "music_night": "MUS_DP_ROUTE209_NIGHT"
+  ]
 }

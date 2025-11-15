@@ -129,8 +129,5 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  "bg_events": []
 }

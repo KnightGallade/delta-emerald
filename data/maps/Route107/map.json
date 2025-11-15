@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE107",
   "name": "Route107",
   "layout": "LAYOUT_ROUTE107",
-  "music": "MUS_BW_ROUTE1",
+  "music": "MUS_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_107",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -119,8 +119,5 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
-  "music_evening": "MUS_HG_RADIO_ROUTE201",
-  "music_morning": "MUS_BW_ROUTE1",
-  "music_night": "MUS_HG_RADIO_ROUTE201"
+  "bg_events": []
 }

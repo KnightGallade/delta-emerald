@@ -154,8 +154,5 @@
       "item": "ITEM_MAX_REPEL",
       "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_B2F_MAX_REPEL"
     }
-  ],
-  "music_evening": "MUS_CITY",
-  "music_morning": "MUS_CITY",
-  "music_night": "MUS_CITY"
+  ]
 }

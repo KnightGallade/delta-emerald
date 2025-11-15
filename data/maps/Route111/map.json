@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE111",
   "name": "Route111",
   "layout": "LAYOUT_ROUTE111",
-  "music": "MUS_DP_ROUTE225_DAY",
+  "music": "MUS_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_111",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -1123,8 +1123,5 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route111_EventScript_TrainerHillSign"
     }
-  ],
-  "music_evening": "MUS_DP_ROUTE225_NIGHT",
-  "music_morning": "MUS_DP_ROUTE225_DAY",
-  "music_night": "MUS_DP_ROUTE225_NIGHT"
+  ]
 }

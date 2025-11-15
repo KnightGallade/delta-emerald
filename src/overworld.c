@@ -1166,7 +1166,7 @@ u16 GetLocationMusic(struct WarpData *warp)
     else if (ShouldLegendaryMusicPlayAtLocation(warp) == TRUE) { return MUS_ABNORMAL_WEATHER; }
     else if (IsInflitratedSpaceCenter(warp) == TRUE) { return MUS_ENCOUNTER_MAGMA; }
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE) { return MUS_MT_CHIMNEY; }
-    // now handle werid locations
+    // Now handle werid areas
     // desert area
     else if (warp->mapGroup == MAP_GROUP(MAP_ROUTE111) && warp->mapNum == MAP_NUM(MAP_ROUTE111) && GetSavedWeather() == WEATHER_SANDSTORM) {
         switch (GetTimeOfDay()) {
@@ -1187,23 +1187,19 @@ u16 GetLocationMusic(struct WarpData *warp)
             case TIME_MORNING:
             case TIME_DAY:
                 return left ? MUS_DP_ROUTE206_DAY : MUS_BW_ROUTE6_SUMMER;
-                break;
             case TIME_EVENING:
             case TIME_NIGHT:
                 return left ? MUS_DP_ROUTE206_NIGHT : MUS_BW_ROUTE6_WINTER;
-                break;
         }
     }
-    // Normal music
+    // otherwise, play regular map music
     else {
         switch (GetTimeOfDay()) {
-            case TIME_MORNING:
-                return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music_morning;
             default:
+            case TIME_MORNING:
             case TIME_DAY:
                 return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
             case TIME_EVENING:
-                return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music_evening;
             case TIME_NIGHT:
                 return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music_night;
         }

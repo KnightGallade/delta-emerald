@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE121",
   "name": "Route121",
   "layout": "LAYOUT_ROUTE121",
-  "music": "MUS_BW_ROUTE10",
+  "music": "MUS_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_121",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -535,8 +535,5 @@
       "item": "ITEM_MAX_REVIVE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_121_MAX_REVIVE"
     }
-  ],
-  "music_evening": "MUS_DP_ROAD_B_D",
-  "music_morning": "MUS_BW_ROUTE10",
-  "music_night": "MUS_DP_ROAD_B_D"
+  ]
 }
