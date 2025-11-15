@@ -165,8 +165,8 @@ string generate_map_header_text(Json map_data, Json layouts_data) {
          << "\t.byte "  << json_to_string(map_data, "weather") << "\n"
          << "\t.byte "  << json_to_string(map_data, "map_type") << "\n";
 
-    // *** Here is where filler_18 used to be (.2byte 0 or padding), replaced with music_morning
-    text << "\t.2byte " << json_to_string(map_data, "music_morning") << "\n";
+    if (version != "firered")
+        text << "\t.2byte 0\n";
 
     if (version == "ruby")
         text << "\t.byte " << json_to_string(map_data, "show_map_name") << "\n";
@@ -180,11 +180,7 @@ string generate_map_header_text(Json map_data, Json layouts_data) {
     if (version == "firered")
         text << "\t.byte " << json_to_string(map_data, "floor_number") << "\n";
 
-    text << "\t.byte " << json_to_string(map_data, "battle_scene") << "\n";
-
-    // Append evening + night at the end
-    text << "\t.2byte " << json_to_string(map_data, "music_evening") << "\n"
-         << "\t.2byte " << json_to_string(map_data, "music_night") << "\n\n";
+     text << "\t.byte " << json_to_string(map_data, "battle_scene") << "\n\n";
 
     return text.str();
 }
