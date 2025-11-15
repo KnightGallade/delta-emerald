@@ -1805,7 +1805,6 @@ void CB2_NewGame(void)
     NewGameInitData();
     ResetInitialPlayerAvatarState();
     PlayTimeCounter_Start();
-    RtcInitLocalTimeOffset(10, 0);
     ScriptContext_Init();
     UnlockPlayerFieldControls();
     gFieldCallback = ExecuteTruckSequence;
