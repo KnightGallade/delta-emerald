@@ -1251,6 +1251,13 @@
 	end
 	.endm
 
+	@ Used as the endpoint for a upgrade shop item list
+	.macro upgradeshoplistend
+	.2byte ITEM_NONE
+	release
+	end
+	.endm
+
 	@ Opens the Pokemart system and treats the list of items as decorations.
 	@ Products should be a list of .2byte decoration values preceded by an .align 2
 	.macro pokemartdecoration products:req

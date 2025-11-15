@@ -42,6 +42,17 @@ gText_Birch_WhatsYourName::
 gText_Birch_SoItsPlayer::
 	.string "So it's {PLAYER}{KUN}?$"
 
+gText_Birch_WhatsBrendanName::
+	.string "What about my son?\n"
+	.string "Do you know his name?$"
+
+gText_Birch_WhatsMayName::
+	.string "What about my daughter?\n"
+	.string "Do you know her name?$"
+
+gText_Birch_SoItsRival::
+	.string "So it's {RIVAL}?$"
+
 gText_Birch_YourePlayer::
 	.string "Ah, okay!\p"
 	.string "You're {PLAYER}{KUN} who's moving to my\n"

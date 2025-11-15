@@ -337,6 +337,7 @@ static void DebugAction_BerryFunctions_Pests(u8 taskId);
 static void DebugAction_BerryFunctions_Weeds(u8 taskId);
 
 static void DebugAction_Player_Name(u8 taskId);
+static void DebugAction_Rival_Name(u8 taskId);
 static void DebugAction_Player_Gender(u8 taskId);
 static void DebugAction_Player_Id(u8 taskId);
 
@@ -600,6 +601,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Give[] =
 static const struct DebugMenuOption sDebugMenu_Actions_Player[] =
 {
     { COMPOUND_STRING("Player name"),    DebugAction_Player_Name },
+    { COMPOUND_STRING("Rival name"),    DebugAction_Rival_Name },
     { COMPOUND_STRING("Toggle gender"),  DebugAction_Player_Gender },
     { COMPOUND_STRING("New Trainer ID"), DebugAction_Player_Id },
     { NULL }
@@ -1518,6 +1520,11 @@ static void DebugAction_Util_WatchCredits(u8 taskId)
 static void DebugAction_Player_Name(u8 taskId)
 {
     DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldContinueScript);
+}
+
+static void DebugAction_Rival_Name(u8 taskId)
+{
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldContinueScript);
 }
 
 static void DebugAction_Player_Gender(u8 taskId)

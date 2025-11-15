@@ -250,5 +250,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "LittlerootTown_EventScript_MaysHouseSign"
     }
-  ]
+  ],
+  "music_night": "MUS_BW_DRIFTVEIL"
 }
