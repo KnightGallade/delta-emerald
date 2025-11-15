@@ -790,13 +790,9 @@ static void CreateCableCarSprites(void)
     u8 spriteId;
     u8 i;
 
-    u16 playerGraphicsIds[6] = {
-        [BRENDAN_EMERALD_STYLE] = OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL,
-        [BRENDAN_RS_STYLE] = OBJ_EVENT_GFX_RIVAL_BRENDAN_RS_NORMAL,
-        [BRENDAN_ORAS_STYLE] = OBJ_EVENT_GFX_RIVAL_BRENDAN_ORAS_NORMAL,
-        [MAY_EMERALD_STYLE] = OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL,
-        [MAY_RS_STYLE] = OBJ_EVENT_GFX_RIVAL_MAY_RS_NORMAL,
-        [MAY_ORAS_STYLE] = OBJ_EVENT_GFX_RIVAL_MAY_ORAS_NORMAL,
+    u16 playerGraphicsIds[2] = {
+        [MALE]   = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL,
+        [FEMALE] = OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
     };
     u16 rval = Random();
     u16 hikerGraphicsIds[4] = {
@@ -820,7 +816,7 @@ static void CreateCableCarSprites(void)
         case FALSE:
         default:
             // Create player sprite
-            spriteId = CreateObjectGraphicsSprite(playerGraphicsIds[gSaveBlock2Ptr->playerAvatar], SpriteCB_Player, 200, 73, 102);
+            spriteId = CreateObjectGraphicsSprite(playerGraphicsIds[gSaveBlock2Ptr->playerGender], SpriteCB_Player, 200, 73, 102);
             if (spriteId != MAX_SPRITES)
             {
                 gSprites[spriteId].oam.priority = 2;
@@ -848,7 +844,7 @@ static void CreateCableCarSprites(void)
         case TRUE:
             CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->groundTilemap + 0x24, 24, 26, 12, 3, 17);
             // Create player sprite
-            spriteId = CreateObjectGraphicsSprite(playerGraphicsIds[gSaveBlock2Ptr->playerAvatar], SpriteCB_Player, 128, 39, 102);
+            spriteId = CreateObjectGraphicsSprite(playerGraphicsIds[gSaveBlock2Ptr->playerGender], SpriteCB_Player, 128, 39, 102);
             if (spriteId != MAX_SPRITES)
             {
                 gSprites[spriteId].oam.priority = 2;

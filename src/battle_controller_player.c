@@ -1855,9 +1855,9 @@ u32 LinkPlayerGetTrainerPicId(u32 multiplayerId)
     if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
         trainerPicId = gender + TRAINER_BACK_PIC_RED;
     else if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
-        trainerPicId = gender + TRAINER_BACK_PIC_BRENDAN_RS;
+        trainerPicId = gender + TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN;
     else
-        trainerPicId = gender + TRAINER_BACK_PIC_BRENDAN_EMERALD;
+        trainerPicId = gender + TRAINER_BACK_PIC_BRENDAN;
 
     return trainerPicId;
 }
@@ -1866,32 +1866,10 @@ static u32 PlayerGetTrainerBackPicId(void)
 {
     u32 trainerPicId;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_LINK) {
+    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
         trainerPicId = LinkPlayerGetTrainerPicId(GetMultiplayerId());
-    }
-    else {
-        switch (gSaveBlock2Ptr->playerAvatar) {
-            default:
-            case BRENDAN_EMERALD_STYLE:
-                trainerPicId = TRAINER_BACK_PIC_BRENDAN_EMERALD;
-                break;
-            case BRENDAN_RS_STYLE:
-                trainerPicId = TRAINER_BACK_PIC_BRENDAN_RS;
-                break;
-            case BRENDAN_ORAS_STYLE:
-                trainerPicId = TRAINER_BACK_PIC_BRENDAN_ORAS;
-                break;
-            case MAY_EMERALD_STYLE:
-                trainerPicId = TRAINER_BACK_PIC_MAY_EMERALD;
-                break;
-            case MAY_RS_STYLE:
-                trainerPicId = TRAINER_BACK_PIC_MAY_RS;
-                break;
-            case MAY_ORAS_STYLE:
-                trainerPicId = TRAINER_BACK_PIC_MAY_ORAS;
-                break;
-        }
-    }
+    else
+        trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
 
     return trainerPicId;
 }
@@ -1933,7 +1911,7 @@ static void PlayerHandleDrawTrainerPic(u32 battler)
     // Use front pic table for any tag battles unless your partner is Steven or a custom partner.
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
     {
-        trainerPicId = PlayerAvatarToFrontTrainerPicId(gSaveBlock2Ptr->playerAvatar);
+        trainerPicId = PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender);
         isFrontPic = TRUE;
     }
     else // Use back pic in all the other usual circumstances.

@@ -282,7 +282,7 @@ static const struct MatchCallRival sMayMatchCallHeader =
     .playerGender = MALE,
     .flag = FLAG_ENABLE_RIVAL_MATCH_CALL,
     .desc = gText_MayBrendanMatchCallDesc,
-    .name = gText_ExpandedPlaceholder_Rival,
+    .name = gText_ExpandedPlaceholder_May,
     .textData = sMayTextScripts
 };
 
@@ -311,7 +311,7 @@ static const struct MatchCallRival sBrendanMatchCallHeader =
     .playerGender = FEMALE,
     .flag = FLAG_ENABLE_RIVAL_MATCH_CALL,
     .desc = gText_MayBrendanMatchCallDesc,
-    .name = gText_ExpandedPlaceholder_Rival,
+    .name = gText_ExpandedPlaceholder_Brendan,
     .textData = sBrendanTextScripts
 };
 
@@ -584,8 +584,8 @@ static const struct MatchCallStructTrainer sWallaceMatchCallHeader =
 static const match_call_t sMatchCallHeaders[] = {
     [MC_HEADER_MR_STONE]   = {.npc    = &sMrStoneMatchCallHeader},
     [MC_HEADER_PROF_BIRCH] = {.birch  = &sProfBirchMatchCallHeader},
-    [MC_HEADER_BRENDAN]    = {.rival = &sBrendanMatchCallHeader},
-    [MC_HEADER_MAY]        = {.rival = &sMayMatchCallHeader},
+    [MC_HEADER_BRENDAN]    = {.rival  = &sBrendanMatchCallHeader},
+    [MC_HEADER_MAY]        = {.rival  = &sMayMatchCallHeader},
     [MC_HEADER_WALLY]      = {.wally  = &sWallyMatchCallHeader},
     [MC_HEADER_NORMAN]     = {.leader = &sNormanMatchCallHeader},
     [MC_HEADER_MOM]        = {.npc    = &sMomMatchCallHeader},
@@ -699,13 +699,13 @@ static const struct MatchCallCheckPageOverride sCheckPageOverrides[] = {
     },
     {
         .idx = MC_HEADER_BRENDAN,
-        .facilityClass = FACILITY_CLASS_BRENDAN_EMERALD,
+        .facilityClass = FACILITY_CLASS_BRENDAN,
         .flag = 0xFFFF,
         .flavorTexts = MCFLAVOR(Brendan)
     },
     {
         .idx = MC_HEADER_MAY,
-        .facilityClass = FACILITY_CLASS_MAY_EMERALD,
+        .facilityClass = FACILITY_CLASS_MAY,
         .flag = 0xFFFF,
         .flavorTexts = MCFLAVOR(May)
     }
@@ -784,7 +784,7 @@ static bool32 MatchCall_GetEnabled_Wally(match_call_t matchCall)
 
 static bool32 MatchCall_GetEnabled_Rival(match_call_t matchCall)
 {
-    if (matchCall.rival->playerGender != GetGenderFromSave())
+    if (matchCall.rival->playerGender != gSaveBlock2Ptr->playerGender)
         return FALSE;
     if (matchCall.rival->flag == 0xFFFF)
         return TRUE;

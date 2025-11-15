@@ -338,9 +338,6 @@ static void DebugAction_BerryFunctions_Weeds(u8 taskId);
 
 static void DebugAction_Player_Name(u8 taskId);
 static void DebugAction_Player_Gender(u8 taskId);
-static void DebugAction_Player_Avatar(u8 taskId);
-static void DebugAction_Rival_Name(u8 taskId);
-static void DebugAction_Rival_Avatar(u8 taskId);
 static void DebugAction_Player_Id(u8 taskId);
 
 extern const u8 Debug_FlagsNotSetOverworldConfigMessage[];
@@ -604,9 +601,6 @@ static const struct DebugMenuOption sDebugMenu_Actions_Player[] =
 {
     { COMPOUND_STRING("Player name"),    DebugAction_Player_Name },
     { COMPOUND_STRING("Toggle gender"),  DebugAction_Player_Gender },
-    { COMPOUND_STRING("Toggle player avatar"),  DebugAction_Player_Avatar },
-     { COMPOUND_STRING("Rival name"),    DebugAction_Rival_Name },
-    { COMPOUND_STRING("Toggle rival avatar"),  DebugAction_Rival_Avatar },
     { COMPOUND_STRING("New Trainer ID"), DebugAction_Player_Id },
     { NULL }
 };
@@ -1523,94 +1517,15 @@ static void DebugAction_Util_WatchCredits(u8 taskId)
 
 static void DebugAction_Player_Name(u8 taskId)
 {
-    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerAvatar, 0, 0, CB2_ReturnToFieldContinueScript);
+    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldContinueScript);
 }
 
 static void DebugAction_Player_Gender(u8 taskId)
 {
-    switch (gSaveBlock2Ptr->playerAvatar) {
-        case BRENDAN_EMERALD_STYLE:
-            gSaveBlock2Ptr->playerAvatar = MAY_EMERALD_STYLE;
-            gSaveBlock2Ptr->rivalAvatar = BRENDAN_EMERALD_STYLE;
-            break;
-        case BRENDAN_RS_STYLE:
-            gSaveBlock2Ptr->playerAvatar = MAY_RS_STYLE;
-            gSaveBlock2Ptr->rivalAvatar = BRENDAN_RS_STYLE;
-            break;
-        case BRENDAN_ORAS_STYLE:
-            gSaveBlock2Ptr->playerAvatar = MAY_ORAS_STYLE;
-            gSaveBlock2Ptr->rivalAvatar = BRENDAN_ORAS_STYLE;
-            break;
-        case MAY_EMERALD_STYLE:
-            gSaveBlock2Ptr->playerAvatar = BRENDAN_EMERALD_STYLE;
-            gSaveBlock2Ptr->rivalAvatar = MAY_EMERALD_STYLE;
-            break;
-        case MAY_RS_STYLE:
-            gSaveBlock2Ptr->playerAvatar = BRENDAN_RS_STYLE;
-            gSaveBlock2Ptr->rivalAvatar = MAY_RS_STYLE;
-            break;
-        case MAY_ORAS_STYLE:
-            gSaveBlock2Ptr->playerAvatar = BRENDAN_ORAS_STYLE;
-            gSaveBlock2Ptr->rivalAvatar = MAY_ORAS_STYLE;
-            break;
-    }
-    Debug_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
-}
-
-static void DebugAction_Player_Avatar(u8 taskId)
-{
-    switch (gSaveBlock2Ptr->playerAvatar) {
-        case BRENDAN_EMERALD_STYLE:
-            gSaveBlock2Ptr->playerAvatar = BRENDAN_RS_STYLE;
-            break;
-        case BRENDAN_RS_STYLE:
-            gSaveBlock2Ptr->playerAvatar = BRENDAN_ORAS_STYLE;
-            break;
-        case BRENDAN_ORAS_STYLE:
-            gSaveBlock2Ptr->playerAvatar = BRENDAN_EMERALD_STYLE;
-            break;
-        case MAY_EMERALD_STYLE:
-            gSaveBlock2Ptr->playerAvatar = MAY_RS_STYLE;
-            break;
-        case MAY_RS_STYLE:
-            gSaveBlock2Ptr->playerAvatar = MAY_ORAS_STYLE;
-            break;
-        case MAY_ORAS_STYLE:
-            gSaveBlock2Ptr->playerAvatar = MAY_EMERALD_STYLE;
-            break;
-    }
-    Debug_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
-}
-
-static void DebugAction_Rival_Name(u8 taskId)
-{
-    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, gSaveBlock2Ptr->rivalAvatar, 0, 0, CB2_ReturnToFieldContinueScript);
-}
-
-static void DebugAction_Rival_Avatar(u8 taskId)
-{
-    switch (gSaveBlock2Ptr->rivalAvatar) {
-        case BRENDAN_EMERALD_STYLE:
-            gSaveBlock2Ptr->rivalAvatar = BRENDAN_RS_STYLE;
-            break;
-        case BRENDAN_RS_STYLE:
-            gSaveBlock2Ptr->rivalAvatar = BRENDAN_ORAS_STYLE;
-            break;
-        case BRENDAN_ORAS_STYLE:
-            gSaveBlock2Ptr->rivalAvatar = BRENDAN_EMERALD_STYLE;
-            break;
-        case MAY_EMERALD_STYLE:
-            gSaveBlock2Ptr->rivalAvatar = MAY_RS_STYLE;
-            break;
-        case MAY_RS_STYLE:
-            gSaveBlock2Ptr->rivalAvatar = MAY_ORAS_STYLE;
-            break;
-        case MAY_ORAS_STYLE:
-            gSaveBlock2Ptr->rivalAvatar = MAY_EMERALD_STYLE;
-            break;
-    }
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        gSaveBlock2Ptr->playerGender = FEMALE;
+    else
+        gSaveBlock2Ptr->playerGender = MALE;
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
@@ -2964,8 +2879,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
 
     // give player the mon
     SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
-    u8 gender = GetGenderFromSave();
-    SetMonData(&mon, MON_DATA_OT_GENDER, &gender);
+    SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
@@ -3435,8 +3349,8 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
 
 static const u32 gDebugFollowerNPCGraphics[] =
 {
-    OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL,
-    OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL,
+    OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL,
+    OBJ_EVENT_GFX_RIVAL_MAY_NORMAL,
     OBJ_EVENT_GFX_STEVEN,
     OBJ_EVENT_GFX_WALLY,
     OBJ_EVENT_GFX_RED,

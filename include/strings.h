@@ -14,7 +14,8 @@ extern const u8 gText_ExpandedPlaceholder_Archie[];
 extern const u8 gText_ExpandedPlaceholder_Maxie[];
 extern const u8 gText_ExpandedPlaceholder_Kyogre[];
 extern const u8 gText_ExpandedPlaceholder_Groudon[];
-extern const u8 gText_ExpandedPlaceholder_Rival[];
+extern const u8 gText_ExpandedPlaceholder_Brendan[];
+extern const u8 gText_ExpandedPlaceholder_May[];
 
 extern const u8 gText_FromSpace[];
 
@@ -282,14 +283,8 @@ extern const u8 gText_ThisIsAPokemon[];
 extern const u8 gText_Birch_MainSpeech[];
 extern const u8 gText_Birch_AndYouAre[];
 extern const u8 gText_Birch_BoyOrGirl[];
-extern const u8 gText_Birch_WhatsYourStyle[];
 extern const u8 gText_Birch_WhatsYourName[];
 extern const u8 gText_Birch_SoItsPlayer[];
-extern const u8 gText_Birch_WhatsBrendanStyle[];
-extern const u8 gText_Birch_WhatsMayStyle[];
-extern const u8 gText_Birch_WhatsBrendanName[];
-extern const u8 gText_Birch_WhatsMayName[];
-extern const u8 gText_Birch_SoItsRival[];
 extern const u8 gText_Birch_YourePlayer[];
 extern const u8 gText_Birch_AreYouReady[];
 
@@ -2890,7 +2885,6 @@ extern const u8 gText_Cancel3[];
 // Naming Screen
 extern const u8 gText_MoveOkBack[];
 extern const u8 gText_YourName[];
-extern const u8 gText_RivalName[];
 extern const u8 gText_BoxName[];
 extern const u8 gText_PkmnsNickname[];
 extern const u8 gText_TellHimTheWords[];

@@ -467,17 +467,3 @@ void ClearPokemonCrySongs(void)
 {
     CpuFill16(0, gPokemonCrySongs, MAX_POKEMON_CRIES * sizeof(struct PokemonCrySong));
 }
-
-u8 GetGenderFromSave(void) {
-    switch (gSaveBlock2Ptr->playerAvatar) {
-        default:
-        case BRENDAN_EMERALD_STYLE:
-        case BRENDAN_RS_STYLE:
-        case BRENDAN_ORAS_STYLE:
-            return MALE;
-        case MAY_EMERALD_STYLE:
-        case MAY_RS_STYLE:
-        case MAY_ORAS_STYLE:
-            return FEMALE;
-    }
-}

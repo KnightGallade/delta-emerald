@@ -205,6 +205,16 @@ OldaleTown_Text_FinishedSketchingFootprints:
 	.string "But it turns out they were only my\n"
 	.string "own footprints…$"
 
+OldaleTown_Text_MayLetsGoBack:
+	.string "{RIVAL}: {PLAYER}{KUN}!\n"
+	.string "Over here!\l"
+	.string "Let's hurry home!$"
+
+OldaleTown_Text_BrendanLetsGoBack:
+	.string "{RIVAL}: I'm heading back to my dad's\n"
+	.string "LAB now.\l"
+	.string "{PLAYER}, you should hustle back, too.$"
+
 OldaleTown_Text_TownSign:
 	.string "OLDALE TOWN\n"
 	.string "“Where things start off scarce.”$"

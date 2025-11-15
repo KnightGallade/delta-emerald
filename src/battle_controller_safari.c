@@ -278,28 +278,7 @@ void SafariBufferExecCompleted(u32 battler)
 
 static void SafariHandleDrawTrainerPic(u32 battler)
 {
-    u32 trainerPicId;
-    switch (gSaveBlock2Ptr->playerAvatar) {
-        default:
-        case BRENDAN_EMERALD_STYLE:
-            trainerPicId = TRAINER_BACK_PIC_BRENDAN_EMERALD;
-            break;
-        case BRENDAN_RS_STYLE:
-            trainerPicId = TRAINER_BACK_PIC_BRENDAN_RS;
-            break;
-        case BRENDAN_ORAS_STYLE:
-            trainerPicId = TRAINER_BACK_PIC_BRENDAN_ORAS;
-            break;
-        case MAY_EMERALD_STYLE:
-            trainerPicId = TRAINER_BACK_PIC_MAY_EMERALD;
-            break;
-        case MAY_RS_STYLE:
-            trainerPicId = TRAINER_BACK_PIC_MAY_RS;
-            break;
-        case MAY_ORAS_STYLE:
-            trainerPicId = TRAINER_BACK_PIC_MAY_ORAS;
-            break;
-    }
+    u32 trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
 
     BtlController_HandleDrawTrainerPic(battler, trainerPicId, FALSE,
                                        80, 80 + 4 * (8 - gTrainerBacksprites[trainerPicId].coordinates.size),

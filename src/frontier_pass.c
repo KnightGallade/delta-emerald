@@ -1695,7 +1695,7 @@ static void InitFrontierMapSprites(void)
 
         LoadCompressedSpriteSheet(sHeadsSpriteSheet);
         sprite = sSpriteTemplate_PlayerHead;
-        sprite.paletteTag = GetGenderFromSave() + TAG_HEAD_MALE; // TAG_HEAD_FEMALE if gender is FEMALE
+        sprite.paletteTag = gSaveBlock2Ptr->playerGender + TAG_HEAD_MALE; // TAG_HEAD_FEMALE if gender is FEMALE
         if (id != 0)
         {
             spriteId = CreateSprite(&sprite, x, y, 0);
@@ -1709,7 +1709,7 @@ static void InitFrontierMapSprites(void)
 
         sMapData->playerHeadSprite = &gSprites[spriteId];
         sMapData->playerHeadSprite->oam.priority = 0;
-        if (GetGenderFromSave() != MALE)
+        if (gSaveBlock2Ptr->playerGender != MALE)
             StartSpriteAnim(sMapData->playerHeadSprite, 1);
     }
 }

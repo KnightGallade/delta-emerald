@@ -275,28 +275,8 @@ static bool8 LoadBattlerSpriteGfx(u32 battler)
             else
                 BattleLoadSubstituteOrMonSpriteGfx(battler, FALSE);
         }
-        else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI && battler == B_POSITION_PLAYER_LEFT) {// Should be checking position, not battler.
-            switch (gSaveBlock2Ptr->playerAvatar) {
-                case BRENDAN_EMERALD_STYLE:
-                    DecompressTrainerBackPic(TRAINER_BACK_PIC_BRENDAN_EMERALD, battler);
-                    break;
-                case BRENDAN_RS_STYLE:
-                    DecompressTrainerBackPic(TRAINER_BACK_PIC_BRENDAN_RS, battler);
-                    break;
-                case BRENDAN_ORAS_STYLE:
-                    DecompressTrainerBackPic(TRAINER_BACK_PIC_BRENDAN_ORAS, battler);
-                    break;
-                case MAY_EMERALD_STYLE:
-                    DecompressTrainerBackPic(TRAINER_BACK_PIC_MAY_EMERALD, battler);
-                    break;
-                case MAY_RS_STYLE:
-                    DecompressTrainerBackPic(TRAINER_BACK_PIC_MAY_RS, battler);
-                    break;
-                case MAY_ORAS_STYLE:
-                    DecompressTrainerBackPic(TRAINER_BACK_PIC_MAY_ORAS, battler);
-                    break;
-            }
-        }
+        else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI && battler == B_POSITION_PLAYER_LEFT) // Should be checking position, not battler.
+            DecompressTrainerBackPic(gSaveBlock2Ptr->playerGender, battler);
         else if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL && battler == B_POSITION_PLAYER_LEFT) // Should be checking position, not battler.
             DecompressTrainerBackPic(TRAINER_BACK_PIC_WALLY, battler);
         else if (!gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
@@ -340,44 +320,10 @@ void CreateBattlerSprite(u32 battler)
         }
         else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI && battler == B_POSITION_PLAYER_LEFT)
         {
-            switch (gSaveBlock2Ptr->playerAvatar) {
-            case BRENDAN_EMERALD_STYLE:
-                SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_BRENDAN_EMERALD, GetBattlerPosition(B_POSITION_PLAYER_LEFT));
-                gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
-                                            (8 - gTrainerBacksprites[0].coordinates.size) * 4 + 80,
-                                            GetBattlerSpriteSubpriority(0));
-                break;
-            case BRENDAN_RS_STYLE:
-                SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_BRENDAN_RS, GetBattlerPosition(B_POSITION_PLAYER_LEFT));
-                gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
-                                            (8 - gTrainerBacksprites[1].coordinates.size) * 4 + 80,
-                                            GetBattlerSpriteSubpriority(0));
-                break;
-            case BRENDAN_ORAS_STYLE:
-                SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_BRENDAN_ORAS, GetBattlerPosition(B_POSITION_PLAYER_LEFT));
-                gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
-                                            (8 - gTrainerBacksprites[2].coordinates.size) * 4 + 80,
-                                            GetBattlerSpriteSubpriority(0));
-                break;
-            case MAY_EMERALD_STYLE:
-                SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_MAY_EMERALD, GetBattlerPosition(B_POSITION_PLAYER_LEFT));
-                gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
-                                            (8 - gTrainerBacksprites[3].coordinates.size) * 4 + 80,
-                                            GetBattlerSpriteSubpriority(0));
-                break;
-            case MAY_RS_STYLE:
-                SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_MAY_RS, GetBattlerPosition(B_POSITION_PLAYER_LEFT));
-                gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
-                                            (8 - gTrainerBacksprites[4].coordinates.size) * 4 + 80,
-                                            GetBattlerSpriteSubpriority(0));
-                break;
-            case MAY_ORAS_STYLE:
-                SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_MAY_ORAS, GetBattlerPosition(B_POSITION_PLAYER_LEFT));
-                gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
-                                            (8 - gTrainerBacksprites[5].coordinates.size) * 4 + 80,
-                                            GetBattlerSpriteSubpriority(0));
-                break;
-            }
+            SetMultiuseSpriteTemplateToTrainerBack(gSaveBlock2Ptr->playerGender, GetBattlerPosition(B_POSITION_PLAYER_LEFT));
+            gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
+                                                (8 - gTrainerBacksprites[gSaveBlock2Ptr->playerGender].coordinates.size) * 4 + 80,
+                                                 GetBattlerSpriteSubpriority(0));
             gSprites[gBattlerSpriteIds[battler]].oam.paletteNum = battler;
             gSprites[gBattlerSpriteIds[battler]].callback = SpriteCallbackDummy;
             gSprites[gBattlerSpriteIds[battler]].data[0] = battler;

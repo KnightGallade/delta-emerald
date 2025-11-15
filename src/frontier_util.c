@@ -52,7 +52,7 @@ struct FrontierBrainMon
 struct FrontierBrain
 {
     u16 trainerId;
-    u16 objEventGfx;
+    u8 objEventGfx;
     u8 isFemale;
     const u8 *lostTexts[2];
     const u8 *wonTexts[2];

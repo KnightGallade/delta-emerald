@@ -14,7 +14,17 @@ SlateportCity_BattleTentBattleRoom_OnTransition:
 	end
 
 SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfx::
-	loadplayeravatarsimple VAR_OBJ_GFX_ID_1
+	checkplayergender
+	goto_if_eq VAR_RESULT, MALE, SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale
+	goto_if_eq VAR_RESULT, FEMALE, SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale
+	return
+
+SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale::
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL
+	return
+
+SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale::
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
 	return
 
 SlateportCity_BattleTentBattleRoom_OnWarp:

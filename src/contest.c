@@ -2888,26 +2888,10 @@ void CreateContestMonFromParty(u8 partyIndex)
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
         StripPlayerNameForLinkContest(name);
     memcpy(gContestMons[gContestPlayerMonIndex].trainerName, name, PLAYER_NAME_LENGTH + 1);
-    switch (gSaveBlock2Ptr->playerAvatar) {
-        case BRENDAN_EMERALD_STYLE:
-            gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_BRENDAN_EMERALD_NORMAL;
-            break;
-        case BRENDAN_RS_STYLE:
-            gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_BRENDAN_RS_NORMAL;
-            break;
-        case BRENDAN_ORAS_STYLE:
-            gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_BRENDAN_ORAS_NORMAL;
-            break;
-        case MAY_EMERALD_STYLE:
-            gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_MAY_EMERALD_NORMAL;
-            break;
-        case MAY_RS_STYLE:
-            gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_MAY_RS_NORMAL;
-            break;
-        case MAY_ORAS_STYLE:
-            gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_MAY_ORAS_NORMAL;
-            break;
-    }
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_LINK_BRENDAN;
+    else
+        gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_LINK_MAY;
     gContestMons[gContestPlayerMonIndex].aiFlags = 0;
     gContestMons[gContestPlayerMonIndex].highestRank = 0;
     gContestMons[gContestPlayerMonIndex].species = GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES);

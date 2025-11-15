@@ -871,12 +871,8 @@ static const u16 sMugshotPal_Green[]  = INCBIN_U16("graphics/battle_transitions/
 static const u16 sMugshotPal_Pink[]   = INCBIN_U16("graphics/battle_transitions/pink_bg.gbapal");
 static const u16 sMugshotPal_Blue[]   = INCBIN_U16("graphics/battle_transitions/blue_bg.gbapal");
 static const u16 sMugshotPal_Yellow[] = INCBIN_U16("graphics/battle_transitions/yellow_bg.gbapal");
-static const u16 sMugshotPal_Brendan_Emerald[] = INCBIN_U16("graphics/battle_transitions/brendan_bg.gbapal");
-static const u16 sMugshotPal_Brendan_RS[] = INCBIN_U16("graphics/battle_transitions/brendan_bg.gbapal");
-static const u16 sMugshotPal_Brendan_ORAS[] = INCBIN_U16("graphics/battle_transitions/brendan_bg.gbapal");
-static const u16 sMugshotPal_May_Emerald[] = INCBIN_U16("graphics/battle_transitions/may_bg.gbapal");
-static const u16 sMugshotPal_May_RS[] = INCBIN_U16("graphics/battle_transitions/may_bg.gbapal");
-static const u16 sMugshotPal_May_ORAS[] = INCBIN_U16("graphics/battle_transitions/may_bg.gbapal");
+static const u16 sMugshotPal_Brendan[] = INCBIN_U16("graphics/battle_transitions/brendan_bg.gbapal");
+static const u16 sMugshotPal_May[] = INCBIN_U16("graphics/battle_transitions/may_bg.gbapal");
 
 static const u16 *const sOpponentMugshotsPals[MUGSHOT_COLOR_COUNT] =
 {
@@ -887,14 +883,10 @@ static const u16 *const sOpponentMugshotsPals[MUGSHOT_COLOR_COUNT] =
     [MUGSHOT_COLOR_YELLOW] = sMugshotPal_Yellow
 };
 
-static const u16 *const sPlayerMugshotsPals[AVATAR_COUNT] =
+static const u16 *const sPlayerMugshotsPals[GENDER_COUNT] =
 {
-    [BRENDAN_EMERALD_STYLE] = sMugshotPal_Brendan_Emerald,
-    [BRENDAN_RS_STYLE] = sMugshotPal_Brendan_RS,
-    [BRENDAN_ORAS_STYLE] = sMugshotPal_Brendan_ORAS,
-    [MAY_EMERALD_STYLE] = sMugshotPal_May_Emerald,
-    [MAY_RS_STYLE] = sMugshotPal_May_RS,
-    [MAY_ORAS_STYLE] = sMugshotPal_May_ORAS,
+    [MALE] = sMugshotPal_Brendan,
+    [FEMALE] = sMugshotPal_May
 };
 
 static const u16 sUnusedTrainerPalette[] = INCBIN_U16("graphics/battle_transitions/unused_trainer.gbapal");
@@ -2297,7 +2289,7 @@ static bool8 Mugshot_SetGfx(struct Task *task)
         mugshotColor = MUGSHOT_COLOR_PURPLE;
 
     LoadPalette(sOpponentMugshotsPals[mugshotColor], 0xF0, 0x20);
-    LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerAvatar], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(6));
+    LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerGender], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(6));
 
     for (i = 0; i < 20; i++)
     {
@@ -2639,7 +2631,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
         SetOamMatrixRotationScaling(partnerSprite->oam.matrixNum, -512, 512, 0);
     }
 
-    task->tPlayerSpriteId = CreateTrainerSprite(PlayerAvatarToFrontTrainerPicId(gSaveBlock2Ptr->playerAvatar), 
+    task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), 
                                                 DISPLAY_WIDTH + 32, 
                                                 106, 
                                                 0, NULL); 

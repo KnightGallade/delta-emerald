@@ -533,7 +533,7 @@ void SpawnLinkPartnerObjectEvent(void)
     };
     u8 myLinkPlayerNumber;
     u8 playerFacingDirection;
-    u16 linkSpriteId;
+    u8 linkSpriteId;
     u8 i;
 
     myLinkPlayerNumber = GetMultiplayerId();
@@ -574,15 +574,15 @@ void SpawnLinkPartnerObjectEvent(void)
                 break;
             case VERSION_EMERALD:
                 if (gLinkPlayers[i].gender == 0)
-                    linkSpriteId = OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL;
+                    linkSpriteId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL;
                 else
-                    linkSpriteId = OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL;
+                    linkSpriteId = OBJ_EVENT_GFX_RIVAL_MAY_NORMAL;
                 break;
             default:
                 if (gLinkPlayers[i].gender == 0)
-                    linkSpriteId = OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL;
+                    linkSpriteId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL;
                 else
-                    linkSpriteId = OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL;
+                    linkSpriteId = OBJ_EVENT_GFX_RIVAL_MAY_NORMAL;
                 break;
             }
             SpawnSpecialObjectEventParameterized(linkSpriteId, movementTypes[j], LOCALID_BERRY_BLENDER_PLAYER_END - i, coordOffsets[j][0] + x + MAP_OFFSET, coordOffsets[j][1] + y + MAP_OFFSET, 0);
@@ -601,8 +601,8 @@ static void LoadLinkPartnerObjectEventSpritePalette(u16 graphicsId, u8 localEven
     adjustedPaletteNum = paletteNum + 6;
     if (graphicsId == OBJ_EVENT_GFX_LINK_RS_BRENDAN ||
         graphicsId == OBJ_EVENT_GFX_LINK_RS_MAY ||
-        graphicsId == OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL ||
-        graphicsId == OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL)
+        graphicsId == OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL ||
+        graphicsId == OBJ_EVENT_GFX_RIVAL_MAY_NORMAL)
     {
         u8 obj = GetObjectEventIdByLocalIdAndMap(localEventId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
         if (obj != OBJECT_EVENTS_COUNT)
@@ -614,16 +614,16 @@ static void LoadLinkPartnerObjectEventSpritePalette(u16 graphicsId, u8 localEven
             switch (graphicsId)
             {
             case OBJ_EVENT_GFX_LINK_RS_BRENDAN:
-                LoadPalette(gObjectEventPal_Brendan_RS, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
+                LoadPalette(gObjectEventPal_RubySapphireBrendan, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
                 break;
             case OBJ_EVENT_GFX_LINK_RS_MAY:
-                LoadPalette(gObjectEventPal_May_RS, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
+                LoadPalette(gObjectEventPal_RubySapphireMay, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
                 break;
-            case OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL:
-                LoadPalette(gObjectEventPal_Brendan_Emerald, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
+            case OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL:
+                LoadPalette(gObjectEventPal_Brendan, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
                 break;
-            case OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL:
-                LoadPalette(gObjectEventPal_May_Emerald, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
+            case OBJ_EVENT_GFX_RIVAL_MAY_NORMAL:
+                LoadPalette(gObjectEventPal_May, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
                 break;
             }
         }
@@ -927,7 +927,7 @@ u8 GetPlayerTrainerIdOnesDigit(void)
 
 void GetPlayerBigGuyGirlString(void)
 {
-    if (GetGenderFromSave() == MALE)
+    if (gSaveBlock2Ptr->playerGender == MALE)
         StringCopy(gStringVar1, sText_BigGuy);
     else
         StringCopy(gStringVar1, sText_BigGirl);
@@ -935,7 +935,7 @@ void GetPlayerBigGuyGirlString(void)
 
 void GetRivalSonDaughterString(void)
 {
-    if (GetGenderFromSave() == MALE)
+    if (gSaveBlock2Ptr->playerGender == MALE)
         StringCopy(gStringVar1, sText_Daughter);
     else
         StringCopy(gStringVar1, sText_Son);
@@ -2810,9 +2810,9 @@ void SetBattleTowerLinkPlayerGfx(void)
     for (i = 0; i < 2; i++)
     {
         if (gLinkPlayers[i].gender == MALE)
-            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_BRENDAN_EMERALD_NORMAL);
+            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_BRENDAN_NORMAL);
         else
-            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_RIVAL_MAY_EMERALD_NORMAL);
+            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL);
     }
 }
 
