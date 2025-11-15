@@ -2,7 +2,7 @@
   "id": "MAP_SOOTOPOLIS_CITY",
   "name": "SootopolisCity",
   "layout": "LAYOUT_SOOTOPOLIS_CITY",
-  "music": "MUS_SOOTOPOLIS",
+  "music": "MUS_CITY",
   "region_map_section": "MAPSEC_SOOTOPOLIS_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -410,7 +410,7 @@
       "script": "SootopolisCity_EventScript_CitySign"
     }
   ],
-  "music_evening": "MUS_BW_LACUNOSA",
-  "music_morning": "MUS_DP_CANALAVE_DAY",
-  "music_night": "MUS_DP_ETERNA_NIGHT"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

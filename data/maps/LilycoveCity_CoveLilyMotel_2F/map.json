@@ -117,7 +117,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_HG_VERMILION",
-  "music_morning": "MUS_BW_CASTELIA",
-  "music_night": "MUS_RG_SEVII_67"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

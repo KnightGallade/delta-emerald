@@ -59,7 +59,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_BW_ICIRRUS",
-  "music_morning": "MUS_BW_WHITE_FOREST",
-  "music_night": "MUS_BW_OPELUCID_WHITE"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

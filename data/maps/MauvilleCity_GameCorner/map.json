@@ -382,7 +382,7 @@
       "script": "Roulette_EventScript_Table2"
     }
   ],
-  "music_evening": "MUS_GAME_CORNER",
-  "music_morning": "MUS_GAME_CORNER",
-  "music_night": "MUS_GAME_CORNER"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

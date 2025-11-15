@@ -171,7 +171,7 @@
       "script": "DewfordTown_Hall_EventScript_Painting"
     }
   ],
-  "music_evening": "MUS_HG_CIANWOOD",
-  "music_morning": "MUS_RG_CINNABAR",
-  "music_night": "MUS_HG_CINNABAR"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

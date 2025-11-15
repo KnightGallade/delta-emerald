@@ -59,7 +59,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_DP_TWINLEAF_DAY",
-  "music_morning": "MUS_HG_NEW_BARK",
-  "music_night": "MUS_DP_TWINLEAF_NIGHT"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

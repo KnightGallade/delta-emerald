@@ -2,7 +2,7 @@
   "id": "MAP_MAUVILLE_CITY",
   "name": "MauvilleCity",
   "layout": "LAYOUT_MAUVILLE_CITY",
-  "music": "MUS_BW_NIMBASA",
+  "music": "MUS_CITY",
   "region_map_section": "MAPSEC_MAUVILLE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -300,7 +300,7 @@
       "script": "MauvilleCity_EventScript_GameCornerSign"
     }
   ],
-  "music_evening": "MUS_BW_DRIFTVEIL",
-  "music_morning": "MUS_DP_OREBURGH_DAY",
-  "music_night": "MUS_DP_JUBILIFE_NIGHT"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

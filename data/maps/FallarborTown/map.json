@@ -2,7 +2,7 @@
   "id": "MAP_FALLARBOR_TOWN",
   "name": "FallarborTown",
   "layout": "LAYOUT_FALLARBOR_TOWN",
-  "music": "MUS_FALLARBOR",
+  "music": "MUS_CITY",
   "region_map_section": "MAPSEC_FALLARBOR_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -182,7 +182,7 @@
       "flag": "FLAG_HIDDEN_ITEM_FALLARBOR_TOWN_NUGGET"
     }
   ],
-  "music_evening": "MUS_BW_BLACK_CITY",
-  "music_morning": "MUS_DP_SNOWPOINT_DAY",
-  "music_night": "MUS_DP_SNOWPOINT_NIGHT"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

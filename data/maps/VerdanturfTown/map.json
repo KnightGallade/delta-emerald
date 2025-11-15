@@ -2,7 +2,7 @@
   "id": "MAP_VERDANTURF_TOWN",
   "name": "VerdanturfTown",
   "layout": "LAYOUT_VERDANTURF_TOWN",
-  "music": "MUS_VERDANTURF",
+  "music": "MUS_CITY",
   "region_map_section": "MAPSEC_VERDANTURF_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -197,7 +197,7 @@
       "script": "VerdanturfTown_EventScript_RusturfTunnelSign"
     }
   ],
-  "music_evening": "MUS_HG_ECRUTEAK",
-  "music_morning": "MUS_DP_FLOAROMA_DAY",
-  "music_night": "MUS_DP_FLOAROMA_NIGHT"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

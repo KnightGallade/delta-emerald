@@ -269,7 +269,7 @@
       "script": "LittlerootTown_MaysHouse_2F_EventScript_PC"
     }
   ],
-  "music_evening": "MUS_RG_PALLET",
-  "music_morning": "MUS_HG_PALLET",
-  "music_night": "MUS_BW_NUVEMA"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

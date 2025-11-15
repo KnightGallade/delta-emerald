@@ -2,7 +2,7 @@
   "id": "MAP_MOSSDEEP_CITY_GAME_CORNER_1F",
   "name": "MossdeepCity_GameCorner_1F",
   "layout": "LAYOUT_MOSSDEEP_CITY_GAME_CORNER_1F",
-  "music": "MUS_DP_SUNYSHORE_DAY",
+  "music": "MUS_RUSTBORO",
   "region_map_section": "MAPSEC_MOSSDEEP_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -91,7 +91,7 @@
       "script": "MossdeepCity_GameCorner_1F_EventScript_PokemonJumpRecords"
     }
   ],
-  "music_evening": "MUS_BW_OPELUCID_BLACK",
-  "music_morning": "MUS_HG_GOLDENROD",
-  "music_night": "MUS_DP_ETERNA_NIGHT"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

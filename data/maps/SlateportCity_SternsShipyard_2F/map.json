@@ -65,7 +65,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_HG_CERULEAN",
-  "music_morning": "MUS_RG_SEVII_45",
-  "music_night": "MUS_RG_VERMILLION"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

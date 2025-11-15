@@ -2,7 +2,7 @@
   "id": "MAP_MOSSDEEP_CITY",
   "name": "MossdeepCity",
   "layout": "LAYOUT_MOSSDEEP_CITY",
-  "music": "MUS_DP_SUNYSHORE_DAY",
+  "music": "MUS_CITY",
   "region_map_section": "MAPSEC_MOSSDEEP_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -488,7 +488,7 @@
       "script": "MossdeepCity_EventScript_WhiteRock"
     }
   ],
-  "music_evening": "MUS_BW_OPELUCID_BLACK",
-  "music_morning": "MUS_HG_GOLDENROD",
-  "music_night": "MUS_DP_ETERNA_NIGHT"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

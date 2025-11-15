@@ -176,7 +176,7 @@
       "script": "LilycoveCity_LilycoveMuseum_EventScript_BirdSculpture"
     }
   ],
-  "music_evening": "MUS_LILYCOVE_MUSEUM",
-  "music_morning": "MUS_LILYCOVE_MUSEUM",
-  "music_night": "MUS_LILYCOVE_MUSEUM"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }

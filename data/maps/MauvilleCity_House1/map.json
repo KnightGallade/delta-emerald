@@ -2,7 +2,7 @@
   "id": "MAP_MAUVILLE_CITY_HOUSE1",
   "name": "MauvilleCity_House1",
   "layout": "LAYOUT_HOUSE2",
-  "music": "MUS_BW_NIMBASA",
+  "music": "MUS_RUSTBORO",
   "region_map_section": "MAPSEC_MAUVILLE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -46,7 +46,7 @@
   ],
   "coord_events": [],
   "bg_events": [],
-  "music_evening": "MUS_BW_DRIFTVEIL",
-  "music_morning": "MUS_DP_OREBURGH_DAY",
-  "music_night": "MUS_DP_JUBILIFE_NIGHT"
+  "music_evening": "MUS_CITY",
+  "music_morning": "MUS_CITY",
+  "music_night": "MUS_CITY"
 }
