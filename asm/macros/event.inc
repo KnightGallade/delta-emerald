@@ -1431,12 +1431,12 @@
 	@ loads the simplified (rival) sprite corresponding to the player's avatar to destination var
 	.macro loadplayeravatarsimple destination:req
 		checkplayeravatar
-		goto_if_eq VAR_RESULT, BRENDAN_EMERALD_STYLE, 1f
-		goto_if_eq VAR_RESULT, BRENDAN_RS_STYLE, 2f
-		goto_if_eq VAR_RESULT, BRENDAN_ORAS_STYLE, 3f
-		goto_if_eq VAR_RESULT, MAY_EMERALD_STYLE, 4f
-		goto_if_eq VAR_RESULT, MAY_RS_STYLE, 5f
-		goto_if_eq VAR_RESULT, MAY_ORAS_STYLE, 6f
+		goto_if_eq VAR_RESULT, BRENDAN_EMERALD_STYLE
+		goto_if_eq VAR_RESULT, BRENDAN_RS_STYLE
+		goto_if_eq VAR_RESULT, BRENDAN_ORAS_STYLE
+		goto_if_eq VAR_RESULT, MAY_EMERALD_STYLE
+		goto_if_eq VAR_RESULT, MAY_RS_STYLE
+		goto_if_eq VAR_RESULT, MAY_ORAS_STYLE
 		goto 7f
 	1:
 		setvar \destination, OBJ_EVENT_GFX_RIVAL_BRENDAN_EMERALD_NORMAL
