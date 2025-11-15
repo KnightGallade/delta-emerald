@@ -257,23 +257,7 @@ static inline const u8 GetTrainerPicFromId(u16 trainerId)
 
     if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
         return gBattlePartners[partnerDifficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic;
-    if (GetTrainerStructFromId(trainerId)->trainerPic == TRAINER_PIC_RIVAL_DYNAMIC) {
-        switch (gSaveBlock2Ptr->rivalAvatar) {
-            default:
-            case BRENDAN_EMERALD_STYLE:
-                return TRAINER_PIC_BRENDAN_EMERALD;
-            case BRENDAN_RS_STYLE:
-                return TRAINER_PIC_BRENDAN_RS;
-            case BRENDAN_ORAS_STYLE:
-                return TRAINER_PIC_BRENDAN_ORAS;
-            case MAY_EMERALD_STYLE:
-                return TRAINER_PIC_MAY_EMERALD;
-            case MAY_RS_STYLE:
-                return TRAINER_PIC_MAY_RS;
-            case MAY_ORAS_STYLE:
-                return TRAINER_PIC_MAY_ORAS;
-        }
-    }
+
     return GetTrainerStructFromId(trainerId)->trainerPic;
 }
 

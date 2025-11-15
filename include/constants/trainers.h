@@ -111,7 +111,6 @@
 #define TRAINER_PIC_MAY_RS                93
 #define TRAINER_PIC_MAY_ORAS              94
 #define TRAINER_PIC_COUNT                 95
-#define TRAINER_PIC_RIVAL_DYNAMIC         96
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN_EMERALD        0
@@ -207,8 +206,6 @@
 #define FACILITY_CLASS_LEAF                  0x4f
 
 #define FACILITY_CLASSES_COUNT               0x50
-#define FACILITY_CLASS_PLAYER_DYNAMIC        0x51
-#define FACILITY_CLASS_RIVAL_DYNAMIC         0x52
 
 #define RS_FACILITY_CLASS_AQUA_LEADER_ARCHIE    0x0
 #define RS_FACILITY_CLASS_AQUA_GRUNT_M          0x1

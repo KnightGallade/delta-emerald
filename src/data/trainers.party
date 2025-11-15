@@ -9667,9 +9667,9 @@ Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_MAY_ROUTE_103_MUDKIP ===
-Name: RIVALNAME
+Name: MAY
 Class: Rival
-Pic: TRAINER_PIC_RIVAL_DYNAMIC
+Pic: May_Emerald
 Gender: Female
 Music: Female
 Double Battle: No

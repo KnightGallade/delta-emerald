@@ -351,7 +351,7 @@ int GetMatchCallTrainerPic(int index)
     }
 
     index = MatchCall_GetOverrideFacilityClass(headerId);
-    if (index == FACILITY_CLASS_RIVAL_DYNAMIC) {
+    if (index == FACILITY_CLASS_BRENDAN_EMERALD || FACILITY_CLASS_MAY_EMERALD) {
         switch (gSaveBlock2Ptr->rivalAvatar) {
             case BRENDAN_EMERALD_STYLE:
                 index = FACILITY_CLASS_BRENDAN_EMERALD;

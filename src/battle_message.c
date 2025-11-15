@@ -2501,8 +2501,6 @@ static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text,
     else
     {
         toCpy = GetTrainerNameFromId(trainerId);
-        if (StringCompare(toCpy,gText_ExpandedPlaceholder_Rival) == 0)
-            toCpy = gSaveBlock2Ptr->rivalName;
     }
 
     return toCpy;
