@@ -1010,10 +1010,12 @@
 #define ITEM_PLATINUM_CARD 841
 #define ITEM_GYM_MEMBERSHIP 842
 
+#define ITEM_OUTFIT_BOX 843
+
 // HOPO BERRY
 // LEGEND PLATE
 
-#define ITEMS_COUNT 843
+#define ITEMS_COUNT 844
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

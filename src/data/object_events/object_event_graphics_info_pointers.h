@@ -240,6 +240,61 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoOh;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokeBall;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Follower;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BallLight;
+// outfits
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanMachBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanSurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanAcroBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanFishing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_BrendanDecorating;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MayNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MayMachBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MaySurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MayFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MayAcroBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MayUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MayFishing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MayWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_RS_MayDecorating;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanMachBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanSurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanAcroBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanFishing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_BrendanDecorating;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MayNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MayMachBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MaySurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MayFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MayAcroBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MayUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MayFishing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MayWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_ORAS_MayDecorating;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedMachBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedSurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedAcroBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedFishing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_RedDecorating;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafMachBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafSurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafAcroBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafFishing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafDecorating;
 
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bard;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Hipster;
@@ -492,6 +547,60 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_POKE_BALL] =                &gObjectEventGraphicsInfo_PokeBall,
     [OBJ_EVENT_GFX_OW_MON] =                   &gObjectEventGraphicsInfo_Follower,
     [OBJ_EVENT_GFX_LIGHT_SPRITE] =             &gObjectEventGraphicsInfo_BallLight,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_NORMAL]       = &gObjectEventGraphicsInfo_Outfit_RS_BrendanNormal,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_MACH_BIKE]    = &gObjectEventGraphicsInfo_Outfit_RS_BrendanMachBike,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_SURFING]      = &gObjectEventGraphicsInfo_Outfit_RS_BrendanSurfing,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_FIELD_MOVE]   = &gObjectEventGraphicsInfo_Outfit_RS_BrendanFieldMove,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_ACRO_BIKE]    = &gObjectEventGraphicsInfo_Outfit_RS_BrendanAcroBike,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_UNDERWATER]   = &gObjectEventGraphicsInfo_Outfit_RS_BrendanUnderwater,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_FISHING]      = &gObjectEventGraphicsInfo_Outfit_RS_BrendanFishing,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_WATERING]     = &gObjectEventGraphicsInfo_Outfit_RS_BrendanWatering,
+    [OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_DECORATING]   = &gObjectEventGraphicsInfo_Outfit_RS_BrendanDecorating,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_NORMAL]           = &gObjectEventGraphicsInfo_Outfit_RS_MayNormal,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_MACH_BIKE]        = &gObjectEventGraphicsInfo_Outfit_RS_MayMachBike,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_SURFING]          = &gObjectEventGraphicsInfo_Outfit_RS_MaySurfing,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_FIELD_MOVE]       = &gObjectEventGraphicsInfo_Outfit_RS_MayFieldMove,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_ACRO_BIKE]        = &gObjectEventGraphicsInfo_Outfit_RS_MayAcroBike,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_UNDERWATER]       = &gObjectEventGraphicsInfo_Outfit_RS_MayUnderwater,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_FISHING]          = &gObjectEventGraphicsInfo_Outfit_RS_MayFishing,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_WATERING]         = &gObjectEventGraphicsInfo_Outfit_RS_MayWatering,
+    [OBJ_EVENT_GFX_OUTFIT_RS_MAY_DECORATING]       = &gObjectEventGraphicsInfo_Outfit_RS_MayDecorating,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_NORMAL]     = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanNormal,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_MACH_BIKE]  = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanMachBike,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_SURFING]    = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanSurfing,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_FIELD_MOVE] = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanFieldMove,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_ACRO_BIKE]  = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanAcroBike,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_UNDERWATER] = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanUnderwater,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_FISHING]    = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanFishing,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_WATERING]   = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanWatering,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_BRENDAN_DECORATING] = &gObjectEventGraphicsInfo_Outfit_ORAS_BrendanDecorating,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_NORMAL]         = &gObjectEventGraphicsInfo_Outfit_ORAS_MayNormal,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_MACH_BIKE]      = &gObjectEventGraphicsInfo_Outfit_ORAS_MayMachBike,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_SURFING]        = &gObjectEventGraphicsInfo_Outfit_ORAS_MaySurfing,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_FIELD_MOVE]     = &gObjectEventGraphicsInfo_Outfit_ORAS_MayFieldMove,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_ACRO_BIKE]      = &gObjectEventGraphicsInfo_Outfit_ORAS_MayAcroBike,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_UNDERWATER]     = &gObjectEventGraphicsInfo_Outfit_ORAS_MayUnderwater,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_FISHING]        = &gObjectEventGraphicsInfo_Outfit_ORAS_MayFishing,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_WATERING]       = &gObjectEventGraphicsInfo_Outfit_ORAS_MayWatering,
+    [OBJ_EVENT_GFX_OUTFIT_ORAS_MAY_DECORATING]     = &gObjectEventGraphicsInfo_Outfit_ORAS_MayDecorating,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_NORMAL]         = &gObjectEventGraphicsInfo_Outfit_FRLG_RedNormal,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_MACH_BIKE]      = &gObjectEventGraphicsInfo_Outfit_FRLG_RedMachBike,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_SURFING]        = &gObjectEventGraphicsInfo_Outfit_FRLG_RedSurfing,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_FIELD_MOVE]     = &gObjectEventGraphicsInfo_Outfit_FRLG_RedFieldMove,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_ACRO_BIKE]      = &gObjectEventGraphicsInfo_Outfit_FRLG_RedAcroBike,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_UNDERWATER]     = &gObjectEventGraphicsInfo_Outfit_FRLG_RedUnderwater,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_FISHING]        = &gObjectEventGraphicsInfo_Outfit_FRLG_RedFishing,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_WATERING]       = &gObjectEventGraphicsInfo_Outfit_FRLG_RedWatering,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_RED_DECORATING]     = &gObjectEventGraphicsInfo_Outfit_FRLG_RedDecorating,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_NORMAL]        = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafNormal,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_MACH_BIKE]     = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafMachBike,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_SURFING]       = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafSurfing,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_FIELD_MOVE]    = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafFieldMove,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_ACRO_BIKE]     = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafAcroBike,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_UNDERWATER]    = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafUnderwater,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_FISHING]       = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafFishing,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_WATERING]      = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafWatering,
+    [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_DECORATING]    = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafDecorating,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

@@ -14813,6 +14813,22 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_GymMembership,
         .iconPalette = gItemIconPalette_GymMembership,
     },
+
+    [ITEM_OUTFIT_BOX] =
+    {
+        .name = ITEM_NAME("Outfit Box"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "A box for storing\n"
+            "your collections of\n"
+            "Outfits safely."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_OutfitBox,
+	.iconPic = gItemIcon_OutfitBox,
+	.iconPalette = gItemIconPalette_OutfitBox,
+    },
 };
 
 #undef ITEM_NAME

@@ -14,10 +14,11 @@ enum
     PAGE_FEATURES_STARTER_1,
     PAGE_FEATURES_STARTER_2,
     PAGE_FEATURES_QUEST,
-    PAGE_FEATURES_FIELD_MUGSHOTS,
+    PAGE_FEATURES_FIELD_MUGSHOTS_AND_OUTFITS,
     PAGE_GRAPHICS_START,
     PAGE_GRAPHICS_BRENDAN_MAY_ORAS_1,
     PAGE_GRAPHICS_BRENDAN_MAY_ORAS_2,
+    PAGE_GRAPHICS_RED_LEAF_FRLG,
     PAGE_DISCORD,
     PAGE_HONORABLE_MENTIONS,
     PAGE_PLACEHOLDER_01,
@@ -56,7 +57,6 @@ enum
     PAGE_PLACEHOLDER_34,
     PAGE_PLACEHOLDER_35,
     PAGE_PLACEHOLDER_36,
-    PAGE_PLACEHOLDER_37,
     PAGE_COUNT
 };
 
@@ -125,8 +125,10 @@ static const u8 sCreditsText_QuestSystem[]                    = _("QUEST SYSTEM"
 static const u8 sCreditsText_PokemonSanFran[]                 = _("PokemonSanFran");
 static const u8 sCreditsText_BasedOn[]                        = _("BASED ON");
 static const u8 sCreditsText_PokemonUnbound[]                 = _("Pokemon Unbound");
-// PAGE_FEATURES_FIELD_MUGSHOTS
+// PAGE_FEATURES_FIELD_MUGSHOTS_AND_OUTFITS
 static const u8 sCreditsText_FieldMugshots[]                  = _("FIELD MUGSHOTS");
+// static const u8 sCreditsText_Mudskip[]                        = _("Mudskip");
+static const u8 sCreditsText_FieldOutfits[]                  = _("FIELD OUTFITS");
 // static const u8 sCreditsText_Mudskip[]                        = _("Mudskip");
 // PAGE_GRAPHICS_START
 static const u8 sCreditsText_GraphicsUsed[]                   = _("GRAPHICS USED:");
@@ -140,6 +142,10 @@ static const u8 sCreditsText_KyuZeeSolo993[]                  = _("Kyuzee (off o
 static const u8 sCreditsText_BrendanMayORAS2[]                = _("BRENDAN/MAY (ORAS STYLE) 2/2");
 static const u8 sCreditsText_OverworldSprite[]                = _("OVERWOLRD SPRITES");
 static const u8 sCreditsText_Kasen[]                          = _("Kasen");
+// PAGE_GRAPHICS_RED_LEAF_FRLG
+static const u8 sCreditsText_RedLeafFRLG[]                    = _("RED/LEAF (REMAINING SPRITES)");
+// static const u8 sCreditsText_OverworldSprite[]                = _("OVERWOLRD SPRITES");
+static const u8 sCreditsText_poffincase[]                     = _("poffin_case");
 // PAGE_DISCORD
 static const u8 sCreditsText_DiscordChannels[]                = _("DISCORD CHANNELS");
 // static const u8 sCreditsText_TeamAquasHideout[]               = _("Team Aqua's Hideout");
@@ -203,6 +209,8 @@ static const struct CreditsEntry sCreditsEntry_QuestSystem                      
 static const struct CreditsEntry sCreditsEntry_PokemonSanFran                   = { 0, FALSE, sCreditsText_PokemonSanFran};
 static const struct CreditsEntry sCreditsEntry_FieldMugshots                    = { 0, TRUE, sCreditsText_FieldMugshots};
 // static const struct CreditsEntry sCreditsEntry_Mudskip                          = { 0, FALSE, sCreditsText_Mudskip};
+static const struct CreditsEntry sCreditsEntry_FieldOutfits                     = { 0, TRUE, sCreditsText_FieldOutfits};
+// static const struct CreditsEntry sCreditsEntry_Mudskip                          = { 0, FALSE, sCreditsText_Mudskip};
 static const struct CreditsEntry sCreditsEntry_BasedOn                          = { 0, TRUE, sCreditsText_BasedOn};
 static const struct CreditsEntry sCreditsEntry_PokemonUnbound                   = { 0, FALSE, sCreditsText_PokemonUnbound};
 static const struct CreditsEntry sCreditsEntry_GraphicsUsed                     = { 0, TRUE, sCreditsText_GraphicsUsed};
@@ -214,6 +222,9 @@ static const struct CreditsEntry sCreditsEntry_KyuZeeSolo993                    
 static const struct CreditsEntry sCreditsEntry_BrendanMayORAS2                  = { 0, TRUE, sCreditsText_BrendanMayORAS2};
 static const struct CreditsEntry sCreditsEntry_OverworldSprite                  = { 0, TRUE, sCreditsText_OverworldSprite};
 static const struct CreditsEntry sCreditsEntry_Kasen                            = { 0, FALSE, sCreditsText_Kasen};
+static const struct CreditsEntry sCreditsEntry_RedLeafFRLG                      = { 0, TRUE, sCreditsText_RedLeafFRLG};
+// static const struct CreditsEntry sCreditsEntry_OverworldSprite                  = { 0, TRUE, sCreditsText_OverworldSprite};
+static const struct CreditsEntry sCreditsEntry_poffincase                       = { 0, FALSE, sCreditsText_poffincase};
 static const struct CreditsEntry sCreditsEntry_DiscordChannels                  = { 0, TRUE, sCreditsText_DiscordChannels};
 // static const struct CreditsEntry sCreditsEntry_TeamAquasHideout                 = { 0, FALSE, sCreditsText_TeamAquasHideout};
 static const struct CreditsEntry sCreditsEntry_RHHideout                        = { 0, FALSE, sCreditsText_RHHideout};
@@ -327,11 +338,11 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         &sCreditsEntry_PokemonUnbound,
         _,
     },
-    [PAGE_FEATURES_FIELD_MUGSHOTS] = {
-        _,
+    [PAGE_FEATURES_FIELD_MUGSHOTS_AND_OUTFITS] = {
         &sCreditsEntry_FieldMugshots,
         &sCreditsEntry_Mudskip,
-        _,
+        &sCreditsEntry_FieldOutfits,
+        &sCreditsEntry_Mudskip,
         _,
     },
     [PAGE_GRAPHICS_START] = {
@@ -353,6 +364,13 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         &sCreditsEntry_BrendanMayORAS2,
         &sCreditsEntry_OverworldSprite,
         &sCreditsEntry_Kasen,
+        _,
+    },
+    [PAGE_GRAPHICS_RED_LEAF_FRLG] = {
+        _,
+        &sCreditsEntry_RedLeafFRLG,
+        &sCreditsEntry_OverworldSprite,
+        &sCreditsEntry_poffincase,
         _,
     },
     [PAGE_DISCORD] = {
@@ -615,13 +633,6 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         _,
     },
     [PAGE_PLACEHOLDER_36] = {
-        _,
-        &sCreditsEntry_PlaceholderTitle,
-        &sCreditsEntry_PlaceholderName,
-        _,
-        _,
-    },
-    [PAGE_PLACEHOLDER_37] = {
         _,
         &sCreditsEntry_PlaceholderTitle,
         &sCreditsEntry_PlaceholderName,

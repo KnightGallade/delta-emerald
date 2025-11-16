@@ -368,6 +368,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_PIKE_QUEEN] = { _("PIKE QUEEN") },
     [TRAINER_CLASS_PYRAMID_KING] = { _("PYRAMID KING") },
     [TRAINER_CLASS_RS_PROTAG] = { _("{PKMN} TRAINER") },
+    [TRAINER_CLASS_ORAS_PROTAG] = { _("{PKMN} TRAINER") },
 };
 
 static void (*const sTurnActionsFuncsTable[])(void) =
@@ -2931,7 +2932,7 @@ void SpriteCB_PlayerMonSlideIn(struct Sprite *sprite)
     {
         if (sprite->animEnded)
             return;
-        sprite->data[4] = sprite->x;
+        sprite->data[4] = sprite->data[5];
         sprite->x = -33;
         sprite->invisible = FALSE;
         sprite->data[3]++;

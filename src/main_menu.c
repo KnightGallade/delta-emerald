@@ -38,6 +38,7 @@
 #include "title_screen.h"
 #include "window.h"
 #include "mystery_gift_menu.h"
+#include "outfit_menu.h"
 
 /*
  * Main menu state machine
@@ -1632,7 +1633,7 @@ static void Task_NewGameBirchSpeech_StartNamingScreen(u8 taskId)
         FreeAndDestroyMonPicSprite(gTasks[taskId].tLotadSpriteId);
         NewGameBirchSpeech_SetDefaultPlayerName(Random() % NUM_PRESET_NAMES);
         DestroyTask(taskId);
-        DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
+        DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, DEFAULT_OUTFIT, CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
     }
 }
 
@@ -1744,7 +1745,7 @@ static void Task_NewGameBirchSpeech_StartRivalNamingScreen(u8 taskId)
         FreeAndDestroyMonPicSprite(gTasks[taskId].tLotadSpriteId);
         NewGameBirchSpeech_SetDefaultRivalName();
         DestroyTask(taskId);
-        DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_NewGameBirchSpeech_ReturnFromRivalNamingScreen);
+        DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, gSaveBlock2Ptr->playerGender, 0, DEFAULT_OUTFIT, CB2_NewGameBirchSpeech_ReturnFromRivalNamingScreen);
     }
 }
 
@@ -2112,12 +2113,12 @@ static void AddBirchSpeechObjects(u8 taskId)
     gSprites[lotadSpriteId].oam.priority = 0;
     gSprites[lotadSpriteId].invisible = TRUE;
     gTasks[taskId].tLotadSpriteId = lotadSpriteId;
-    brendanSpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN), 120, 60, 0, NULL);
+    brendanSpriteId = CreateTrainerSprite(GetPlayerTrainerPicIdByOutfitGenderType(DEFAULT_OUTFIT, MALE, 0), 120, 60, 0, NULL);
     gSprites[brendanSpriteId].callback = SpriteCB_Null;
     gSprites[brendanSpriteId].invisible = TRUE;
     gSprites[brendanSpriteId].oam.priority = 0;
     gTasks[taskId].tBrendanSpriteId = brendanSpriteId;
-    maySpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_MAY), 120, 60, 0, NULL);
+    maySpriteId = CreateTrainerSprite(GetPlayerTrainerPicIdByOutfitGenderType(DEFAULT_OUTFIT, FEMALE, 0), 120, 60, 0, NULL);
     gSprites[maySpriteId].callback = SpriteCB_Null;
     gSprites[maySpriteId].invisible = TRUE;
     gSprites[maySpriteId].oam.priority = 0;

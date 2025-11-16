@@ -2103,6 +2103,9 @@ const u16 gItemIconPalette_TwiceSpicedRadish[] = INCBIN_U16("graphics/items/icon
 const u32 gItemIcon_Journal[] = INCBIN_U32("graphics/items/icons/journal.4bpp.smol");
 const u16 gItemIconPalette_Journal[] = INCBIN_U16("graphics/items/icon_palettes/journal.gbapal");
 
+const u32 gItemIcon_OutfitBox[] = INCBIN_U32("graphics/items/icons/outfit_box.4bpp.smol");
+const u16 gItemIconPalette_OutfitBox[] = INCBIN_U16("graphics/items/icon_palettes/outfit_box.gbapal");
+
 const u32 gItemIcon_Axe[] = INCBIN_U32("graphics/items/icons/axe.4bpp.smol");
 const u16 gItemIconPalette_Axe[] = INCBIN_U16("graphics/items/icon_palettes/axe.gbapal");
 const u32 gItemIcon_Lantern[] = INCBIN_U32("graphics/items/icons/lantern.4bpp.smol");

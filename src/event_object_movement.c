@@ -525,6 +525,12 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
     {gObjectEventPal_RubySapphireBrendan,   OBJ_EVENT_PAL_TAG_RS_BRENDAN},
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
+    {gObjectEventPal_Outfit_RS_Brendan,     OBJ_EVENT_PAL_TAG_OUTFIT_RS_BRENDAN},
+    {gObjectEventPal_Outfit_RS_May,         OBJ_EVENT_PAL_TAG_OUTFIT_RS_MAY},
+    {gObjectEventPal_Outfit_ORAS_Brendan,   OBJ_EVENT_PAL_TAG_OUTFIT_ORAS_BRENDAN},
+    {gObjectEventPal_Outfit_ORAS_May,       OBJ_EVENT_PAL_TAG_OUTFIT_ORAS_MAY},
+    {gObjectEventPal_Outfit_FRLG_Red,       OBJ_EVENT_PAL_TAG_OUTFIT_FRLG_RED},
+    {gObjectEventPal_Outfit_FRLG_Leaf,      OBJ_EVENT_PAL_TAG_OUTFIT_FRLG_LEAF},
 #if OW_FOLLOWERS_POKEBALLS
     {gObjectEventPal_MasterBall,            OBJ_EVENT_PAL_TAG_BALL_MASTER},
     {gObjectEventPal_UltraBall,             OBJ_EVENT_PAL_TAG_BALL_ULTRA},
@@ -2976,7 +2982,6 @@ static void SetPlayerAvatarObjectEventIdAndObjectId(u8 objectEventId, u8 spriteI
 {
     gPlayerAvatar.objectEventId = objectEventId;
     gPlayerAvatar.spriteId = spriteId;
-    gPlayerAvatar.gender = GetPlayerAvatarGenderByGraphicsId(gObjectEvents[objectEventId].graphicsId);
     SetPlayerAvatarExtraStateTransition(gObjectEvents[objectEventId].graphicsId, PLAYER_AVATAR_FLAG_CONTROLLABLE);
 }
 
@@ -11301,6 +11306,15 @@ bool8 PlayerIsUnderWaterfall(struct ObjectEvent *objectEvent)
         return TRUE;
 
     return FALSE;
+}
+
+const struct SpritePalette *GetObjectEventPaletteFromTag(u16 tag)
+{
+    u32 i = FindObjectEventPaletteIndexByTag(tag);
+    if (i == 0xFF)
+        i = 0; 
+
+    return &sObjectEventSpritePalettes[i];
 }
 
 // Get gfx data from daycare pokemon and store it in vars

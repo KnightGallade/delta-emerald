@@ -256,6 +256,10 @@ gScriptCmdTable::
     script_cmd_table_entry SCR_OP_SUBQUESTMENU                  ScrCmd_subquestmenu,                requests_effects=1  @ 0xe7
     script_cmd_table_entry SCR_OP_RETURNQUESTSTATE              ScrCmd_returnqueststate,            requests_effects=1  @ 0xe8
 	script_cmd_table_entry SCR_OP_UPGRADESHOP                   ScrCmd_upgradeshop,                 requests_effects=1  @ 0xe9
+	script_cmd_table_entry SCR_OP_TOGGLEOUTFIT                  ScrCmd_toggleoutfit                 requests_effects=1  @ 0xea
+	script_cmd_table_entry SCR_OP_GETOUTFITSTATUS               ScrCmd_getoutfitstatus              requests_effects=1  @ 0xeb
+	script_cmd_table_entry SCR_OP_BUFFEROUTFITSTR               ScrCmd_bufferoutfitstr              requests_effects=1  @ 0xec
+	script_cmd_table_entry SCR_OP_POKEMARTOUTFIT                ScrCmd_pokemartoutfit               requests_effects=1  @ 0xed
 
 	.if ALLOCATE_SCRIPT_CMD_TABLE
 gScriptCmdTableEnd::
