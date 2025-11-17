@@ -525,12 +525,6 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
     {gObjectEventPal_RubySapphireBrendan,   OBJ_EVENT_PAL_TAG_RS_BRENDAN},
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
-    {gObjectEventPal_Outfit_RS_Brendan,     OBJ_EVENT_PAL_TAG_OUTFIT_RS_BRENDAN},
-    {gObjectEventPal_Outfit_RS_May,         OBJ_EVENT_PAL_TAG_OUTFIT_RS_MAY},
-    {gObjectEventPal_Outfit_ORAS_Brendan,   OBJ_EVENT_PAL_TAG_OUTFIT_ORAS_BRENDAN},
-    {gObjectEventPal_Outfit_ORAS_May,       OBJ_EVENT_PAL_TAG_OUTFIT_ORAS_MAY},
-    {gObjectEventPal_Outfit_FRLG_Red,       OBJ_EVENT_PAL_TAG_OUTFIT_FRLG_RED},
-    {gObjectEventPal_Outfit_FRLG_Leaf,      OBJ_EVENT_PAL_TAG_OUTFIT_FRLG_LEAF},
 #if OW_FOLLOWERS_POKEBALLS
     {gObjectEventPal_MasterBall,            OBJ_EVENT_PAL_TAG_BALL_MASTER},
     {gObjectEventPal_UltraBall,             OBJ_EVENT_PAL_TAG_BALL_ULTRA},
@@ -568,6 +562,12 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPaletteLight2,             OBJ_EVENT_PAL_TAG_LIGHT_2},
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
     {gObjectEventPaletteNeonLight,          OBJ_EVENT_PAL_TAG_NEON_LIGHT},
+    {gObjectEventPal_Outfit_RS_Brendan,     OBJ_EVENT_PAL_TAG_OUTFIT_RS_BRENDAN},
+    {gObjectEventPal_Outfit_RS_May,         OBJ_EVENT_PAL_TAG_OUTFIT_RS_MAY},
+    {gObjectEventPal_Outfit_ORAS_Brendan,   OBJ_EVENT_PAL_TAG_OUTFIT_ORAS_BRENDAN},
+    {gObjectEventPal_Outfit_ORAS_May,       OBJ_EVENT_PAL_TAG_OUTFIT_ORAS_MAY},
+    {gObjectEventPal_Outfit_FRLG_Red,       OBJ_EVENT_PAL_TAG_OUTFIT_FRLG_RED},
+    {gObjectEventPal_Outfit_FRLG_Leaf,      OBJ_EVENT_PAL_TAG_OUTFIT_FRLG_LEAF},
 #ifdef BUGFIX
     {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},
 #else
@@ -3089,7 +3089,6 @@ static void SetBerryTreeGraphicsById(struct ObjectEvent *objectEvent, u8 berryId
     const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     struct Sprite *sprite = &gSprites[objectEvent->spriteId];
     UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteSlotTablePointers[berryId][berryStage]-2], sprite);
-    UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteSlotTablePointers[berryId][berryStage]-2+8], sprite); // added 8 gObjectEventPal slots above everything for the player avatars
     sprite->oam.shape = graphicsInfo->oam->shape;
     sprite->oam.size = graphicsInfo->oam->size;
     sprite->images = gBerryTreePicTablePointers[berryId];
