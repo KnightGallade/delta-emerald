@@ -600,11 +600,12 @@ static void SpriteCB_Indicator(struct Sprite *s)
 
 static inline void ForEachCB_DrawIndicatorSprites(u32 idx, u32 col, u32 row)
 {
-    u32 x, y, i, z;
+    u32 x, y; // , i;
     if (idx >= sOutfitMenu->listCount)
         return;
 
-    i = sOutfitMenu->grid->topLeftItemIndex + idx;
+    // TODO - figure out why i is defined here if not used
+    //i = sOutfitMenu->grid->topLeftItemIndex + idx;
     x = ((col % GRID_COLS) < ARRAY_COUNT(sGridPosX)) ? sGridPosX[col] : sGridPosX[0];
     y = ((row % GRID_ROWS) < ARRAY_COUNT(sGridPosY)) ? sGridPosY[row] : sGridPosY[0];
     x -= 8, y -= 8;
