@@ -24,9 +24,7 @@ EventScript_FollowerLovesYou::
 	applymovement OBJ_EVENT_ID_FOLLOWER, ContestHall_Movement_Heart
 	waitmovement OBJ_EVENT_ID_FOLLOWER
 	waitmoncry
-	createfieldmugshot VAR_TEMP_E, VAR_TEMP_F
 	msgbox gText_FollowerLovesYou, MSGBOX_DEFAULT
-	removefieldmugshot
 	return
 
 @ Message address must be loaded into bank 0
@@ -34,11 +32,9 @@ EventScript_FollowerGeneric:: @ similar to Std_MsgboxDefault
 	faceplayer
 EventScript_FollowerGenericSkipFace:
 	waitfieldeffect FLDEFF_EMOTE
-	createfieldmugshot VAR_TEMP_E, VAR_TEMP_F
 	message 0x0
 	waitmessage
 	waitbuttonpress
-	removefieldmugshot
 	return
 
 EventScript_FollowerJump::
