@@ -20,7 +20,7 @@ PWT_Lobby_EventScript_Attendant_1:
 	msgbox PWT_Lobby_EventScript_Attendant_Text_5, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	callnative RemoveFollowingPokemon
-	copyvar VAR_0x8004, FRONTIER_LVL_OPEN
+	setvar VAR_0x8004, FRONTIER_LVL_OPEN
 	switch VAR_FRONTIER_BATTLE_MODE
 	case PWT_MODE_SINGLES, PWT_Lobby_EventScript_Attendant_8
 	case PWT_MODE_DOUBLES, PWT_Lobby_EventScript_Attendant_9

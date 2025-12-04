@@ -16,6 +16,8 @@
 #include "constants/field_effects.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "overworld.h" // To handle bike
+#include "follower_npc.h" // To handle npc to handle bike
 
 static void StartORASDowseFieldEffect(void);
 static void UpdateORASDowsingFieldEffect(struct Sprite *sprite);
@@ -262,7 +264,10 @@ void Task_UseORASDowsingMachine(u8 taskId)
     else
     {
         if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
-            GetOnOffBike(0);
+            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
+            Overworld_ClearSavedMusic();
+            Overworld_PlaySpecialMapMusic();
+            FollowerNPC_HandleBike();
 
         StartORASDowseFieldEffect();
     }

@@ -97,7 +97,7 @@ PWT_PreBattleRoom_EventScript_ContinueChallenge::
 	waitmessage
 	waitbuttonpress
 	fadescreen FADE_TO_BLACK
-	copyvar VAR_0x8004, FRONTIER_LVL_OPEN
+	setvar VAR_0x8004, FRONTIER_LVL_OPEN
 	setvar VAR_0x8005, 2
 	special ChoosePartyForPWT
 	waitstate

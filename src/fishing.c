@@ -173,9 +173,10 @@ static bool32 Fishing_GetRodOut(struct Task *task)
     task->tMinRoundsRequired = minRounds1[task->tFishingRod] + (Random() % minRounds2[task->tFishingRod]);
     task->tPlayerGfxId = gObjectEvents[gPlayerAvatar.objectEventId].graphicsId;
     playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    task->tPlayerGfxId = playerObjEvent->graphicsId;
     ObjectEventClearHeldMovementIfActive(playerObjEvent);
     playerObjEvent->enableAnim = TRUE;
-    SetPlayerAvatarFishing(playerObjEvent->facingDirection);
+    SetPlayerAvatarFishing(GetFishingDirectionAnimNum(playerObjEvent->facingDirection));
     task->tStep = FISHING_WAIT_BEFORE_DOTS;
     return FALSE;
 }

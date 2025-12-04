@@ -1612,7 +1612,6 @@ void SetPlayerInvisibility(bool8 invisible)
 
 static void SetPlayerAvatarAnimation(u32 playerAnimId, u32 animNum)
 {
-    EndORASDowsing();
     u16 gfxId = GetPlayerAnimGraphicsIdByOutfitStateIdAndGender(gSaveBlock2Ptr->currOutfitId, playerAnimId, gSaveBlock2Ptr->playerGender);
     ObjectEventSetGraphicsId(&gObjectEvents[gPlayerAvatar.objectEventId], gfxId);
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], animNum);
@@ -1620,7 +1619,13 @@ static void SetPlayerAvatarAnimation(u32 playerAnimId, u32 animNum)
 
 void SetPlayerAvatarFieldMove(void)
 {
+    EndORASDowsing();
     SetPlayerAvatarAnimation(PLAYER_AVATAR_GFX_FIELD_MOVE, ANIM_FIELD_MOVE);
+}
+
+void SetPlayerAvatarFishing(u8 fishingAnim)
+{
+    SetPlayerAvatarAnimation(PLAYER_AVATAR_GFX_FISHING, fishingAnim);
 }
 
 void PlayerUseAcroBikeOnBumpySlope(u8 direction)

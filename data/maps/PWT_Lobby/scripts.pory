@@ -26,7 +26,7 @@ script PWT_Lobby_EventScript_Attendant {
 	callnative(RemoveFollowingPokemon)
     // Keep this here for now for selection screen
     // TODO - better optimize in the future
-    copyvar(VAR_0x8004, FRONTIER_LVL_OPEN)
+    setvar(VAR_0x8004, FRONTIER_LVL_OPEN)
     // TODO - fix this to have all options later
     switch (var(VAR_FRONTIER_BATTLE_MODE)) {
         case PWT_MODE_SINGLES:
