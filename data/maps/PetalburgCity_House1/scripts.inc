@@ -56,6 +56,24 @@ PetalburgCity_House1_Upgrades:
 	.2byte ITEM_GYM_MEMBERSHIP
 	upgradeshoplistend
 
+PetalburgCity_House1_EventScript_OutfitShop::
+	lockall
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemartoutfit PetalburgCity_House1_Outfits
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	releaseall
+	end
+
+	.align 2
+PetalburgCity_House1_Outfits:
+	.2byte OUTFIT_USUAL_GREEN
+	.2byte OUTFIT_UNUSUAL_RED
+	.2byte OUTFIT_FUTURISTIC
+	.2byte OUTFIT_FOREIGN
+	pokemartlistend
+
 PetalburgCity_House1_Text_TravelingIsWonderful:
 	.string "Traveling is wonderful!\p"
 	.string "When I was young, I roamed the seas\n"
