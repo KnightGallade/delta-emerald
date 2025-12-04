@@ -54,6 +54,12 @@
                                     max(FRONTIER_DOUBLES_PARTY_SIZE,\
                                         FRONTIER_MULTI_PARTY_SIZE)))
 #define UNION_ROOM_PARTY_SIZE       2
+#define PWT_PARTY_SIZE              3
+#define PWT_DOUBLES_PARTY_SIZE      4 // TODO - allows for 4 pokémon during doubles
+#define PWT_MULTI_PARTY_SIZE        3
+#define MAX_PWT_PARTY_SIZE         (max(PWT_PARTY_SIZE,        \
+                                    max(PWT_DOUBLES_PARTY_SIZE,\
+                                        PWT_MULTI_PARTY_SIZE)))
 
 // capacities of various saveblock objects
 #define DAYCARE_MON_COUNT 2

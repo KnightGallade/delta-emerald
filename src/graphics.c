@@ -2123,3 +2123,21 @@ const u32 gBattleIcons_Gfx2[] = INCBIN_U32("graphics/types/battle_icons2.4bpp.sm
 const u16 gBattleIcons_Pal1[] = INCBIN_U16("graphics/types/battle_icons1.gbapal");
 const u16 gBattleIcons_Pal2[] = INCBIN_U16("graphics/types/battle_icons2.gbapal");
 
+// PWT
+const u32 gPWTTourneyTree_Gfx[] = INCBIN_U32("graphics/pwt/pwt_tourney_tree.4bpp.smol");
+const u32 gPWTTourneyLine_Gfx[] = INCBIN_U32("graphics/pwt/pwt_tourney_line.4bpp.smol"); // the red glow mask for the tourney advancement lines
+const u32 gPWTTourneyTree_Tilemap[] = INCBIN_U32("graphics/pwt/pwt_tourney_tree.bin.smolTM");
+const u32 gPWTTourneyLineDown_Tilemap[] = INCBIN_U32("graphics/pwt/pwt_tourney_line_down_map.bin.smolTM");
+const u32 gPWTTourneyLineUp_Tilemap[] = INCBIN_U32("graphics/pwt/pwt_tourney_line_up_map.bin.smolTM");
+const u32 gPWTTourneyInfoCard_Gfx[] = INCBIN_U32("graphics/pwt/pwt_tourney_info_card.4bpp.smol");
+const u32 gPWTTourneyInfoCard_Tilemap[] = INCBIN_U32("graphics/pwt/pwt_tourney_info_card_tilemap.bin.smolTM");
+const u32 gPWTTourneyInfoCardBg_Tilemap[] = INCBIN_U32("graphics/pwt/pwt_tourney_info_card_bg.bin.smolTM");
+const u32 gPWTTourneyTreeButtons_Gfx[] = INCBIN_U32("graphics/pwt/pwt_tourney_buttons.4bpp.smol"); // exit/cancel and Poké Ball buttons
+const u16 gPWTTourneyTree_Pal[] = INCBIN_U16("graphics/pwt/pwt_tourney_tree.gbapal");
+const u16 gPWTTourneyTreeButtons_Pal[] = INCBIN_U16("graphics/pwt/pwt_tourney_buttons.gbapal");
+const u16 gPWTTourneyMatchCardBg_Pal[] = INCBIN_U16("graphics/pwt/pwt_tourney_match_card_bg.gbapal");
+// NOTE: Might need, TBD, TODO - check if needed
+// const u16 gTilesetAnims_BattleDomePals0_0[] = INCBIN_U16("graphics/battle_frontier/dome_anim1.gbapal");
+// const u16 gTilesetAnims_BattleDomePals0_1[] = INCBIN_U16("graphics/battle_frontier/dome_anim2.gbapal");
+// const u16 gTilesetAnims_BattleDomePals0_2[] = INCBIN_U16("graphics/battle_frontier/dome_anim3.gbapal");
+// const u16 gTilesetAnims_BattleDomePals0_3[] = INCBIN_U16("graphics/battle_frontier/dome_anim4.gbapal");

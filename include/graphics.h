@@ -3440,4 +3440,18 @@ extern const u32 gBattleIcons_Gfx2[];
 extern const u16 gBattleIcons_Pal1[];
 extern const u16 gBattleIcons_Pal2[];
 
+// PWT
+extern const u32 gPWTTourneyTree_Gfx[];
+extern const u32 gPWTTourneyLine_Gfx[];
+extern const u32 gPWTTourneyTree_Tilemap[];
+extern const u32 gPWTTourneyLineDown_Tilemap[];
+extern const u32 gPWTTourneyLineUp_Tilemap[];
+extern const u32 gPWTTourneyInfoCard_Gfx[];
+extern const u32 gPWTTourneyInfoCard_Tilemap[];
+extern const u32 gPWTTourneyInfoCardBg_Tilemap[];
+extern const u32 gPWTTourneyTreeButtons_Gfx[];
+extern const u16 gPWTTourneyTree_Pal[];
+extern const u16 gPWTTourneyTreeButtons_Pal[];
+extern const u16 gPWTTourneyMatchCardBg_Pal[];
+
 #endif //GUARD_GRAPHICS_H

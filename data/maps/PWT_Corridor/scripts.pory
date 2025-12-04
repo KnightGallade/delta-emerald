@@ -1,0 +1,25 @@
+mapscripts PWT_Corridor_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0: PWT_Corridor_EventScript_EnterCorridor
+    ]
+}
+
+script PWT_Corridor_EventScript_EnterCorridor {
+    delay(16)
+	setvar(VAR_TEMP_0, 1)
+	applymovement(LOCALID_PWT_CORRIDOR_ATTENDANT, moves(walk_right * 14, walk_up))
+	applymovement(LOCALID_PLAYER, moves(walk_up,  walk_right * 14, walk_in_place_faster_up))
+	waitmovement(0)
+	opendoor(37, 3)
+	waitdooranim
+	applymovement(LOCALID_PWT_CORRIDOR_ATTENDANT, moves(walk_up, set_invisible))
+	applymovement(LOCALID_PLAYER, moves(walk_up * 2, set_invisible))
+	waitmovement(0)
+	closedoor(37, 3)
+	waitdooranim
+	waitmovement(0) // Copied from Battle Dome script, probably unnecessary
+	setvar(VAR_0x8006, 0) // TODO - handle all the extra vars going around
+	warp(MAP_PWT_PRE_BATTLE_ROOM, 5, 7)
+	waitstate
+	end
+}

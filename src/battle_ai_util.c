@@ -3353,6 +3353,7 @@ bool32 CanKnockOffItem(u32 battler, u32 item)
 
     if (!(gBattleTypeFlags & (BATTLE_TYPE_EREADER_TRAINER
       | BATTLE_TYPE_FRONTIER
+      | BATTLE_TYPE_PWT
       | BATTLE_TYPE_LINK
       | BATTLE_TYPE_RECORDED_LINK
       | BATTLE_TYPE_SECRET_BASE

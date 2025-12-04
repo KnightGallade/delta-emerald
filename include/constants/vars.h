@@ -115,38 +115,38 @@
 #define VAR_EVER_GRANDE_CITY_STATE                       0x405F // Unused Var
 #define VAR_ROUTE101_STATE                               0x4060
 #define VAR_ROUTE102_STATE                               0x4061 // Unused Var
-#define VAR_ROUTE103_STATE                               0x4062 // Unused Var
-#define VAR_ROUTE104_STATE                               0x4063
-#define VAR_ROUTE105_STATE                               0x4064 // Unused Var
-#define VAR_ROUTE106_STATE                               0x4065 // Unused Var
-#define VAR_ROUTE107_STATE                               0x4066 // Unused Var
-#define VAR_ROUTE108_STATE                               0x4067 // Unused Var
-#define VAR_ROUTE109_STATE                               0x4068 // Unused Var
-#define VAR_ROUTE110_STATE                               0x4069
-#define VAR_ROUTE111_STATE                               0x406A // Unused Var
-#define VAR_ROUTE112_STATE                               0x406B // Unused Var
-#define VAR_ROUTE113_STATE                               0x406C // Unused Var
-#define VAR_ROUTE114_STATE                               0x406D // Unused Var
-#define VAR_ROUTE115_STATE                               0x406E // Unused Var
-#define VAR_ROUTE116_STATE                               0x406F
-#define VAR_ROUTE117_STATE                               0x4070 // Unused Var
-#define VAR_ROUTE118_STATE                               0x4071
-#define VAR_ROUTE119_STATE                               0x4072
-#define VAR_ROUTE120_STATE                               0x4073 // Unused Var
-#define VAR_ROUTE121_STATE                               0x4074
-#define VAR_ROUTE122_STATE                               0x4075 // Unused Var
-#define VAR_ROUTE123_STATE                               0x4076 // Unused Var
-#define VAR_ROUTE124_STATE                               0x4077 // Unused Var
-#define VAR_ROUTE125_STATE                               0x4078 // Unused Var
-#define VAR_ROUTE126_STATE                               0x4079 // Unused Var
-#define VAR_ROUTE127_STATE                               0x407A // Unused Var
-#define VAR_ROUTE128_STATE                               0x407B
-#define VAR_ROUTE129_STATE                               0x407C // Unused Var
-#define VAR_ROUTE130_STATE                               0x407D // Unused Var
-#define VAR_ROUTE131_STATE                               0x407E // Unused Var
-#define VAR_ROUTE132_STATE                               0x407F // Unused Var
-#define VAR_ROUTE133_STATE                               0x4080 // Unused Var
-#define VAR_ROUTE134_STATE                               0x4081 // Unused Var
+#define VAR_ROUTE104_STATE                               0x4062
+#define VAR_ROUTE110_STATE                               0x4063
+#define VAR_ROUTE116_STATE                               0x4064
+#define VAR_ROUTE118_STATE                               0x4065
+#define VAR_ROUTE119_STATE                               0x4066
+#define VAR_ROUTE121_STATE                               0x4067
+#define VAR_ROUTE128_STATE                               0x4068
+#define VAR_NATURE_HARDY                                 0x4069
+#define VAR_NATURE_LONELY                                0x406A
+#define VAR_NATURE_BRAVE                                 0x406B
+#define VAR_NATURE_ADAMANT                               0x406C
+#define VAR_NATURE_NAUGHTY                               0x406D
+#define VAR_NATURE_BOLD                                  0x406E
+#define VAR_NATURE_DOCILE                                0x406F
+#define VAR_NATURE_RELAXED                               0x4070
+#define VAR_NATURE_IMPISH                                0x4071
+#define VAR_NATURE_LAX                                   0x4072
+#define VAR_NATURE_TIMID                                 0x4073
+#define VAR_NATURE_HASTY                                 0x4074
+#define VAR_NATURE_SERIOUS                               0x4075
+#define VAR_NATURE_JOLLY                                 0x4076
+#define VAR_NATURE_NAIVE                                 0x4077
+#define VAR_NATURE_MODEST                                0x4078
+#define VAR_NATURE_MILD                                  0x4079
+#define VAR_NATURE_QUIET                                 0x407A
+#define VAR_NATURE_BASHFUL                               0x407B
+#define VAR_NATURE_RASH                                  0x407C
+#define VAR_NATURE_CALM                                  0x407D
+#define VAR_NATURE_GENTLE                                0x407E
+#define VAR_NATURE_SASSY                                 0x407F
+#define VAR_NATURE_CAREFUL                               0x4080
+#define VAR_NATURE_QUIRKY                                0x4081
 #define VAR_TRACK_RIVAL_QUEST_PROGRESSION                0x4082
 #define VAR_UNUSED_0x4083                                0x4083 // Unused Var
 #define VAR_BIRCH_LAB_STATE_NOW_UNUSUED                              0x4084

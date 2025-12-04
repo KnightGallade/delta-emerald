@@ -414,6 +414,17 @@ struct DomeMonData
     //u8 padding;
 };
 
+struct PWTMonData
+{
+    u16 species;
+    u16 heldItem;
+    u8 nature;
+    u16 ability;
+    u8 evs[6];
+    u8 ivs[6];
+    u16 moves[4];
+};
+
 struct RentalMon
 {
     u16 monId;
@@ -432,7 +443,16 @@ struct BattleDomeTrainer
     u16 forfeited:3;
 };
 
+struct PWTTrainer
+{
+    u16 trainerId:10;
+    u16 isEliminated:1;
+    u16 eliminatedAt:2;
+    u16 forfeited:3;
+};
+
 #define DOME_TOURNAMENT_TRAINERS_COUNT 16
+#define PWT_TOURNAMENT_SIZE 16
 #define BATTLE_TOWER_RECORD_COUNT 5
 
 struct BattleFrontier
@@ -520,6 +540,19 @@ struct BattleFrontier
     /*0xEFA*/ u8 unused_EFA;
     /*0xEFB*/ u8 unused_EFB;
     /*0xEFC*/ struct DomeMonData domePlayerPartyData[FRONTIER_PARTY_SIZE];
+};
+
+struct PWT
+{
+    // TODO - add some bit seperations (ex: u8 tournamentId:6) once full data structure is set to save space
+    u8 tournamentType; // 0 = inactive, Region, World, Champions, etc.
+    u8 battleMode; // Singles, Doubles, Multi, or Link
+    u8 curRound; 
+    u16 selectedPartyMons[MAX_PWT_PARTY_SIZE];
+    struct PWTTrainer PWTTrainers[PWT_TOURNAMENT_SIZE];
+    struct PWTMonData pwtPlayerPartyData[PWT_PARTY_SIZE];
+    u16 PWTMonIds[PWT_TOURNAMENT_SIZE][PWT_PARTY_SIZE];
+    u16 winningMoves[PWT_TOURNAMENT_SIZE];
 };
 
 struct ApprenticeQuestion
@@ -617,6 +650,7 @@ struct SaveBlock2
     u8 questData[QUEST_FLAGS_COUNT * QUEST_STATES];
     u8 subQuests[SUB_FLAGS_COUNT];
     u8 rivalName[PLAYER_NAME_LENGTH + 1];
+    struct PWT pwt;
 }; 
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;

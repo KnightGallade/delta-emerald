@@ -1,0 +1,265 @@
+PWT_PreBattleRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, PWT_PreBattleRoom_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PWT_PreBattleRoom_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
+	.byte 0
+
+PWT_PreBattleRoom_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+	map_script_2 VAR_TEMP_0, 0, PWT_PreBattleRoom_EventScript_EnterRoom
+	.2byte 0
+
+PWT_PreBattleRoom_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
+	map_script_2 VAR_TEMP_1, 0, PWT_PreBattleRoom_EventScript_TurnPlayerNorth
+	.2byte 0
+
+
+PWT_PreBattleRoom_EventScript_TurnPlayerNorth::
+	setvar VAR_TEMP_1, 1
+	turnobject LOCALID_PLAYER, DIR_NORTH
+	end
+
+
+PWT_PreBattleRoom_EventScript_EnterRoom::
+	goto_if_eq VAR_0x8006, 1, PWT_PreBattleRoom_EventScript_ReturnFromBattle
+	delay 1
+	setvar VAR_TEMP_0, 1
+	applymovement LOCALID_PLAYER, PWT_PreBattleRoom_EventScript_EnterRoom_Movement_0
+	waitmovement 0
+	lockall
+	goto PWT_PreBattleRoom_EventScript_AskReadyForNextRound
+	return
+
+
+PWT_PreBattleRoom_EventScript_AskReadyForNextRound::
+	call PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage
+	waitmessage
+	dynmultichoice 16, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, PWT_PreBattleRoom_EventScript_AskReadyForNextRound_Text_0, PWT_PreBattleRoom_EventScript_AskReadyForNextRound_Text_1, PWT_PreBattleRoom_EventScript_AskReadyForNextRound_Text_2
+	switch VAR_RESULT
+	case 0, PWT_PreBattleRoom_EventScript_AskReadyForNextRound_2
+	case 1, PWT_PreBattleRoom_EventScript_AskReadyForNextRound_3
+	case 2, PWT_PreBattleRoom_EventScript_AskReadyForNextRound_4
+	return
+
+PWT_PreBattleRoom_EventScript_AskReadyForNextRound_2:
+	goto PWT_PreBattleRoom_EventScript_ShowOpponentInfo
+	return
+
+PWT_PreBattleRoom_EventScript_AskReadyForNextRound_3:
+	goto PWT_PreBattleRoom_EventScript_ShowTourneyTree
+	return
+
+PWT_PreBattleRoom_EventScript_AskReadyForNextRound_4:
+	goto PWT_PreBattleRoom_EventScript_ContinueChallenge
+	return
+
+
+PWT_PreBattleRoom_EventScript_ShowOpponentInfo::
+	msgbox PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0, MSGBOX_DEFAULT
+	fadescreen FADE_TO_BLACK
+	pwt_showopponentinfo
+	waitstate
+	goto PWT_PreBattleRoom_EventScript_AskReadyForNextRound
+	return
+
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree::
+	pwt_get PWT_DATA_BATTLE_NUM
+	switch VAR_RESULT
+	case PWT_ROUND1, PWT_PreBattleRoom_EventScript_ShowTourneyTree_3
+	case PWT_ROUND2, PWT_PreBattleRoom_EventScript_ShowTourneyTree_4
+	case PWT_SEMIFINAL, PWT_PreBattleRoom_EventScript_ShowTourneyTree_5
+	case PWT_FINAL, PWT_PreBattleRoom_EventScript_ShowTourneyTree_6
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_1:
+	fadescreen FADE_TO_BLACK
+	pwt_showtourneytree
+	waitstate
+	goto PWT_PreBattleRoom_EventScript_AskReadyForNextRound
+	return
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_3:
+	msgbox PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_0, MSGBOX_DEFAULT
+	goto PWT_PreBattleRoom_EventScript_ShowTourneyTree_1
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_4:
+	msgbox PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_1, MSGBOX_DEFAULT
+	goto PWT_PreBattleRoom_EventScript_ShowTourneyTree_1
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_5:
+	msgbox PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_2, MSGBOX_DEFAULT
+	goto PWT_PreBattleRoom_EventScript_ShowTourneyTree_1
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_6:
+	msgbox PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_3, MSGBOX_DEFAULT
+	goto PWT_PreBattleRoom_EventScript_ShowTourneyTree_1
+
+
+PWT_PreBattleRoom_EventScript_ContinueChallenge::
+	message PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_0
+	waitmessage
+	waitbuttonpress
+	fadescreen FADE_TO_BLACK
+	copyvar VAR_0x8004, FRONTIER_LVL_OPEN
+	setvar VAR_0x8005, 2
+	special ChoosePartyForPWT
+	waitstate
+	pwt_resetsketchbeforebattle
+	goto_if_eq VAR_RESULT, 0, PWT_PreBattleRoom_EventScript_AskReadyForNextRound
+	pwt_set PWT_DATA_SELECTED_MONS
+	pwt_reduceparty
+	pwt_setopponent
+	msgbox PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_1, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PWT_PRE_BATTLE_ATTENDANT, PWT_PreBattleRoom_EventScript_ContinueChallenge_Movement_0
+	waitmovement 0
+	applymovement LOCALID_PLAYER, PWT_PreBattleRoom_EventScript_ContinueChallenge_Movement_1
+	waitmovement 0
+	opendoor 5, 1
+	waitdooranim
+	applymovement LOCALID_PLAYER, PWT_PreBattleRoom_EventScript_ContinueChallenge_Movement_2
+	waitmovement 0
+	closedoor 5, 1
+	waitdooranim
+	warp MAP_PWT_BATTLE_ROOM, 9, 5
+	setvar VAR_TEMP_0, 0
+	waitstate
+	end
+
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage::
+	pwt_get PWT_DATA_BATTLE_NUM
+	switch VAR_RESULT
+	case PWT_ROUND1, PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_3
+	case PWT_ROUND2, PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_4
+	case PWT_SEMIFINAL, PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_5
+	case PWT_FINAL, PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_6
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_1:
+	return
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_3:
+	message PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_0
+	goto PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_1
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_4:
+	message PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_1
+	goto PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_1
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_5:
+	message PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_2
+	goto PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_1
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_6:
+	message PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_3
+	goto PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_1
+
+
+PWT_PreBattleRoom_EventScript_ReturnFromBattle::
+	setvar VAR_TEMP_0, 1
+	msgbox PWT_PreBattleRoom_EventScript_ReturnFromBattle_Text_0, MSGBOX_DEFAULT
+	special LoadPlayerParty
+	pwt_setpartyorder PWT_PARTY_SIZE
+	playfanfare MUS_HEAL
+	waitfanfare
+	special HealPlayerParty
+	call PWT_PreBattleRoom_EventScript_RoundCompleteMessage
+	fadescreen FADE_TO_BLACK
+	pwt_showstatictourneytree
+	waitstate
+	goto PWT_PreBattleRoom_EventScript_AskReadyForNextRound
+	return
+
+
+PWT_PreBattleRoom_EventScript_RoundCompleteMessage::
+	pwt_get PWT_DATA_BATTLE_NUM
+	switch VAR_RESULT
+	case PWT_ROUND2, PWT_PreBattleRoom_EventScript_RoundCompleteMessage_3
+	case PWT_SEMIFINAL, PWT_PreBattleRoom_EventScript_RoundCompleteMessage_4
+	case PWT_FINAL, PWT_PreBattleRoom_EventScript_RoundCompleteMessage_5
+PWT_PreBattleRoom_EventScript_RoundCompleteMessage_1:
+	return
+
+PWT_PreBattleRoom_EventScript_RoundCompleteMessage_3:
+	msgbox PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_0, MSGBOX_DEFAULT
+	goto PWT_PreBattleRoom_EventScript_RoundCompleteMessage_1
+
+PWT_PreBattleRoom_EventScript_RoundCompleteMessage_4:
+	msgbox PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_1, MSGBOX_DEFAULT
+	goto PWT_PreBattleRoom_EventScript_RoundCompleteMessage_1
+
+PWT_PreBattleRoom_EventScript_RoundCompleteMessage_5:
+	msgbox PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_2, MSGBOX_DEFAULT
+	goto PWT_PreBattleRoom_EventScript_RoundCompleteMessage_1
+
+
+PWT_PreBattleRoom_EventScript_EnterRoom_Movement_0:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+PWT_PreBattleRoom_EventScript_ContinueChallenge_Movement_0:
+	walk_right
+	face_left
+	step_end
+
+PWT_PreBattleRoom_EventScript_ContinueChallenge_Movement_1:
+	walk_up
+	step_end
+
+PWT_PreBattleRoom_EventScript_ContinueChallenge_Movement_2:
+	walk_up
+	set_invisible
+	step_end
+
+PWT_PreBattleRoom_EventScript_AskReadyForNextRound_Text_0:
+	.string "OPPONENT$"
+
+PWT_PreBattleRoom_EventScript_AskReadyForNextRound_Text_1:
+	.string "TOURNEY TREE$"
+
+PWT_PreBattleRoom_EventScript_AskReadyForNextRound_Text_2:
+	.string "READY TO START$"
+
+PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0:
+	.string "{PLAYER}'s next opponent\nis this TRAINER.$"
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_0:
+	.string "The tournament is in the 1st round.$"
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_1:
+	.string "The tournament is in the 2nd round.$"
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_2:
+	.string "The tournament is in the semifinals.$"
+
+PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_3:
+	.string "The tournament is up to the final.$"
+
+PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_0:
+	.string "Please choose the two POKéMON\nthat are to appear in battle.$"
+
+PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_1:
+	.string "Right this way, please.$"
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_0:
+	.string "Your 1st-round match is next.\nAre you ready?$"
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_1:
+	.string "Your 2nd-round match is next.\nAre you ready?$"
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_2:
+	.string "Your semifinal match is next.\nAre you ready?$"
+
+PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_3:
+	.string "Your final match is next.\nAre you ready?$"
+
+PWT_PreBattleRoom_EventScript_ReturnFromBattle_Text_0:
+	.string "Time to heal$"
+
+PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_0:
+	.string "All 1st-round matches have been\ncompleted.\pThese are the teams that advanced!$"
+
+PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_1:
+	.string "All 2nd-round matches have been\ncompleted.\pThese are the teams that advanced!$"
+
+PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_2:
+	.string "All semifinal matches have been\ncompleted.\pThese are the teams that advanced!$"

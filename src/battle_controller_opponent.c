@@ -39,6 +39,7 @@
 #include "constants/trainers.h"
 #include "trainer_hill.h"
 #include "test_runner.h"
+#include "pwt.h"
 
 static void OpponentHandleDrawTrainerPic(u32 battler);
 static void OpponentHandleTrainerSlideBack(u32 battler);
@@ -347,6 +348,20 @@ static u32 OpponentGetTrainerPicId(u32 battlerId)
         else
         {
             trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentA);
+        }
+    }
+    else if (gBattleTypeFlags & BATTLE_TYPE_PWT)
+    {
+        if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TOWER_LINK_MULTI))
+        {
+            if (battlerId == 1)
+                trainerPicId = GetPWTTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentA);
+            else
+                trainerPicId = GetPWTTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentB);
+        }
+        else
+        {
+            trainerPicId = GetPWTTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentA);
         }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)

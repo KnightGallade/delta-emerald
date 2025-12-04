@@ -65,6 +65,7 @@
 #include "constants/field_mugshots.h"
 #include "constants/quests.h"
 #include "constants/outfits.h"
+#include "constants/pwt.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.include "constants/constants.inc"
@@ -1156,5 +1157,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
 	.include "data/scripts/dexnav.inc"
-
 	.include "data/maps/DistortionWorld_End/scripts.inc"
+	.include "data/text/pwt.inc"
+	.include "data/maps/PWT_Lobby/scripts.inc"
+	.include "data/maps/PWT_Corridor/scripts.inc"
+	.include "data/maps/PWT_PreBattleRoom/scripts.inc"
+	.include "data/maps/PWT_BattleRoom/scripts.inc"

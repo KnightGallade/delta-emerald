@@ -650,7 +650,7 @@ bool32 TryRunFromBattle(u32 battler)
             effect++;
         }
     }
-    else if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL) && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    else if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT | BATTLE_TYPE_TRAINER_HILL) && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         effect++;
     }
@@ -1692,6 +1692,7 @@ u32 GetBattlerAffectionHearts(u32 battler)
     else if (gSpeciesInfo[species].isMegaEvolution
           || (gBattleTypeFlags & (BATTLE_TYPE_EREADER_TRAINER
                                 | BATTLE_TYPE_FRONTIER
+                                | BATTLE_TYPE_PWT
                                 | BATTLE_TYPE_LINK
                                 | BATTLE_TYPE_RECORDED_LINK
                                 | BATTLE_TYPE_SECRET_BASE)))
@@ -7390,6 +7391,8 @@ u8 GetAttackerObedienceForAction()
         return OBEYS;
     if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
         return OBEYS;
+    if (gBattleTypeFlags & BATTLE_TYPE_PWT)
+        return OBEYS;
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
         return OBEYS;
     if (B_OBEDIENCE_MECHANICS < GEN_8 && !IsOtherTrainer(gBattleMons[gBattlerAttacker].otId, gBattleMons[gBattlerAttacker].otName))
@@ -8466,7 +8469,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
     case HOLD_EFFECT_SOUL_DEW:
         if ((gBattleMons[battlerAtk].species == SPECIES_LATIAS || gBattleMons[battlerAtk].species == SPECIES_LATIOS)
             && ((B_SOUL_DEW_BOOST >= GEN_7 && (moveType == TYPE_PSYCHIC || moveType == TYPE_DRAGON))
-             || (B_SOUL_DEW_BOOST < GEN_7 && !(gBattleTypeFlags & BATTLE_TYPE_FRONTIER) && IsBattleMoveSpecial(move))))
+             || (B_SOUL_DEW_BOOST < GEN_7 && !(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT)) && IsBattleMoveSpecial(move))))
             modifier = uq4_12_multiply(modifier, holdEffectModifier);
         break;
     case HOLD_EFFECT_TYPE_POWER:
@@ -8932,7 +8935,7 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
     case HOLD_EFFECT_SOUL_DEW:
         if (B_SOUL_DEW_BOOST < GEN_7
          && (gBattleMons[battlerDef].species == SPECIES_LATIAS || gBattleMons[battlerDef].species == SPECIES_LATIOS)
-         && !(gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+         && !(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT))
          && !usesDefStat)
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
         break;
@@ -10483,7 +10486,7 @@ bool32 ShouldGetStatBadgeBoost(u16 badgeFlag, u32 battler)
 {
     if (GetGenConfig(GEN_CONFIG_BADGE_BOOST) <= GEN_3 && badgeFlag != 0)
     {
-        if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_FRONTIER))
+        if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT))
             return FALSE;
         else if (!IsOnPlayerSide(battler))
             return FALSE;
@@ -10717,6 +10720,7 @@ bool32 CanStealItem(u32 battlerStealing, u32 battlerItem, u16 item)
         && !(gBattleTypeFlags &
              (BATTLE_TYPE_EREADER_TRAINER
               | BATTLE_TYPE_FRONTIER
+              | BATTLE_TYPE_PWT
               | BATTLE_TYPE_LINK
               | BATTLE_TYPE_RECORDED_LINK
               | BATTLE_TYPE_SECRET_BASE
@@ -10728,6 +10732,7 @@ bool32 CanStealItem(u32 battlerStealing, u32 battlerItem, u16 item)
     else if (!(gBattleTypeFlags &
           (BATTLE_TYPE_EREADER_TRAINER
            | BATTLE_TYPE_FRONTIER
+           | BATTLE_TYPE_PWT
            | BATTLE_TYPE_LINK
            | BATTLE_TYPE_RECORDED_LINK
            | BATTLE_TYPE_SECRET_BASE))
@@ -10755,7 +10760,7 @@ void TrySaveExchangedItem(u32 battler, u16 stolenItem)
         return;
     // If regular trainer battle and mon's original item matches what is being stolen, save it to be restored at end of battle
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
-      && !(gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+      && !(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT))
       && IsOnPlayerSide(battler)
       && stolenItem == gBattleStruct->itemLost[B_SIDE_PLAYER][gBattlerPartyIndexes[battler]].originalItem)
         gBattleStruct->itemLost[B_SIDE_PLAYER][gBattlerPartyIndexes[battler]].stolen = TRUE;

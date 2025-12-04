@@ -30,6 +30,7 @@
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleFrontierParty(void);
+static void CB2_ReturnFromChoosePWTParty(void);
 static void HealPlayerBoxes(void);
 
 void HealPlayerParty(void)
@@ -767,4 +768,25 @@ void Script_SetStatus1(struct ScriptContext *ctx)
     {
         SetMonData(&gPlayerParty[slot], MON_DATA_STATUS, &status1);
     }
+}
+
+void ChoosePartyForPWT(void)
+{
+    gMain.savedCallback = CB2_ReturnFromChoosePWTParty;
+    InitChooseHalfPartyForBattle(gSpecialVar_0x8004 + 1);
+}
+
+static void CB2_ReturnFromChoosePWTParty(void)
+{
+    switch (gSelectedOrderFromParty[0])
+    {
+    case 0:
+        gSpecialVar_Result = FALSE;
+        break;
+    default:
+        gSpecialVar_Result = TRUE;
+        break;
+    }
+
+    SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }

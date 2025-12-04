@@ -5851,6 +5851,8 @@ u16 GetBattleBGM(void)
 
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
             trainerClass = GetFrontierOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
+        else if (gBattleTypeFlags & BATTLE_TYPE_PWT)
+            trainerClass = GetFrontierOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
         else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
             trainerClass = TRAINER_CLASS_EXPERT;
         else
@@ -5871,7 +5873,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_CHAMPION:
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL:
-            if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+            if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT))
                 return MUS_VS_RIVAL;
             if (!StringCompare(GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentA), gText_BattleWallyName))
                 return MUS_VS_TRAINER;
@@ -6431,7 +6433,7 @@ bool8 HasTwoFramesAnimation(u16 species)
 
 bool8 ShouldSkipFriendshipChange(void)
 {
-    if (gMain.inBattle && gBattleTypeFlags & (BATTLE_TYPE_FRONTIER))
+    if (gMain.inBattle && gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT))
         return TRUE;
     if (!gMain.inBattle && (InBattlePike() || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE))
         return TRUE;

@@ -1,0 +1,853 @@
+const NO_DRAW = 0
+const DRAW_TRAINER = 1
+const DRAW_TUCKER = 2
+
+mapscripts PWT_BattleRoom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION : PWT_BattleRoom_OnTransition
+    MAP_SCRIPT_ON_FRAME_TABLE [VAR_TEMP_0, 0: PWT_BattleRoom_EventScript_EnterRoom]
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [VAR_TEMP_1, 0: PWT_BattleRoom_EventScript_SetUpObjects]
+    MAP_SCRIPT_ON_RESUME : PWT_BattleRoom_OnResume
+}
+
+script PWT_BattleRoom_OnTransition {
+	setflag(FLAG_TEMP_HIDE_FOLLOWER)
+	pwt_setopponentgfx
+	pwt_get(PWT_DATA_BATTLE_NUM)
+	copyvar(VAR_TEMP_F, VAR_RESULT)
+	call_if_eq(VAR_RESULT, PWT_ROUND1, PWT_BattleRoom_EventScript_SetWalkingAudienceMemberPos)
+	setoutfitgfxintovar(VAR_OBJ_GFX_ID_1)
+	end
+}
+
+script PWT_BattleRoom_EventScript_EnterRoom {
+	lockall
+	call(PWT_BattleRoom_EventScript_GetRoundNum)
+	call_if_eq(VAR_RESULT, PWT_ROUND1, PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat)
+	applymovement(LOCALID_PWT_ANNOUNCER, Common_Movement_WalkInPlaceDown)
+	waitmovement(0)
+	call(PWT_BattleRoom_EventScript_AnnouncePlayer)
+	msgbox("{PLAYER} has entered the BATTLE DOME!$", MSGBOX_DEFAULT)
+	closemessage
+	showobjectat(LOCALID_PWT_PLAYER, MAP_PWT_BATTLE_ROOM)
+	goto_if_ne(VAR_TEMP_F, PWT_FINAL, PWT_BattleRoom_EventScript_PlayerEnter)
+}
+
+script PWT_BattleRoom_EventScript_PlayerEnter {
+	applymovement(LOCALID_PWT_PLAYER, moves(set_visible, delay_16, walk_up * 3, walk_right * 2))
+	playse(SE_M_ENCORE2)
+	call(PWT_BattleRoom_EventScript_AudienceLookAround)
+	waitmovement(0)
+	pwt_getopponentname
+	msgbox("{STR_VAR_1}\nmatch!\p{PLAYER} versus {STR_VAR_2}!\pLet the battle begin!$", MSGBOX_DEFAULT)
+	closemessage
+	applymovement(LOCALID_PWT_PLAYER, moves(walk_right))
+	applymovement(LOCALID_PWT_OPPONENT, moves(walk_left))
+	waitmovement(0)
+	pwt_getopponentintro(0)
+	waitmessage
+	pwt_initopponentparty
+	call(PWT_BattleRoom_EventScript_DoPWTBattle)
+	releaseall
+	end
+}
+// 	setvar VAR_TEMP_2, NO_DRAW
+// 	switch VAR_RESULT
+// 	case B_OUTCOME_WON, PWT_BattleRoom_EventScript_DefeatedOpponent
+// 	case B_OUTCOME_LOST, PWT_BattleRoom_EventScript_LostToOpponent
+// 	case B_OUTCOME_FORFEITED, PWT_BattleRoom_EventScript_LostToOpponent
+// 	setvar VAR_TEMP_2, DRAW_TRAINER
+// PWT_BattleRoom_EventScript_Draw::
+// 	msgbox PWT_BattleRoom_Text_RefereeDecisionPleaseWait, MSGBOX_DEFAULT
+// 	closemessage
+// 	playse SE_M_ENCORE2
+// 	call PWT_BattleRoom_EventScript_AudienceLookAround
+// 	delay 60
+// 	applymovement LOCALID_PWT_REFEREE, PWT_BattleRoom_Movement_RefereeEnter
+// 	waitmovement(0)
+// 	applymovement LOCALID_PWT_ANNOUNCER, PWT_BattleRoom_Movement_AnnouncerFaceLeft
+// 	waitmovement(0)
+// 	delay 180
+// 	applymovement LOCALID_PWT_REFEREE, PWT_BattleRoom_Movement_RefereeExit
+// 	waitmovement(0)
+// 	goto_if_eq VAR_TEMP_2, DRAW_TUCKER, PWT_BattleRoom_EventScript_LostToOpponent @ Tucker always wins on a draw
+// 	dome_compareseeds
+// 	switch VAR_RESULT
+// 	case 1, PWT_BattleRoom_EventScript_DefeatedOpponent
+// PWT_BattleRoom_EventScript_LostToOpponent::
+// 	applymovement LOCALID_PWT_ANNOUNCER, Common_Movement_WalkInPlaceDown
+// 	waitmovement(0)
+// 	pwt_getopponentname
+// 	call_if_eq VAR_TEMP_2, NO_DRAW, PWT_BattleRoom_EventScript_OpponentWon
+// 	call_if_eq VAR_TEMP_2, DRAW_TRAINER, PWT_BattleRoom_EventScript_OpponentWonDraw
+// 	call_if_eq VAR_TEMP_2, DRAW_TUCKER, PWT_BattleRoom_EventScript_TuckerWonDraw
+// 	playse SE_M_ENCORE2
+// 	call PWT_BattleRoom_EventScript_AudienceLookAround
+// 	delay 60
+// PWT_BattleRoom_EventScript_LostTourney::
+// 	dome_resolvewinners DOME_PLAYER_LOST_MATCH
+// PWT_BattleRoom_EventScript_WarpToLobbyLost::
+// 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST
+// 	goto PWT_BattleRoom_EventScript_WarpToLobby
+
+// PWT_BattleRoom_EventScript_OpponentWon::
+// 	frontier_gettrainername STR_VAR_2
+// 	message PWT_BattleRoom_Text_TrainerIsWinner
+// 	waitmessage
+// 	return
+
+// PWT_BattleRoom_EventScript_OpponentWonDraw::
+// 	frontier_gettrainername STR_VAR_1
+// 	message PWT_BattleRoom_Text_RefereesDecidedWinnerTrainer
+// 	waitmessage
+// 	return
+
+// PWT_BattleRoom_EventScript_TuckerWonDraw::
+// 	message PWT_BattleRoom_Text_RefereesDecidedWinnerTucker
+// 	waitmessage
+// 	return
+
+// PWT_BattleRoom_EventScript_DefeatedOpponent::
+// 	applymovement LOCALID_PWT_ANNOUNCER, Common_Movement_WalkInPlaceDown
+// 	waitmovement(0)
+// 	call_if_eq VAR_TEMP_2, NO_DRAW, PWT_BattleRoom_EventScript_PlayerWon
+// 	call_if_eq VAR_TEMP_2, DRAW_TRAINER, PWT_BattleRoom_EventScript_PlayerWonDraw
+// 	playse SE_M_ENCORE2
+// 	call PWT_BattleRoom_EventScript_AudienceLookAround
+// 	delay 60
+// 	dome_getroundtext
+// 	dome_resolvewinners DOME_PLAYER_WON_MATCH
+// 	pwt_get(PWT_DATA_BATTLE_NUM)
+// 	addvar VAR_RESULT, 1
+// 	frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT
+// 	switch VAR_RESULT
+// 	case DOME_ROUNDS_COUNT, PWT_BattleRoom_EventScript_WonTourney
+// 	setvar VAR_0x8006, 1
+// 	warp MAP_PWT_PRE_BATTLE_ROOM, 5, 3
+// 	waitstate
+
+// PWT_BattleRoom_EventScript_WonTourney::
+// 	applymovement LOCALID_PWT_PLAYER, PWT_BattleRoom_Movement_PlayerApproachAudience
+// 	waitmovement(0)
+// 	frontier_get FRONTIER_DATA_LVL_MODE
+// 	switch VAR_RESULT
+// 	case FRONTIER_LVL_OPEN, PWT_BattleRoom_EventScript_WonLvOpenTourney
+// 	msgbox PWT_BattleRoom_Text_PlayerIsLv50Champ, MSGBOX_DEFAULT
+// 	goto PWT_BattleRoom_EventScript_CelebrateWin
+
+// PWT_BattleRoom_EventScript_WonLvOpenTourney::
+// 	msgbox PWT_BattleRoom_Text_PlayerIsLvOpenChamp, MSGBOX_DEFAULT
+// PWT_BattleRoom_EventScript_CelebrateWin::
+// 	special DoDomeConfetti
+// 	playse SE_M_ENCORE2
+// 	call PWT_BattleRoom_EventScript_AudienceLookAround
+// 	delay 60
+// 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_WON
+// 	goto PWT_BattleRoom_EventScript_WarpToLobby
+
+// PWT_BattleRoom_EventScript_PlayerWon::
+// 	msgbox PWT_BattleRoom_Text_PlayerIsWinner, MSGBOX_DEFAULT
+// 	return
+
+// PWT_BattleRoom_EventScript_PlayerWonDraw::
+// 	msgbox PWT_BattleRoom_Text_RefereesDecidedWinnerPlayer, MSGBOX_DEFAULT
+// 	return
+
+script PWT_BattleRoom_EventScript_AnnouncePlayer {
+    pwt_get(PWT_DATA_BATTLE_NUM)
+    switch (var(VAR_RESULT)) {
+        case PWT_ROUND1:
+            message("ROUND 1 MESSAGE\nPLAYER INTRODUCTION\p$")
+        case PWT_ROUND2:
+            message("ROUND 2 MESSAGE\nPLAYER INTRODUCTION\p$")
+        case PWT_SEMIFINAL:
+            message("SEMIFINAL MESSAGE\nPLAYER INTRODUCTION\p$")
+        case PWT_FINAL:
+            message("FINALS MESSAGE\nPLAYER INTRODUCTION\p$")
+    }
+    waitmessage
+    return
+}
+
+script PWT_BattleRoom_EventScript_GetRoundNum {
+	pwt_get(PWT_DATA_BATTLE_NUM)
+	return
+}
+
+script PWT_BattleRoom_EventScript_DoPWTBattle {
+	special(HealPlayerParty)
+	setvar(VAR_0x8004, SPECIAL_BATTLE_PWT) // TODO - determine why
+	setvar(VAR_0x8005, 0) // TODO - determine why
+	setvar(VAR_TEMP_9, 1) // TODO - determine why
+	// TODO - HERE 1
+	special(DoPWTTrainerBattle)
+	waitstate
+	setvar(VAR_TEMP_9, 0)
+	pwt_restorehelditems
+	special(HealPlayerParty)
+	pwt_resetsketchafterbattle
+	return
+}
+
+script PWT_BattleRoom_EventScript_SetUpObjects {
+	hideobjectat(LOCALID_PWT_PLAYER, MAP_PWT_BATTLE_ROOM)
+	call(PWT_BattleRoom_EventScript_AddAudience)
+	setoutfitgfxintovar(VAR_OBJ_GFX_ID_1)
+	setvar(VAR_TEMP_1, 1)
+	applymovement(LOCALID_PLAYER, moves(set_invisible))
+	pwt_get(PWT_DATA_BATTLE_NUM)
+}
+
+script PWT_BattleRoom_OnResume {
+	call_if_eq(VAR_TEMP_9, 1, PWT_BattleRoom_EventScript_CallAddAudience)
+	end
+}
+
+// TODO - get rid of this extra function once I'm sure there would be no consequences
+script PWT_BattleRoom_EventScript_CallAddAudience {
+	call(PWT_BattleRoom_EventScript_AddAudience)
+	return
+}
+
+// Add audience members to supplement the permanent object event audience
+// TODO - put scripts together since ROUND2 repeats ROUND1 and adds more, to fully check
+script PWT_BattleRoom_EventScript_AddAudience {
+	call_if_eq(VAR_TEMP_F, PWT_ROUND1, PWT_BattleRoom_EventScript_AddRound1Audience)
+	call_if_eq(VAR_TEMP_F, PWT_ROUND2, PWT_BattleRoom_EventScript_AddRound2Audience)
+	call_if_eq(VAR_TEMP_F, PWT_SEMIFINAL, PWT_BattleRoom_EventScript_AddSemifinalAudience)
+	call_if_eq(VAR_TEMP_F, PWT_FINAL, PWT_BattleRoom_EventScript_AddFinalAudience)
+	return
+}
+
+script PWT_BattleRoom_EventScript_AddRound1Audience {
+	return
+}
+
+script PWT_BattleRoom_EventScript_AddRound2Audience {
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 1, 3, 0)
+	createvobject(OBJ_EVENT_GFX_EXPERT_F, 4, 6, 0)
+	createvobject(OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0)
+	createvobject(OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0)
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 11, 13, 0)
+	createvobject(OBJ_EVENT_GFX_MAN_5, 13, 15, 0)
+	createvobject(OBJ_EVENT_GFX_BEAUTY, 19, 7, 1)
+	createvobject(OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1)
+	createvobject(OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1)
+	createvobject(OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2)
+	createvobject(OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1)
+	return
+}
+
+script PWT_BattleRoom_EventScript_AddSemifinalAudience {
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 1, 3, 0)
+	createvobject(OBJ_EVENT_GFX_EXPERT_F, 4, 6, 0)
+	createvobject(OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0)
+	createvobject(OBJ_EVENT_GFX_WOMAN_2, 7, 9, 0)
+	createvobject(OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0)
+	createvobject(OBJ_EVENT_GFX_LASS, 10, 12, 0)
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 11, 13, 0)
+	createvobject(OBJ_EVENT_GFX_MAN_5, 13, 15, 0)
+	createvobject(OBJ_EVENT_GFX_GENTLEMAN, 15, 2, 1)
+	createvobject(OBJ_EVENT_GFX_NINJA_BOY, 16, 3, 1)
+	createvobject(OBJ_EVENT_GFX_WOMAN_2, 17, 4, 1)
+	createvobject(OBJ_EVENT_GFX_BEAUTY, 19, 7, 1)
+	createvobject(OBJ_EVENT_GFX_EXPERT_F, 20, 9, 1)
+	createvobject(OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1)
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 23, 13, 1)
+	createvobject(OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1)
+	createvobject(OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2)
+	createvobject(OBJ_EVENT_GFX_HEX_MANIAC, 28, 5, 2)
+	createvobject(OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1)
+	createvobject(OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2)
+	createvobject(OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2)
+	return
+}
+
+script PWT_BattleRoom_EventScript_AddFinalAudience {
+	createvobject(OBJ_EVENT_GFX_NINJA_BOY, 0, 2, 0)
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 1, 3, 0)
+	createvobject(OBJ_EVENT_GFX_BEAUTY, 2, 15, 0)
+	createvobject(OBJ_EVENT_GFX_MAN_5, 3, 5, 0)
+	createvobject(OBJ_EVENT_GFX_EXPERT_F, 4, 6, 0)
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 5, 7, 0)
+	createvobject(OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0)
+	createvobject(OBJ_EVENT_GFX_WOMAN_2, 7, 9, 0)
+	createvobject(OBJ_EVENT_GFX_WOMAN_3, 8, 10, 0)
+	createvobject(OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0)
+	createvobject(OBJ_EVENT_GFX_LASS, 10, 12, 0)
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 11, 13, 0)
+	createvobject(OBJ_EVENT_GFX_BEAUTY, 12, 14, 0)
+	createvobject(OBJ_EVENT_GFX_MAN_5, 13, 15, 2)
+	createvobject(OBJ_EVENT_GFX_HIKER, 14, 12, 2)
+	createvobject(OBJ_EVENT_GFX_GENTLEMAN, 15, 2, 1)
+	createvobject(OBJ_EVENT_GFX_NINJA_BOY, 16, 3, 1)
+	createvobject(OBJ_EVENT_GFX_WOMAN_2, 17, 4, 1)
+	createvobject(OBJ_EVENT_GFX_WOMAN_3, 18, 6, 1)
+	createvobject(OBJ_EVENT_GFX_BEAUTY, 19, 7, 1)
+	createvobject(OBJ_EVENT_GFX_EXPERT_F, 20, 9, 1)
+	createvobject(OBJ_EVENT_GFX_MAN_2, 21, 10, 1)
+	createvobject(OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1)
+	createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 23, 13, 1)
+	createvobject(OBJ_EVENT_GFX_GENTLEMAN, 24, 14, 1)
+	createvobject(OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1)
+	createvobject(OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2)
+	createvobject(OBJ_EVENT_GFX_FAT_MAN, 27, 3, 2)
+	createvobject(OBJ_EVENT_GFX_HEX_MANIAC, 28, 5, 2)
+	createvobject(OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1)
+	createvobject(OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2)
+	createvobject(OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2)
+	return
+}
+
+// PWT_BattleRoom_Movement_PlayerApproachAudience:
+// 	walk_up
+// 	step_end
+
+// PWT_BattleRoom_Movement_SetInvisibleFacingUp:
+// 	face_up
+// 	set_invisible
+// 	step_end
+
+// PWT_BattleRoom_Movement_TuckerEnterAndDance:
+// 	set_visible
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	face_left
+// 	delay_8
+// 	delay_4
+// 	face_down
+// 	delay_8
+// 	delay_4
+// 	face_right
+// 	delay_8
+// 	delay_4
+// 	face_up
+// 	delay_8
+// 	delay_4
+// 	face_left
+// 	delay_16
+// 	walk_fast_up
+// 	walk_fast_up
+// 	face_left
+// 	delay_8
+// 	delay_4
+// 	face_down
+// 	delay_8
+// 	delay_4
+// 	face_right
+// 	delay_8
+// 	delay_4
+// 	face_up
+// 	delay_8
+// 	delay_4
+// 	face_left
+// 	jump_2_left
+// 	unlock_facing_direction
+// 	face_up
+// 	lock_facing_direction
+// 	jump_2_left
+// 	jump_2_left
+// 	unlock_facing_direction
+// 	face_right
+// 	lock_facing_direction
+// 	jump_2_left
+// 	unlock_facing_direction
+// 	face_down
+// 	delay_2
+// 	face_left
+// 	delay_8
+// 	delay_4
+// 	face_up
+// 	delay_8
+// 	delay_4
+// 	face_right
+// 	delay_8
+// 	delay_4
+// 	face_down
+// 	delay_8
+// 	delay_4
+// 	face_left
+// 	delay_4
+// 	face_up
+// 	delay_4
+// 	face_right
+// 	delay_4
+// 	face_down
+// 	delay_4
+// 	face_left
+// 	delay_2
+// 	face_up
+// 	delay_2
+// 	face_right
+// 	delay_2
+// 	face_down
+// 	delay_2
+// 	face_left
+// 	lock_facing_direction
+// 	walk_right
+// 	walk_slow_right
+// 	walk_right
+// 	walk_slow_right
+// 	unlock_facing_direction
+// 	face_up
+// 	delay_16
+// 	jump_in_place_up
+// 	jump_in_place_up
+// 	delay_16
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	jump_in_place_up
+// 	delay_16
+// 	walk_right
+// 	walk_down
+// 	walk_down
+// 	face_left
+// 	delay_2
+// 	face_up
+// 	delay_2
+// 	face_right
+// 	delay_2
+// 	face_down
+// 	delay_2
+// 	face_left
+// 	delay_4
+// 	walk_left
+// 	walk_left
+// 	step_end
+
+// PWT_BattleRoom_Movement_AnnouncerMoveForTuckerEntrance:
+// 	delay_16
+// 	delay_16
+// 	walk_left
+// 	walk_left
+// 	walk_in_place_faster_right
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	walk_right
+// 	walk_right
+// 	walk_in_place_faster_down
+// 	step_end
+
+// PWT_BattleRoom_Movement_TuckerStepForward:
+// 	walk_left
+// 	step_end
+
+// PWT_BattleRoom_Movement_TuckerApproachPlayer:
+// 	walk_left
+// 	walk_left
+// 	step_end
+
+script PWT_BattleRoom_EventScript_AudienceLookAround {
+	turnvobject(0, DIR_EAST)
+	turnvobject(2, DIR_EAST)
+	turnvobject(4, DIR_EAST)
+	turnvobject(6, DIR_EAST)
+	turnvobject(8, DIR_EAST)
+	turnvobject(10, DIR_WEST)
+	turnvobject(12, DIR_WEST)
+	turnvobject(14, DIR_WEST)
+	turnvobject(16, DIR_WEST)
+	turnvobject(18, DIR_WEST)
+	turnvobject(20, DIR_EAST)
+	turnvobject(22, DIR_EAST)
+	turnvobject(24, DIR_EAST)
+	turnvobject(26, DIR_EAST)
+	turnvobject(28, DIR_EAST)
+	turnvobject(30, DIR_EAST)
+	delay(20)
+	turnvobject(0, DIR_SOUTH)
+	turnvobject(2, DIR_SOUTH)
+	turnvobject(4, DIR_SOUTH)
+	turnvobject(6, DIR_SOUTH)
+	turnvobject(8, DIR_SOUTH)
+	turnvobject(10, DIR_SOUTH)
+	turnvobject(12, DIR_SOUTH)
+	turnvobject(14, DIR_SOUTH)
+	turnvobject(16, DIR_SOUTH)
+	turnvobject(18, DIR_SOUTH)
+	turnvobject(20, DIR_SOUTH)
+	turnvobject(22, DIR_SOUTH)
+	turnvobject(24, DIR_SOUTH)
+	turnvobject(26, DIR_SOUTH)
+	turnvobject(28, DIR_SOUTH)
+	turnvobject(30, DIR_SOUTH)
+	delay(20)
+	turnvobject(1, DIR_EAST)
+	turnvobject(3, DIR_EAST)
+	turnvobject(5, DIR_EAST)
+	turnvobject(7, DIR_EAST)
+	turnvobject(9, DIR_EAST)
+	turnvobject(11, DIR_WEST)
+	turnvobject(13, DIR_WEST)
+	turnvobject(15, DIR_WEST)
+	turnvobject(17, DIR_WEST)
+	turnvobject(19, DIR_WEST)
+	turnvobject(21, DIR_EAST)
+	turnvobject(23, DIR_EAST)
+	turnvobject(25, DIR_EAST)
+	turnvobject(27, DIR_WEST)
+	turnvobject(31, DIR_WEST)
+	delay(20)
+	turnvobject(1, DIR_SOUTH)
+	turnvobject(3, DIR_SOUTH)
+	turnvobject(5, DIR_SOUTH)
+	turnvobject(7, DIR_SOUTH)
+	turnvobject(9, DIR_SOUTH)
+	turnvobject(11, DIR_SOUTH)
+	turnvobject(13, DIR_SOUTH)
+	turnvobject(15, DIR_SOUTH)
+	turnvobject(17, DIR_SOUTH)
+	turnvobject(19, DIR_SOUTH)
+	turnvobject(21, DIR_SOUTH)
+	turnvobject(23, DIR_SOUTH)
+	turnvobject(25, DIR_SOUTH)
+	turnvobject(27, DIR_SOUTH)
+	turnvobject(31, DIR_SOUTH)
+	delay(20)
+	return
+}
+
+// PWT_BattleRoom_EventScript_WarpToLobby::
+// 	copyvar VAR_RESULT, VAR_FRONTIER_BATTLE_MODE
+// 	goto_if_eq VAR_RESULT, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleDomePreBattleRoom_EventScript_WarpToLobbyDoubles
+// 	warp MAP_PWT_LOBBY, 5, 11
+// 	waitstate
+// 	end
+
+// BattleFrontier_BattleDomePreBattleRoom_EventScript_WarpToLobbyDoubles::
+// 	warp MAP_PWT_LOBBY, 17, 11
+// 	waitstate
+// 	end
+
+// On round 1 there's a 50% chance that a specific audience member will walk to his seat
+script PWT_BattleRoom_EventScript_SetWalkingAudienceMemberPos {
+	random(2)
+	copyvar(VAR_TEMP_D, VAR_RESULT)
+	goto_if_eq(VAR_TEMP_D, 0, Common_EventScript_NopReturn)
+	setobjectxyperm(LOCALID_PWT_AUDIENCE_WALKING, 2, 0)
+	setobjectmovementtype(LOCALID_PWT_AUDIENCE_WALKING, MOVEMENT_TYPE_FACE_RIGHT)
+	return
+}
+
+script PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat {
+	goto_if_eq(VAR_TEMP_D, 0, Common_EventScript_NopReturn)
+	applymovement(LOCALID_PWT_AUDIENCE_WALKING, moves(walk_down * 2, walk_right * 2, walk_in_place_faster_down))
+	return
+}
+
+// PWT_BattleRoom_Movement_AudienceTwinJump:
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_8
+// 	disable_jump_landing_ground_effect
+// 	jump_in_place_down
+// 	delay_4
+// 	jump_in_place_down
+// 	enable_jump_landing_ground_effect
+// 	step_end
+
+// PWT_BattleRoom_Movement_RefereeEnter:
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	step_end
+
+// PWT_BattleRoom_Movement_AnnouncerFaceLeft:
+// 	walk_in_place_faster_left
+// 	step_end
+
+// PWT_BattleRoom_Movement_RefereeExit:
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	step_end
+
+// PWT_BattleRoom_Text_PlayerIsWinner:
+// 	.string "{PLAYER} is the winner!\n"
+// 	.string "Congratulations!$"
+
+// PWT_BattleRoom_Text_TrainerIsWinner:
+// 	.string "{STR_VAR_2} is the winner!\n"
+// 	.string "Congratulations!$"
+
+// PWT_BattleRoom_Text_PlayerIsLv50Champ:
+// 	.string "{PLAYER} is the Level 50\n"
+// 	.string "Battle Tournament Champion!\p"
+// 	.string "Congratulations!$"
+
+// PWT_BattleRoom_Text_PlayerIsLvOpenChamp:
+// 	.string "{PLAYER} is the Open Level\n"
+// 	.string "Battle Tournament Champion!\p"
+// 	.string "Congratulations!$"
+
+// PWT_BattleRoom_Text_RefereeDecisionPleaseWait:
+// 	.string "What an unbelievable finish!\n"
+// 	.string "We have a double knockout!\p"
+// 	.string "In this event, the Battle Tournament\n"
+// 	.string "rules call for a REFEREE'S decision.\p"
+// 	.string "Please wait while the judging\n"
+// 	.string "is under way.$"
+
+// PWT_BattleRoom_Text_RefereesDecidedWinnerTrainer:
+// 	.string "The REFEREES have reached\n"
+// 	.string "a decision!\p"
+// 	.string "The winner is…\n"
+// 	.string "Oh, my goodness!\l"
+// 	.string "The winner is {STR_VAR_1}!\l"
+// 	.string "Congratulations!$"
+
+// PWT_BattleRoom_Text_RefereesDecidedWinnerPlayer:
+// 	.string "The REFEREES have reached\n"
+// 	.string "a decision!\p"
+// 	.string "The winner is…\n"
+// 	.string "Oh, my goodness!\l"
+// 	.string "The winner is {PLAYER}!\l"
+// 	.string "Congratulations!$"
+
+// PWT_BattleRoom_Text_BrightNewHope:
+// 	.string "The bright new hope!\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_RisingStar:
+// 	.string "The rising star!\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_WillTheyRaceToChampionship:
+// 	.string "Will this TRAINER race to\n"
+// 	.string "the championship?\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_CanAchieveChampionFirstTry:
+// 	.string "Can the feat of a championship\n"
+// 	.string "on the first try be achieved?\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_CanLossBeAvenged:
+// 	.string "Can the loss of the last match\n"
+// 	.string "be avenged?\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_OnFireForChampionship:
+// 	.string "The TRAINER is on fire for\n"
+// 	.string "the first championship try!\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_WinHereAdvancesToFinal:
+// 	.string "A win here means this TRAINER\n"
+// 	.string "advances to the final!\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_WillLongHeldDreamComeTrue:
+// 	.string "Will the long-held dream of\n"
+// 	.string "a championship finally come true?\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_TheInvincibleChampion:
+// 	.string "The invincible champion!\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_CanAnyoneHopeToBeatTrainer:
+// 	.string "Can anyone hope to beat this\n"
+// 	.string "TRAINER?\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_DoBattlesExistSolelyForTrainer:
+// 	.string "Do battles exist solely for\n"
+// 	.string "this TRAINER?\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_FormerChampHasReturned:
+// 	.string "The former champion has returned!\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_FormerToughnessReturned:
+// 	.string "The former toughness has returned!\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_WillDoExpectedAdvanceToFinals:
+// 	.string "Will this TRAINER do as expected\n"
+// 	.string "and advance to the finals?\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_WillFormerChampRegainGlory:
+// 	.string "Will the former champ regain\n"
+// 	.string "lost glory?\p"
+// 	.string "$"
+
+// PWT_BattleRoom_Text_FeelGlowOfTrueMaster:
+// 	.string "Feel the glow of a true master!$"
+
+// PWT_BattleRoom_Text_MakeWayForDomeAceTucker:
+// 	.string "And now… The TRAINER standing in\n"
+// 	.string "{PLAYER}'s record-setting path…\p"
+// 	.string "Yes! The one and only!\n"
+// 	.string "The BATTLE DOME COMMISSIONER!\l"
+// 	.string "Our very own DOME ACE!\l"
+// 	.string "Make way for TUCKER!$"
+
+// PWT_BattleRoom_Text_SpectatorTuckerChant:
+// 	.string "Spectators: TUCKER! TUCKER!\n"
+// 	.string "TUCKER! TUCKER! TUCKER!$"
+
+// PWT_BattleRoom_Text_TuckerSilverIntro:
+// 	.string "TUCKER: Ahahah!\p"
+// 	.string "Do you hear it? This crowd!\n"
+// 	.string "They're all itching to see our match!\p"
+// 	.string "Ahahah!\p"
+// 	.string "I bet you're twitching all over from\n"
+// 	.string "the tension of getting to battle me!\p"
+// 	.string "But don't you worry about a thing!\p"
+// 	.string "I'm the no. 1 star of the BATTLE DOME!\n"
+// 	.string "I, TUCKER the DOME ACE, will bathe you\l"
+// 	.string "in my brilliant glow!$"
+
+// PWT_BattleRoom_Text_LetsSeeYourStrategy:
+// 	.string "Your strategy!\n"
+// 	.string "Let's see it!$"
+
+// PWT_BattleRoom_Text_IncredibleVictorIsPlayer:
+// 	.string "Unbelievable! It's incredible!\n"
+// 	.string "The victor is {PLAYER}!$"
+
+// PWT_BattleRoom_Text_WinnerIsTucker:
+// 	.string "The winner is TUCKER!\n"
+// 	.string "The DOME ACE has prevailed!\p"
+// 	.string "Congratulations, TUCKER!$"
+
+// PWT_BattleRoom_Text_SeeYourFrontierPass:
+// 	.string "TUCKER: Rules are rules!\n"
+// 	.string "Let me see your FRONTIER PASS.$"
+
+// PWT_BattleRoom_Text_ReceivedTacticsSymbol:
+// 	.string "The Tactics Symbol was embossed on\n"
+// 	.string "the FRONTIER PASS!$"
+
+// PWT_BattleRoom_Text_WontUnderestimateYouNextTime:
+// 	.string "… … … … … …\p"
+// 	.string "I sorely underestimated you. I won't\n"
+// 	.string "make the same mistake next time…$"
+
+// PWT_BattleRoom_Text_CanWinStreakBeStretched:
+// 	.string "Can the win streak be stretched?\n"
+// 	.string "The confidence is there!$"
+
+// PWT_BattleRoom_Text_LegendHasReturnedDomeAceTucker:
+// 	.string "Ladies and gentlemen!\n"
+// 	.string "Boys, girls, and POKéMON!\p"
+// 	.string "Finally!\n"
+// 	.string "Finally, the legend has returned!\p"
+// 	.string "Yes, the name of that legend!\n"
+// 	.string "Our very own DOME ACE!\l"
+// 	.string "It's none other than TUCKER!$"
+
+// PWT_BattleRoom_Text_TuckerGoldIntro:
+// 	.string "TUCKER: Ah…\n"
+// 	.string "The pummeling roar of the crowd…\l"
+// 	.string "Their furnace-like heat of excitement…\l"
+// 	.string "This is a wonderful place…\p"
+// 	.string "To the crowd, I am the DOME ACE…\n"
+// 	.string "I represent their hopes and dreams…\l"
+// 	.string "I must never fade from their sight…\p"
+// 	.string "I must burn!\n"
+// 	.string "Brighter and more brilliant!\l"
+// 	.string "I must light all that gather here!$"
+
+// PWT_BattleRoom_Text_UnleashAllPowerIPossess:
+// 	.string "I will unleash all the power that\n"
+// 	.string "I possess! Right here and now!$"
+
+// PWT_BattleRoom_Text_NeverLostWhenPowerUnleashed:
+// 	.string "TUCKER: You're genuinely fantastic!\p"
+// 	.string "Never before! I haven't ever lost in the\n"
+// 	.string "times I've had to unleash my power.\p"
+// 	.string "Yes, quite fantastic!\n"
+// 	.string "Your FRONTIER PASS, please?$"
+
+// PWT_BattleRoom_Text_TacticsSymbolTookGoldenShine:
+// 	.string "The Tactics Symbol took on\n"
+// 	.string "a golden shine!$"
+
+// PWT_BattleRoom_Text_LookForwardToNextEncounter:
+// 	.string "You're strong, but above all,\n"
+// 	.string "you have a unique charm!\p"
+// 	.string "In you, I see a definite potential for\n"
+// 	.string "a superstar like me.\p"
+// 	.string "I will very much look forward to\n"
+// 	.string "our next encounter!$"
+
+// @ Unused
+// PWT_BattleRoom_Text_PlayerIsLv50Champ2:
+// 	.string "{PLAYER} is the Level 50\n"
+// 	.string "Battle Tournament Champion!\p"
+// 	.string "Congratulations!$"
+
+// @ Unused
+// PWT_BattleRoom_Text_PlayerIsLvOpenChamp2:
+// 	.string "{PLAYER} is the Open Level\n"
+// 	.string "Battle Tournament Champion!\p"
+// 	.string "Congratulations!$"
+
+// PWT_BattleRoom_Text_PlayerVersusTucker:
+// 	.string "The final match!\p"
+// 	.string "{PLAYER} versus the DOME ACE, TUCKER!\p"
+// 	.string "Let the battle begin!$"
+
+// PWT_BattleRoom_Text_RefereesDecidedWinnerTucker:
+// 	.string "The REFEREES have reached\n"
+// 	.string "a decision!\p"
+// 	.string "The winner is…\n"
+// 	.string "Oh, my goodness!\l"
+// 	.string "The winner is our very own DOME ACE!\l"
+// 	.string "It's TUCKER!\p"
+// 	.string "Congratulations! And thank you!\n"
+// 	.string "Let's hear it for the DOME ACE, TUCKER!$"
