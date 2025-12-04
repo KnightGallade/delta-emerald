@@ -13,7 +13,7 @@ PetalburgCity_House1_EventScript_Woman::
 PetalburgCity_House1_EventScript_AdvanceQuests::
 	lockall
 	faceplayer
-	createfieldmugshot MUGSHOT_TEST, EMOTE_HAPPY
+	createfieldmugshot MUGSHOT_TEST, EMOTE_NORMAL
 	msgbox PetalburgCity_House1_Text_TravelingIsWonderful, MSGBOX_DEFAULT
 	removefieldmugshot
 	checkitem ITEM_JOURNAL

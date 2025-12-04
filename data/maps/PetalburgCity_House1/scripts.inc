@@ -13,14 +13,16 @@ PetalburgCity_House1_EventScript_Woman::
 PetalburgCity_House1_EventScript_AdvanceQuests::
 	lockall
 	faceplayer
+	createfieldmugshot MUGSHOT_TEST, EMOTE_NORMAL
 	msgbox PetalburgCity_House1_Text_TravelingIsWonderful, MSGBOX_DEFAULT
+	removefieldmugshot
 	checkitem ITEM_JOURNAL
 	goto_if_eq VAR_RESULT, TRUE, PetalburgCity_House1_EventScript_AdvanceQuestsRelease
 	giveitem ITEM_JOURNAL
 	giveitem ITEM_OUTFIT_BOX
 	questmenu QUEST_MENU_SET_ACTIVE WINGS_OF_POWER
 	questmenu QUEST_MENU_SET_ACTIVE CORRUPTED_PECHA
-	release
+	releaseall
 	end
 
 PetalburgCity_House1_EventScript_AdvanceQuestsRelease::
