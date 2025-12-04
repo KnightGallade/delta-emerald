@@ -301,11 +301,42 @@
 #define OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_FISHING         293
 #define OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_WATERING        294
 #define OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_DECORATING      295
+#define OBJ_EVENT_GFX_LEADER_BROCK                     296
+#define OBJ_EVENT_GFX_LEADER_MISTY                     297
+#define OBJ_EVENT_GFX_LEADER_ERIKA                     298
+#define OBJ_EVENT_GFX_LEADER_LT_SURGE                  299
+#define OBJ_EVENT_GFX_LEADER_KOGA                      300
+#define OBJ_EVENT_GFX_LEADER_SABRINA                   301
+#define OBJ_EVENT_GFX_LEADER_BLAINE                    302
+#define OBJ_EVENT_GFX_LEADER_GIOVANNI                  303
+#define OBJ_EVENT_GFX_ELITE_FOUR_LANCE                 304
+#define OBJ_EVENT_GFX_CHAMPION_BLUE                    305
+#define OBJ_EVENT_GFX_LEADER_FALKNER                   306
+#define OBJ_EVENT_GFX_LEADER_BUGSY                     307
+#define OBJ_EVENT_GFX_LEADER_WHITNEY                   308
+#define OBJ_EVENT_GFX_LEADER_MORTY                     309
+#define OBJ_EVENT_GFX_LEADER_CHUCK                     310
+#define OBJ_EVENT_GFX_LEADER_JASMINE                   311
+#define OBJ_EVENT_GFX_LEADER_PRYCE                     312
+#define OBJ_EVENT_GFX_LEADER_CLAIR                     313
+#define OBJ_EVENT_GFX_ELITE_FOUR_WILL                  314
+#define OBJ_EVENT_GFX_ELITE_FOUR_KAREN                 315
+#define OBJ_EVENT_GFX_LEADER_JANINE                    316
+#define OBJ_EVENT_GFX_LEADER_MAYLENE                   317
+#define OBJ_EVENT_GFX_LEADER_CRASHER_WAKE              318
+#define OBJ_EVENT_GFX_LEADER_FANTINA                   319
+#define OBJ_EVENT_GFX_LEADER_BYRON                     320
+#define OBJ_EVENT_GFX_LEADER_CANDICE                   321
+#define OBJ_EVENT_GFX_LEADER_VOLKNER                   322
+#define OBJ_EVENT_GFX_ELITE_FOUR_AARON                 323
+#define OBJ_EVENT_GFX_ELITE_FOUR_BERTHA                324
+#define OBJ_EVENT_GFX_ELITE_FOUR_LUCIAN                325
+#define OBJ_EVENT_GFX_CHAMPION_CYNTHIA                 326
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        296
+#define NUM_OBJ_EVENT_GFX                        327
 
 
 // These are dynamic object gfx ids.
@@ -441,6 +472,37 @@
 #define OBJ_EVENT_PAL_TAG_OUTFIT_ORAS_MAY         0x1128
 #define OBJ_EVENT_PAL_TAG_OUTFIT_FRLG_RED         0x1129
 #define OBJ_EVENT_PAL_TAG_OUTFIT_FRLG_LEAF        0x112A
+#define OBJ_EVENT_PAL_TAG_LEADER_BROCK            0x112B
+#define OBJ_EVENT_PAL_TAG_LEADER_MISTY            0x112C
+#define OBJ_EVENT_PAL_TAG_LEADER_ERIKA            0x112D
+#define OBJ_EVENT_PAL_TAG_LEADER_LT_SURGE         0x112E
+#define OBJ_EVENT_PAL_TAG_LEADER_KOGA             0x112F
+#define OBJ_EVENT_PAL_TAG_LEADER_SABRINA          0x1130
+#define OBJ_EVENT_PAL_TAG_LEADER_BLAINE           0x1131
+#define OBJ_EVENT_PAL_TAG_LEADER_GIOVANNI         0x1132
+#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_LANCE        0x1133
+#define OBJ_EVENT_PAL_TAG_CHAMPION_BLUE           0x1134
+#define OBJ_EVENT_PAL_TAG_LEADER_FALKNER          0x1135
+#define OBJ_EVENT_PAL_TAG_LEADER_BUGSY            0x1136
+#define OBJ_EVENT_PAL_TAG_LEADER_WHITNEY          0x1137
+#define OBJ_EVENT_PAL_TAG_LEADER_MORTY            0x1138
+#define OBJ_EVENT_PAL_TAG_LEADER_CHUCK            0x1139
+#define OBJ_EVENT_PAL_TAG_LEADER_JASMINE          0x113A
+#define OBJ_EVENT_PAL_TAG_LEADER_PRYCE            0x113B
+#define OBJ_EVENT_PAL_TAG_LEADER_CLAIR            0x113C
+#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_WILL         0x113D
+#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_KAREN        0x113E
+#define OBJ_EVENT_PAL_TAG_LEADER_JANINE           0x113F
+#define OBJ_EVENT_PAL_TAG_LEADER_MAYLENE          0x1140
+#define OBJ_EVENT_PAL_TAG_LEADER_CRASHER_WAKE     0x1141
+#define OBJ_EVENT_PAL_TAG_LEADER_FANTINA          0x1142
+#define OBJ_EVENT_PAL_TAG_LEADER_BYRON            0x1143
+#define OBJ_EVENT_PAL_TAG_LEADER_CANDICE          0x1144
+#define OBJ_EVENT_PAL_TAG_LEADER_VOLKNER          0x1145
+#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_AARON        0x1146
+#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_BERTHA       0x1147
+#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_LUCIAN       0x1148
+#define OBJ_EVENT_PAL_TAG_CHAMPION_CYNTHIA        0x1149
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

@@ -296,6 +296,39 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafWatering;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Outfit_FRLG_LeafDecorating;
 
+// PWT
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Brock;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Misty;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Erika;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Lt_Surge;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Koga;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Sabrina;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Blaine;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Giovanni;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Lance;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Champion_Blue;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Falkner;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Bugsy;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Whitney;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Morty;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Chuck;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Jasmine;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Pryce;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Clair;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Will;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Karen;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Janine;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Maylene;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Crasher_Wake;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Fantina;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Byron;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Candice;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Volkner;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Aaron;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Bertha;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Lucian;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Champion_Cynthia;
+
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bard;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Hipster;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Trader;
@@ -601,6 +634,37 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_FISHING]       = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafFishing,
     [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_WATERING]      = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafWatering,
     [OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_DECORATING]    = &gObjectEventGraphicsInfo_Outfit_FRLG_LeafDecorating,
+    [OBJ_EVENT_GFX_LEADER_BROCK]                   = &gObjectEventGraphicsInfo_Leader_Brock,
+    [OBJ_EVENT_GFX_LEADER_MISTY]                   = &gObjectEventGraphicsInfo_Leader_Misty,
+    [OBJ_EVENT_GFX_LEADER_ERIKA]                   = &gObjectEventGraphicsInfo_Leader_Erika,
+    [OBJ_EVENT_GFX_LEADER_LT_SURGE]                = &gObjectEventGraphicsInfo_Leader_Lt_Surge,
+    [OBJ_EVENT_GFX_LEADER_KOGA]                    = &gObjectEventGraphicsInfo_Leader_Koga,
+    [OBJ_EVENT_GFX_LEADER_SABRINA]                 = &gObjectEventGraphicsInfo_Leader_Sabrina,
+    [OBJ_EVENT_GFX_LEADER_BLAINE]                  = &gObjectEventGraphicsInfo_Leader_Blaine,
+    [OBJ_EVENT_GFX_LEADER_GIOVANNI]                = &gObjectEventGraphicsInfo_Leader_Giovanni,
+    [OBJ_EVENT_GFX_ELITE_FOUR_LANCE]               = &gObjectEventGraphicsInfo_Elite_Four_Lance,
+    [OBJ_EVENT_GFX_CHAMPION_BLUE]                  = &gObjectEventGraphicsInfo_Champion_Blue,
+    [OBJ_EVENT_GFX_LEADER_FALKNER]                 = &gObjectEventGraphicsInfo_Leader_Falkner,
+    [OBJ_EVENT_GFX_LEADER_BUGSY]                   = &gObjectEventGraphicsInfo_Leader_Bugsy,
+    [OBJ_EVENT_GFX_LEADER_WHITNEY]                 = &gObjectEventGraphicsInfo_Leader_Whitney,
+    [OBJ_EVENT_GFX_LEADER_MORTY]                   = &gObjectEventGraphicsInfo_Leader_Morty,
+    [OBJ_EVENT_GFX_LEADER_CHUCK]                   = &gObjectEventGraphicsInfo_Leader_Chuck,
+    [OBJ_EVENT_GFX_LEADER_JASMINE]                 = &gObjectEventGraphicsInfo_Leader_Jasmine,
+    [OBJ_EVENT_GFX_LEADER_PRYCE]                   = &gObjectEventGraphicsInfo_Leader_Pryce,
+    [OBJ_EVENT_GFX_LEADER_CLAIR]                   = &gObjectEventGraphicsInfo_Leader_Clair,
+    [OBJ_EVENT_GFX_ELITE_FOUR_WILL]                = &gObjectEventGraphicsInfo_Elite_Four_Will,
+    [OBJ_EVENT_GFX_ELITE_FOUR_KAREN]               = &gObjectEventGraphicsInfo_Elite_Four_Karen,
+    [OBJ_EVENT_GFX_LEADER_JANINE]                  = &gObjectEventGraphicsInfo_Leader_Janine,
+    [OBJ_EVENT_GFX_LEADER_MAYLENE]                 = &gObjectEventGraphicsInfo_Leader_Maylene,
+    [OBJ_EVENT_GFX_LEADER_CRASHER_WAKE]            = &gObjectEventGraphicsInfo_Leader_Crasher_Wake,
+    [OBJ_EVENT_GFX_LEADER_FANTINA]                 = &gObjectEventGraphicsInfo_Leader_Fantina,
+    [OBJ_EVENT_GFX_LEADER_BYRON]                   = &gObjectEventGraphicsInfo_Leader_Byron,
+    [OBJ_EVENT_GFX_LEADER_CANDICE]                 = &gObjectEventGraphicsInfo_Leader_Candice,
+    [OBJ_EVENT_GFX_LEADER_VOLKNER]                 = &gObjectEventGraphicsInfo_Leader_Volkner,
+    [OBJ_EVENT_GFX_ELITE_FOUR_AARON]               = &gObjectEventGraphicsInfo_Elite_Four_Aaron,
+    [OBJ_EVENT_GFX_ELITE_FOUR_BERTHA]              = &gObjectEventGraphicsInfo_Elite_Four_Bertha,
+    [OBJ_EVENT_GFX_ELITE_FOUR_LUCIAN]              = &gObjectEventGraphicsInfo_Elite_Four_Lucian,
+    [OBJ_EVENT_GFX_CHAMPION_CYNTHIA]               = &gObjectEventGraphicsInfo_Champion_Cynthia,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

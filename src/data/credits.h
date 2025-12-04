@@ -19,6 +19,9 @@ enum
     PAGE_GRAPHICS_BRENDAN_MAY_ORAS_1,
     PAGE_GRAPHICS_BRENDAN_MAY_ORAS_2,
     PAGE_GRAPHICS_RED_LEAF_FRLG,
+    PAGE_GRAPHICS_GYM_LEADER_FRONT,
+    PAGE_GRAPHICS_GYM_LEADER_OW,
+    PAGE_GRAPHICS_GYM_LEADER_EXTENDED_OW,
     PAGE_DISCORD,
     PAGE_HONORABLE_MENTIONS,
     PAGE_PLACEHOLDER_01,
@@ -54,9 +57,6 @@ enum
     PAGE_PLACEHOLDER_31,
     PAGE_PLACEHOLDER_32,
     PAGE_PLACEHOLDER_33,
-    PAGE_PLACEHOLDER_34,
-    PAGE_PLACEHOLDER_35,
-    PAGE_PLACEHOLDER_36,
     PAGE_COUNT
 };
 
@@ -93,9 +93,9 @@ static const u8 sCreditsText_Tutorials[]                      = _("tutorials");
 static const u8 sCreditsText_SharedResources[]                = _("shared resources");
 // PAGE_MUSIC
 static const u8 sCreditsText_Music[]                          = _("MUSIC");
-static const u8 sCreditsText_DPPt[]                           = _("DPPt: aichiya");
-static const u8 sCreditsText_HGSS[]                           = _("HGSS: aichiya");
-static const u8 sCreditsText_BWB2W2[]                         = _("BWB2W2: aichiya");
+static const u8 sCreditsText_DPPtMusic[]                      = _("DPPt: aichiya");
+static const u8 sCreditsText_HGSSMusic[]                      = _("HGSS: aichiya");
+static const u8 sCreditsText_BWB2W2Music[]                    = _("BWB2W2: aichiya");
 // PAGE_TILESET_START
 static const u8 sCreditsText_TilesetsUsed[]                   = _("TILESETS USED:");
 // PAGE_TILESET_ORAS
@@ -146,6 +146,24 @@ static const u8 sCreditsText_Kasen[]                          = _("Kasen");
 static const u8 sCreditsText_RedLeafFRLG[]                    = _("RED/LEAF (REMAINING SPRITES)");
 // static const u8 sCreditsText_OverworldSprite[]                = _("OVERWOLRD SPRITES");
 static const u8 sCreditsText_poffincase[]                     = _("poffin_case");
+// PAGE_GRAPHICS_GYM_LEADER_FRONT
+static const u8 sCreditsText_GymLeaderFrontSprites[]          = _("GYM LEADER FRONT SPRITES");
+static const u8 sCreditsText_HGSS[]                           = _("HG / SS");
+static const u8 sCreditsText_BlackFragment[]                  = _("Black Fragment");
+static const u8 sCreditsText_DPPt[]                           = _("D / P / Pt");
+static const u8 sCreditsText_Rubire4[]                        = _("Rubire4");
+// PAGE_GRAPHICS_GYM_LEADER_OW
+static const u8 sCreditsText_GymLeaderOverworld[]             = _("GYM LEADER OVERWORLD");
+// static const u8 sCreditsText_HGSS[]                           = _("HG / SS");
+static const u8 sCreditsText_BlackFragmentKasen[]             = _("Black Fragment, Kasen");
+// static const u8 sCreditsText_DPPt[]                           =_("D / P / Pt");
+static const u8 sCreditsText_spilledpizza[]                   = _("spilledpizza");
+// PAGE_GRAPHICS_GYM_LEADER_EXTENDED_OW
+static const u8 sCreditsText_GymLeaderExtendedOverworld[]     = _("GYM LEADER EXTENDED OVERWORLD");
+static const u8 sCreditsText_FRLG[]                           = _("FR / LG");
+static const u8 sCreditsText_Horo[]                           = _("Horo");
+static const u8 sCreditsText_RSE[]                            = _("R / S / E");
+static const u8 sCreditsText_Bivurnum[]                       = _("Bivurnum");
 // PAGE_DISCORD
 static const u8 sCreditsText_DiscordChannels[]                = _("DISCORD CHANNELS");
 // static const u8 sCreditsText_TeamAquasHideout[]               = _("Team Aqua's Hideout");
@@ -184,9 +202,9 @@ static const struct CreditsEntry sCreditsEntry_ForTheir                         
 static const struct CreditsEntry sCreditsEntry_Tutorials                        = { 0, FALSE, sCreditsText_Tutorials};
 static const struct CreditsEntry sCreditsEntry_SharedResources                  = { 0, FALSE, sCreditsText_SharedResources};
 static const struct CreditsEntry sCreditsEntry_Music                            = { 0, TRUE, sCreditsText_Music};
-static const struct CreditsEntry sCreditsEntry_DPPt                             = { 0, FALSE, sCreditsText_DPPt};
-static const struct CreditsEntry sCreditsEntry_HGSS                             = { 0, FALSE, sCreditsText_HGSS};
-static const struct CreditsEntry sCreditsEntry_BWB2W2                           = { 0, FALSE, sCreditsText_BWB2W2};
+static const struct CreditsEntry sCreditsEntry_DPPtMusic                        = { 0, FALSE, sCreditsText_DPPtMusic};
+static const struct CreditsEntry sCreditsEntry_HGSSMusic                        = { 0, FALSE, sCreditsText_HGSSMusic};
+static const struct CreditsEntry sCreditsEntry_BWB2W2Music                      = { 0, FALSE, sCreditsText_BWB2W2Music};
 static const struct CreditsEntry sCreditsEntry_TilesetsUsed                     = { 0, TRUE, sCreditsText_TilesetsUsed};
 static const struct CreditsEntry sCreditsEntry_ORASTileset                      = { 0, TRUE, sCreditsText_ORASTileset};
 static const struct CreditsEntry sCreditsEntry_leob0505                         = { 0, FALSE, sCreditsText_leob0505};
@@ -225,6 +243,21 @@ static const struct CreditsEntry sCreditsEntry_Kasen                            
 static const struct CreditsEntry sCreditsEntry_RedLeafFRLG                      = { 0, TRUE, sCreditsText_RedLeafFRLG};
 // static const struct CreditsEntry sCreditsEntry_OverworldSprite                  = { 0, TRUE, sCreditsText_OverworldSprite};
 static const struct CreditsEntry sCreditsEntry_poffincase                       = { 0, FALSE, sCreditsText_poffincase};
+static const struct CreditsEntry sCreditsEntry_GymLeaderFrontSprites            = { 0, TRUE, sCreditsText_GymLeaderFrontSprites};
+static const struct CreditsEntry sCreditsEntry_HGSS                             = { 0, TRUE, sCreditsText_HGSS};
+static const struct CreditsEntry sCreditsEntry_BlackFragment                    = { 0, FALSE, sCreditsText_BlackFragment};
+static const struct CreditsEntry sCreditsEntry_DPPt                             = { 0, TRUE, sCreditsText_DPPt};
+static const struct CreditsEntry sCreditsEntry_Rubire4                          = { 0, FALSE, sCreditsText_Rubire4};
+static const struct CreditsEntry sCreditsEntry_GymLeaderOverworld               = { 0, TRUE, sCreditsText_GymLeaderOverworld};
+// static const struct CreditsEntry sCreditsEntry_HGSS                             = { 0, TRUE, sCreditsText_HGSS};
+static const struct CreditsEntry sCreditsEntry_BlackFragmentKasen               = { 0, FALSE, sCreditsText_BlackFragmentKasen};
+// static const struct CreditsEntry sCreditsEntry_DPPt                             = { 0, TRUE, sCreditsText_DPPt};
+static const struct CreditsEntry sCreditsEntry_spilledpizza                     = { 0, FALSE, sCreditsText_spilledpizza};
+static const struct CreditsEntry sCreditsEntry_GymLeaderExtendedOverworld       = { 0, TRUE, sCreditsText_GymLeaderExtendedOverworld};
+static const struct CreditsEntry sCreditsEntry_FRLG                             = { 0, TRUE, sCreditsText_FRLG};
+static const struct CreditsEntry sCreditsEntry_Horo                             = { 0, FALSE, sCreditsText_Horo};
+static const struct CreditsEntry sCreditsEntry_RSE                              = { 0, TRUE, sCreditsText_RSE};
+static const struct CreditsEntry sCreditsEntry_Bivurnum                         = { 0, FALSE, sCreditsText_Bivurnum};
 static const struct CreditsEntry sCreditsEntry_DiscordChannels                  = { 0, TRUE, sCreditsText_DiscordChannels};
 // static const struct CreditsEntry sCreditsEntry_TeamAquasHideout                 = { 0, FALSE, sCreditsText_TeamAquasHideout};
 static const struct CreditsEntry sCreditsEntry_RHHideout                        = { 0, FALSE, sCreditsText_RHHideout};
@@ -233,6 +266,7 @@ static const struct CreditsEntry sCreditsEntry_HonorableMentions                
 static const struct CreditsEntry sCreditsEntry_HonorableMentions1               = { 0, FALSE, sCreditsText_HonorableMentions1};
 static const struct CreditsEntry sCreditsEntry_HonorableMentions2               = { 0, FALSE, sCreditsText_HonorableMentions2};
 static const struct CreditsEntry sCreditsEntry_HonorableMentions3               = { 0, FALSE, sCreditsText_HonorableMentions3};
+// Remaining placeholders
 static const struct CreditsEntry sCreditsEntry_PlaceholderTitle                 = { 0, TRUE, sCreditsText_PlaceholderTitle};
 static const struct CreditsEntry sCreditsEntry_PlaceholderName                  = { 0, FALSE, sCreditsText_PlaceholderName};
 
@@ -284,9 +318,9 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
     },
     [PAGE_MUSIC] = {
         &sCreditsEntry_Music,
-        &sCreditsEntry_DPPt,
-        &sCreditsEntry_HGSS,
-        &sCreditsEntry_BWB2W2,
+        &sCreditsEntry_DPPtMusic,
+        &sCreditsEntry_HGSSMusic,
+        &sCreditsEntry_BWB2W2Music,
         _,
     },
     [PAGE_TILESET_START] = {
@@ -372,6 +406,27 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         &sCreditsEntry_OverworldSprite,
         &sCreditsEntry_poffincase,
         _,
+    },
+    [PAGE_GRAPHICS_GYM_LEADER_FRONT] = {
+        &sCreditsEntry_GymLeaderFrontSprites,
+        &sCreditsEntry_HGSS,
+        &sCreditsEntry_BlackFragment,
+        &sCreditsEntry_DPPt,
+        &sCreditsEntry_Rubire4,
+    },
+    [PAGE_GRAPHICS_GYM_LEADER_OW] = {
+        &sCreditsEntry_GymLeaderOverworld,
+        &sCreditsEntry_HGSS,
+        &sCreditsEntry_BlackFragmentKasen,
+        &sCreditsEntry_DPPt,
+        &sCreditsEntry_spilledpizza,
+    },
+    [PAGE_GRAPHICS_GYM_LEADER_EXTENDED_OW] = {
+        &sCreditsEntry_GymLeaderExtendedOverworld,
+        &sCreditsEntry_FRLG,
+        &sCreditsEntry_Horo,
+        &sCreditsEntry_RSE,
+        &sCreditsEntry_Bivurnum,
     },
     [PAGE_DISCORD] = {
         &sCreditsEntry_DiscordChannels,
@@ -612,27 +667,6 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         _,
     },
     [PAGE_PLACEHOLDER_33] = {
-        _,
-        &sCreditsEntry_PlaceholderTitle,
-        &sCreditsEntry_PlaceholderName,
-        _,
-        _,
-    },
-    [PAGE_PLACEHOLDER_34] = {
-        _,
-        &sCreditsEntry_PlaceholderTitle,
-        &sCreditsEntry_PlaceholderName,
-        _,
-        _,
-    },
-    [PAGE_PLACEHOLDER_35] = {
-        _,
-        &sCreditsEntry_PlaceholderTitle,
-        &sCreditsEntry_PlaceholderName,
-        _,
-        _,
-    },
-    [PAGE_PLACEHOLDER_36] = {
         _,
         &sCreditsEntry_PlaceholderTitle,
         &sCreditsEntry_PlaceholderName,
