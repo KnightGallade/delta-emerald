@@ -1,0 +1,557 @@
+raw `
+PetalburgCity_House1_MapScripts::
+	.byte 0
+
+PetalburgCity_House1_EventScript_Man::
+	msgbox PetalburgCity_House1_Text_TravelingIsWonderful, MSGBOX_NPC
+	end
+
+PetalburgCity_House1_EventScript_Woman::
+	msgbox PetalburgCity_House1_Text_GoOnAdventure, MSGBOX_NPC
+	end
+
+PetalburgCity_House1_EventScript_AdvanceQuests::
+	lockall
+	faceplayer
+	createfieldmugshot MUGSHOT_TEST, EMOTE_HAPPY
+	msgbox PetalburgCity_House1_Text_TravelingIsWonderful, MSGBOX_DEFAULT
+	removefieldmugshot
+	checkitem ITEM_JOURNAL
+	goto_if_eq VAR_RESULT, TRUE, PetalburgCity_House1_EventScript_AdvanceQuestsRelease
+	giveitem ITEM_JOURNAL
+	giveitem ITEM_OUTFIT_BOX
+	questmenu QUEST_MENU_SET_ACTIVE WINGS_OF_POWER
+	questmenu QUEST_MENU_SET_ACTIVE CORRUPTED_PECHA
+	releaseall
+	end
+
+PetalburgCity_House1_EventScript_AdvanceQuestsRelease::
+	release
+	end
+
+PetalburgCity_House1_EventScript_UpgradeShop::
+	lockall
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	upgradeshop PetalburgCity_House1_Upgrades
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	releaseall
+	end
+
+	.align 2
+PetalburgCity_House1_Upgrades:
+	.2byte ITEM_AXE
+	.2byte ITEM_LANTERN
+	.2byte ITEM_PICKAXE
+	.2byte ITEM_POWER_GLOVES
+	.2byte ITEM_MOCK_WAILMER
+	.2byte ITEM_RIDE_PAGER
+	.2byte ITEM_SCUBA_MASK
+	.2byte ITEM_MOCK_GYARADOS
+	.2byte ITEM_DIGGING_KIT
+	.2byte ITEM_TIDAL_TICKET
+	.2byte ITEM_EGG_INCUBATOR
+	.2byte ITEM_PLATINUM_CARD
+	.2byte ITEM_GYM_MEMBERSHIP
+	upgradeshoplistend
+
+PetalburgCity_House1_Text_TravelingIsWonderful:
+	.string "Traveling is wonderful!\p"
+	.string "When I was young, I roamed the seas\n"
+	.string "and the mountains!$"
+
+PetalburgCity_House1_Text_GoOnAdventure:
+	.string "Sigh…\p"
+	.string "I wish I could go on an adventure\n"
+	.string "with some POKéMON…\p"
+	.string "Crawl through some damp grass…\n"
+	.string "Climb rocky, rugged mountains…\p"
+	.string "Cross the raging seas…\n"
+	.string "Wander about in dark caves…\p"
+	.string "And, sometimes, even get a little\n"
+	.string "homesick…\p"
+	.string "It must be fabulous to travel!$"
+`
+
+script PetalburgCity_House1_PersonalityTest {
+    lockall
+    faceplayer
+    msgbox("Time for a quiz!")
+    waitmessage
+    // PMD:RRT, BRT
+    msgbox("A test is coming up.\nHow do you study?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Study hard", "At the last second", "Ignore it and play")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_HARDY, 2)
+        case 1:
+            addvar(VAR_NATURE_RELAXED, 2)
+        case 2:
+            addvar(VAR_NATURE_IMPISH, 2)
+    }
+	msgbox("Can you focus on something you like?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yes", "No")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_HARDY, 2)
+			addvar(VAR_NATURE_DOCILE, 1)
+        case 1:
+            addvar(VAR_NATURE_QUIRKY, 2)
+    }
+	msgbox("When the going gets tough,\ndo you get going?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yes", "No")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_HARDY, 2)
+			addvar(VAR_NATURE_BRAVE, 2)
+        case 1:
+            addvar(VAR_NATURE_SASSY, 2)
+			addvar(VAR_NATURE_QUIRKY, 2)
+    }
+	msgbox("There is a bucket. If you put water in it, how high will you fill it?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Full", "Half", "A little")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_HARDY, 2)
+        case 1:
+            addvar(VAR_NATURE_CALM, 2)
+        case 2:
+            addvar(VAR_NATURE_QUIRKY, 2)
+    }
+	msgbox("You are offered a choice of two gifts.\nWhich one will you take?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Big box", "Small box")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_DOCILE, 2)
+			addvar(VAR_NATURE_NAIVE, 1)
+        case 1:
+            addvar(VAR_NATURE_TIMID, 2)
+			addvar(VAR_NATURE_CALM, 1)
+    }
+	msgbox("YOu broke a rotten egg in your room.\nWhat will you do?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Open a window right away", "Take a sniff first")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_DOCILE, 2)
+			addvar(VAR_NATURE_HASTY, 1)
+        case 1:
+            addvar(VAR_NATURE_NAIVE, 2)
+			addvar(VAR_NATURE_RELAXED, 1)
+    }
+	msgbox("A friend brought over something you'd forgotten. How do you thank your friend?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Say thank you regularly", "Say thanks with a joke", "Say thanks, but be cool")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_DOCILE, 2)
+        case 1:
+            addvar(VAR_NATURE_NAIVE, 2)
+			addvar(VAR_NATURE_LONELY, 1)
+        case 2:
+            addvar(VAR_NATURE_SASSY, 2)
+    }
+	msgbox("There is a wallet at the side of a road.")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Turn it in to the police!", "Yay! Yay!", "Is anyone watching…?")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_DOCILE, 2)
+        case 1:
+            addvar(VAR_NATURE_NAIVE, 2)
+        case 2:
+            addvar(VAR_NATURE_IMPISH, 2)
+    }
+	msgbox("You're going bungee jumping for the first time. Since it's scary, you decide to test the jump with a doll... And the bungee cord snaps! Will you still try to make a jump anyway?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yes", "No")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_BRAVE, 3)
+            addvar(VAR_NATURE_IMPISH, 1)
+        case 1:
+            addvar(VAR_NATURE_DOCILE, 2)
+            addvar(VAR_NATURE_TIMID, 1)
+    }
+	msgbox("There is an alien invasion! What will you do?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Fight", "Run", "Ignore it")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            msgbox("You valiantly fight the aliens... But, you are defeated... An alien says to you... 'YOU HAVE IMPRESSED US. IT WAS A PLEASURE TO SEE. JOIN US, AND TOGETHER WE SHALL RULE THE WORLD.' What will you do?")
+            dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Rule with the aliens", "Refuse")
+            switch (var(VAR_RESULT)) {
+                case 0:
+                    addvar(VAR_NATURE_SASSY, 1)
+                    addvar(VAR_NATURE_RELAXED, 1)
+                case 1:
+                    addvar(VAR_NATURE_BRAVE, 4)
+            }
+        case 1:
+            addvar(VAR_NATURE_TIMID, 2)
+        case 2:
+            addvar(VAR_NATURE_RELAXED, 2)
+    }
+	msgbox("There is a scream from behind a door! How will you react?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yank open the door", "Scream in unison")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_HARDY, 1)
+            addvar(VAR_NATURE_BRAVE, 2)
+        case 1:
+            addvar(VAR_NATURE_NAIVE, 2)
+    }
+	msgbox("A delinquent is hassling a girl on a busy city street! What will you do?")
+    waitmessage
+    dynmultichoice(14, 5, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "Help without hesitation", "Help, even if scared", "Call the police", "Do nothing out of fear")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_BRAVE, 3)
+        case 1:
+            addvar(VAR_NATURE_HARDY, 2)
+            addvar(VAR_NATURE_BRAVE, 2)
+        case 2:
+            addvar(VAR_NATURE_DOCILE, 1)
+            addvar(VAR_NATURE_TIMID, 1)
+            addvar(VAR_NATURE_RELAXED, 1)
+        case 3:
+            addvar(VAR_NATURE_TIMID, 2)
+    }
+	msgbox("Are you a cheerful personality?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yes", "No")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_JOLLY, 2)
+            addvar(VAR_NATURE_NAIVE, 1)
+        case 1:
+            addvar(VAR_NATURE_SASSY, 1)
+            addvar(VAR_NATURE_QUIRKY, 1)
+    }
+	msgbox("Do you like to noisily enjoy yourself with others?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yes", "No")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_JOLLY, 2)
+            addvar(VAR_NATURE_LONELY, 1)
+        case 1:
+            addvar(VAR_NATURE_TIMID, 1)
+    }
+	msgbox("It's the summer holidays! Where would you like to go?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "The beach!", "Spas", "Anywhere")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_JOLLY, 2)
+        case 1:
+            addvar(VAR_NATURE_CALM, 2)
+        case 2:
+            addvar(VAR_NATURE_QUIRKY, 2)
+    }
+	msgbox("A foreign person has started up a conversation with you. To be honest, you don't have a clue what this fellow is saying. How do you reply?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Haha! Yes. Very funny!", "Um... Could you say that again?", "Right... Well, I gotta go.")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_JOLLY, 3)
+        case 1:
+            addvar(VAR_NATURE_HARDY, 2)
+        case 2:
+            addvar(VAR_NATURE_TIMID, 2)
+    }
+	msgbox("Have you ever made a pitfall trap?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yes", "No")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_IMPISH, 2)
+            addvar(VAR_NATURE_LONELY, 1)
+        case 1:
+            addvar(VAR_NATURE_CALM, 2)
+    }
+	msgbox("Do you like pranks?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yes", "No")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_IMPISH, 2)
+        case 1:
+            addvar(VAR_NATURE_DOCILE, 1)
+            addvar(VAR_NATURE_RELAXED, 1)
+    }
+	msgbox("Are there many things that you would like to do?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Yes", "No")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_HARDY, 1)
+            addvar(VAR_NATURE_IMPISH, 2)
+        case 1:
+            addvar(VAR_NATURE_SASSY, 1)
+            addvar(VAR_NATURE_QUIRKY, 2)
+    }
+	msgbox("Your friend is being bullied! What do you do?")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Face up to the bully", "Caution the bully from afar", "Heckle the bully from behind")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_NATURE_BRAVE, 3)
+        case 1:
+            addvar(VAR_NATURE_TIMID, 2)
+        case 2:
+            addvar(VAR_NATURE_IMPISH, 2)
+    }
+    // Category 6 - Naive - https://bulbapedia.bulbagarden.net/wiki/Personality_Quiz_(Mystery_Dungeon)#Category_#03_-_Brave
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+	msgbox("Q\nQ")
+    waitmessage
+    dynmultichoice(14, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "1", "2", "3")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            addvar(VAR_TEMP_0, 1)
+        case 1:
+            addvar(VAR_TEMP_0, 1)
+        case 2:
+            addvar(VAR_TEMP_0, 1)
+    }
+    releaseall
+    end
+}
