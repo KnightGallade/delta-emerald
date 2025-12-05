@@ -287,6 +287,9 @@ static bool8 MugshotTrainerPic_Slide(struct Sprite *);
 static bool8 MugshotTrainerPic_SlideSlow(struct Sprite *);
 static bool8 MugshotTrainerPic_SlidePartner(struct Sprite *);
 static bool8 MugshotTrainerPic_SlideOffscreen(struct Sprite *);
+static void Task_PWT(u8);
+static bool8 PWT_Init(struct Task *);
+static bool8 PWT_SetGfx(struct Task *);
 
 static s16 sDebug_RectangularSpiralData;
 static u8 sTestingTransitionId;
@@ -335,6 +338,9 @@ static const u32 sFrontierSquares_EmptyBg_Tileset[] = INCBIN_U32("graphics/battl
 static const u32 sFrontierSquares_Shrink1_Tileset[] = INCBIN_U32("graphics/battle_transitions/frontier_square_3.4bpp.smol");
 static const u32 sFrontierSquares_Shrink2_Tileset[] = INCBIN_U32("graphics/battle_transitions/frontier_square_4.4bpp.smol");
 static const u32 sFrontierSquares_Tilemap[] = INCBIN_U32("graphics/battle_transitions/frontier_squares.bin");
+static const u32 sPWT_Tileset[] = INCBIN_U32("graphics/battle_transitions/pwt.4bpp");
+static const u16 sFieldEffectPal_PWT[] = INCBIN_U16("graphics/field_effects/palettes/pwt.gbapal");
+static const u16 sPWT_Tilemap[] = INCBIN_U16("graphics/battle_transitions/pwt_map.bin");
 
 // All battle transitions use the same intro
 static const TaskFunc sTasks_Intro[B_TRANSITION_COUNT] =
@@ -384,6 +390,7 @@ static const TaskFunc sTasks_Main[B_TRANSITION_COUNT] =
     [B_TRANSITION_FRONTIER_CIRCLES_CROSS_IN_SEQ] = Task_FrontierCirclesCrossInSeq,
     [B_TRANSITION_FRONTIER_CIRCLES_ASYMMETRIC_SPIRAL_IN_SEQ] = Task_FrontierCirclesAsymmetricSpiralInSeq,
     [B_TRANSITION_FRONTIER_CIRCLES_SYMMETRIC_SPIRAL_IN_SEQ] = Task_FrontierCirclesSymmetricSpiralInSeq,
+    [B_TRANSITION_PWT] = Task_PWT,
 };
 
 static const TransitionStateFunc sTaskHandlers[] =
@@ -492,6 +499,16 @@ static const TransitionStateFunc sPokeballsTrail_Funcs[] =
     PokeballsTrail_Init,
     PokeballsTrail_Main,
     PokeballsTrail_End
+};
+
+static const TransitionStateFunc sPWT_Funcs[] =
+{
+    PWT_Init,
+    PWT_SetGfx,
+    PatternWeave_Blend1,
+    PatternWeave_Blend2,
+    PatternWeave_FinishAppear,
+    PatternWeave_CircularMask
 };
 
 #define NUM_POKEBALL_TRAILS 5
@@ -1356,6 +1373,11 @@ static void Task_Kyogre(u8 taskId)
     while (sKyogre_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
 }
 
+static void Task_PWT(u8 taskId)
+{
+    while (sPWT_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+}
+
 static void InitPatternWeaveTransition(struct Task *task)
 {
     s32 i;
@@ -1451,6 +1473,40 @@ static bool8 BigPokeball_SetGfx(struct Task *task)
     {
         for (j = 0; j < 30; j++, bigPokeballMap++)
             SET_TILE(tilemap, i, j, *bigPokeballMap);
+    }
+
+    SetSinWave((s16*)gScanlineEffectRegBuffers[0], 0, task->tSinIndex, 132, task->tAmplitude, DISPLAY_HEIGHT);
+
+    task->tState++;
+    return TRUE;
+}
+
+static bool8 PWT_Init(struct Task *task)
+{
+    u16 *tilemap, *tileset;
+
+    InitPatternWeaveTransition(task);
+    GetBg0TilesDst(&tilemap, &tileset);
+    CpuFill16(0, tilemap, BG_SCREEN_SIZE);
+    CpuCopy16(sPWT_Tileset, tileset, sizeof(sPWT_Tileset));
+    LoadPalette(sFieldEffectPal_PWT, BG_PLTT_ID(15), sizeof(sFieldEffectPal_PWT));
+
+    task->tState++;
+    return FALSE;
+}
+
+static bool8 PWT_SetGfx(struct Task *task)
+{
+    s16 i, j;
+    u16 *tilemap, *tileset;
+    const u16 *PWTMap;
+
+    GetBg0TilesDst(&tilemap, &tileset);
+    PWTMap = sPWT_Tilemap;
+    for (i = 0; i < 20; i++)
+    {
+        for (j = 0; j < 30; j++, PWTMap++)
+            SET_TILE(tilemap, i, j, *PWTMap);
     }
 
     SetSinWave((s16*)gScanlineEffectRegBuffers[0], 0, task->tSinIndex, 132, task->tAmplitude, DISPLAY_HEIGHT);

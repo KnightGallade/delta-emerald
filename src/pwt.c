@@ -5478,7 +5478,7 @@ void DoPWTTrainerBattle(void)
         gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
     CreateTask(Task_StartPWTBattleAfterTransition, 1);
     CreateTask_PlayMapChosenOrBattleBGM(0);
-    BattleTransition_StartOnField(GetSpecialBattleTransition(B_TRANSITION_GROUP_E_READER));
+    BattleTransition_StartOnField(B_TRANSITION_PWT);
 }
 
 void CopyPWTTrainerText(u8 whichText, u16 trainerId)
