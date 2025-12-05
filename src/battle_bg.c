@@ -659,7 +659,7 @@ static u8 GetBattleEnvironmentOverride(void)
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_EREADER_TRAINER))
         return BATTLE_ENVIRONMENT_FRONTIER;
-    else if (gBattleTypeFlags & BATTLE_TYPE_PWT)
+    else if (gBattleTypeFlags & BATTLE_TYPE_PWT) // TODO - get a battle environment for the PWT
         return BATTLE_ENVIRONMENT_CHAMPION;
     else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
     {
@@ -1055,7 +1055,7 @@ void DrawBattleEntryBackground(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_PWT)
     {
-        LoadBattleEnvironmentEntryGfx(BATTLE_ENVIRONMENT_LONG_GRASS);
+        LoadBattleEnvironmentEntryGfx(BATTLE_ENVIRONMENT_LONG_GRASS); // TODO - handle Battle environment for PWT, find the difference between this and battle environment override
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
     {

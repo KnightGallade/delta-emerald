@@ -370,6 +370,15 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_PYRAMID_KING] = { _("PYRAMID KING") },
     [TRAINER_CLASS_RS_PROTAG] = { _("{PKMN} TRAINER") },
     [TRAINER_CLASS_ORAS_PROTAG] = { _("{PKMN} TRAINER") },
+    [TRAINER_CLASS_KANTO_LEADER] = { _("LEADER"), 25 },
+    [TRAINER_CLASS_KANTO_ELITE_FOUR] = { _("ELITE FOUR"), 25 },
+    [TRAINER_CLASS_KANTO_CHAMPION] = { _("CHAMPION"), 50 },
+    [TRAINER_CLASS_JHOTO_LEADER] = { _("LEADER"), 25 },
+    [TRAINER_CLASS_JHOTO_ELITE_FOUR] = { _("ELITE FOUR"), 25 },
+    [TRAINER_CLASS_JHOTO_CHAMPION] = { _("CHAMPION"), 50 },
+    [TRAINER_CLASS_SINNOH_LEADER] = { _("LEADER"), 25 },
+    [TRAINER_CLASS_SINNOH_ELITE_FOUR] = { _("ELITE FOUR"), 25 },
+    [TRAINER_CLASS_SINNOH_CHAMPION] = { _("CHAMPION"), 50 },
 };
 
 static void (*const sTurnActionsFuncsTable[])(void) =
@@ -5434,7 +5443,7 @@ static void HandleEndTurn_BattleWon(void)
         gBattleOutcome &= ~B_OUTCOME_LINK_BATTLE_RAN;
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
-            && gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_PWT))
+            && gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL | BATTLE_TYPE_EREADER_TRAINER)) // BATTLE_TYPE_PWT; TODO - set up a different victory for final round PWT?
     {
         BattleStopLowHpSound();
         gBattlescriptCurrInstr = BattleScript_FrontierTrainerBattleWon;
@@ -5465,6 +5474,33 @@ static void HandleEndTurn_BattleWon(void)
             break;
         case TRAINER_CLASS_LEADER:
             PlayBGM(MUS_VICTORY_GYM_LEADER);
+            break;
+        case TRAINER_CLASS_KANTO_LEADER:
+            PlayBGM(MUS_RG_VICTORY_GYM_LEADER); // nothing better
+            break;
+        case TRAINER_CLASS_KANTO_ELITE_FOUR:
+            PlayBGM(MUS_RG_VICTORY_GYM_LEADER); // nothing better
+            break;
+        case TRAINER_CLASS_KANTO_CHAMPION:
+            PlayBGM(MUS_RG_VICTORY_GYM_LEADER); // nothing better
+            break;
+        case TRAINER_CLASS_JHOTO_LEADER:
+            PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
+            break;
+        case TRAINER_CLASS_JHOTO_ELITE_FOUR:
+            PlayBGM(MUS_HG_VICTORY_FRONTIER_BRAIN); // nothing better
+            break;
+        case TRAINER_CLASS_JHOTO_CHAMPION:
+            PlayBGM(MUS_HG_VICTORY_FRONTIER_BRAIN); // nothing better
+            break;
+        case TRAINER_CLASS_SINNOH_LEADER:
+            PlayBGM(MUS_DP_VICTORY_GYM_LEADER);
+            break;
+        case TRAINER_CLASS_SINNOH_ELITE_FOUR:
+            PlayBGM(MUS_DP_VICTORY_ELITE_FOUR);
+            break;
+        case TRAINER_CLASS_SINNOH_CHAMPION:
+            PlayBGM(MUS_DP_VICTORY_CHAMPION);
             break;
         default:
             PlayBGM(MUS_VICTORY_TRAINER);

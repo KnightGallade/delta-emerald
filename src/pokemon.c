@@ -6058,7 +6058,7 @@ u16 GetBattleBGM(void)
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
             trainerClass = GetFrontierOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
         else if (gBattleTypeFlags & BATTLE_TYPE_PWT)
-            trainerClass = GetFrontierOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
+            trainerClass = GetPWTOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
         else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
             trainerClass = TRAINER_CLASS_EXPERT;
         else
@@ -6094,6 +6094,24 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_PIKE_QUEEN:
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_VS_FRONTIER_BRAIN;
+        case TRAINER_CLASS_KANTO_LEADER:
+            return MUS_HG_VS_GYM_LEADER_KANTO;
+        case TRAINER_CLASS_KANTO_ELITE_FOUR:
+            return MUS_HG_VS_TRAINER_KANTO; // Nothing better
+        case TRAINER_CLASS_KANTO_CHAMPION:
+            return MUS_RG_VS_CHAMPION;
+        case TRAINER_CLASS_JHOTO_LEADER:
+            return MUS_HG_VS_GYM_LEADER;
+        case TRAINER_CLASS_JHOTO_ELITE_FOUR:
+            return MUS_HG_VS_FRONTIER_BRAIN; // nothing better
+        case TRAINER_CLASS_JHOTO_CHAMPION:
+            return MUS_HG_VS_CHAMPION;
+        case TRAINER_CLASS_SINNOH_LEADER:
+            return MUS_DP_VS_GYM_LEADER;
+        case TRAINER_CLASS_SINNOH_ELITE_FOUR:
+            return MUS_DP_VS_ELITE_FOUR;
+        case TRAINER_CLASS_SINNOH_CHAMPION:
+            return MUS_DP_VS_CHAMPION;
         default:
             return MUS_VS_TRAINER;
         }
