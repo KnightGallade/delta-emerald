@@ -301,7 +301,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Broc
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Misty;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Erika;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Lt_Surge;
-extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Koga;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Janine;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Sabrina;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Blaine;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Giovanni;
@@ -316,8 +316,8 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Jasm
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Pryce;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Clair;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Will;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Koga;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Karen;
-extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Janine;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Maylene;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Crasher_Wake;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Fantina;
@@ -640,7 +640,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_LEADER_MISTY]                   = &gObjectEventGraphicsInfo_Leader_Misty,
     [OBJ_EVENT_GFX_LEADER_ERIKA]                   = &gObjectEventGraphicsInfo_Leader_Erika,
     [OBJ_EVENT_GFX_LEADER_LT_SURGE]                = &gObjectEventGraphicsInfo_Leader_Lt_Surge,
-    [OBJ_EVENT_GFX_LEADER_KOGA]                    = &gObjectEventGraphicsInfo_Leader_Koga,
+    [OBJ_EVENT_GFX_LEADER_JANINE]                  = &gObjectEventGraphicsInfo_Leader_Janine,
     [OBJ_EVENT_GFX_LEADER_SABRINA]                 = &gObjectEventGraphicsInfo_Leader_Sabrina,
     [OBJ_EVENT_GFX_LEADER_BLAINE]                  = &gObjectEventGraphicsInfo_Leader_Blaine,
     [OBJ_EVENT_GFX_LEADER_GIOVANNI]                = &gObjectEventGraphicsInfo_Leader_Giovanni,
@@ -655,8 +655,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_LEADER_PRYCE]                   = &gObjectEventGraphicsInfo_Leader_Pryce,
     [OBJ_EVENT_GFX_LEADER_CLAIR]                   = &gObjectEventGraphicsInfo_Leader_Clair,
     [OBJ_EVENT_GFX_ELITE_FOUR_WILL]                = &gObjectEventGraphicsInfo_Elite_Four_Will,
+    [OBJ_EVENT_GFX_ELITE_FOUR_KOGA]                = &gObjectEventGraphicsInfo_Elite_Four_Koga,
     [OBJ_EVENT_GFX_ELITE_FOUR_KAREN]               = &gObjectEventGraphicsInfo_Elite_Four_Karen,
-    [OBJ_EVENT_GFX_LEADER_JANINE]                  = &gObjectEventGraphicsInfo_Leader_Janine,
     [OBJ_EVENT_GFX_LEADER_MAYLENE]                 = &gObjectEventGraphicsInfo_Leader_Maylene,
     [OBJ_EVENT_GFX_LEADER_CRASHER_WAKE]            = &gObjectEventGraphicsInfo_Leader_Crasher_Wake,
     [OBJ_EVENT_GFX_LEADER_FANTINA]                 = &gObjectEventGraphicsInfo_Leader_Fantina,

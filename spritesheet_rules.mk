@@ -5120,7 +5120,7 @@ $(OBJEVENTGFXDIR)/people/pwt/leader_erika.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/pwt/leader_lt_surge.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/pwt/leader_koga.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/pwt/leader_janine.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/pwt/leader_sabrina.4bpp: %.4bpp: %.png
@@ -5165,10 +5165,10 @@ $(OBJEVENTGFXDIR)/people/pwt/leader_clair.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/pwt/elite_four_will.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/pwt/elite_four_karen.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/pwt/elite_four_koga.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/pwt/leader_janine.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/pwt/elite_four_karen.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/pwt/leader_maylene.4bpp: %.4bpp: %.png

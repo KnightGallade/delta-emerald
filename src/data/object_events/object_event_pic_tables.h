@@ -1664,8 +1664,8 @@ static const struct SpriteFrameImage sPicTable_Leader_Lt_Surge[] = {
     overworld_ascending_frames(gObjectEventPic_Leader_Lt_Surge, 2, 4),
 };
 
-static const struct SpriteFrameImage sPicTable_Leader_Koga[] = {
-    overworld_ascending_frames(gObjectEventPic_Leader_Koga, 2, 4),
+static const struct SpriteFrameImage sPicTable_Leader_Janine[] = {
+    overworld_ascending_frames(gObjectEventPic_Leader_Janine, 2, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_Leader_Sabrina[] = {
@@ -1724,12 +1724,12 @@ static const struct SpriteFrameImage sPicTable_Elite_Four_Will[] = {
     overworld_ascending_frames(gObjectEventPic_Elite_Four_Will, 2, 4),
 };
 
-static const struct SpriteFrameImage sPicTable_Elite_Four_Karen[] = {
-    overworld_ascending_frames(gObjectEventPic_Elite_Four_Karen, 2, 4),
+static const struct SpriteFrameImage sPicTable_Elite_Four_Koga[] = {
+    overworld_ascending_frames(gObjectEventPic_Elite_Four_Koga, 2, 4),
 };
 
-static const struct SpriteFrameImage sPicTable_Leader_Janine[] = {
-    overworld_ascending_frames(gObjectEventPic_Leader_Janine, 2, 4),
+static const struct SpriteFrameImage sPicTable_Elite_Four_Karen[] = {
+    overworld_ascending_frames(gObjectEventPic_Elite_Four_Karen, 2, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_Leader_Maylene[] = {

@@ -306,7 +306,7 @@
 #define OBJ_EVENT_GFX_LEADER_MISTY                     298
 #define OBJ_EVENT_GFX_LEADER_ERIKA                     299
 #define OBJ_EVENT_GFX_LEADER_LT_SURGE                  300
-#define OBJ_EVENT_GFX_LEADER_KOGA                      301
+#define OBJ_EVENT_GFX_LEADER_JANINE                    301
 #define OBJ_EVENT_GFX_LEADER_SABRINA                   302
 #define OBJ_EVENT_GFX_LEADER_BLAINE                    303
 #define OBJ_EVENT_GFX_LEADER_GIOVANNI                  304
@@ -321,8 +321,8 @@
 #define OBJ_EVENT_GFX_LEADER_PRYCE                     313
 #define OBJ_EVENT_GFX_LEADER_CLAIR                     314
 #define OBJ_EVENT_GFX_ELITE_FOUR_WILL                  315
-#define OBJ_EVENT_GFX_ELITE_FOUR_KAREN                 316
-#define OBJ_EVENT_GFX_LEADER_JANINE                    317
+#define OBJ_EVENT_GFX_ELITE_FOUR_KOGA                  316
+#define OBJ_EVENT_GFX_ELITE_FOUR_KAREN                 317
 #define OBJ_EVENT_GFX_LEADER_MAYLENE                   318
 #define OBJ_EVENT_GFX_LEADER_CRASHER_WAKE              319
 #define OBJ_EVENT_GFX_LEADER_FANTINA                   320
@@ -477,7 +477,7 @@
 #define OBJ_EVENT_PAL_TAG_LEADER_MISTY            0x112C
 #define OBJ_EVENT_PAL_TAG_LEADER_ERIKA            0x112D
 #define OBJ_EVENT_PAL_TAG_LEADER_LT_SURGE         0x112E
-#define OBJ_EVENT_PAL_TAG_LEADER_KOGA             0x112F
+#define OBJ_EVENT_PAL_TAG_LEADER_JANINE           0x112F
 #define OBJ_EVENT_PAL_TAG_LEADER_SABRINA          0x1130
 #define OBJ_EVENT_PAL_TAG_LEADER_BLAINE           0x1131
 #define OBJ_EVENT_PAL_TAG_LEADER_GIOVANNI         0x1132
@@ -492,8 +492,8 @@
 #define OBJ_EVENT_PAL_TAG_LEADER_PRYCE            0x113B
 #define OBJ_EVENT_PAL_TAG_LEADER_CLAIR            0x113C
 #define OBJ_EVENT_PAL_TAG_ELITE_FOUR_WILL         0x113D
-#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_KAREN        0x113E
-#define OBJ_EVENT_PAL_TAG_LEADER_JANINE           0x113F
+#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_KOGA         0x113E
+#define OBJ_EVENT_PAL_TAG_ELITE_FOUR_KAREN        0x113F
 #define OBJ_EVENT_PAL_TAG_LEADER_MAYLENE          0x1140
 #define OBJ_EVENT_PAL_TAG_LEADER_CRASHER_WAKE     0x1141
 #define OBJ_EVENT_PAL_TAG_LEADER_FANTINA          0x1142

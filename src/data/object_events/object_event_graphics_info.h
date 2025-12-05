@@ -5812,9 +5812,9 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Lt_Surge = 
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Koga = {
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Janine = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_LEADER_KOGA,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LEADER_JANINE,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 256,
     .width = 16,
@@ -5827,7 +5827,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Koga = {
     .oam = &gObjectEventBaseOam_16x32,
     .subspriteTables = sOamTables_16x32,
     .anims = sAnimTable_Standard,
-    .images = sPicTable_Leader_Koga,
+    .images = sPicTable_Leader_Janine,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
@@ -6097,6 +6097,25 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Will = 
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Koga = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_ELITE_FOUR_KOGA,
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .paletteSlot = PALSLOT_NPC_2,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .compressed = FALSE,
+    .tracks = TRACKS_FOOT,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .anims = sAnimTable_Standard,
+    .images = sPicTable_Elite_Four_Koga,
+    .affineAnims = gDummySpriteAffineAnimTable,
+};
+
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Karen = {
     .tileTag = TAG_NONE,
     .paletteTag = OBJ_EVENT_PAL_TAG_ELITE_FOUR_KAREN,
@@ -6113,25 +6132,6 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elite_Four_Karen =
     .subspriteTables = sOamTables_16x32,
     .anims = sAnimTable_Standard,
     .images = sPicTable_Elite_Four_Karen,
-    .affineAnims = gDummySpriteAffineAnimTable,
-};
-
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leader_Janine = {
-    .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_LEADER_JANINE,
-    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
-    .size = 256,
-    .width = 16,
-    .height = 32,
-    .paletteSlot = PALSLOT_NPC_1,
-    .shadowSize = SHADOW_SIZE_M,
-    .inanimate = FALSE,
-    .compressed = FALSE,
-    .tracks = TRACKS_FOOT,
-    .oam = &gObjectEventBaseOam_16x32,
-    .subspriteTables = sOamTables_16x32,
-    .anims = sAnimTable_Standard,
-    .images = sPicTable_Leader_Janine,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
