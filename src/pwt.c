@@ -5504,4 +5504,5 @@ void GetPWTTrainerName(u8 *dst, u16 trainerId)
     SetPWTPtrsGetLevel();
     for (i = 0; i < PLAYER_NAME_LENGTH; i++)
         dst[i] = gPWTTrainersPtr[trainerId].trainerName[i];
+    dst[i] = EOS;
 }
