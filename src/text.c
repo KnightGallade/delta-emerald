@@ -1323,7 +1323,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
                     textPrinter->printerTemplate.currentChar++;
                     emote = *textPrinter->printerTemplate.currentChar;
                     textPrinter->printerTemplate.currentChar++;
-                    _CreateFieldMugshot(id, emote);
+                    _CreateFieldMugshot(id);
                     if (IsFieldMugshotActive())
                     {
                         gSprites[GetFieldMugshotSpriteId()].data[0] = TRUE;

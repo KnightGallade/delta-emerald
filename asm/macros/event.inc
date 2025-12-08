@@ -2325,10 +2325,9 @@
 	.endm
 
 	@ spawn a mugshot in the overworld at a specific coordinate
-	.macro createfieldmugshot id:req, emote=0
+	.macro createfieldmugshot id:req
 	callnative CreateFieldMugshot
 	.2byte \id
-	.2byte \emote
 	.endm
 
 	@ destroys a mugshot in the overworld, if there is one

@@ -73,9 +73,7 @@ void RemoveFieldMugshot(void)
 void CreateFieldMugshot(struct ScriptContext *ctx)
 {
     u16 id = VarGet(ScriptReadHalfword(ctx));
-    u16 emote = VarGet(ScriptReadHalfword(ctx));
-
-    _CreateFieldMugshot(id, emote);
+    _CreateFieldMugshot(id);
 }
 
 void _RemoveFieldMugshot(u8 slot)
@@ -96,14 +94,14 @@ void _RemoveFieldMugshot(u8 slot)
     }
 }
 
-void _CreateFieldMugshot(u32 id, u32 emote)
+void _CreateFieldMugshot(u32 id)
 {
     u32 slot = sFieldMugshotSlot;
     struct SpriteTemplate temp = sFieldMugshot_SpriteTemplate;
     struct CompressedSpriteSheet sheet = { .size=0x1000, .tag=slot+TAG_MUGSHOT };
     struct SpritePalette pal = { .tag = sheet.tag };
 
-    DebugPrintf("id: %u, emote: %u, sFieldMugshotSlot: %u, NULL: %d", id, emote, slot, sFieldMugshots[id][emote].gfx == NULL);
+    DebugPrintf("id: %u, sFieldMugshotSlot: %u, NULL: %d", id, slot, sFieldMugshots[id].gfx == NULL);
     if (sIsFieldMugshotActive)
     {
         _RemoveFieldMugshot(slot);
@@ -116,8 +114,8 @@ void _CreateFieldMugshot(u32 id, u32 emote)
 
     temp.tileTag = sheet.tag;
     temp.paletteTag = sheet.tag;
-    sheet.data = (sFieldMugshots[id][emote].gfx != NULL ? sFieldMugshots[id][emote].gfx : sFieldMugshotGfx_TestNormal);
-    pal.data = (sFieldMugshots[id][emote].pal != NULL ? sFieldMugshots[id][emote].pal : sFieldMugshotPal_TestNormal);
+    sheet.data = (sFieldMugshots[id].gfx != NULL ? sFieldMugshots[id].gfx : sFieldMugshotGfx_Test);
+    pal.data = (sFieldMugshots[id].pal != NULL ? sFieldMugshots[id].pal : sFieldMugshotPal_Test);
 
     LoadSpritePalette(&pal);
     LoadCompressedSpriteSheet(&sheet);
