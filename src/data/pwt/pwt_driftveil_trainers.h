@@ -13,7 +13,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_RIVAL,
+    .title = PWT_RANK_RIVAL,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -33,7 +33,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_LEADER,
+    .title = PWT_RANK_LEADER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -53,7 +53,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_IMPORTANT_NPC,
+    .title = PWT_RANK_IMPORTANT_NPC,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -73,7 +73,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_LEADER,
+    .title = PWT_RANK_LEADER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -93,7 +93,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_LEADER,
+    .title = PWT_RANK_LEADER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -113,7 +113,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_LEADER,
+    .title = PWT_RANK_LEADER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -133,7 +133,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_LEADER,
+    .title = PWT_RANK_LEADER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -153,7 +153,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -173,7 +173,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -193,7 +193,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -213,7 +213,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -233,7 +233,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -253,7 +253,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -273,7 +273,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -293,7 +293,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -313,7 +313,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -333,7 +333,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -353,7 +353,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -373,7 +373,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -393,7 +393,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -413,7 +413,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -433,7 +433,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -453,7 +453,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -473,7 +473,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -493,7 +493,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -513,7 +513,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -533,7 +533,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -553,7 +553,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -573,7 +573,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -593,7 +593,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -613,7 +613,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -633,7 +633,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -653,7 +653,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -673,7 +673,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -693,7 +693,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -713,7 +713,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -733,7 +733,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -753,7 +753,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -773,7 +773,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -793,7 +793,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -813,7 +813,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -833,7 +833,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -853,7 +853,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -873,7 +873,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -893,7 +893,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -913,7 +913,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -933,7 +933,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -953,7 +953,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -973,7 +973,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -993,7 +993,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1013,7 +1013,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1033,7 +1033,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1053,7 +1053,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1073,7 +1073,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1093,7 +1093,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1113,7 +1113,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1133,7 +1133,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1153,7 +1153,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1173,7 +1173,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1193,7 +1193,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1213,7 +1213,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1233,7 +1233,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1253,7 +1253,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1273,7 +1273,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1293,7 +1293,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1313,7 +1313,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")
@@ -1333,7 +1333,7 @@
         PWT_MON_DRIFTVEIL_HUGH_EELEKTROSS,
         PWT_MON_DRIFTVEIL_HUGH_SERPERIOR
     },
-    .title = PWT_TITLE_TRAINER,
+    .title = PWT_RANK_TRAINER,
     .battleData1 = COMPOUND_STRING("LINE 1"),
     .battleData2 = COMPOUND_STRING("LINE 2"),
     .battleData3 = COMPOUND_STRING("LINE 3")

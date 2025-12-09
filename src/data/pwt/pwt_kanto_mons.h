@@ -1,0 +1,1820 @@
+[PWT_MON_KANTO_LEADER_BROCK_GOLEM] = {
+    .species = SPECIES_GOLEM,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_RELICANTH] = {
+    .species = SPECIES_RELICANTH,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_OMASTAR] = {
+    .species = SPECIES_OMASTAR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_KABUTOPS] = {
+    .species = SPECIES_KABUTOPS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_ONIX] = {
+    .species = SPECIES_ONIX,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_RAMPARDOS] = {
+    .species = SPECIES_RAMPARDOS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_TYRANITAR] = {
+    .species = SPECIES_TYRANITAR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_RHYPERIOR] = {
+    .species = SPECIES_RHYPERIOR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_GOLEM_ALOLA] = {
+    .species = SPECIES_GOLEM_ALOLA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_DREDNAW] = {
+    .species = SPECIES_DREDNAW,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_KLAWF] = {
+    .species = SPECIES_KLAWF,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_MEGA_AERODACTYL] = {
+    .species = SPECIES_AERODACTYL,
+    .heldItem = ITEM_AERODACTYLITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_MEGA_BARBARACLE] = {
+    .species = SPECIES_BARBARACLE,
+    .heldItem = ITEM_BARBARACITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BROCK_LEGEND_TERRAKION] = {
+    .species = SPECIES_TERRAKION,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_GOLDUCK] = {
+    .species = SPECIES_GOLDUCK,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_SEAKING] = {
+    .species = SPECIES_SEAKING,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_LAPRAS] = {
+    .species = SPECIES_LAPRAS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_SLOWBRO] = {
+    .species = SPECIES_SLOWBRO,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_BLASTOISE] = {
+    .species = SPECIES_BLASTOISE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_CARRACOSTA] = {
+    .species = SPECIES_CARRACOSTA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_JELLICENT] = {
+    .species = SPECIES_JELLICENT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_TAUROS_PALDEA_AQUA] = {
+    .species = SPECIES_TAUROS_PALDEA_AQUA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_BRUXISH] = {
+    .species = SPECIES_BRUXISH,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_BARRASKEWDA] = {
+    .species = SPECIES_BARRASKEWDA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_PALAFIN] = {
+    .species = SPECIES_PALAFIN,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_MEGA_STARMIE] = {
+    .species = SPECIES_STARMIE,
+    .heldItem = ITEM_STARMINITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_MEGA_GRENINJA] = {
+    .species = SPECIES_GRENINJA,
+    .heldItem = ITEM_GRENINJITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_MISTY_LEGEND_SUICUNE] = {
+    .species = SPECIES_SUICUNE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_ELECTRODE] = {
+    .species = SPECIES_ELECTRODE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_MAGNEZONE] = {
+    .species = SPECIES_MAGNEZONE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_ELECTIVIRE] = {
+    .species = SPECIES_ELECTIVIRE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_JOLTEON] = {
+    .species = SPECIES_JOLTEON,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_LANTURN] = {
+    .species = SPECIES_LANTURN,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_PACHIRISU] = {
+    .species = SPECIES_PACHIRISU,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_STUNFISK] = {
+    .species = SPECIES_STUNFISK,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_TBDPIKACHU] = {
+    .species = SPECIES_PIKACHU, // TODO - SPECIES_TBDPIKACHU
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_RAICHU_ALOLA] = {
+    .species = SPECIES_RAICHU_ALOLA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_ARCTOZOLT] = {
+    .species = SPECIES_ARCTOZOLT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_IRON_THORNS] = {
+    .species = SPECIES_IRON_THORNS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_MEGA_RAICHU_X] = {
+    .species = SPECIES_RAICHU,
+    .heldItem = ITEM_NONE, // TODO - mega raichu X
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_MEGA_AMPHAROS] = {
+    .species = SPECIES_AMPHAROS,
+    .heldItem = ITEM_AMPHAROSITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_LT_SURGE_LEGEND_ZAPDOS] = {
+    .species = SPECIES_ZAPDOS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_VILEPLUME] = {
+    .species = SPECIES_VILEPLUME,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_VENUSAUR] = {
+    .species = SPECIES_VENUSAUR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_EXEGGUTOR] = {
+    .species = SPECIES_EXEGGUTOR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_JUMPLUFF] = {
+    .species = SPECIES_JUMPLUFF,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_BELLOSSOM] = {
+    .species = SPECIES_BELLOSSOM,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_WHIMSICOTT] = {
+    .species = SPECIES_WHIMSICOTT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_LILLIGANT] = {
+    .species = SPECIES_LILLIGANT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_DECIDUEYE] = {
+    .species = SPECIES_DECIDUEYE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_LURANTIS] = {
+    .species = SPECIES_LURANTIS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_ELDEGOSS] = {
+    .species = SPECIES_ELDEGOSS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_LILLIGANT_HISUI] = {
+    .species = SPECIES_LILLIGANT_HISUI,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_MEGA_VICTREEBEL] = {
+    .species = SPECIES_VICTREEBEL,
+    .heldItem = ITEM_VICTREEBELITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_MEGA_MEGANIUM] = {
+    .species = SPECIES_MEGANIUM,
+    .heldItem = ITEM_MEGANIUMITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_ERIKA_LEGEND_VIRIZION] = {
+    .species = SPECIES_VIRIZION,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_VENOMOTH] = {
+    .species = SPECIES_VENOMOTH,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_WEEZING] = {
+    .species = SPECIES_WEEZING,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_TENTACRUEL] = {
+    .species = SPECIES_TENTACRUEL,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_ARIADOS] = {
+    .species = SPECIES_ARIADOS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_CROBAT] = {
+    .species = SPECIES_CROBAT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_ROSERADE] = {
+    .species = SPECIES_ROSERADE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_NIDOQUEEN] = {
+    .species = SPECIES_NIDOQUEEN,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_DRAPION] = {
+    .species = SPECIES_DRAPION,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_MUK_ALOLA] = {
+    .species = SPECIES_MUK_ALOLA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_SLOWBRO_GALAR] = {
+    .species = SPECIES_SLOWBRO_GALAR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_CLODSIRE] = {
+    .species = SPECIES_CLODSIRE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_MEGA_SCOLIPEDE] = {
+    .species = SPECIES_SCOLIPEDE,
+    .heldItem = ITEM_SCOLIPITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_MEGA_VENUSAUR] = {
+    .species = SPECIES_VENUSAUR,
+    .heldItem = ITEM_VENUSAURITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_JANINE_LEGEND_NIHILEGO] = {
+    .species = SPECIES_NIHILEGO,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_HYPNO] = {
+    .species = SPECIES_HYPNO,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_MR_MIME] = {
+    .species = SPECIES_MR_MIME,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_SLOWKING] = {
+    .species = SPECIES_SLOWKING,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_ESPEON] = {
+    .species = SPECIES_ESPEON,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_JYNX] = {
+    .species = SPECIES_JYNX,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_METAGROSS] = {
+    .species = SPECIES_METAGROSS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_EXEGGUTOR] = {
+    .species = SPECIES_EXEGGUTOR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_SIGILYPH] = {
+    .species = SPECIES_SIGILYPH,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_TBDPIKACHU] = {
+    .species = SPECIES_PIKACHU, // TODO - SPECIES_TBDPIKACHU
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_MR_RIME] = {
+    .species = SPECIES_MR_RIME,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_SCREAM_TAIL] = {
+    .species = SPECIES_SCREAM_TAIL,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_MEGA_ALAKAZAM] = {
+    .species = SPECIES_ALAKAZAM,
+    .heldItem = ITEM_ALAKAZITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_MEGA_DELPHOX] = {
+    .species = SPECIES_DELPHOX,
+    .heldItem = ITEM_DELPHOXITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_SABRINA_LEGEND_CRESSELIA] = {
+    .species = SPECIES_CRESSELIA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_ARCANINE] = {
+    .species = SPECIES_ARCANINE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_NINETALES] = {
+    .species = SPECIES_NINETALES,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_MAGMORTAR] = {
+    .species = SPECIES_MAGMORTAR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_FLAREON] = {
+    .species = SPECIES_FLAREON,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_RAPIDASH] = {
+    .species = SPECIES_RAPIDASH,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_ROTOM_HEAT] = {
+    .species = SPECIES_ROTOM_HEAT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_TAUROS_PALDEA_BLAZE] = {
+    .species = SPECIES_TAUROS_PALDEA_BLAZE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_TBDPIKACHU1] = {
+    .species = SPECIES_PIKACHU, // TODO - SPECIES_TBDPIKACHU
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_INCINEROAR] = {
+    .species = SPECIES_INCINEROAR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_TBDPIKACHU2] = {
+    .species = SPECIES_PIKACHU, // TODO - SPECIES_TBDPIKACHU
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_TYPHLOSION_HISUI] = {
+    .species = SPECIES_TYPHLOSION_HISUI,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_MEGA_CHARIZARD_Y] = {
+    .species = SPECIES_CHARIZARD,
+    .heldItem = ITEM_CHARIZARDITE_Y,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_MEGA_EMBOAR] = {
+    .species = SPECIES_EMBOAR,
+    .heldItem = ITEM_EMBOARITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_BLAINE_LEGEND_MOLTRES] = {
+    .species = SPECIES_MOLTRES,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_RHYPERIOR] = {
+    .species = SPECIES_RHYPERIOR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_GOLEM] = {
+    .species = SPECIES_GOLEM,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_NIDOKING] = {
+    .species = SPECIES_NIDOKING,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_MAROWAK] = {
+    .species = SPECIES_MAROWAK,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_SANDSLASH] = {
+    .species = SPECIES_SANDSLASH,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_NIDOQUEEN] = {
+    .species = SPECIES_NIDOQUEEN,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_KROOKODILE] = {
+    .species = SPECIES_KROOKODILE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_GOLURK] = {
+    .species = SPECIES_GOLURK,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_GLISCOR] = {
+    .species = SPECIES_GLISCOR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_STUNFISK_GALAR] = {
+    .species = SPECIES_STUNFISK_GALAR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_TOEDSCRUEL] = {
+    .species = SPECIES_TOEDSCRUEL,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_MEGA_GARCHOMP] = {
+    .species = SPECIES_GARCHOMP,
+    .heldItem = ITEM_GARCHOMPITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_MEGA_EXCADRILL] = {
+    .species = SPECIES_EXCADRILL,
+    .heldItem = ITEM_EXCADRITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_LEADER_GIOVANNI_LEGEND_LANDORUS_INCARNATE] = {
+    .species = SPECIES_LANDORUS_INCARNATE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_DEWGONG] = {
+    .species = SPECIES_DEWGONG,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_CLOYSTER] = {
+    .species = SPECIES_CLOYSTER,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_JYNX] = {
+    .species = SPECIES_JYNX,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_LAPRAS] = {
+    .species = SPECIES_LAPRAS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_MAMOSWINE] = {
+    .species = SPECIES_MAMOSWINE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_SANDSLASH_ALOLA] = {
+    .species = SPECIES_SANDSLASH_ALOLA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_NINETALES_ALOLA] = {
+    .species = SPECIES_NINETALES_ALOLA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_DELIBIRD] = {
+    .species = SPECIES_DELIBIRD,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_AURORUS] = {
+    .species = SPECIES_AURORUS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_EISCUE] = {
+    .species = SPECIES_EISCUE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_CETITAN] = {
+    .species = SPECIES_CETITAN,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_MEGA_SLOWBRO] = {
+    .species = SPECIES_SLOWBRO,
+    .heldItem = ITEM_SLOWBRONITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_MEGA_FROSLASS] = {
+    .species = SPECIES_FROSLASS,
+    .heldItem = ITEM_FROSLASSITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LORELEI_LEGEND_ARTICUNO] = {
+    .species = SPECIES_ARTICUNO,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_HITMONCHAN] = {
+    .species = SPECIES_HITMONCHAN,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_HITMONLEE] = {
+    .species = SPECIES_HITMONLEE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_MACHAMP] = {
+    .species = SPECIES_MACHAMP,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_HITMONTOP] = {
+    .species = SPECIES_HITMONTOP,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_PANGORO] = {
+    .species = SPECIES_PANGORO,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_TAUROS_PALDEA_COMBAT] = {
+    .species = SPECIES_TAUROS_PALDEA_COMBAT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_INFERNAPE] = {
+    .species = SPECIES_INFERNAPE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_CONKELDURR] = {
+    .species = SPECIES_CONKELDURR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_CRABOMINABLE] = {
+    .species = SPECIES_CRABOMINABLE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_GRAPPLOCT] = {
+    .species = SPECIES_GRAPPLOCT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_GREAT_TUSK] = {
+    .species = SPECIES_GREAT_TUSK,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_MEGA_CHESNAUGHT] = {
+    .species = SPECIES_CHESNAUGHT,
+    .heldItem = ITEM_CHESNAUGHTITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_MEGA_LUCARIO_Z] = {
+    .species = SPECIES_LUCARIO,
+    .heldItem = ITEM_LUCARIONITE, // TODO - Z stone instead
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_BRUNO_LEGEND_COBALION] = {
+    .species = SPECIES_COBALION,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_MISMAGIUS] = {
+    .species = SPECIES_MISMAGIUS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_COFAGRIGUS] = {
+    .species = SPECIES_COFAGRIGUS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_SPIRITOMB] = {
+    .species = SPECIES_SPIRITOMB,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_SHEDINJA] = {
+    .species = SPECIES_SHEDINJA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_GOLURK] = {
+    .species = SPECIES_GOLURK,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_ROTOM] = {
+    .species = SPECIES_ROTOM,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_DUSKNOIR] = {
+    .species = SPECIES_DUSKNOIR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_AEGISLASH] = {
+    .species = SPECIES_AEGISLASH,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_MAROWAK_ALOLA] = {
+    .species = SPECIES_MAROWAK_ALOLA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_DRAGAPULT] = {
+    .species = SPECIES_DRAGAPULT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_HOUNDSTONE] = {
+    .species = SPECIES_HOUNDSTONE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_MEGA_GENGAR] = {
+    .species = SPECIES_GENGAR,
+    .heldItem = ITEM_GENGARITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_MEGA_CHANDELURE] = {
+    .species = SPECIES_CHANDELURE,
+    .heldItem = ITEM_CHANDELURITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_AGATHA_LEGEND_SPECTRIER] = {
+    .species = SPECIES_SPECTRIER,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_DRAGONITE] = {
+    .species = SPECIES_DRAGONITE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_SALAMENCE] = {
+    .species = SPECIES_SALAMENCE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_KINGDRA] = {
+    .species = SPECIES_KINGDRA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_HYDREIGON] = {
+    .species = SPECIES_HYDREIGON,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_HAXORUS] = {
+    .species = SPECIES_HAXORUS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_FLYGON] = {
+    .species = SPECIES_FLYGON,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_AERODACTYL] = {
+    .species = SPECIES_AERODACTYL,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_GYARADOS] = {
+    .species = SPECIES_GYARADOS,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_EXEGGUTOR_ALOLA] = {
+    .species = SPECIES_EXEGGUTOR_ALOLA,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_DRACOVISH] = {
+    .species = SPECIES_DRACOVISH,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_CYCLIZAR] = {
+    .species = SPECIES_CYCLIZAR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_MEGA_CHARIZARD_X] = {
+    .species = SPECIES_CHARIZARD,
+    .heldItem = ITEM_CHARIZARDITE_X,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_MEGA_DRAGALGE] = {
+    .species = SPECIES_DRAGALGE,
+    .heldItem = ITEM_DRAGALGITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_ELITE_FOUR_LANCE_LEGEND_GUZZLORD] = {
+    .species = SPECIES_GUZZLORD,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_PIDGEOT] = {
+    .species = SPECIES_PIDGEOT,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_ALAKAZAM] = {
+    .species = SPECIES_ALAKAZAM,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_RHYPERIOR] = {
+    .species = SPECIES_RHYPERIOR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_EXEGGUTOR] = {
+    .species = SPECIES_EXEGGUTOR,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_ARCANINE] = {
+    .species = SPECIES_ARCANINE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_MACHAMP] = {
+    .species = SPECIES_MACHAMP,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_AERODACTYL] = {
+    .species = SPECIES_AERODACTYL,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_TBDPIKACHU1] = {
+    .species = SPECIES_PIKACHU, // TODO - SPECIES_TBDPIKACHU
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_TBDPIKACHU2] = {
+    .species = SPECIES_PIKACHU, // TODO - SPECIES_TBDPIKACHU
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_TBDPIKACHU3] = {
+    .species = SPECIES_PIKACHU, // TODO - SPECIES_TBDPIKACHU
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_CERULEDGE] = {
+    .species = SPECIES_CERULEDGE,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_MEGA_GYARADOS] = {
+    .species = SPECIES_GYARADOS,
+    .heldItem = ITEM_GYARADOSITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_MEGA_KANGASKHAN] = {
+    .species = SPECIES_KANGASKHAN,
+    .heldItem = ITEM_KANGASKHANITE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},
+[PWT_MON_KANTO_CHAMPION_BLUE_LEGEND_ENTEI] = {
+    .species = SPECIES_ENTEI,
+    .heldItem = ITEM_NONE,
+    .nature = NUM_NATURES,
+    .ability = ABILITY_INTIMIDATE,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
+    .iv = 0,
+    .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .gender = TRAINER_MON_RANDOM_GENDER
+},

@@ -1,5 +1,8 @@
 const struct PWTTrainerData gPWTTrainerData[PWT_TRAINERS_COUNT] =
 {
-    # include "pwt_driftveil_trainers.h"
-    # include "pwt_royale_trainers.h"
+    // # include "pwt_driftveil_trainers.h"
+    # include "pwt_kanto_trainers.h"
+    # include "pwt_jhoto_trainers.h"
+    // # include "pwt_hoenn_trainers.h"
+    // # include "pwt_sinnoh_trainers.h"
 };
