@@ -553,7 +553,7 @@ struct PWT
     // TODO - add some bit seperations (ex: u8 tournamentId:6) once full data structure is set to save space
     u8 tournamentType; // 0 = inactive, Region, World, Champions, etc.
     u8 battleMode; // Singles, Doubles, Multi, or Link
-    u8 curRound; 
+    u8 curRound;
     u16 selectedPartyMons[MAX_PWT_PARTY_SIZE];
     struct PWTTrainer PWTTrainers[PWT_TOURNAMENT_SIZE];
     struct PWTMonData pwtPlayerPartyData[PWT_PARTY_SIZE];
