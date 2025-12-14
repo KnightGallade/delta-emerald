@@ -1162,7 +1162,6 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/battle_frontier.inc"
 	.include "data/scripts/apricorn_tree.inc"
 	.include "data/maps/DistortionWorld_End/scripts.inc"
-	.include "data/text/pwt.inc"
 	.include "data/maps/PWT_Lobby/scripts.inc"
 	.include "data/maps/PWT_Corridor/scripts.inc"
 	.include "data/maps/PWT_PreBattleRoom/scripts.inc"
