@@ -2396,7 +2396,7 @@ static void Task_HandlePWTInfoCardInput(u8 taskId)
             }
             for (i = NUM_PWT_INFOCARD_SPRITES / 2; i < NUM_PWT_INFOCARD_SPRITES; i++)
             {
-                if (i < 10)
+                if (i < 16)
                 {
                     if (sPWTInfoCard->spriteIds[i] != SPRITE_NONE)
                     {
@@ -2512,7 +2512,7 @@ static void Task_HandlePWTInfoCardInput(u8 taskId)
             }
             for (i = NUM_PWT_INFOCARD_SPRITES / 2; i < NUM_PWT_INFOCARD_SPRITES; i++)
             {
-                if (i < 10)
+                if (i < 16)
                 {
                     if (sPWTInfoCard->spriteIds[i] != SPRITE_NONE)
                     {
@@ -2595,7 +2595,7 @@ static void Task_HandlePWTInfoCardInput(u8 taskId)
             }
             for (i = NUM_PWT_INFOCARD_SPRITES / 2; i < NUM_PWT_INFOCARD_SPRITES; i++)
             {
-                if (i < 10)
+                if (i < 16)
                 {
                     if (sPWTInfoCard->spriteIds[i] != SPRITE_NONE)
                     {
@@ -2678,7 +2678,7 @@ static void Task_HandlePWTInfoCardInput(u8 taskId)
             }
             for (i = NUM_PWT_INFOCARD_SPRITES / 2; i < NUM_PWT_INFOCARD_SPRITES; i++)
             {
-                if (i < 10)
+                if (i < 16)
                 {
                     if (sPWTInfoCard->spriteIds[i] != SPRITE_NONE)
                     {
@@ -2759,7 +2759,7 @@ static void Task_HandlePWTInfoCardInput(u8 taskId)
             }
             for (i = NUM_PWT_INFOCARD_SPRITES / 2; i < NUM_PWT_INFOCARD_SPRITES; i++)
             {
-                if (i < 10)
+                if (i < 16)
                 {
                     if (sPWTInfoCard->spriteIds[i] != SPRITE_NONE)
                     {
@@ -2842,7 +2842,7 @@ static void Task_HandlePWTInfoCardInput(u8 taskId)
             }
             for (i = NUM_PWT_INFOCARD_SPRITES / 2; i < NUM_PWT_INFOCARD_SPRITES; i++)
             {
-                if (i < 10)
+                if (i < 16)
                 {
                     if (sPWTInfoCard->spriteIds[i] != SPRITE_NONE)
                     {
@@ -2936,7 +2936,7 @@ static void Task_HandlePWTInfoCardInput(u8 taskId)
             }
             for (i = NUM_PWT_INFOCARD_SPRITES / 2; i < NUM_PWT_INFOCARD_SPRITES; i++)
             {
-                if (i < 10)
+                if (i < 16)
                 {
                     if (sPWTInfoCard->spriteIds[i] != SPRITE_NONE)
                         FreeAndDestroyTrainerPicSprite(sPWTInfoCard->spriteIds[i]);
