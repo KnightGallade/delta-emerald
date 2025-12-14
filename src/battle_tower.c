@@ -42,8 +42,6 @@
 #include "constants/moves.h"
 #include "test/battle.h"
 #include "test/test_runner_battle.h"
-#include "pwt.h"
-#include "constants/pwt.h"
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
@@ -3285,10 +3283,6 @@ u8 SetFacilityPtrsGetLevel(void)
     if (gSaveBlock2Ptr->frontier.lvlMode == FRONTIER_LVL_TENT)
     {
         return SetTentPtrsGetLevel();
-    }
-    if (gSaveBlock2Ptr->pwt.tournamentType != PWT_TOURNAMENT_NONE) // TODO - handle better once tournaments finalized
-    {
-        return SetPWTPtrsGetLevel();
     }
     else
     {

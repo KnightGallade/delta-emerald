@@ -21,7 +21,7 @@
 [PWT_TRAINER_SINNOH_LEADER_GARDENIA] = {
     .facilityClass = FACILITY_CLASS_LEADER_GARDENIA,
     .trainerObjectGfxId = OBJ_EVENT_GFX_YOUNGSTER,
-    .trainerName = _("GARDINA"), // Gardenia
+    .trainerName = _("GARDENIA"),
     .speechBefore = COMPOUND_STRING("{CREATE_MUGSHOT MUGSHOT_GARDENIA}Before battle test\nnext line\pNext paragraph\pFinal paragraph test\p{DESTROY_MUGSHOT}$"),
     .speechWin = COMPOUND_STRING("Battle Won"),
     .speechLose = COMPOUND_STRING("Battle Lost"),
@@ -61,7 +61,7 @@
 [PWT_TRAINER_SINNOH_LEADER_CRASHER_WAKE] = {
     .facilityClass = FACILITY_CLASS_LEADER_CRASHER_WAKE,
     .trainerObjectGfxId = OBJ_EVENT_GFX_LEADER_CRASHER_WAKE,
-    .trainerName = _("WAKE"), // Crasher Wake
+    .trainerName = _("CRASHER WAKE"), // CRSHR WAKE
     .speechBefore = COMPOUND_STRING("{CREATE_MUGSHOT MUGSHOT_CRASHER_WAKE}Before battle test\nnext line\pNext paragraph\pFinal paragraph test\p{DESTROY_MUGSHOT}$"),
     .speechWin = COMPOUND_STRING("Battle Won"),
     .speechLose = COMPOUND_STRING("Battle Lost"),

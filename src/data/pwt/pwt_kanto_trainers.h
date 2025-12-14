@@ -66,7 +66,7 @@
 [PWT_TRAINER_KANTO_LEADER_LT_SURGE] = {
     .facilityClass = FACILITY_CLASS_LEADER_LT_SURGE,
     .trainerObjectGfxId = OBJ_EVENT_GFX_LEADER_LT_SURGE,
-    .trainerName = _("SURGE"), // Lt. Surge
+    .trainerName = _("LT. SURGE"),
     .speechBefore = COMPOUND_STRING("{CREATE_MUGSHOT MUGSHOT_LT_SURGE}Before battle test\nnext line\pNext paragraph\pFinal paragraph test\p{DESTROY_MUGSHOT}$"),
     .speechWin = COMPOUND_STRING("Battle Won"),
     .speechLose = COMPOUND_STRING("Battle Lost"),
@@ -226,7 +226,7 @@
 [PWT_TRAINER_KANTO_LEADER_GIOVANNI] = {
     .facilityClass = FACILITY_CLASS_LEADER_GIOVANNI,
     .trainerObjectGfxId = OBJ_EVENT_GFX_LEADER_GIOVANNI,
-    .trainerName = _("GIOVANI"), // Giovanni
+    .trainerName = _("GIOVANNI"),
     .speechBefore = COMPOUND_STRING("{CREATE_MUGSHOT MUGSHOT_GIOVANNI}Before battle test\nnext line\pNext paragraph\pFinal paragraph test\p{DESTROY_MUGSHOT}$"),
     .speechWin = COMPOUND_STRING("Battle Won"),
     .speechLose = COMPOUND_STRING("Battle Lost"),

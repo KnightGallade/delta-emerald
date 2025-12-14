@@ -420,17 +420,6 @@ struct DomeMonData
     //u8 padding;
 };
 
-struct PWTMonData
-{
-    u16 species;
-    u16 heldItem;
-    u8 nature;
-    u16 ability;
-    u8 evs[6];
-    u8 ivs[6];
-    u16 moves[4];
-};
-
 struct RentalMon
 {
     u16 monId;
@@ -454,7 +443,7 @@ struct PWTTrainer
     u16 trainerId:10;
     u16 isEliminated:1;
     u16 eliminatedAt:2;
-    u16 forfeited:3;
+    u16 forfeited:3; // TODO - verify if needed
 };
 
 #define DOME_TOURNAMENT_TRAINERS_COUNT 16
@@ -550,15 +539,13 @@ struct BattleFrontier
 
 struct PWT
 {
-    // TODO - add some bit seperations (ex: u8 tournamentId:6) once full data structure is set to save space
-    u8 tournamentType; // 0 = inactive, Region, World, Champions, etc.
-    u8 battleMode; // Singles, Doubles, Multi, or Link
-    u8 curRound;
-    u16 selectedPartyMons[MAX_PWT_PARTY_SIZE];
-    struct PWTTrainer PWTTrainers[PWT_TOURNAMENT_SIZE];
-    struct PWTMonData pwtPlayerPartyData[PWT_PARTY_SIZE];
-    u16 PWTMonIds[PWT_TOURNAMENT_SIZE][PWT_PARTY_SIZE];
-    u16 winningMoves[PWT_TOURNAMENT_SIZE];
+    u8 isActive:1; // Simple True/False currently in a PWT tournament
+    u8 tournament:5; // A 5bit ID for the tournament (ex: Driftveil, Kanto, etc.)
+    u8 battleStyle:2; // A 2bit ID for the battle style (ex: Singles, Doubles, Multi, and Link)
+    u8 roundNum; // Track which round the tournament is currently on
+    struct PWTTrainer pwtTrainers[PWT_TOURNAMENT_SIZE];
+    u16 pwtMonIds[PWT_TOURNAMENT_SIZE][PARTY_SIZE];
+    u16 selectedPartyMons[PWT_PARTY_SIZE];
 };
 
 struct ApprenticeQuestion

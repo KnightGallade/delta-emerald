@@ -14,9 +14,9 @@ script PWT_PreBattleRoom_EventScript_TurnPlayerNorth {
 }
 
 script PWT_PreBattleRoom_EventScript_EnterRoom {
-	goto_if_eq(VAR_0x8006, 1, PWT_PreBattleRoom_EventScript_ReturnFromBattle)
+	// goto_if_eq(VAR_0x8006, 1, PWT_PreBattleRoom_EventScript_ReturnFromBattle) // TODO - check where this is set
 	delay(1)
-	setvar(VAR_TEMP_0, 1)
+	setvar(VAR_TEMP_0, 1) // TODO - why?
 	applymovement(LOCALID_PLAYER, moves(walk_up * 4))
 	waitmovement(0)
 	lockall
@@ -40,13 +40,13 @@ script PWT_PreBattleRoom_EventScript_AskReadyForNextRound {
 script PWT_PreBattleRoom_EventScript_ShowOpponentInfo {
 	msgbox("{PLAYER}'s next opponent\nis this TRAINER.", MSGBOX_DEFAULT)
 	fadescreen (FADE_TO_BLACK)
-	pwt_showopponentinfo
+	pwt_ShowOpponentCard
 	waitstate
 	goto(PWT_PreBattleRoom_EventScript_AskReadyForNextRound)
 }
 
 script PWT_PreBattleRoom_EventScript_ShowTourneyTree {
-	pwt_get(PWT_DATA_BATTLE_NUM)
+	pwt_GetData(PWT_DATA_ROUND_NUM)
 	switch(var(VAR_RESULT)) {
 		case PWT_ROUND1:
 			msgbox("The tournament is in the 1st round.$", MSGBOX_DEFAULT)
@@ -58,26 +58,27 @@ script PWT_PreBattleRoom_EventScript_ShowTourneyTree {
 			msgbox("The tournament is up to the final.$", MSGBOX_DEFAULT)
 	}
 	fadescreen(FADE_TO_BLACK)
-	pwt_showtourneytree
+    pwt_ShowTourneyTree
 	waitstate
 	goto(PWT_PreBattleRoom_EventScript_AskReadyForNextRound)
 }
 
 script PWT_PreBattleRoom_EventScript_ContinueChallenge {
-	message("Please choose the two POKéMON\nthat are to appear in battle.")
+	message("Please choose the three POKéMON\nthat are to appear in battle.")
 	waitmessage
 	waitbuttonpress
 	fadescreen(FADE_TO_BLACK)
-	// TODO - optimize to no longer have levels or smaller party size
-	setvar(VAR_0x8004, FRONTIER_LVL_OPEN)
-	setvar(VAR_0x8005, 2) // For now, only 2/3
+	setvar(VAR_0x8004, FRONTIER_LVL_50) // Either FRONTIER_LVL_50 or FRONTIER_LVL_OPEN works since forced to LVL50
+	setvar(VAR_0x8005, PWT_PARTY_SIZE)
+	special(SavePlayerParty)
 	special(ChoosePartyForPWT)
 	waitstate
-	pwt_resetsketchbeforebattle
-	goto_if_eq(VAR_RESULT, 0, PWT_PreBattleRoom_EventScript_AskReadyForNextRound) // error during selection I imagine?
-	pwt_set(PWT_DATA_SELECTED_MONS)
-	pwt_reduceparty
-	pwt_setopponent
+	if (var(VAR_RESULT) == 0) {
+		special(LoadPlayerParty)
+		goto(PWT_PreBattleRoom_EventScript_AskReadyForNextRound)
+	}
+	pwt_SetPlayerParty
+	pwt_SetOpponentId
 	msgbox("Right this way, please.", MSGBOX_DEFAULT)
 	closemessage
 	applymovement(LOCALID_PWT_PRE_BATTLE_ATTENDANT, moves(walk_right, face_left))
@@ -97,9 +98,8 @@ script PWT_PreBattleRoom_EventScript_ContinueChallenge {
 }
 
 script PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage {
-	pwt_get(PWT_DATA_BATTLE_NUM)
+	pwt_GetData(PWT_DATA_ROUND_NUM)
     switch (var(VAR_RESULT)) {
-        // case PWT_ROUND1: since round complete, can't be on first round
         case PWT_ROUND1:
             message("Your 1st-round match is next.\nAre you ready?")
         case PWT_ROUND2:
@@ -112,31 +112,31 @@ script PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage {
     return
 }
 
-script PWT_PreBattleRoom_EventScript_ReturnFromBattle {
-	setvar(VAR_TEMP_0, 1)
-	msgbox("Time to heal", MSGBOX_DEFAULT)
-	special(LoadPlayerParty)
-	pwt_setpartyorder(PWT_PARTY_SIZE)
-	playfanfare(MUS_HEAL)
-	waitfanfare
-	special(HealPlayerParty)
-	call(PWT_PreBattleRoom_EventScript_RoundCompleteMessage)
-	fadescreen(FADE_TO_BLACK)
-	pwt_showstatictourneytree
-	waitstate
-	goto(PWT_PreBattleRoom_EventScript_AskReadyForNextRound)
-}
+// script PWT_PreBattleRoom_EventScript_ReturnFromBattle {
+// 	setvar(VAR_TEMP_0, 1)
+// 	msgbox("Time to heal", MSGBOX_DEFAULT)
+// 	special(LoadPlayerParty)
+// 	pwt_setpartyorder(PWT_PARTY_SIZE)
+// 	playfanfare(MUS_HEAL)
+// 	waitfanfare
+// 	special(HealPlayerParty)
+// 	call(PWT_PreBattleRoom_EventScript_RoundCompleteMessage)
+// 	fadescreen(FADE_TO_BLACK)
+// 	pwt_showstatictourneytree
+// 	waitstate
+// 	goto(PWT_PreBattleRoom_EventScript_AskReadyForNextRound)
+// }
 
-script PWT_PreBattleRoom_EventScript_RoundCompleteMessage {
-	pwt_get(PWT_DATA_BATTLE_NUM)
-    switch (var(VAR_RESULT)) {
-        // case PWT_ROUND1: since round complete, can't be on first round
-        case PWT_ROUND2:
-            msgbox("All 1st-round matches have been\ncompleted.\pThese are the teams that advanced!", MSGBOX_DEFAULT)
-        case PWT_SEMIFINAL:
-            msgbox("All 2nd-round matches have been\ncompleted.\pThese are the teams that advanced!", MSGBOX_DEFAULT)
-        case PWT_FINAL:
-            msgbox("All semifinal matches have been\ncompleted.\pThese are the teams that advanced!", MSGBOX_DEFAULT)
-    }
-    return
-}
+// script PWT_PreBattleRoom_EventScript_RoundCompleteMessage {
+// 	pwt_GetData(PWT_DATA_ROUND_NUM)
+//     switch (var(VAR_RESULT)) {
+//         // case PWT_ROUND1: since round complete, can't be on first round
+//         case PWT_ROUND2:
+//             msgbox("All 1st-round matches have been\ncompleted.\pThese are the teams that advanced!", MSGBOX_DEFAULT)
+//         case PWT_SEMIFINAL:
+//             msgbox("All 2nd-round matches have been\ncompleted.\pThese are the teams that advanced!", MSGBOX_DEFAULT)
+//         case PWT_FINAL:
+//             msgbox("All semifinal matches have been\ncompleted.\pThese are the teams that advanced!", MSGBOX_DEFAULT)
+//     }
+//     return
+// }

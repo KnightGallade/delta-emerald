@@ -1,7 +1,3 @@
-const NO_DRAW = 0
-const DRAW_TRAINER = 1
-const DRAW_TUCKER = 2
-
 mapscripts PWT_BattleRoom_MapScripts {
     MAP_SCRIPT_ON_TRANSITION : PWT_BattleRoom_OnTransition
     MAP_SCRIPT_ON_FRAME_TABLE [VAR_TEMP_0, 0: PWT_BattleRoom_EventScript_EnterRoom]
@@ -11,8 +7,8 @@ mapscripts PWT_BattleRoom_MapScripts {
 
 script PWT_BattleRoom_OnTransition {
 	setflag(FLAG_TEMP_HIDE_FOLLOWER)
-	pwt_setopponentgfx
-	pwt_get(PWT_DATA_BATTLE_NUM)
+	pwt_SetOpponentGFX
+	pwt_GetData(PWT_DATA_ROUND_NUM)
 	copyvar(VAR_TEMP_F, VAR_RESULT)
 	call_if_eq(VAR_RESULT, PWT_ROUND1, PWT_BattleRoom_EventScript_SetWalkingAudienceMemberPos)
 	setoutfitgfxintovar(VAR_OBJ_GFX_ID_1)
@@ -21,7 +17,7 @@ script PWT_BattleRoom_OnTransition {
 
 script PWT_BattleRoom_EventScript_EnterRoom {
 	lockall
-	call(PWT_BattleRoom_EventScript_GetRoundNum)
+	pwt_GetData(PWT_DATA_ROUND_NUM)
 	call_if_eq(VAR_RESULT, PWT_ROUND1, PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat)
 	applymovement(LOCALID_PWT_ANNOUNCER, Common_Movement_WalkInPlaceDown)
 	waitmovement(0)
@@ -29,23 +25,20 @@ script PWT_BattleRoom_EventScript_EnterRoom {
 	msgbox("{PLAYER} has entered the BATTLE DOME!$", MSGBOX_DEFAULT)
 	closemessage
 	showobjectat(LOCALID_PWT_PLAYER, MAP_PWT_BATTLE_ROOM)
-	goto_if_ne(VAR_TEMP_F, PWT_FINAL, PWT_BattleRoom_EventScript_PlayerEnter)
-}
-
-script PWT_BattleRoom_EventScript_PlayerEnter {
 	applymovement(LOCALID_PWT_PLAYER, moves(set_visible, delay_16, walk_up * 3, walk_right * 2))
 	playse(SE_M_ENCORE2)
 	call(PWT_BattleRoom_EventScript_AudienceLookAround)
 	waitmovement(0)
-	pwt_getopponentname
+	pwt_BufferBattleStrings
 	msgbox("{STR_VAR_1}\nmatch!\p{PLAYER} versus {STR_VAR_2}!\pLet the battle begin!$", MSGBOX_DEFAULT)
 	closemessage
 	applymovement(LOCALID_PWT_PLAYER, moves(walk_right))
 	applymovement(LOCALID_PWT_OPPONENT, moves(walk_left))
 	waitmovement(0)
-	pwt_getopponentintro(0)
+	pwt_ShowOpponentIntro
 	waitmessage
-	pwt_initopponentparty
+	pwt_SetOpponentParty
+    // TODO - in progress, reached here
 	call(PWT_BattleRoom_EventScript_DoPWTBattle)
 	releaseall
 	end
@@ -116,7 +109,7 @@ script PWT_BattleRoom_EventScript_PlayerEnter {
 // 	delay 60
 // 	dome_getroundtext
 // 	dome_resolvewinners DOME_PLAYER_WON_MATCH
-// 	pwt_get(PWT_DATA_BATTLE_NUM)
+// 	pwt_GetData(PWT_DATA_ROUND_NUM)
 // 	addvar VAR_RESULT, 1
 // 	frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT
 // 	switch VAR_RESULT
@@ -153,7 +146,7 @@ script PWT_BattleRoom_EventScript_PlayerEnter {
 // 	return
 
 script PWT_BattleRoom_EventScript_AnnouncePlayer {
-    pwt_get(PWT_DATA_BATTLE_NUM)
+    pwt_GetData(PWT_DATA_ROUND_NUM)
     switch (var(VAR_RESULT)) {
         case PWT_ROUND1:
             message("ROUND 1 MESSAGE\nPLAYER INTRODUCTION\p$")
@@ -168,23 +161,17 @@ script PWT_BattleRoom_EventScript_AnnouncePlayer {
     return
 }
 
-script PWT_BattleRoom_EventScript_GetRoundNum {
-	pwt_get(PWT_DATA_BATTLE_NUM)
-	return
-}
-
 script PWT_BattleRoom_EventScript_DoPWTBattle {
 	special(HealPlayerParty)
-	setvar(VAR_0x8004, SPECIAL_BATTLE_PWT) // TODO - determine why
-	setvar(VAR_0x8005, 0) // TODO - determine why
-	setvar(VAR_TEMP_9, 1) // TODO - determine why
+	// Not needed since created own special battle function setvar(VAR_0x8004, SPECIAL_BATTLE_PWT)
+	// Used to be to set double battle to FALSE, setvar(VAR_0x8005, 0)
+	setvar(VAR_TEMP_9, 1) // Makes it so OnResume runs after battle
 	// TODO - HERE 1
 	special(DoPWTTrainerBattle)
 	waitstate
 	setvar(VAR_TEMP_9, 0)
-	pwt_restorehelditems
+	special(LoadPlayerParty)
 	special(HealPlayerParty)
-	pwt_resetsketchafterbattle
 	return
 }
 
@@ -194,7 +181,7 @@ script PWT_BattleRoom_EventScript_SetUpObjects {
 	setoutfitgfxintovar(VAR_OBJ_GFX_ID_1)
 	setvar(VAR_TEMP_1, 1)
 	applymovement(LOCALID_PLAYER, moves(set_invisible))
-	pwt_get(PWT_DATA_BATTLE_NUM)
+	pwt_GetData(PWT_DATA_ROUND_NUM)
 }
 
 script PWT_BattleRoom_OnResume {

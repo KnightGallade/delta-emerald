@@ -16,8 +16,8 @@ PWT_BattleRoom_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
 
 PWT_BattleRoom_OnTransition::
 	setflag FLAG_TEMP_HIDE_FOLLOWER
-	pwt_setopponentgfx
-	pwt_get PWT_DATA_BATTLE_NUM
+	pwt_SetOpponentGFX
+	pwt_GetData PWT_DATA_ROUND_NUM
 	copyvar VAR_TEMP_F, VAR_RESULT
 	call_if_eq VAR_RESULT, PWT_ROUND1, PWT_BattleRoom_EventScript_SetWalkingAudienceMemberPos
 	setoutfitgfxintovar VAR_OBJ_GFX_ID_1
@@ -26,7 +26,7 @@ PWT_BattleRoom_OnTransition::
 
 PWT_BattleRoom_EventScript_EnterRoom::
 	lockall
-	call PWT_BattleRoom_EventScript_GetRoundNum
+	pwt_GetData PWT_DATA_ROUND_NUM
 	call_if_eq VAR_RESULT, PWT_ROUND1, PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat
 	applymovement LOCALID_PWT_ANNOUNCER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
@@ -34,31 +34,26 @@ PWT_BattleRoom_EventScript_EnterRoom::
 	msgbox PWT_BattleRoom_EventScript_EnterRoom_Text_0, MSGBOX_DEFAULT
 	closemessage
 	showobjectat LOCALID_PWT_PLAYER, MAP_PWT_BATTLE_ROOM
-	goto_if_ne VAR_TEMP_F, PWT_FINAL, PWT_BattleRoom_EventScript_PlayerEnter
-	return
-
-
-PWT_BattleRoom_EventScript_PlayerEnter::
-	applymovement LOCALID_PWT_PLAYER, PWT_BattleRoom_EventScript_PlayerEnter_Movement_0
+	applymovement LOCALID_PWT_PLAYER, PWT_BattleRoom_EventScript_EnterRoom_Movement_0
 	playse SE_M_ENCORE2
 	call PWT_BattleRoom_EventScript_AudienceLookAround
 	waitmovement 0
-	pwt_getopponentname
-	msgbox PWT_BattleRoom_EventScript_PlayerEnter_Text_0, MSGBOX_DEFAULT
+	pwt_BufferBattleStrings
+	msgbox PWT_BattleRoom_EventScript_EnterRoom_Text_1, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_PWT_PLAYER, PWT_BattleRoom_EventScript_PlayerEnter_Movement_1
-	applymovement LOCALID_PWT_OPPONENT, PWT_BattleRoom_EventScript_PlayerEnter_Movement_2
+	applymovement LOCALID_PWT_PLAYER, PWT_BattleRoom_EventScript_EnterRoom_Movement_1
+	applymovement LOCALID_PWT_OPPONENT, PWT_BattleRoom_EventScript_EnterRoom_Movement_2
 	waitmovement 0
-	pwt_getopponentintro 0
+	pwt_ShowOpponentIntro
 	waitmessage
-	pwt_initopponentparty
+	pwt_SetOpponentParty
 	call PWT_BattleRoom_EventScript_DoPWTBattle
 	releaseall
 	end
 
 
 PWT_BattleRoom_EventScript_AnnouncePlayer::
-	pwt_get PWT_DATA_BATTLE_NUM
+	pwt_GetData PWT_DATA_ROUND_NUM
 	switch VAR_RESULT
 	case PWT_ROUND1, PWT_BattleRoom_EventScript_AnnouncePlayer_3
 	case PWT_ROUND2, PWT_BattleRoom_EventScript_AnnouncePlayer_4
@@ -85,22 +80,14 @@ PWT_BattleRoom_EventScript_AnnouncePlayer_6:
 	goto PWT_BattleRoom_EventScript_AnnouncePlayer_1
 
 
-PWT_BattleRoom_EventScript_GetRoundNum::
-	pwt_get PWT_DATA_BATTLE_NUM
-	return
-
-
 PWT_BattleRoom_EventScript_DoPWTBattle::
 	special HealPlayerParty
-	setvar VAR_0x8004, SPECIAL_BATTLE_PWT
-	setvar VAR_0x8005, 0
 	setvar VAR_TEMP_9, 1
 	special DoPWTTrainerBattle
 	waitstate
 	setvar VAR_TEMP_9, 0
-	pwt_restorehelditems
+	special LoadPlayerParty
 	special HealPlayerParty
-	pwt_resetsketchafterbattle
 	return
 
 
@@ -110,7 +97,7 @@ PWT_BattleRoom_EventScript_SetUpObjects::
 	setoutfitgfxintovar VAR_OBJ_GFX_ID_1
 	setvar VAR_TEMP_1, 1
 	applymovement LOCALID_PLAYER, PWT_BattleRoom_EventScript_SetUpObjects_Movement_0
-	pwt_get PWT_DATA_BATTLE_NUM
+	pwt_GetData PWT_DATA_ROUND_NUM
 	return
 
 
@@ -297,7 +284,7 @@ PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat::
 	return
 
 
-PWT_BattleRoom_EventScript_PlayerEnter_Movement_0:
+PWT_BattleRoom_EventScript_EnterRoom_Movement_0:
 	set_visible
 	delay_16
 	walk_up
@@ -307,11 +294,11 @@ PWT_BattleRoom_EventScript_PlayerEnter_Movement_0:
 	walk_right
 	step_end
 
-PWT_BattleRoom_EventScript_PlayerEnter_Movement_1:
+PWT_BattleRoom_EventScript_EnterRoom_Movement_1:
 	walk_right
 	step_end
 
-PWT_BattleRoom_EventScript_PlayerEnter_Movement_2:
+PWT_BattleRoom_EventScript_EnterRoom_Movement_2:
 	walk_left
 	step_end
 
@@ -330,7 +317,7 @@ PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat_Movement_0:
 PWT_BattleRoom_EventScript_EnterRoom_Text_0:
 	.string "{PLAYER} has entered the BATTLE DOME!$"
 
-PWT_BattleRoom_EventScript_PlayerEnter_Text_0:
+PWT_BattleRoom_EventScript_EnterRoom_Text_1:
 	.string "{STR_VAR_1}\nmatch!\p{PLAYER} versus {STR_VAR_2}!\pLet the battle begin!$"
 
 PWT_BattleRoom_EventScript_AnnouncePlayer_Text_0:

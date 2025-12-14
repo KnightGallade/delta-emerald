@@ -7357,7 +7357,6 @@ static u8 GetMaxBattleEntries(void)
         return MULTI_PARTY_SIZE;
     case FACILITY_UNION_ROOM:
         return UNION_ROOM_PARTY_SIZE;
-    case FACILITY_PWT:
     default: // Battle Frontier
         return gSpecialVar_0x8005;
     }
@@ -7371,7 +7370,6 @@ static u8 GetMinBattleEntries(void)
         return 1;
     case FACILITY_UNION_ROOM:
         return UNION_ROOM_PARTY_SIZE;
-    case FACILITY_PWT:
     default: // Battle Frontier
         return gSpecialVar_0x8005;
     }
@@ -7382,7 +7380,6 @@ static u8 GetBattleEntryLevelCap(void)
     switch (VarGet(VAR_FRONTIER_FACILITY))
     {
     case FACILITY_MULTI_OR_EREADER:
-    case FACILITY_PWT:
         return MAX_LEVEL;
     case FACILITY_UNION_ROOM:
         return UNION_ROOM_MAX_LEVEL;

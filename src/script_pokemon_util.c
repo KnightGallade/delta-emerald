@@ -216,6 +216,37 @@ static void CB2_ReturnFromChooseBattleFrontierParty(void)
     SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }
 
+void ChoosePartyForPWT(void)
+{
+    u8 i;
+    u8 targetLevel = 50;
+    u16 species;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL),
+        SetMonData(&gPlayerParty[i], MON_DATA_LEVEL, &targetLevel);
+        SetMonData(&gPlayerParty[i], MON_DATA_EXP, &gExperienceTables[gSpeciesInfo[species].growthRate][targetLevel]);
+        CalculateMonStats(&gPlayerParty[i]);
+    }
+    gMain.savedCallback = CB2_ReturnFromChoosePWTParty;
+    InitChooseHalfPartyForBattle(gSpecialVar_0x8004 + 1);
+}
+
+static void CB2_ReturnFromChoosePWTParty(void)
+{
+    switch (gSelectedOrderFromParty[0])
+    {
+    case 0:
+        gSpecialVar_Result = FALSE;
+        break;
+    default:
+        gSpecialVar_Result = TRUE;
+        break;
+    }
+
+    SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+}
+
 void ReducePlayerPartyToSelectedMons(void)
 {
     struct Pokemon party[MAX_FRONTIER_PARTY_SIZE];
@@ -769,25 +800,4 @@ void Script_SetStatus1(struct ScriptContext *ctx)
     {
         SetMonData(&gPlayerParty[slot], MON_DATA_STATUS, &status1);
     }
-}
-
-void ChoosePartyForPWT(void)
-{
-    gMain.savedCallback = CB2_ReturnFromChoosePWTParty;
-    InitChooseHalfPartyForBattle(gSpecialVar_0x8004 + 1);
-}
-
-static void CB2_ReturnFromChoosePWTParty(void)
-{
-    switch (gSelectedOrderFromParty[0])
-    {
-    case 0:
-        gSpecialVar_Result = FALSE;
-        break;
-    default:
-        gSpecialVar_Result = TRUE;
-        break;
-    }
-
-    SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }

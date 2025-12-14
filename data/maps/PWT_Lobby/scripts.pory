@@ -1,88 +1,96 @@
-mapscripts PWT_Lobby_MapScripts {}
+mapscripts PWT_Lobby_MapScripts {
+    // TODO - handle results of a random tournament
+    // TODO - handle forced save stuff
+}
+
 
 script PWT_Lobby_EventScript_Attendant {
-    lock
-    faceplayer
-    msgbox("Which battle format would\nyou like to try?", MSGBOX_DEFAULT)
+	lock
+	faceplayer
+	setvar(VAR_FRONTIER_FACILITY, FACILITY_PWT) // TODO - set the define to allow this, but need to figure out if necessary
+	special(SavePlayerParty)
+    setspeaker("Attendant")
+    msgbox(PWT_Lobby_Text_Introduction, MSGBOX_DEFAULT)
+    goto(PWT_Lobby_EventScript_AskTakeChallenge)
+}
+
+script PWT_Lobby_EventScript_AskTakeChallenge {
+    message("Would you like to enter?")
     waitmessage
-    dynmultichoice(17, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Singles", "Doubles","Cancel")
+    dynmultichoice(20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Enter", "Info", "Exit") // TODO - check location of options
     switch (var(VAR_RESULT)) {
         case 0:
-            setvar(VAR_FRONTIER_FACILITY, FACILITY_PWT)
-            setvar(VAR_FRONTIER_BATTLE_MODE, PWT_MODE_SINGLES) // VAR_FRONTIER_BATTLE_MODE used here, despite not frontier
+            goto(PWT_Lobby_EventScript_CheckElligibility)
         case 1:
-            setvar(VAR_FRONTIER_FACILITY, FACILITY_PWT)
-            setvar(VAR_FRONTIER_BATTLE_MODE, PWT_MODE_DOUBLES)
+            msgbox(PWT_Lobby_Text_ExplainChallenge, MSGBOX_DEFAULT)
+            goto(PWT_Lobby_EventScript_AskTakeChallenge) // Start over loop
         case 2:
         case MULTI_B_PRESSED:
-            msgbox("Cancelling", MSGBOX_DEFAULT)
-            goto(PWT_Lobby_EventScript_PWT_End)
+            goto(PWT_Lobby_EventScript_CancelChallenge)
     }
-    special(SavePlayerParty)
-    pwt_checkineligible
-    goto_if_eq(VAR_0x8004, TRUE, PWT_Lobby_EventScript_PWT_NotEnoughValidMons)
-    msgbox("Pick your mons", MSGBOX_DEFAULT)
-    fadescreen(FADE_TO_BLACK)
-	callnative(RemoveFollowingPokemon)
-    // Keep this here for now for selection screen
-    // TODO - better optimize in the future
-    setvar(VAR_0x8004, FRONTIER_LVL_OPEN)
-    // TODO - fix this to have all options later
-    switch (var(VAR_FRONTIER_BATTLE_MODE)) {
-        case PWT_MODE_SINGLES:
-            setvar(VAR_0x8005, PWT_PARTY_SIZE)
-        case PWT_MODE_DOUBLES:
-            setvar(VAR_0x8005, PWT_DOUBLES_PARTY_SIZE)
-    }
-    special(ChoosePartyForPWT)
-    waitstate
-    goto_if_eq(VAR_RESULT, 0, PWT_Lobby_EventScript_PWT_LoadPartyCancel)
-	msgbox("Ready to save?", MSGBOX_YESNO)
-	switch (var(VAR_RESULT)) {
-        case NO:
+}
+
+script PWT_Lobby_EventScript_CheckElligibility {
+    // First check if enough Pokémon are in team
+    specialvar(VAR_RESULT, CountPartyNonEggMons)
+    goto_if_lt(VAR_RESULT, 6, PWT_Lobby_EventScript_NotEnoughMons)
+    // Next, check if enough valid Pokémon are in team
+    pwt_CheckIneligible // TODO - write eligibility check
+    goto_if_eq(VAR_RESULT, TRUE, PWT_Lobby_EventScript_NotEligible)
+    goto(PWT_Lobby_EventScript_TryEnterChallenge)
+}
+
+script PWT_Lobby_EventScript_TryEnterChallenge {
+    setspeaker("Attendant")
+    message("In which tournament would you like to\nparticipate?")
+    waitmessage
+    dynmultichoice(20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Hoenn", "Royale", "Exit") // TODO - add more options
+    switch (var(VAR_RESULT)) {
+        case 0:
+            pwt_SetData(PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_HOENN)
+        case 1:
+            pwt_SetData(PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_ROYALE)
+        case 2:
         case MULTI_B_PRESSED:
-            goto(PWT_Lobby_EventScript_PWT_LoadPartyCancel)
-        case YES:
-            goto(PWT_Lobby_EventScript_PWT_SaveBeforeChallenge)
+            goto(PWT_Lobby_EventScript_CancelChallenge)
     }
+    setspeaker("Attendant")
+    message("In what battle style would you like to\nparticipate?")
+    waitmessage
+    dynmultichoice(20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Singles", "Doubles", "Multi", "Link", "Exit")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            pwt_SetData(PWT_DATA_BATTLE_STYLE, PWT_BATTLE_STYLE_SINGLES)
+        case 1:
+            pwt_SetData(PWT_DATA_BATTLE_STYLE, PWT_BATTLE_STYLE_DOUBLES)
+        case 2: // TODO - handle multi-battles
+        case 3: // TODO - handle link battles
+        case 4:
+        case MULTI_B_PRESSED:
+            goto(PWT_Lobby_EventScript_CancelChallenge)
+    }
+    goto(PWT_Lobby_EventScript_PrepareTournament)
 }
 
-script PWT_Lobby_EventScript_PWT_SaveBeforeChallenge {
-    pwt_set(PWT_DATA_SELECTED_MON_ORDER)
+script PWT_Lobby_EventScript_PrepareTournament {
+    // Prepare player party
+    callnative(RemoveFollowingPokemon)
+    special(SavePlayerParty)
+    // Separated the initialization functions for debugging purposes
     pwt_init
-    special(LoadPlayerParty)
-	closemessage
-	delay(2)
-	call(Common_EventScript_SaveGame)
-    setvar(VAR_TEMP_CHALLENGE_STATUS, 255)
-	goto_if_eq(VAR_RESULT, 0, PWT_Lobby_EventScript_PWT_CancelChallengeSaveFailed)
-    // get party size
-    switch (var(VAR_FRONTIER_BATTLE_MODE)) {
-        case PWT_MODE_SINGLES:
-            setvar(VAR_0x8005, PWT_PARTY_SIZE)
-        case PWT_MODE_DOUBLES:
-            setvar(VAR_0x8005, PWT_DOUBLES_PARTY_SIZE)
-    }
-    pwt_inittrainers
-    msgbox("TMP: Tournament\nInitialized", MSGBOX_DEFAULT) // TODO - this fails half the time
-    goto(PWT_Lobby_EventScript_PWT_EnterChallenge)
-}
-
-script PWT_Lobby_EventScript_PWT_EnterChallenge {
-	special(SavePlayerParty)
-	pwt_setpartyorder(PWT_PARTY_SIZE)
-	pwt_settrainers
-	msgbox("Time to go", MSGBOX_DEFAULT)
+    pwt_InitializeTrainers
+    pwt_SetTrainers
+    closemessage
+    delay(2)
+    msgbox(PWT_Lobby_Text_LetTheTournamentBegin, MSGBOX_DEFAULT)
     closemessage
     call(PWT_Lobby_EventScript_WalkToDoor)
-	special(HealPlayerParty)
-	warp(MAP_PWT_CORRIDOR, 23, 6)
-	setvar(VAR_TEMP_CHALLENGE_STATUS, 0)
-	waitstate
-	end
+    special(HealPlayerParty)
+    warp(MAP_PWT_CORRIDOR, 23, 6)
+    waitstate
+    end
 }
 
-// separate function to eventually handle different attendants
 script PWT_Lobby_EventScript_WalkToDoor {
     applymovement(LOCALID_PWT_ATTENDANT, moves(walk_up * 5))
 	applymovement(LOCALID_PLAYER, moves(walk_up * 5))
@@ -97,25 +105,87 @@ script PWT_Lobby_EventScript_WalkToDoor {
 	return
 }
 
-script PWT_Lobby_EventScript_PWT_CancelChallengeSaveFailed {
-    msgbox("No save means no play", MSGBOX_DEFAULT)
-    goto(PWT_Lobby_EventScript_PWT_End)
+// ---------- ELIGIBILITY SCRIPTS ---------- 
+script PWT_Lobby_EventScript_NotEnoughMons {
+    msgbox(PWT_Lobby_Text_NotEnoughMons, MSGBOX_DEFAULT)
+    goto(PWT_Lobby_EventScript_ComeBackLater)
 }
 
-script PWT_Lobby_EventScript_PWT_LoadPartyCancel {
+script PWT_Lobby_EventScript_NotEligible {
+    // Figure out how to print invalids
+    msgbox("TMP INELIGIBLE MSG", MSGBOX_DEFAULT)
+    // TODO - figure out how this works
+    // call(BattleFrontier_ShowCaughtBannedSpecies)
+    goto(PWT_Lobby_EventScript_ComeBackLater)
+}
+
+script PWT_Lobby_EventScript_ComeBackLater {
+    msgbox(PWT_Lobby_Text_ComeBackLater, MSGBOX_DEFAULT)
+    goto(PWT_Lobby_EventScript_EndCancelChallenge)
+}
+
+// ---------- CANCELLING SCRIPTS ---------- 
+
+// TODO - verify this function is ever called
+script PWT_Lobby_EventScript_LoadPartyCancelChallenge {
     special(LoadPlayerParty)
-	callnative(UpdateFollowingPokemon)
-    msgbox("Error during processing", MSGBOX_DEFAULT)
-    goto(PWT_Lobby_EventScript_PWT_End)
+    callnative(UpdateFollowingPokemon)
+    goto(PWT_Lobby_EventScript_CancelChallenge)
 }
 
-script PWT_Lobby_EventScript_PWT_NotEnoughValidMons {
-    msgbox("Not Enough Valid Mons", MSGBOX_DEFAULT)
-    goto(PWT_Lobby_EventScript_PWT_End)
+script PWT_Lobby_EventScript_CancelChallenge {
+    msgbox("We hope to see you again.", MSGBOX_DEFAULT)
+    goto(PWT_Lobby_EventScript_EndCancelChallenge)
 }
 
-script PWT_Lobby_EventScript_PWT_End {
-    special(CloseLink) // For multi
-    release
-    end
+script PWT_Lobby_EventScript_EndCancelChallenge {
+	release
+	end
+}
+
+
+//---------- TEXTS ----------
+text PWT_Lobby_Text_Introduction {
+    "Where legends across the globe for the\n
+    title of World Champion!\p
+    Welcome to the PWT,\n
+    the POKéMON World Tournament!"
+}
+
+text PWT_Lobby_Text_ExplainChallenge {
+    "The PWT supports all manners of\n
+    tournaments and battle styles.\p
+    To begin, you are required to have six\n
+    POKéMON, without any duplicate species\l
+    or held items.\p
+    Levels are irrelevant as any and all PWT\n
+    battles will set levels to 50.\p
+    Then, the trainer bracket will be\n
+    decided depending on the tournament\l
+    you entered.\p
+    Before every battle, you will be given a\n
+    chance to see the team of all participating\l
+    trainers.\p
+    This naturally includes your next\n
+    opponent.\p
+    You will then be asked to select a party\n
+    of three POKéMON from your six for the\l
+    upcoming battle.\p
+    The winner of the battle will move on,\n
+    and we repeat until we have a winner!"
+}
+
+text PWT_Lobby_Text_LetTheTournamentBegin {
+    "Then follow me, and the let the\n
+    tournament begin!"
+}
+
+text PWT_Lobby_Text_NotEnoughMons {
+    "Excuse me!\p
+    You must have a full party of six\n
+    Pokémon to enter."
+}
+
+text PWT_Lobby_Text_ComeBackLater {
+    "Please come see me when you are ready."
 }

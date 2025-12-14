@@ -19,7 +19,6 @@ PWT_PreBattleRoom_EventScript_TurnPlayerNorth::
 
 
 PWT_PreBattleRoom_EventScript_EnterRoom::
-	goto_if_eq VAR_0x8006, 1, PWT_PreBattleRoom_EventScript_ReturnFromBattle
 	delay 1
 	setvar VAR_TEMP_0, 1
 	applymovement LOCALID_PLAYER, PWT_PreBattleRoom_EventScript_EnterRoom_Movement_0
@@ -55,14 +54,14 @@ PWT_PreBattleRoom_EventScript_AskReadyForNextRound_4:
 PWT_PreBattleRoom_EventScript_ShowOpponentInfo::
 	msgbox PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
-	pwt_showopponentinfo
+	pwt_ShowOpponentCard
 	waitstate
 	goto PWT_PreBattleRoom_EventScript_AskReadyForNextRound
 	return
 
 
 PWT_PreBattleRoom_EventScript_ShowTourneyTree::
-	pwt_get PWT_DATA_BATTLE_NUM
+	pwt_GetData PWT_DATA_ROUND_NUM
 	switch VAR_RESULT
 	case PWT_ROUND1, PWT_PreBattleRoom_EventScript_ShowTourneyTree_3
 	case PWT_ROUND2, PWT_PreBattleRoom_EventScript_ShowTourneyTree_4
@@ -70,7 +69,7 @@ PWT_PreBattleRoom_EventScript_ShowTourneyTree::
 	case PWT_FINAL, PWT_PreBattleRoom_EventScript_ShowTourneyTree_6
 PWT_PreBattleRoom_EventScript_ShowTourneyTree_1:
 	fadescreen FADE_TO_BLACK
-	pwt_showtourneytree
+	pwt_ShowTourneyTree
 	waitstate
 	goto PWT_PreBattleRoom_EventScript_AskReadyForNextRound
 	return
@@ -97,15 +96,16 @@ PWT_PreBattleRoom_EventScript_ContinueChallenge::
 	waitmessage
 	waitbuttonpress
 	fadescreen FADE_TO_BLACK
-	setvar VAR_0x8004, FRONTIER_LVL_OPEN
-	setvar VAR_0x8005, 2
+	setvar VAR_0x8004, FRONTIER_LVL_50
+	setvar VAR_0x8005, PWT_PARTY_SIZE
+	special SavePlayerParty
 	special ChoosePartyForPWT
 	waitstate
-	pwt_resetsketchbeforebattle
-	goto_if_eq VAR_RESULT, 0, PWT_PreBattleRoom_EventScript_AskReadyForNextRound
-	pwt_set PWT_DATA_SELECTED_MONS
-	pwt_reduceparty
-	pwt_setopponent
+	compare VAR_RESULT, 0
+	goto_if_eq PWT_PreBattleRoom_EventScript_ContinueChallenge_2
+PWT_PreBattleRoom_EventScript_ContinueChallenge_1:
+	pwt_SetPlayerParty
+	pwt_SetOpponentId
 	msgbox PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_1, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PWT_PRE_BATTLE_ATTENDANT, PWT_PreBattleRoom_EventScript_ContinueChallenge_Movement_0
@@ -123,9 +123,14 @@ PWT_PreBattleRoom_EventScript_ContinueChallenge::
 	waitstate
 	end
 
+PWT_PreBattleRoom_EventScript_ContinueChallenge_2:
+	special LoadPlayerParty
+	goto PWT_PreBattleRoom_EventScript_AskReadyForNextRound
+	goto PWT_PreBattleRoom_EventScript_ContinueChallenge_1
+
 
 PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage::
-	pwt_get PWT_DATA_BATTLE_NUM
+	pwt_GetData PWT_DATA_ROUND_NUM
 	switch VAR_RESULT
 	case PWT_ROUND1, PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_3
 	case PWT_ROUND2, PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_4
@@ -149,44 +154,6 @@ PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_5:
 PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_6:
 	message PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_3
 	goto PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_1
-
-
-PWT_PreBattleRoom_EventScript_ReturnFromBattle::
-	setvar VAR_TEMP_0, 1
-	msgbox PWT_PreBattleRoom_EventScript_ReturnFromBattle_Text_0, MSGBOX_DEFAULT
-	special LoadPlayerParty
-	pwt_setpartyorder PWT_PARTY_SIZE
-	playfanfare MUS_HEAL
-	waitfanfare
-	special HealPlayerParty
-	call PWT_PreBattleRoom_EventScript_RoundCompleteMessage
-	fadescreen FADE_TO_BLACK
-	pwt_showstatictourneytree
-	waitstate
-	goto PWT_PreBattleRoom_EventScript_AskReadyForNextRound
-	return
-
-
-PWT_PreBattleRoom_EventScript_RoundCompleteMessage::
-	pwt_get PWT_DATA_BATTLE_NUM
-	switch VAR_RESULT
-	case PWT_ROUND2, PWT_PreBattleRoom_EventScript_RoundCompleteMessage_3
-	case PWT_SEMIFINAL, PWT_PreBattleRoom_EventScript_RoundCompleteMessage_4
-	case PWT_FINAL, PWT_PreBattleRoom_EventScript_RoundCompleteMessage_5
-PWT_PreBattleRoom_EventScript_RoundCompleteMessage_1:
-	return
-
-PWT_PreBattleRoom_EventScript_RoundCompleteMessage_3:
-	msgbox PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_0, MSGBOX_DEFAULT
-	goto PWT_PreBattleRoom_EventScript_RoundCompleteMessage_1
-
-PWT_PreBattleRoom_EventScript_RoundCompleteMessage_4:
-	msgbox PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_1, MSGBOX_DEFAULT
-	goto PWT_PreBattleRoom_EventScript_RoundCompleteMessage_1
-
-PWT_PreBattleRoom_EventScript_RoundCompleteMessage_5:
-	msgbox PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_2, MSGBOX_DEFAULT
-	goto PWT_PreBattleRoom_EventScript_RoundCompleteMessage_1
 
 
 PWT_PreBattleRoom_EventScript_EnterRoom_Movement_0:
@@ -235,7 +202,7 @@ PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_3:
 	.string "The tournament is up to the final.$"
 
 PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_0:
-	.string "Please choose the two POKéMON\nthat are to appear in battle.$"
+	.string "Please choose the three POKéMON\nthat are to appear in battle.$"
 
 PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_1:
 	.string "Right this way, please.$"
@@ -251,15 +218,3 @@ PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_2:
 
 PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_Text_3:
 	.string "Your final match is next.\nAre you ready?$"
-
-PWT_PreBattleRoom_EventScript_ReturnFromBattle_Text_0:
-	.string "Time to heal$"
-
-PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_0:
-	.string "All 1st-round matches have been\ncompleted.\pThese are the teams that advanced!$"
-
-PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_1:
-	.string "All 2nd-round matches have been\ncompleted.\pThese are the teams that advanced!$"
-
-PWT_PreBattleRoom_EventScript_RoundCompleteMessage_Text_2:
-	.string "All semifinal matches have been\ncompleted.\pThese are the teams that advanced!$"

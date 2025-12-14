@@ -69,6 +69,7 @@
 #include "constants/union_room.h"
 #include "constants/weather.h"
 #include "constants/region_map_sections.h"
+#include "pwt.h"
 
 #define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_8) ? 160 : 220)
 
@@ -6055,10 +6056,10 @@ u16 GetBattleBGM(void)
     {
         enum TrainerClassID trainerClass;
 
-        if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-            trainerClass = GetFrontierOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
-        else if (gBattleTypeFlags & BATTLE_TYPE_PWT)
+        if (gBattleTypeFlags & BATTLE_TYPE_PWT)
             trainerClass = GetPWTOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
+        else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+            trainerClass = GetFrontierOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
         else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
             trainerClass = TRAINER_CLASS_EXPERT;
         else
@@ -6079,7 +6080,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_CHAMPION:
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL:
-            if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT))
+            if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;
             if (!StringCompare(GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentA), gText_BattleWallyName))
                 return MUS_VS_TRAINER;
@@ -6657,7 +6658,7 @@ bool8 HasTwoFramesAnimation(u16 species)
 
 bool8 ShouldSkipFriendshipChange(void)
 {
-    if (gMain.inBattle && gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PWT))
+    if (gMain.inBattle && gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
         return TRUE;
     if (!gMain.inBattle && (InBattlePike() || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE))
         return TRUE;

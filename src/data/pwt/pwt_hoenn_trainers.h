@@ -61,7 +61,7 @@
 [PWT_TRAINER_HOENN_LEADER_FLANNERY] = {
     .facilityClass = FACILITY_CLASS_LEADER_FLANNERY,
     .trainerObjectGfxId = OBJ_EVENT_GFX_FLANNERY,
-    .trainerName = _("FLANERY"), // Flannery
+    .trainerName = _("FLANNERY"),
     .speechBefore = COMPOUND_STRING("{CREATE_MUGSHOT MUGSHOT_FLANNERY}Before battle test\nnext line\pNext paragraph\pFinal paragraph test\p{DESTROY_MUGSHOT}$"),
     .speechWin = COMPOUND_STRING("Battle Won"),
     .speechLose = COMPOUND_STRING("Battle Lost"),

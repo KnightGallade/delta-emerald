@@ -201,7 +201,7 @@
 [PWT_TRAINER_DRIFTVEIL_THEODORA] = {
     .facilityClass = FACILITY_CLASS_YOUNGSTER,
     .trainerObjectGfxId = OBJ_EVENT_GFX_YOUNGSTER,
-    .trainerName = _("FEODORA"), // PHEODORA?
+    .trainerName = _("PHEODORA"),
     .speechBefore = COMPOUND_STRING("Before battle test\nnext line\pNext paragraph\pFinal paragraph test\p$"),
     .speechWin = COMPOUND_STRING("Battle Won"),
     .speechLose = COMPOUND_STRING("Battle Lost"),
@@ -621,7 +621,7 @@
 [PWT_TRAINER_DRIFTVEIL_HERNANDO] = {
     .facilityClass = FACILITY_CLASS_YOUNGSTER,
     .trainerObjectGfxId = OBJ_EVENT_GFX_YOUNGSTER,
-    .trainerName = _("HERNAND"), // HERNANDO
+    .trainerName = _("HERNANDO"),
     .speechBefore = COMPOUND_STRING("Before battle test\nnext line\pNext paragraph\pFinal paragraph test\p$"),
     .speechWin = COMPOUND_STRING("Battle Won"),
     .speechLose = COMPOUND_STRING("Battle Lost"),
@@ -681,7 +681,7 @@
 [PWT_TRAINER_DRIFTVEIL_CLARISSA] = {
     .facilityClass = FACILITY_CLASS_YOUNGSTER,
     .trainerObjectGfxId = OBJ_EVENT_GFX_YOUNGSTER,
-    .trainerName = _("CLARISA"), // CLARISSA
+    .trainerName = _("CLARISSA"),
     .speechBefore = COMPOUND_STRING("Before battle test\nnext line\pNext paragraph\pFinal paragraph test\p$"),
     .speechWin = COMPOUND_STRING("Battle Won"),
     .speechLose = COMPOUND_STRING("Battle Lost"),

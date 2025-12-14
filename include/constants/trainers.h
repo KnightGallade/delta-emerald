@@ -110,7 +110,6 @@
 #define TRAINER_PIC_RS_MAY                92
 #define TRAINER_PIC_ORAS_BRENDAN          93
 #define TRAINER_PIC_ORAS_MAY              94
-// PWT
 // Gen 1
 #define TRAINER_PIC_LEADER_BROCK          95
 #define TRAINER_PIC_LEADER_MISTY          96

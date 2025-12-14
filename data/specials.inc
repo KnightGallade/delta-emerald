@@ -570,4 +570,3 @@ gSpecials::
 	def_special CallPWTFunction
 	def_special ChoosePartyForPWT
 	def_special DoPWTTrainerBattle
-
