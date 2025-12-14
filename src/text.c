@@ -1318,10 +1318,8 @@ static u16 RenderText(struct TextPrinter *textPrinter)
                 }
             case EXT_CTRL_CODE_CREATE_MUGSHOT:
                 {
-                    u32 id, emote;
+                    u32 id;
                     id = *textPrinter->printerTemplate.currentChar;
-                    textPrinter->printerTemplate.currentChar++;
-                    emote = *textPrinter->printerTemplate.currentChar;
                     textPrinter->printerTemplate.currentChar++;
                     _CreateFieldMugshot(id);
                     if (IsFieldMugshotActive())
