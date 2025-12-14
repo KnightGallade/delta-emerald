@@ -2906,4 +2906,10 @@ extern const u8 gText_CannotSendMonToBoxHM[];
 extern const u8 gText_CannotSendMonToBoxActive[];
 extern const u8 gText_CannotSendMonToBoxPartner[];
 
+// PWT
+extern const u8 gText_PWT_PlayerIntro1[];
+extern const u8 gText_PWT_PlayerIntro2[];
+extern const u8 gText_PWT_PlayerIntro3[];
+extern const u8 sText_PWT_HasEntered[];
+
 #endif // GUARD_STRINGS_H

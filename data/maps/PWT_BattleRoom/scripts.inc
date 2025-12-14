@@ -31,21 +31,37 @@ PWT_BattleRoom_EventScript_EnterRoom::
 	applymovement LOCALID_PWT_ANNOUNCER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	call PWT_BattleRoom_EventScript_AnnouncePlayer
-	msgbox PWT_BattleRoom_EventScript_EnterRoom_Text_0, MSGBOX_DEFAULT
+	setspeaker PWT_BattleRoom_EventScript_EnterRoom_Text_0
+	message PWT_BattleRoom_EventScript_EnterRoom_Text_1
+	waitbuttonpress
 	closemessage
 	showobjectat LOCALID_PWT_PLAYER, MAP_PWT_BATTLE_ROOM
 	applymovement LOCALID_PWT_PLAYER, PWT_BattleRoom_EventScript_EnterRoom_Movement_0
 	playse SE_M_ENCORE2
 	call PWT_BattleRoom_EventScript_AudienceLookAround
 	waitmovement 0
-	pwt_BufferBattleStrings
-	msgbox PWT_BattleRoom_EventScript_EnterRoom_Text_1, MSGBOX_DEFAULT
+	waitse
+	setspeaker PWT_BattleRoom_EventScript_EnterRoom_Text_0
+	pwt_AnnounceTheOpponent
+	waitbuttonpress
 	closemessage
-	applymovement LOCALID_PWT_PLAYER, PWT_BattleRoom_EventScript_EnterRoom_Movement_1
-	applymovement LOCALID_PWT_OPPONENT, PWT_BattleRoom_EventScript_EnterRoom_Movement_2
+	showobjectat LOCALID_PWT_OPPONENT, MAP_PWT_BATTLE_ROOM
+	applymovement LOCALID_PWT_OPPONENT, PWT_BattleRoom_EventScript_EnterRoom_Movement_1
+	playse SE_M_ENCORE2
+	call PWT_BattleRoom_EventScript_AudienceLookAround
 	waitmovement 0
+	waitse
+	pwt_BufferBattleStrings
+	setspeaker PWT_BattleRoom_EventScript_EnterRoom_Text_0
+	msgbox PWT_BattleRoom_EventScript_EnterRoom_Text_2, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PWT_PLAYER, PWT_BattleRoom_EventScript_EnterRoom_Movement_2
+	applymovement LOCALID_PWT_OPPONENT, PWT_BattleRoom_EventScript_EnterRoom_Movement_3
+	waitmovement 0
+	setspeaker PWT_BattleRoom_EventScript_EnterRoom_Text_3
 	pwt_ShowOpponentIntro
 	waitmessage
+	closemessage
 	pwt_SetOpponentParty
 	call PWT_BattleRoom_EventScript_DoPWTBattle
 	releaseall
@@ -53,6 +69,7 @@ PWT_BattleRoom_EventScript_EnterRoom::
 
 
 PWT_BattleRoom_EventScript_AnnouncePlayer::
+	setspeaker PWT_BattleRoom_EventScript_EnterRoom_Text_0
 	pwt_GetData PWT_DATA_ROUND_NUM
 	switch VAR_RESULT
 	case PWT_ROUND1, PWT_BattleRoom_EventScript_AnnouncePlayer_3
@@ -93,10 +110,12 @@ PWT_BattleRoom_EventScript_DoPWTBattle::
 
 PWT_BattleRoom_EventScript_SetUpObjects::
 	hideobjectat LOCALID_PWT_PLAYER, MAP_PWT_BATTLE_ROOM
+	hideobjectat LOCALID_PWT_OPPONENT, MAP_PWT_BATTLE_ROOM
 	call PWT_BattleRoom_EventScript_AddAudience
 	setoutfitgfxintovar VAR_OBJ_GFX_ID_1
 	setvar VAR_TEMP_1, 1
 	applymovement LOCALID_PLAYER, PWT_BattleRoom_EventScript_SetUpObjects_Movement_0
+	applymovement LOCALID_PWT_OPPONENT, PWT_BattleRoom_EventScript_SetUpObjects_Movement_1
 	pwt_GetData PWT_DATA_ROUND_NUM
 	return
 
@@ -295,15 +314,30 @@ PWT_BattleRoom_EventScript_EnterRoom_Movement_0:
 	step_end
 
 PWT_BattleRoom_EventScript_EnterRoom_Movement_1:
-	walk_right
+	set_visible
+	delay_16
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	walk_left
 	step_end
 
 PWT_BattleRoom_EventScript_EnterRoom_Movement_2:
+	walk_right
+	step_end
+
+PWT_BattleRoom_EventScript_EnterRoom_Movement_3:
 	walk_left
 	step_end
 
 PWT_BattleRoom_EventScript_SetUpObjects_Movement_0:
 	set_invisible
+	step_end
+
+PWT_BattleRoom_EventScript_SetUpObjects_Movement_1:
+	set_invisible
+	face_up
 	step_end
 
 PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat_Movement_0:
@@ -315,13 +349,19 @@ PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat_Movement_0:
 	step_end
 
 PWT_BattleRoom_EventScript_EnterRoom_Text_0:
-	.string "{PLAYER} has entered the BATTLE DOME!$"
+	.string "Announcer$"
 
 PWT_BattleRoom_EventScript_EnterRoom_Text_1:
-	.string "{STR_VAR_1}\nmatch!\p{PLAYER} versus {STR_VAR_2}!\pLet the battle begin!$"
+	.string "The Littleroot Hero,\n{PLAYER} has entered!$"
+
+PWT_BattleRoom_EventScript_EnterRoom_Text_2:
+	.string "{STR_VAR_1}\n{PLAYER} versus {STR_VAR_2}!\lLet the battle begin!$"
+
+PWT_BattleRoom_EventScript_EnterRoom_Text_3:
+	.string "{STR_VAR_2}$"
 
 PWT_BattleRoom_EventScript_AnnouncePlayer_Text_0:
-	.string "ROUND 1 MESSAGE\nPLAYER INTRODUCTION\p$"
+	.string "It is my honor to announce that the\nfirst round of the PWT has commenced!\p$"
 
 PWT_BattleRoom_EventScript_AnnouncePlayer_Text_1:
 	.string "ROUND 2 MESSAGE\nPLAYER INTRODUCTION\p$"

@@ -5,10 +5,10 @@ static const u32 sFieldMugshotGfx_Brock[] = INCBIN_U32("graphics/field_mugshots/
 static const u16 sFieldMugshotPal_Brock[] = INCBIN_U16("graphics/field_mugshots/kanto/brock.gbapal");
 static const u32 sFieldMugshotGfx_Misty[] = INCBIN_U32("graphics/field_mugshots/kanto/misty.4bpp.lz");
 static const u16 sFieldMugshotPal_Misty[] = INCBIN_U16("graphics/field_mugshots/kanto/misty.gbapal");
-static const u32 sFieldMugshotGfx_Erika[] = INCBIN_U32("graphics/field_mugshots/kanto/erika.4bpp.lz");
-static const u16 sFieldMugshotPal_Erika[] = INCBIN_U16("graphics/field_mugshots/kanto/erika.gbapal");
 static const u32 sFieldMugshotGfx_Lt_Surge[] = INCBIN_U32("graphics/field_mugshots/kanto/lt_surge.4bpp.lz");
 static const u16 sFieldMugshotPal_Lt_Surge[] = INCBIN_U16("graphics/field_mugshots/kanto/lt_surge.gbapal");
+static const u32 sFieldMugshotGfx_Erika[] = INCBIN_U32("graphics/field_mugshots/kanto/erika.4bpp.lz");
+static const u16 sFieldMugshotPal_Erika[] = INCBIN_U16("graphics/field_mugshots/kanto/erika.gbapal");
 static const u32 sFieldMugshotGfx_Janine[] = INCBIN_U32("graphics/field_mugshots/kanto/janine.4bpp.lz");
 static const u16 sFieldMugshotPal_Janine[] = INCBIN_U16("graphics/field_mugshots/kanto/janine.gbapal");
 static const u32 sFieldMugshotGfx_Sabrina[] = INCBIN_U32("graphics/field_mugshots/kanto/sabrina.4bpp.lz");
@@ -134,13 +134,14 @@ static const struct MugshotGfx sFieldMugshots[MUGSHOT_COUNT] =
     },
     [MUGSHOT_LT_SURGE] =
     {
-        .gfx = sFieldMugshotGfx_Erika,
-        .pal = sFieldMugshotPal_Erika,
+        .gfx = sFieldMugshotGfx_Lt_Surge,
+        .pal = sFieldMugshotPal_Lt_Surge,
     },
     [MUGSHOT_ERIKA] =
     {
-        .gfx = sFieldMugshotGfx_Lt_Surge,
-        .pal = sFieldMugshotPal_Lt_Surge,
+
+        .gfx = sFieldMugshotGfx_Erika,
+        .pal = sFieldMugshotPal_Erika,
     },
     [MUGSHOT_JANINE] =
     {

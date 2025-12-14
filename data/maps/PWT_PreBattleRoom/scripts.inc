@@ -52,7 +52,8 @@ PWT_PreBattleRoom_EventScript_AskReadyForNextRound_4:
 
 
 PWT_PreBattleRoom_EventScript_ShowOpponentInfo::
-	msgbox PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0, MSGBOX_DEFAULT
+	setspeaker PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0
+	msgbox PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_1, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	pwt_ShowOpponentCard
 	waitstate
@@ -61,6 +62,7 @@ PWT_PreBattleRoom_EventScript_ShowOpponentInfo::
 
 
 PWT_PreBattleRoom_EventScript_ShowTourneyTree::
+	setspeaker PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0
 	pwt_GetData PWT_DATA_ROUND_NUM
 	switch VAR_RESULT
 	case PWT_ROUND1, PWT_PreBattleRoom_EventScript_ShowTourneyTree_3
@@ -92,6 +94,7 @@ PWT_PreBattleRoom_EventScript_ShowTourneyTree_6:
 
 
 PWT_PreBattleRoom_EventScript_ContinueChallenge::
+	setspeaker PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0
 	message PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_0
 	waitmessage
 	waitbuttonpress
@@ -106,6 +109,7 @@ PWT_PreBattleRoom_EventScript_ContinueChallenge::
 PWT_PreBattleRoom_EventScript_ContinueChallenge_1:
 	pwt_SetPlayerParty
 	pwt_SetOpponentId
+	setspeaker PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0
 	msgbox PWT_PreBattleRoom_EventScript_ContinueChallenge_Text_1, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PWT_PRE_BATTLE_ATTENDANT, PWT_PreBattleRoom_EventScript_ContinueChallenge_Movement_0
@@ -130,6 +134,7 @@ PWT_PreBattleRoom_EventScript_ContinueChallenge_2:
 
 
 PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage::
+	setspeaker PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0
 	pwt_GetData PWT_DATA_ROUND_NUM
 	switch VAR_RESULT
 	case PWT_ROUND1, PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage_3
@@ -187,6 +192,9 @@ PWT_PreBattleRoom_EventScript_AskReadyForNextRound_Text_2:
 	.string "READY TO START$"
 
 PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_0:
+	.string "Attendant$"
+
+PWT_PreBattleRoom_EventScript_ShowOpponentInfo_Text_1:
 	.string "{PLAYER}'s next opponent\nis this TRAINER.$"
 
 PWT_PreBattleRoom_EventScript_ShowTourneyTree_Text_0:

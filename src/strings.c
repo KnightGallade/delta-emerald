@@ -1718,3 +1718,9 @@ const u8 gText_SubQuest2_Desc19[] = _("Description Sub 19");
 const u8 gText_SubQuest2_Desc20[] = _("Description Sub 20");
 
 const u8 gText_SubQuestX_DoneDescX[] = _("Placeholder Completed Text");
+
+// PWT
+const u8 gText_PWT_PlayerIntro1[] = _("The Littleroot Hero!");
+const u8 gText_PWT_PlayerIntro2[] = _("Evergrade League Champion");
+const u8 gText_PWT_PlayerIntro3[] = _("Jack-of-all-trades");
+const u8 sText_PWT_HasEntered[] = _(" has entered!$");

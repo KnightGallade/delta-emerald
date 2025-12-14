@@ -150,6 +150,7 @@ static void SetPWTPlayerParty(void);
 static void PWTInitTrainers(void);
 // NEW FUNCTIONS:
 static void CheckPWTIneligibility(void);
+static void AnnouncePWTOpponent(void);
 static void GetPWTOpponentIntro(void);
 u16 GetRandomPWTTrainerId(u8);
 u16 GetRandomPWTMonFromSet(u16, u8);
@@ -680,6 +681,7 @@ static void (*const sPWTFunctions[])(void) =
     [PWT_FUNC_SET_PLAYER_PARTY]                 = SetPWTPlayerParty,
     [PWT_FUNC_SET_OPPONENT_ID]                  = SetPWTOpponentId,
     [PWT_FUNC_SET_OPPONENT_GFX]                 = SetPWTOpponentGFX,
+    [PWT_FUNC_ANNOUNCE_OPPONENT]                = AnnouncePWTOpponent,
     [PWT_FUNC_BUFFER_BATTLE_STRINGS]            = BufferNextPWTBattleStrings,
     [PWT_FUNC_SHOW_OPPONENT_INTRO]              = GetPWTOpponentIntro,
     [PWT_FUNC_SET_OPPONENT_PARTY]               = SetPWTOpponentParty,
@@ -3213,7 +3215,7 @@ static void DisplayPWTTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
 
     // Print text about trainers potential in the tourney
     if (trainerId == TRAINER_PLAYER)
-        textPrinter.currentChar = COMPOUND_STRING("Player Line 1");
+        textPrinter.currentChar = gText_PWT_PlayerIntro1;
     else
         textPrinter.currentChar = gPWTFacilityTrainers[trainerId].battleData1;
 
@@ -3226,7 +3228,7 @@ static void DisplayPWTTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
 
     // Print the trainers battle style
     if (trainerId == TRAINER_PLAYER)
-        textPrinter.currentChar = COMPOUND_STRING("Player Line 2");
+        textPrinter.currentChar = gText_PWT_PlayerIntro2;
     else
         textPrinter.currentChar = gPWTFacilityTrainers[trainerId].battleData2;
     textPrinter.y = 20;
@@ -3235,7 +3237,7 @@ static void DisplayPWTTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
 
     // Print the stat text
     if (trainerId == TRAINER_PLAYER)
-        textPrinter.currentChar = COMPOUND_STRING("Player Line 3");
+        textPrinter.currentChar = gText_PWT_PlayerIntro3;
     else
         textPrinter.currentChar = gPWTFacilityTrainers[trainerId].battleData3;
     textPrinter.y = 36;
@@ -4662,6 +4664,19 @@ u16 GetRandomPWTMonFromSet(u16 trainerId, u8 pool)
     return monId;
 }
 
+static void AnnouncePWTOpponent(void)
+{
+    u16 trainerId;
+    SetPWTTrainerAndMonPtrs();
+    // TODO - handle a check for multi battles
+    trainerId = TRAINER_BATTLE_PARAM.opponentA;
+    StringCopy(gStringVar4, gPWTFacilityTrainers[trainerId].battleData1);
+    StringAppend(gStringVar4, gText_NewLine);
+    StringAppend(gStringVar4, gPWTFacilityTrainers[trainerId].trainerName);
+    StringAppend(gStringVar4, sText_PWT_HasEntered);
+    ShowFieldMessage(gStringVar4);
+}
+
 static void GetPWTOpponentIntro(void)
 {
     u16 trainerId;
@@ -4764,14 +4779,18 @@ u16 GetRandomPWTTrainerId(u8 tournamentType)
 
     switch (tournamentType)
     {
+    case PWT_TOURNAMENT_TYPE_INDIGO_LEAGUE:
+        startId = PWT_TRAINER_INDIGO_LEAGUE_START;
+        endId = PWT_TRAINER_INDIGO_LEAGUE_END;
+        break;
     case PWT_TOURNAMENT_TYPE_HOENN:
         startId = PWT_TRAINER_HOENN_START;
         endId = PWT_TRAINER_HOENN_END;
         break;
     default:
     case PWT_TOURNAMENT_TYPE_ROYALE:
-        startId = PWT_TRAINER_KANTO_START;
-        endId = PWT_TRAINER_JHOTO_END;
+        startId = PWT_TRAINER_ROYALE_START;
+        endId = PWT_TRAINER_ROYALE_END;
         break;
     }
     trainerId = (Random() % (endId - startId)) + startId;

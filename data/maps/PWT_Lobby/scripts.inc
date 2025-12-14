@@ -14,9 +14,10 @@ PWT_Lobby_EventScript_Attendant::
 
 
 PWT_Lobby_EventScript_AskTakeChallenge::
+	setspeaker PWT_Lobby_EventScript_Attendant_Text_0
 	message PWT_Lobby_EventScript_AskTakeChallenge_Text_0
 	waitmessage
-	dynmultichoice 20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, PWT_Lobby_EventScript_AskTakeChallenge_Text_1, PWT_Lobby_EventScript_AskTakeChallenge_Text_2, PWT_Lobby_EventScript_AskTakeChallenge_Text_3
+	dynmultichoice 25, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, PWT_Lobby_EventScript_AskTakeChallenge_Text_1, PWT_Lobby_EventScript_AskTakeChallenge_Text_2, PWT_Lobby_EventScript_AskTakeChallenge_Text_3
 	switch VAR_RESULT
 	case 0, PWT_Lobby_EventScript_AskTakeChallenge_2
 	case 1, PWT_Lobby_EventScript_AskTakeChallenge_3
@@ -51,51 +52,56 @@ PWT_Lobby_EventScript_TryEnterChallenge::
 	setspeaker PWT_Lobby_EventScript_Attendant_Text_0
 	message PWT_Lobby_EventScript_TryEnterChallenge_Text_0
 	waitmessage
-	dynmultichoice 20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, PWT_Lobby_EventScript_TryEnterChallenge_Text_1, PWT_Lobby_EventScript_TryEnterChallenge_Text_2, PWT_Lobby_EventScript_AskTakeChallenge_Text_3
+	dynmultichoice 25, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, PWT_Lobby_EventScript_TryEnterChallenge_Text_1, PWT_Lobby_EventScript_TryEnterChallenge_Text_2, PWT_Lobby_EventScript_TryEnterChallenge_Text_3, PWT_Lobby_EventScript_AskTakeChallenge_Text_3
 	switch VAR_RESULT
 	case 0, PWT_Lobby_EventScript_TryEnterChallenge_3
 	case 1, PWT_Lobby_EventScript_TryEnterChallenge_4
 	case 2, PWT_Lobby_EventScript_TryEnterChallenge_5
-	case MULTI_B_PRESSED, PWT_Lobby_EventScript_TryEnterChallenge_5
+	case 3, PWT_Lobby_EventScript_TryEnterChallenge_6
+	case MULTI_B_PRESSED, PWT_Lobby_EventScript_TryEnterChallenge_6
 PWT_Lobby_EventScript_TryEnterChallenge_1:
 	setspeaker PWT_Lobby_EventScript_Attendant_Text_0
-	message PWT_Lobby_EventScript_TryEnterChallenge_Text_3
+	message PWT_Lobby_EventScript_TryEnterChallenge_Text_4
 	waitmessage
-	dynmultichoice 20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, PWT_Lobby_EventScript_TryEnterChallenge_Text_4, PWT_Lobby_EventScript_TryEnterChallenge_Text_5, PWT_Lobby_EventScript_TryEnterChallenge_Text_6, PWT_Lobby_EventScript_TryEnterChallenge_Text_7, PWT_Lobby_EventScript_AskTakeChallenge_Text_3
+	dynmultichoice 25, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, PWT_Lobby_EventScript_TryEnterChallenge_Text_5, PWT_Lobby_EventScript_TryEnterChallenge_Text_6, PWT_Lobby_EventScript_TryEnterChallenge_Text_7, PWT_Lobby_EventScript_TryEnterChallenge_Text_8, PWT_Lobby_EventScript_AskTakeChallenge_Text_3
 	switch VAR_RESULT
-	case 0, PWT_Lobby_EventScript_TryEnterChallenge_8
-	case 1, PWT_Lobby_EventScript_TryEnterChallenge_9
-	case 2, PWT_Lobby_EventScript_TryEnterChallenge_10
-	case 3, PWT_Lobby_EventScript_TryEnterChallenge_10
-	case 4, PWT_Lobby_EventScript_TryEnterChallenge_10
-	case MULTI_B_PRESSED, PWT_Lobby_EventScript_TryEnterChallenge_10
-PWT_Lobby_EventScript_TryEnterChallenge_6:
+	case 0, PWT_Lobby_EventScript_TryEnterChallenge_9
+	case 1, PWT_Lobby_EventScript_TryEnterChallenge_10
+	case 2, PWT_Lobby_EventScript_TryEnterChallenge_11
+	case 3, PWT_Lobby_EventScript_TryEnterChallenge_11
+	case 4, PWT_Lobby_EventScript_TryEnterChallenge_11
+	case MULTI_B_PRESSED, PWT_Lobby_EventScript_TryEnterChallenge_11
+PWT_Lobby_EventScript_TryEnterChallenge_7:
 	goto PWT_Lobby_EventScript_PrepareTournament
 	return
 
 PWT_Lobby_EventScript_TryEnterChallenge_3:
-	pwt_SetData PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_HOENN
+	pwt_SetData PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_INDIGO_LEAGUE
 	goto PWT_Lobby_EventScript_TryEnterChallenge_1
 
 PWT_Lobby_EventScript_TryEnterChallenge_4:
-	pwt_SetData PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_ROYALE
+	pwt_SetData PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_HOENN
 	goto PWT_Lobby_EventScript_TryEnterChallenge_1
 
 PWT_Lobby_EventScript_TryEnterChallenge_5:
+	pwt_SetData PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_ROYALE
+	goto PWT_Lobby_EventScript_TryEnterChallenge_1
+
+PWT_Lobby_EventScript_TryEnterChallenge_6:
 	goto PWT_Lobby_EventScript_CancelChallenge
 	goto PWT_Lobby_EventScript_TryEnterChallenge_1
 
-PWT_Lobby_EventScript_TryEnterChallenge_8:
-	pwt_SetData PWT_DATA_BATTLE_STYLE, PWT_BATTLE_STYLE_SINGLES
-	goto PWT_Lobby_EventScript_TryEnterChallenge_6
-
 PWT_Lobby_EventScript_TryEnterChallenge_9:
-	pwt_SetData PWT_DATA_BATTLE_STYLE, PWT_BATTLE_STYLE_DOUBLES
-	goto PWT_Lobby_EventScript_TryEnterChallenge_6
+	pwt_SetData PWT_DATA_BATTLE_STYLE, PWT_BATTLE_STYLE_SINGLES
+	goto PWT_Lobby_EventScript_TryEnterChallenge_7
 
 PWT_Lobby_EventScript_TryEnterChallenge_10:
+	pwt_SetData PWT_DATA_BATTLE_STYLE, PWT_BATTLE_STYLE_DOUBLES
+	goto PWT_Lobby_EventScript_TryEnterChallenge_7
+
+PWT_Lobby_EventScript_TryEnterChallenge_11:
 	goto PWT_Lobby_EventScript_CancelChallenge
-	goto PWT_Lobby_EventScript_TryEnterChallenge_6
+	goto PWT_Lobby_EventScript_TryEnterChallenge_7
 
 
 PWT_Lobby_EventScript_PrepareTournament::
@@ -104,8 +110,7 @@ PWT_Lobby_EventScript_PrepareTournament::
 	pwt_init
 	pwt_InitializeTrainers
 	pwt_SetTrainers
-	closemessage
-	delay 2
+	setspeaker PWT_Lobby_EventScript_Attendant_Text_0
 	msgbox PWT_Lobby_Text_LetTheTournamentBegin, MSGBOX_DEFAULT
 	closemessage
 	call PWT_Lobby_EventScript_WalkToDoor
@@ -203,24 +208,27 @@ PWT_Lobby_EventScript_TryEnterChallenge_Text_0:
 	.string "In which tournament would you like to\nparticipate?$"
 
 PWT_Lobby_EventScript_TryEnterChallenge_Text_1:
-	.string "Hoenn$"
+	.string "Indigo$"
 
 PWT_Lobby_EventScript_TryEnterChallenge_Text_2:
-	.string "Royale$"
+	.string "Hoenn$"
 
 PWT_Lobby_EventScript_TryEnterChallenge_Text_3:
-	.string "In what battle style would you like to\nparticipate?$"
+	.string "Royale$"
 
 PWT_Lobby_EventScript_TryEnterChallenge_Text_4:
-	.string "Singles$"
+	.string "In what battle style would you like to\nparticipate?$"
 
 PWT_Lobby_EventScript_TryEnterChallenge_Text_5:
-	.string "Doubles$"
+	.string "Singles$"
 
 PWT_Lobby_EventScript_TryEnterChallenge_Text_6:
-	.string "Multi$"
+	.string "Doubles$"
 
 PWT_Lobby_EventScript_TryEnterChallenge_Text_7:
+	.string "Multi$"
+
+PWT_Lobby_EventScript_TryEnterChallenge_Text_8:
 	.string "Link$"
 
 PWT_Lobby_EventScript_NotEligible_Text_0:

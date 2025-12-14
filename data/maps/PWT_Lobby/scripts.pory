@@ -15,9 +15,10 @@ script PWT_Lobby_EventScript_Attendant {
 }
 
 script PWT_Lobby_EventScript_AskTakeChallenge {
+    setspeaker("Attendant")
     message("Would you like to enter?")
     waitmessage
-    dynmultichoice(20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Enter", "Info", "Exit") // TODO - check location of options
+    dynmultichoice(25, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Enter", "Info", "Exit")
     switch (var(VAR_RESULT)) {
         case 0:
             goto(PWT_Lobby_EventScript_CheckElligibility)
@@ -44,20 +45,22 @@ script PWT_Lobby_EventScript_TryEnterChallenge {
     setspeaker("Attendant")
     message("In which tournament would you like to\nparticipate?")
     waitmessage
-    dynmultichoice(20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Hoenn", "Royale", "Exit") // TODO - add more options
+    dynmultichoice(25, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, "Indigo", "Hoenn", "Royale", "Exit") // TODO - add more options
     switch (var(VAR_RESULT)) {
         case 0:
-            pwt_SetData(PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_HOENN)
+            pwt_SetData(PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_INDIGO_LEAGUE)
         case 1:
-            pwt_SetData(PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_ROYALE)
+            pwt_SetData(PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_HOENN)
         case 2:
+            pwt_SetData(PWT_DATA_TOURNAMENT_TYPE, PWT_TOURNAMENT_TYPE_ROYALE)
+        case 3:
         case MULTI_B_PRESSED:
             goto(PWT_Lobby_EventScript_CancelChallenge)
     }
     setspeaker("Attendant")
     message("In what battle style would you like to\nparticipate?")
     waitmessage
-    dynmultichoice(20, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Singles", "Doubles", "Multi", "Link", "Exit")
+    dynmultichoice(25, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Singles", "Doubles", "Multi", "Link", "Exit")
     switch (var(VAR_RESULT)) {
         case 0:
             pwt_SetData(PWT_DATA_BATTLE_STYLE, PWT_BATTLE_STYLE_SINGLES)
@@ -80,8 +83,7 @@ script PWT_Lobby_EventScript_PrepareTournament {
     pwt_init
     pwt_InitializeTrainers
     pwt_SetTrainers
-    closemessage
-    delay(2)
+    setspeaker("Attendant")
     msgbox(PWT_Lobby_Text_LetTheTournamentBegin, MSGBOX_DEFAULT)
     closemessage
     call(PWT_Lobby_EventScript_WalkToDoor)

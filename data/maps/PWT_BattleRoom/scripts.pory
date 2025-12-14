@@ -21,24 +21,46 @@ script PWT_BattleRoom_EventScript_EnterRoom {
 	call_if_eq(VAR_RESULT, PWT_ROUND1, PWT_BattleRoom_EventScript_TryDoAudienceMemberWalkToSeat)
 	applymovement(LOCALID_PWT_ANNOUNCER, Common_Movement_WalkInPlaceDown)
 	waitmovement(0)
+	// Player comes into the arena
 	call(PWT_BattleRoom_EventScript_AnnouncePlayer)
-	msgbox("{PLAYER} has entered the BATTLE DOME!$", MSGBOX_DEFAULT)
+	setspeaker("Announcer")
+	message("The Littleroot Hero,\n{PLAYER} has entered!$")
+	waitbuttonpress
 	closemessage
 	showobjectat(LOCALID_PWT_PLAYER, MAP_PWT_BATTLE_ROOM)
 	applymovement(LOCALID_PWT_PLAYER, moves(set_visible, delay_16, walk_up * 3, walk_right * 2))
+	// Audience reacts
 	playse(SE_M_ENCORE2)
 	call(PWT_BattleRoom_EventScript_AudienceLookAround)
 	waitmovement(0)
+	waitse
+	// Opponent comes into the arena
+	setspeaker("Announcer")
+	pwt_AnnounceTheOpponent
+	waitbuttonpress
+	closemessage
+	showobjectat(LOCALID_PWT_OPPONENT, MAP_PWT_BATTLE_ROOM)
+	applymovement(LOCALID_PWT_OPPONENT, moves(set_visible, delay_16, walk_up * 3, walk_left * 2))
+	// Audience reacts
+	playse(SE_M_ENCORE2)
+	call(PWT_BattleRoom_EventScript_AudienceLookAround)
+	waitmovement(0)
+	waitse
+	// Prepare to battle
 	pwt_BufferBattleStrings
-	msgbox("{STR_VAR_1}\nmatch!\p{PLAYER} versus {STR_VAR_2}!\pLet the battle begin!$", MSGBOX_DEFAULT)
+	setspeaker("Announcer")
+	msgbox("{STR_VAR_1}\n{PLAYER} versus {STR_VAR_2}!\lLet the battle begin!$", MSGBOX_DEFAULT)
 	closemessage
 	applymovement(LOCALID_PWT_PLAYER, moves(walk_right))
 	applymovement(LOCALID_PWT_OPPONENT, moves(walk_left))
 	waitmovement(0)
+	// Meet opponent
+	setspeaker("{STR_VAR_2}")
 	pwt_ShowOpponentIntro
 	waitmessage
+	closemessage
+	// Start battle
 	pwt_SetOpponentParty
-    // TODO - in progress, reached here
 	call(PWT_BattleRoom_EventScript_DoPWTBattle)
 	releaseall
 	end
@@ -146,10 +168,11 @@ script PWT_BattleRoom_EventScript_EnterRoom {
 // 	return
 
 script PWT_BattleRoom_EventScript_AnnouncePlayer {
+	setspeaker("Announcer")
     pwt_GetData(PWT_DATA_ROUND_NUM)
     switch (var(VAR_RESULT)) {
         case PWT_ROUND1:
-            message("ROUND 1 MESSAGE\nPLAYER INTRODUCTION\p$")
+            message("It is my honor to announce that the\nfirst round of the PWT has commenced!\p$")
         case PWT_ROUND2:
             message("ROUND 2 MESSAGE\nPLAYER INTRODUCTION\p$")
         case PWT_SEMIFINAL:
@@ -177,10 +200,12 @@ script PWT_BattleRoom_EventScript_DoPWTBattle {
 
 script PWT_BattleRoom_EventScript_SetUpObjects {
 	hideobjectat(LOCALID_PWT_PLAYER, MAP_PWT_BATTLE_ROOM)
+	hideobjectat(LOCALID_PWT_OPPONENT, MAP_PWT_BATTLE_ROOM)
 	call(PWT_BattleRoom_EventScript_AddAudience)
 	setoutfitgfxintovar(VAR_OBJ_GFX_ID_1)
 	setvar(VAR_TEMP_1, 1)
 	applymovement(LOCALID_PLAYER, moves(set_invisible))
+	applymovement(LOCALID_PWT_OPPONENT, moves(set_invisible, face_up))
 	pwt_GetData(PWT_DATA_ROUND_NUM)
 }
 

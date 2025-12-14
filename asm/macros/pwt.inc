@@ -75,6 +75,12 @@
 	special CallPWTFunction
 	.endm
 
+    @ Announce the opponent
+    .macro pwt_AnnounceTheOpponent
+    setvar VAR_0x8004, PWT_FUNC_ANNOUNCE_OPPONENT
+	special CallPWTFunction
+	.endm
+
     @ Get the opponent's name
     .macro pwt_BufferBattleStrings
     setvar VAR_0x8004, PWT_FUNC_BUFFER_BATTLE_STRINGS

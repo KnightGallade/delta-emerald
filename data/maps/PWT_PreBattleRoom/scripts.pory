@@ -38,6 +38,7 @@ script PWT_PreBattleRoom_EventScript_AskReadyForNextRound {
 }
 
 script PWT_PreBattleRoom_EventScript_ShowOpponentInfo {
+	setspeaker("Attendant")
 	msgbox("{PLAYER}'s next opponent\nis this TRAINER.", MSGBOX_DEFAULT)
 	fadescreen (FADE_TO_BLACK)
 	pwt_ShowOpponentCard
@@ -46,6 +47,7 @@ script PWT_PreBattleRoom_EventScript_ShowOpponentInfo {
 }
 
 script PWT_PreBattleRoom_EventScript_ShowTourneyTree {
+	setspeaker("Attendant")
 	pwt_GetData(PWT_DATA_ROUND_NUM)
 	switch(var(VAR_RESULT)) {
 		case PWT_ROUND1:
@@ -64,6 +66,7 @@ script PWT_PreBattleRoom_EventScript_ShowTourneyTree {
 }
 
 script PWT_PreBattleRoom_EventScript_ContinueChallenge {
+	setspeaker("Attendant")
 	message("Please choose the three POKéMON\nthat are to appear in battle.")
 	waitmessage
 	waitbuttonpress
@@ -79,6 +82,7 @@ script PWT_PreBattleRoom_EventScript_ContinueChallenge {
 	}
 	pwt_SetPlayerParty
 	pwt_SetOpponentId
+	setspeaker("Attendant")
 	msgbox("Right this way, please.", MSGBOX_DEFAULT)
 	closemessage
 	applymovement(LOCALID_PWT_PRE_BATTLE_ATTENDANT, moves(walk_right, face_left))
@@ -98,6 +102,7 @@ script PWT_PreBattleRoom_EventScript_ContinueChallenge {
 }
 
 script PWT_PreBattleRoom_EventScript_ReadyForNextRoundMessage {
+	setspeaker("Attendant")
 	pwt_GetData(PWT_DATA_ROUND_NUM)
     switch (var(VAR_RESULT)) {
         case PWT_ROUND1:
