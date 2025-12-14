@@ -66,13 +66,6 @@ static const u8* const sFrontierTrainerSlides[DIFFICULTY_COUNT][FRONTIER_TRAINER
     },
 };
 
-static const u8* const sPWTTrainerSlides[DIFFICULTY_COUNT][FRONTIER_TRAINERS_COUNT][TRAINER_SLIDE_COUNT] =
-{
-    [DIFFICULTY_NORMAL] =
-    {
-    },
-};
-
 static const u8* const sTestTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][TRAINER_SLIDE_COUNT] =
 {
 #include "../test/battle/trainer_slides.h"
@@ -118,8 +111,6 @@ static const u8* const *GetTrainerSlideArray(enum DifficultyLevel difficulty, u3
 {
     if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
         return sFrontierTrainerSlides[difficulty][trainerId];
-    else if (gBattleTypeFlags & BATTLE_TYPE_PWT)
-        return sPWTTrainerSlides[difficulty][trainerId];
     else if (TESTING)
         return sTestTrainerSlides[difficulty][trainerId];
     else
