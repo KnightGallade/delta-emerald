@@ -1607,6 +1607,7 @@ static void PWTInitTrainers(void)
         do
         {
             trainerId = GetRandomPWTTrainerId(tournamentType);
+            DebugPrintf("Trainer %d: id %d", i, trainerId);
             for (j = 1; j < i; j++)
             {
                 if (PWT_TRAINERS[j].trainerId == trainerId)
@@ -4793,7 +4794,7 @@ u16 GetRandomPWTTrainerId(u8 tournamentType)
         endId = PWT_TRAINER_ROYALE_END;
         break;
     }
-    trainerId = (Random() % (endId - startId)) + startId;
+    trainerId = (Random() % (endId - startId + 1)) + startId;
     return trainerId;
 }
 
