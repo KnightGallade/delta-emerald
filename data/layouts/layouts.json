@@ -4460,6 +4460,216 @@
       "secondary_tileset": "gTileset_BattleDome",
       "border_filepath": "data/layouts/PWT_BattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/PWT_BattleRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT0",
+      "name": "LittlerootTown_Development0_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development0/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development0/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT1",
+      "name": "LittlerootTown_Development1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development1/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development1/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT3",
+      "name": "LittlerootTown_Development3_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development3/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development3/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT2",
+      "name": "LittlerootTown_Development2_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development2/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development2/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT4",
+      "name": "LittlerootTown_Development4_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development4/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development4/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT9",
+      "name": "LittlerootTown_Development9_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development9/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development9/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT7",
+      "name": "LittlerootTown_Development7_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development7/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development7/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT6",
+      "name": "LittlerootTown_Development6_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development6/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development6/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT5",
+      "name": "LittlerootTown_Development5_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development5/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development5/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_DEVELOPMENT8",
+      "name": "LittlerootTown_Development8_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_Development8/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_Development8/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT0",
+      "name": "PetalburgCity_Development0_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development0/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development0/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT1",
+      "name": "PetalburgCity_Development1_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development1/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development1/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT2",
+      "name": "PetalburgCity_Development2_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development2/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development2/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT3",
+      "name": "PetalburgCity_Development3_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development3/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development3/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT4",
+      "name": "PetalburgCity_Development4_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development4/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development4/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT5",
+      "name": "PetalburgCity_Development5_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development5/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development5/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT6",
+      "name": "PetalburgCity_Development6_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development6/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development6/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT7",
+      "name": "PetalburgCity_Development7_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development7/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development7/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT8",
+      "name": "PetalburgCity_Development8_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development8/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development8/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CITY_DEVELOPMENT9",
+      "name": "PetalburgCity_Development9_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgCity_Development9/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgCity_Development9/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUSTBORO_CITY_DEVELOPMENT0",
+      "name": "RustboroCity_Development0_Layout",
+      "width": 40,
+      "height": 60,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/RustboroCity_Development0_Layout/border.bin",
+      "blockdata_filepath": "data/layouts/RustboroCity_Development0_Layout/map.bin"
     }
   ]
 }

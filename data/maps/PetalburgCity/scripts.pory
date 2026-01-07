@@ -1,4 +1,4 @@
-
+raw `
 PetalburgCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_OnFrame
@@ -749,122 +749,48 @@ PetalburgCity_Text_ImLookingForTalentedTrainers:
 	.string "I'm roaming the land in search of\n"
 	.string "talented TRAINERS.\p"
 	.string "I'm sorry to have taken your time.$"
-
-PetalburgCity_EventScript_Development::
+`
+script PetalburgCity_EventScript_Development {
 	faceplayer
 	lock
-	setflag FLAG_HIDE_PETALBURG_CITY_SCOTT
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD
-	setflag FLAG_PETALBURG_DEVELOPMENT
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
-	setspeaker PetalburgCity_EventScript_Development_Text_0
-	msgbox PetalburgCity_EventScript_Development_Text_1, MSGBOX_DEFAULT
-	waitmessage
-	dynmultichoice 25, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, PetalburgCity_EventScript_Development_Text_2, PetalburgCity_EventScript_Development_Text_3, PetalburgCity_EventScript_Development_Text_4, PetalburgCity_EventScript_Development_Text_5, PetalburgCity_EventScript_Development_Text_6, PetalburgCity_EventScript_Development_Text_7, PetalburgCity_EventScript_Development_Text_8, PetalburgCity_EventScript_Development_Text_9, PetalburgCity_EventScript_Development_Text_10, PetalburgCity_EventScript_Development_Text_11, PetalburgCity_EventScript_Development_Text_12
-	switch VAR_RESULT
-	case 0, PetalburgCity_EventScript_Development_3
-	case 1, PetalburgCity_EventScript_Development_4
-	case 2, PetalburgCity_EventScript_Development_5
-	case 3, PetalburgCity_EventScript_Development_6
-	case 4, PetalburgCity_EventScript_Development_7
-	case 5, PetalburgCity_EventScript_Development_8
-	case 6, PetalburgCity_EventScript_Development_9
-	case 7, PetalburgCity_EventScript_Development_10
-	case 8, PetalburgCity_EventScript_Development_11
-	case 9, PetalburgCity_EventScript_Development_12
-	case 10, PetalburgCity_EventScript_Development_13
-	case MULTI_B_PRESSED, PetalburgCity_EventScript_Development_14
-PetalburgCity_EventScript_Development_1:
-	warp MAP_PETALBURG_CITY, 27, 17
+	setflag(FLAG_HIDE_PETALBURG_CITY_SCOTT)
+	setflag(FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD)
+	setflag(FLAG_PETALBURG_DEVELOPMENT)
+	setflag(FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM)
+	setspeaker("Architect")
+    msgbox("What development level would you like?", MSGBOX_DEFAULT)
+    waitmessage
+    dynmultichoice(25, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+    switch (var(VAR_RESULT)) {
+        case 0:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 0)
+        case 1:
+            setvar(VAR_PETALBURG_DEVELOPMENT, 1)
+        case 2:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 2)
+        case 3:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 3)
+        case 4:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 4)
+		case 5:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 5)
+		case 6:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 6)
+		case 7:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 7)
+		case 8:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 8)
+		case 9:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 9)
+		case 10:
+			setvar(VAR_PETALBURG_DEVELOPMENT, 10)
+			clearflag(FLAG_PETALBURG_DEVELOPMENT)
+			msgbox("10", MSGBOX_DEFAULT)
+        case MULTI_B_PRESSED:
+			release
+            end
+    }
+    warp(MAP_PETALBURG_CITY, 27, 17)
 	release
 	end
-
-PetalburgCity_EventScript_Development_3:
-	setvar VAR_PETALBURG_DEVELOPMENT, 0
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_4:
-	setvar VAR_PETALBURG_DEVELOPMENT, 1
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_5:
-	setvar VAR_PETALBURG_DEVELOPMENT, 2
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_6:
-	setvar VAR_PETALBURG_DEVELOPMENT, 3
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_7:
-	setvar VAR_PETALBURG_DEVELOPMENT, 4
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_8:
-	setvar VAR_PETALBURG_DEVELOPMENT, 5
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_9:
-	setvar VAR_PETALBURG_DEVELOPMENT, 6
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_10:
-	setvar VAR_PETALBURG_DEVELOPMENT, 7
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_11:
-	setvar VAR_PETALBURG_DEVELOPMENT, 8
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_12:
-	setvar VAR_PETALBURG_DEVELOPMENT, 9
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_13:
-	setvar VAR_PETALBURG_DEVELOPMENT, 10
-	clearflag FLAG_PETALBURG_DEVELOPMENT
-	msgbox PetalburgCity_EventScript_Development_Text_12, MSGBOX_DEFAULT
-	goto PetalburgCity_EventScript_Development_1
-
-PetalburgCity_EventScript_Development_14:
-	release
-	end
-
-
-PetalburgCity_EventScript_Development_Text_0:
-	.string "Architect$"
-
-PetalburgCity_EventScript_Development_Text_1:
-	.string "What development level would you like?$"
-
-PetalburgCity_EventScript_Development_Text_2:
-	.string "0$"
-
-PetalburgCity_EventScript_Development_Text_3:
-	.string "1$"
-
-PetalburgCity_EventScript_Development_Text_4:
-	.string "2$"
-
-PetalburgCity_EventScript_Development_Text_5:
-	.string "3$"
-
-PetalburgCity_EventScript_Development_Text_6:
-	.string "4$"
-
-PetalburgCity_EventScript_Development_Text_7:
-	.string "5$"
-
-PetalburgCity_EventScript_Development_Text_8:
-	.string "6$"
-
-PetalburgCity_EventScript_Development_Text_9:
-	.string "7$"
-
-PetalburgCity_EventScript_Development_Text_10:
-	.string "8$"
-
-PetalburgCity_EventScript_Development_Text_11:
-	.string "9$"
-
-PetalburgCity_EventScript_Development_Text_12:
-	.string "10$"
+}

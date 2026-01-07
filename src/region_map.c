@@ -29,6 +29,7 @@
 #include "constants/heal_locations.h"
 #include "constants/rgb.h"
 #include "constants/weather.h"
+#include "dynamic_maps.h"
 
 /*
  *  This file handles region maps generally, and the map used when selecting a fly destination.
@@ -1577,7 +1578,7 @@ u8 *GetMapName(u8 *dest, mapsec_u16_t regionMapId, u16 padLength)
     }
     else if (regionMapId < MAPSEC_NONE)
     {
-        str = StringCopy(dest, gRegionMapEntries[regionMapId].name);
+        str = CopyDynamicMapName(dest, regionMapId);
     }
     else
     {

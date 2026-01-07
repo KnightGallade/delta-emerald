@@ -17,6 +17,7 @@
 #include "constants/rgb.h"
 #include "constants/metatile_behaviors.h"
 #include "wild_encounter.h"
+#include "dynamic_maps.h"
 
 struct ConnectionFlags
 {
@@ -98,7 +99,7 @@ static void InitMapLayoutData(struct MapHeader *mapHeader)
     struct MapLayout const *mapLayout;
     int width;
     int height;
-    mapLayout = mapHeader->mapLayout;
+    mapLayout = GetDynamicMapLayout(mapHeader->mapLayoutId);
     CpuFastFill16(MAPGRID_UNDEFINED, sBackupMapData, sizeof(sBackupMapData));
     gBackupMapLayout.map = sBackupMapData;
     width = mapLayout->width + MAP_OFFSET_W;
@@ -170,9 +171,11 @@ static void FillConnection(int x, int y, struct MapHeader const *connectedMapHea
     const u16 *src;
     u16 *dest;
     int mapWidth;
+    const struct MapLayout *mapLayout;
 
     mapWidth = connectedMapHeader->mapLayout->width;
-    src = &connectedMapHeader->mapLayout->map[mapWidth * y2 + x2];
+    mapLayout = GetDynamicMapLayout(connectedMapHeader->mapLayoutId);
+    src = &mapLayout->map[mapWidth * y2 + x2];
     dest = &gBackupMapLayout.map[gBackupMapLayout.width * y + x];
 
     for (i = 0; i < height; i++)

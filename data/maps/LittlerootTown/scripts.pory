@@ -1,4 +1,4 @@
-
+raw `
 LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
@@ -978,118 +978,45 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I gave you?\p"
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
+`
 
-LittlerootTown_EventScript_Development::
+script LittlerootTown_EventScript_Development {
 	faceplayer
 	lock
-	setflag FLAG_LITTLEROOT_DEVELOPMENT
-	setspeaker LittlerootTown_EventScript_Development_Text_0
-	msgbox LittlerootTown_EventScript_Development_Text_1, MSGBOX_DEFAULT
-	waitmessage
-	dynmultichoice 25, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, LittlerootTown_EventScript_Development_Text_2, LittlerootTown_EventScript_Development_Text_3, LittlerootTown_EventScript_Development_Text_4, LittlerootTown_EventScript_Development_Text_5, LittlerootTown_EventScript_Development_Text_6, LittlerootTown_EventScript_Development_Text_7, LittlerootTown_EventScript_Development_Text_8, LittlerootTown_EventScript_Development_Text_9, LittlerootTown_EventScript_Development_Text_10, LittlerootTown_EventScript_Development_Text_11, LittlerootTown_EventScript_Development_Text_12
-	switch VAR_RESULT
-	case 0, LittlerootTown_EventScript_Development_3
-	case 1, LittlerootTown_EventScript_Development_4
-	case 2, LittlerootTown_EventScript_Development_5
-	case 3, LittlerootTown_EventScript_Development_6
-	case 4, LittlerootTown_EventScript_Development_7
-	case 5, LittlerootTown_EventScript_Development_8
-	case 6, LittlerootTown_EventScript_Development_9
-	case 7, LittlerootTown_EventScript_Development_10
-	case 8, LittlerootTown_EventScript_Development_11
-	case 9, LittlerootTown_EventScript_Development_12
-	case 10, LittlerootTown_EventScript_Development_13
-	case MULTI_B_PRESSED, LittlerootTown_EventScript_Development_14
-LittlerootTown_EventScript_Development_1:
-	warp MAP_LITTLEROOT_TOWN, 10, 0
+	setflag(FLAG_LITTLEROOT_DEVELOPMENT)
+	setspeaker("Architect")
+    msgbox("What development level would you like?", MSGBOX_DEFAULT)
+    waitmessage
+    dynmultichoice(25, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+    switch (var(VAR_RESULT)) {
+        case 0:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 0)
+        case 1:
+            setvar(VAR_LITTLEROOT_DEVELOPMENT, 1)
+        case 2:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 2)
+        case 3:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 3)
+        case 4:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 4)
+		case 5:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 5)
+		case 6:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 6)
+		case 7:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 7)
+		case 8:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 8)
+		case 9:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 9)
+		case 10:
+			setvar(VAR_LITTLEROOT_DEVELOPMENT, 10)
+			clearflag(FLAG_LITTLEROOT_DEVELOPMENT)
+        case MULTI_B_PRESSED:
+			release
+            end
+    }
+    warp(MAP_LITTLEROOT_TOWN, 10, 0)
 	release
 	end
-
-LittlerootTown_EventScript_Development_3:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 0
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_4:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 1
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_5:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 2
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_6:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 3
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_7:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 4
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_8:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 5
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_9:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 6
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_10:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 7
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_11:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 8
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_12:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 9
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_13:
-	setvar VAR_LITTLEROOT_DEVELOPMENT, 10
-	clearflag FLAG_LITTLEROOT_DEVELOPMENT
-	goto LittlerootTown_EventScript_Development_1
-
-LittlerootTown_EventScript_Development_14:
-	release
-	end
-
-
-LittlerootTown_EventScript_Development_Text_0:
-	.string "Architect$"
-
-LittlerootTown_EventScript_Development_Text_1:
-	.string "What development level would you like?$"
-
-LittlerootTown_EventScript_Development_Text_2:
-	.string "0$"
-
-LittlerootTown_EventScript_Development_Text_3:
-	.string "1$"
-
-LittlerootTown_EventScript_Development_Text_4:
-	.string "2$"
-
-LittlerootTown_EventScript_Development_Text_5:
-	.string "3$"
-
-LittlerootTown_EventScript_Development_Text_6:
-	.string "4$"
-
-LittlerootTown_EventScript_Development_Text_7:
-	.string "5$"
-
-LittlerootTown_EventScript_Development_Text_8:
-	.string "6$"
-
-LittlerootTown_EventScript_Development_Text_9:
-	.string "7$"
-
-LittlerootTown_EventScript_Development_Text_10:
-	.string "8$"
-
-LittlerootTown_EventScript_Development_Text_11:
-	.string "9$"
-
-LittlerootTown_EventScript_Development_Text_12:
-	.string "10$"
+}

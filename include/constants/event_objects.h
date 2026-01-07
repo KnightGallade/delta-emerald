@@ -247,6 +247,7 @@
 #define OBJ_EVENT_GFX_OW_MON                     240
 #define OBJ_EVENT_GFX_LIGHT_SPRITE               241
 #define OBJ_EVENT_GFX_APRICORN_TREE              242
+
 // outfits
 #define OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_NORMAL         243
 #define OBJ_EVENT_GFX_OUTFIT_RS_BRENDAN_MACH_BIKE      244
@@ -302,6 +303,8 @@
 #define OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_FISHING         294
 #define OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_WATERING        295
 #define OBJ_EVENT_GFX_OUTFIT_FRLG_LEAF_DECORATING      296
+
+// PWT
 #define OBJ_EVENT_GFX_LEADER_BROCK                     297
 #define OBJ_EVENT_GFX_LEADER_MISTY                     298
 #define OBJ_EVENT_GFX_LEADER_ERIKA                     299

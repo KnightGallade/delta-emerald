@@ -77,6 +77,7 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "dynamic_maps.h"
 
 STATIC_ASSERT((B_FLAG_FOLLOWERS_DISABLED == 0 || OW_FOLLOWERS_ENABLED), FollowersFlagAssignedWithoutEnablingThem);
 
@@ -583,7 +584,8 @@ static void InitMapView(void)
 
 const struct MapLayout *GetMapLayout(u16 mapLayoutId)
 {
-    return gMapLayouts[mapLayoutId - 1];
+    // Altered to allow dynamic maps
+    return GetDynamicMapLayout(mapLayoutId);
 }
 
 void ApplyCurrentWarp(void)
@@ -639,7 +641,7 @@ static void LoadCurrentMapData(void)
 {
     sLastMapSectionId = gMapHeader.regionMapSectionId;
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
-    gSaveBlock1Ptr->mapLayoutId = gMapHeader.mapLayoutId;
+    gSaveBlock1Ptr->mapLayoutId = GetDynamicLayoutId(gMapHeader.mapLayoutId);
     gMapHeader.mapLayout = GetMapLayout(gMapHeader.mapLayoutId);
 }
 
@@ -1073,7 +1075,7 @@ u8 GetFlashLevel(void)
 
 void SetCurrentMapLayout(u16 mapLayoutId)
 {
-    gSaveBlock1Ptr->mapLayoutId = mapLayoutId;
+    gSaveBlock1Ptr->mapLayoutId = GetDynamicLayoutId(mapLayoutId);
     gMapHeader.mapLayout = GetMapLayout(mapLayoutId);
 }
 
