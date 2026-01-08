@@ -112,6 +112,7 @@ static void Task_StartMenuFullMain(u8 taskId);
 static u32 GetHPEggCyclePercent(u32 partyIndex);
 static void PrintMapNameAndTime(void);
 static void CursorCallback(struct Sprite *sprite);
+static u8 GetMenuType(void);
 
 //==========CONST=DATA==========//
 static const struct BgTemplate sStartMenuBgTemplates[] =
@@ -196,6 +197,15 @@ static const u16 sStartMenuPaletteAlt[] = INCBIN_U16("graphics/ui_startmenu_full
 static const u32 sScrollBgTiles[] = INCBIN_U32("graphics/ui_startmenu_full/scroll_tiles.4bpp.lz");
 static const u32 sScrollBgTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/scroll_tilemap.bin.lz");
 static const u16 sScrollBgPalette[] = INCBIN_U16("graphics/ui_startmenu_full/scroll_tiles.gbapal");
+
+// FRLG Red Menu
+static const u32 sStartMenuFRLGRedTiles[] = INCBIN_U32("graphics/ui_startmenu_full/frlg_red/menu_tiles.4bpp.lz");
+static const u16 sStartMenuFRLGRedPalette[] = INCBIN_U16("graphics/ui_startmenu_full/frlg_red/menu.gbapal");
+static const u32 sStartMenuFRLGRedTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/frlg_red/menu_tilemap.bin.lz");
+static const u32 sScrollBgFRLGRedTiles[] = INCBIN_U32("graphics/ui_startmenu_full/frlg_red/frlg_red_tiles.4bpp.lz");
+static const u32 sScrollBgFRLGRedTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/frlg_red/frlg_red_tilemap.bin.lz");
+static const u16 sScrollBgFRLGRedPalette[] = INCBIN_U16("graphics/ui_startmenu_full/frlg_red/frlg_red.gbapal");
+
 
 // Cursor and IconBox
 static const u16 sCursor_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/cursor.gbapal");
@@ -402,7 +412,7 @@ static const struct CompressedSpriteSheet sSpriteSheet_StatusIcons =
     gStatusGfx_Icons, 0x400, TAG_STATUS_ICONS
 };
 
-static const struct CompressedSpritePalette sSpritePalette_StatusIcons =
+static const struct SpritePalette sSpritePalette_StatusIcons =
 {
     gStatusPal_Icons, TAG_STATUS_ICONS
 };
@@ -965,7 +975,26 @@ static void StartMenuFull_VBlankCB(void)
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
-    ChangeBgY(2, 128, BG_COORD_SUB); // controls the background scrolling
+    switch (GetMenuType())
+    {
+        default:
+        case MENU_DEFAULT_MALE:
+        case MENU_DEFAULT_FEMALE:
+        case MENU_EMERALD_BRENDAN:
+        case MENU_EMERALD_MAY:
+        case MENU_RS_BRENDAN:
+        case MENU_RS_MAY:
+        case MENU_ORAS_BRENDAN:
+        case MENU_ORAS_MAY:
+        case MENU_FRLG_LEAF:
+            ChangeBgY(2, 128, BG_COORD_SUB); // controls the background scrolling
+            break;
+        case MENU_FRLG_RED:
+            // Do nothing, no scroll
+            break;
+        }
+
+    
 }
 
 static bool8 StartMenuFull_DoGfxSetup(void) // base UI loader from Ghouls UI Shell branch, does the important hardware stuff to setup a UI
@@ -1120,47 +1149,171 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
     {
     case 0:
         ResetTempTileDataBuffers();
-        if (gSaveBlock2Ptr->playerGender == FEMALE)
+        switch (GetMenuType())
         {
-            DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+            default:
+            case MENU_DEFAULT_MALE:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
+            case MENU_DEFAULT_FEMALE:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
+            case MENU_EMERALD_BRENDAN:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
+            case MENU_EMERALD_MAY:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
+            case MENU_RS_BRENDAN:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
+            case MENU_RS_MAY:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
+            case MENU_ORAS_BRENDAN:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
+            case MENU_ORAS_MAY:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
+            case MENU_FRLG_RED:
+                DecompressAndCopyTileDataToVram(1, sStartMenuFRLGRedTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgFRLGRedTiles, 0, 0, 0);
+                break;
+            case MENU_FRLG_LEAF:
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
+                break;
         }
-        else
-        {
-            DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
-        }
-        DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
         sStartMenuDataPtr->gfxLoadState++;
         break;
     case 1:
         if (FreeTempTileDataBuffersIfPossible() != TRUE)
         {
-            LZDecompressWram(sStartMenuTilemap, sBg1TilemapBuffer);
-            LZDecompressWram(sScrollBgTilemap, sBg2TilemapBuffer);
+            switch (GetMenuType())
+            {
+                default:
+                case MENU_DEFAULT_MALE:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_DEFAULT_FEMALE:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_EMERALD_BRENDAN:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_EMERALD_MAY:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_RS_BRENDAN:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_RS_MAY:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_ORAS_BRENDAN:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_ORAS_MAY:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_FRLG_RED:
+                    DecompressDataWithHeaderWram(sStartMenuFRLGRedTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgFRLGRedTilemap, sBg2TilemapBuffer);
+                    break;
+                case MENU_FRLG_LEAF:
+                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
+                    break;
+            }
             sStartMenuDataPtr->gfxLoadState++;
         }
         break;
     case 2:
     {
         struct SpritePalette cursorPal = {sSpritePal_Cursor.data, sSpritePal_Cursor.tag};
-        if (gSaveBlock2Ptr->playerGender == FEMALE)
+        switch (GetMenuType())
         {
-            LoadPalette(sStartMenuPaletteAlt, 0, 16);
-            LoadPalette(sHP_PalAlt, 32, 16);
-            cursorPal.data = sCursor_PalAlt;
+            default:
+            case MENU_DEFAULT_MALE:
+                LoadPalette(sStartMenuPalette, 0, 16);
+                LoadPalette(sHP_Pal, 32, 16);
+                LoadPalette(sScrollBgPalette, 16, 16);
+                break;
+            case MENU_DEFAULT_FEMALE:
+                LoadPalette(sStartMenuPaletteAlt, 0, 16);
+                LoadPalette(sHP_PalAlt, 32, 16);
+                cursorPal.data = sCursor_PalAlt;
+                LoadPalette(sScrollBgPalette, 16, 16);
+                break;
+            case MENU_EMERALD_BRENDAN:
+                LoadPalette(sStartMenuPalette, 0, 16);
+                LoadPalette(sHP_Pal, 32, 16);
+                LoadPalette(sScrollBgPalette, 16, 16);
+                break;
+            case MENU_EMERALD_MAY:
+                LoadPalette(sStartMenuPaletteAlt, 0, 16);
+                LoadPalette(sHP_PalAlt, 32, 16);
+                cursorPal.data = sCursor_PalAlt;
+                LoadPalette(sScrollBgPalette, 16, 16);
+                break;
+            case MENU_RS_BRENDAN:
+                LoadPalette(sStartMenuPalette, 0, 16);
+                LoadPalette(sHP_Pal, 32, 16);
+                LoadPalette(sScrollBgPalette, 16, 16);
+                break;
+            case MENU_RS_MAY:
+                LoadPalette(sStartMenuPaletteAlt, 0, 16);
+                LoadPalette(sHP_PalAlt, 32, 16);
+                cursorPal.data = sCursor_PalAlt;
+                LoadPalette(sScrollBgPalette, 16, 16);
+                break;
+            case MENU_ORAS_BRENDAN:
+                LoadPalette(sStartMenuPalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                break;
+            case MENU_ORAS_MAY:
+                LoadPalette(sStartMenuPaletteAlt, 0, 16);
+                LoadPalette(sHP_PalAlt, 32, 16);
+                cursorPal.data = sCursor_PalAlt;
+                LoadPalette(sScrollBgPalette, 16, 16);
+                break;
+            case MENU_FRLG_RED:
+                LoadPalette(sStartMenuFRLGRedPalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgFRLGRedPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                // DO RUN
+                break;
+            case MENU_FRLG_LEAF:
+                LoadPalette(sStartMenuPaletteAlt, 0, 16);
+                LoadPalette(sHP_PalAlt, 32, 16);
+                cursorPal.data = sCursor_PalAlt;
+                LoadPalette(sScrollBgPalette, 16, 16);
+                break;
         }
-        else
-        {
-            LoadPalette(sStartMenuPalette, 0, 16);
-            LoadPalette(sHP_Pal, 32, 16);
-        }
-        LoadPalette(sScrollBgPalette, 16, 16);
-
         LoadCompressedSpriteSheet(&sSpriteSheet_IconBox);
         LoadSpritePalette(&sSpritePal_IconBox);
         LoadCompressedSpriteSheet(&sSpriteSheet_Cursor);
         LoadSpritePalette(&cursorPal);
         LoadCompressedSpriteSheet(&sSpriteSheet_StatusIcons);
-        LoadCompressedSpritePalette(&sSpritePalette_StatusIcons);
+        LoadSpritePalette(&sSpritePalette_StatusIcons);
 
         LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonMap);
         LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonDex);
@@ -1574,4 +1727,21 @@ static void Task_StartMenuFullMain(u8 taskId)
     }
     gTasks[taskId].sFrameToSecondTimer++;
 
+}
+
+// New function to determine which menu to load
+static u8 GetMenuType(void) {
+    switch (gSaveBlock2Ptr->currOutfitId)
+    {
+        case OUTFIT_USUAL_GREEN:
+            return gSaveBlock2Ptr->playerGender == MALE ? MENU_EMERALD_BRENDAN : MENU_EMERALD_MAY;
+        case OUTFIT_UNUSUAL_RED:
+            return gSaveBlock2Ptr->playerGender == MALE ? MENU_RS_BRENDAN : MENU_RS_MAY;
+        case OUTFIT_FUTURISTIC:
+            return gSaveBlock2Ptr->playerGender == MALE ? MENU_ORAS_BRENDAN : MENU_ORAS_MAY;
+        case OUTFIT_FOREIGN:
+            return gSaveBlock2Ptr->playerGender == MALE ? MENU_FRLG_RED : MENU_FRLG_LEAF;
+        default:
+            return gSaveBlock2Ptr->playerGender == MALE ? MENU_DEFAULT_MALE : MENU_DEFAULT_FEMALE;
+    }
 }
