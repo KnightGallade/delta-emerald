@@ -2474,10 +2474,51 @@ extern const u8 gText_SideQuestDesc_TaoKings[];
 extern const u8 gText_SideQuestDoneDesc_TaoKings[];
 extern const u8 gText_SideQuestMap_TaoKings[];
 
+// QUEST_DISTORTED_DIMENSIONS
 extern const u8 gText_SideQuestName_DistortedDimensions[];
 extern const u8 gText_SideQuestDesc_DistortedDimensions[];
 extern const u8 gText_SideQuestDoneDesc_DistortedDimensions[];
 extern const u8 gText_SideQuestMap_DistortedDimensions[];
+// Subquest 1
+extern const u8 gText_DistortedDimensions_SubQuest1_Name[];
+extern const u8 gText_DistortedDimensions_SubQuest1_Desc[];
+extern const u8 gText_DistortedDimensions_SubQuest1_DoneDesc[];
+extern const u8 gText_DistortedDimensions_SideQuest1_Map[];
+// Subquest 2
+extern const u8 gText_DistortedDimensions_SubQuest2_Name[];
+extern const u8 gText_DistortedDimensions_SubQuest2_Desc[];
+extern const u8 gText_DistortedDimensions_SubQuest2_DoneDesc[];
+extern const u8 gText_DistortedDimensions_SideQuest2_Map[];
+// Subquest 3
+extern const u8 gText_DistortedDimensions_SubQuest3_Name[];
+extern const u8 gText_DistortedDimensions_SubQuest3_Desc[];
+extern const u8 gText_DistortedDimensions_SubQuest3_DoneDesc[];
+extern const u8 gText_DistortedDimensions_SideQuest3_Map[];
+// Subquest 4
+extern const u8 gText_DistortedDimensions_SubQuest4_Name[];
+extern const u8 gText_DistortedDimensions_SubQuest4_Desc[];
+extern const u8 gText_DistortedDimensions_SubQuest4_DoneDesc[];
+extern const u8 gText_DistortedDimensions_SideQuest4_Map[];
+// Subquest 5
+extern const u8 gText_DistortedDimensions_SubQuest5_Name[];
+extern const u8 gText_DistortedDimensions_SubQuest5_Desc[];
+extern const u8 gText_DistortedDimensions_SubQuest5_DoneDesc[];
+extern const u8 gText_DistortedDimensions_SideQuest5_Map[];
+// Subquest 6
+extern const u8 gText_DistortedDimensions_SubQuest6_Name[];
+extern const u8 gText_DistortedDimensions_SubQuest6_Desc[];
+extern const u8 gText_DistortedDimensions_SubQuest6_DoneDesc[];
+extern const u8 gText_DistortedDimensions_SideQuest6_Map[];
+// Subquest 7
+extern const u8 gText_DistortedDimensions_SubQuest7_Name[];
+extern const u8 gText_DistortedDimensions_SubQuest7_Desc[];
+extern const u8 gText_DistortedDimensions_SubQuest7_DoneDesc[];
+extern const u8 gText_DistortedDimensions_SideQuest7_Map[];
+// Subquest 8
+extern const u8 gText_DistortedDimensions_SubQuest8_Name[];
+extern const u8 gText_DistortedDimensions_SubQuest8_Desc[];
+extern const u8 gText_DistortedDimensions_SubQuest8_DoneDesc[];
+extern const u8 gText_DistortedDimensions_SideQuest8_Map[];
 
 extern const u8 gText_SideQuestName_GoldenHeartSilverSoul[];
 extern const u8 gText_SideQuestDesc_GoldenHeartSilverSoul[];

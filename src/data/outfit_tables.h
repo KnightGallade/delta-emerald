@@ -2,21 +2,21 @@
 #include "constants/event_objects.h"
 
 #if MODERN == 0
-static const u8 sText_OutfitName_UsualGreen[] = _("USUAL GREEN");
+static const u8 sText_OutfitName_UsualGreen[] = _("Emerald");
 static const u8 sText_OutfitDesc_UsualGreen[] = _(
-    "The usual, but basic OUTFIT.");
+    "Hero of Pokémon Emerald.");
 
-static const u8 sText_OutfitName_UnusualRed[] = _("UNUSUAL RED");
+static const u8 sText_OutfitName_UnusualRed[] = _("Ruby");
 static const u8 sText_OutfitDesc_UnusualRed[] = _(
-    "Rather unusual, but still basic\nOUTFIT.");
+    "The previous hero.");
 
-static const u8 sText_OutfitName_Futuristic[] = _("FUTURISTIC");
+static const u8 sText_OutfitName_Futuristic[] = _("Omega");
 static const u8 sText_OutfitDesc_Futuristic[] = _(
-    "A sleak and modern OUTFIT, almost\nas if it came from the future.");
+    "Hero from the future.");
 
-static const u8 sText_OutfitName_Foreign[] = _("FOREIGN");
+static const u8 sText_OutfitName_Foreign[] = _("Red");
 static const u8 sText_OutfitDesc_Foreign[] = _(
-    "An OUTFIT imported from a\nfar-away land.");
+    "The one that came first.");
 #endif
 
 static const u16 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U16("graphics/pokenav/region_map/brendan_icon.4bpp");
@@ -54,14 +54,14 @@ const struct Outfit gOutfits[OUTFIT_COUNT] =
         //! agbcc doesnt like COMPOUND_STRING on my end
         //! DESC: outfit's name
         #if MODERN == 1
-        .name = COMPOUND_STRING("USUAL GREEN"),
+        .name = COMPOUND_STRING("Emerald"),
         #else
         .name = sText_OutfitName_UsualGreen,
         #endif
 
         //! DESC: outfit's description
         #if MODERN == 1
-        .desc = COMPOUND_STRING("The usual, but basic OUTFIT."),
+        .desc = COMPOUND_STRING("Hero of Pokémon Emerald."),
         #else
         .desc = sText_OutfitDesc_UsualGreen,
         #endif
@@ -121,8 +121,8 @@ const struct Outfit gOutfits[OUTFIT_COUNT] =
         .isHidden = FALSE,
         .prices = { 200, 500 },
         #if MODERN == 1
-        .name = COMPOUND_STRING("UNUSUAL RED"),
-        .desc = COMPOUND_STRING("Rather unusual, but still basic\nOUTFIT."),
+        .name = COMPOUND_STRING("Ruby"),
+        .desc = COMPOUND_STRING("The previous hero."),
         #else
         .name = sText_OutfitName_UnusualRed,
         .desc = sText_OutfitDesc_UnusualRed,
@@ -168,8 +168,8 @@ const struct Outfit gOutfits[OUTFIT_COUNT] =
         .isHidden = FALSE,
         .prices = { 200, 200 },
         #if MODERN == 1
-        .name = COMPOUND_STRING("FUTURISTIC"),
-        .desc = COMPOUND_STRING("A sleak and modern OUTFIT, almost\nas if it came from the future."),
+        .name = COMPOUND_STRING("Omega"),
+        .desc = COMPOUND_STRING("Hero from the future."),
         #else
         .name = sText_OutfitName_Futuristic,
         .desc = sText_OutfitDesc_Futuristic,
@@ -215,8 +215,8 @@ const struct Outfit gOutfits[OUTFIT_COUNT] =
         .isHidden = FALSE,
         .prices = { 200, 200 },
         #if MODERN == 1
-        .name = COMPOUND_STRING("FOREIGN"),
-        .desc = COMPOUND_STRING("An OUTFIT imported from a\nfar-away land."),
+        .name = COMPOUND_STRING("Red"),
+        .desc = COMPOUND_STRING("The one that came first."),
         #else
         .name = sText_OutfitName_Foreign,
         .desc = sText_OutfitDesc_Foreign,

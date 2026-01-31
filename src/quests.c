@@ -1425,82 +1425,82 @@ static const struct SubQuest sSubQuests_DistortedDimensions[QUEST_DISTORTED_DIME
 {
 	sub_quest(
 	    109, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-		gText_SubQuestX_DoneDescX,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
+	    gText_DistortedDimensions_SubQuest1_Name,
+	    gText_DistortedDimensions_SubQuest1_Desc,
+		gText_DistortedDimensions_SubQuest1_DoneDesc,
+	    gText_DistortedDimensions_SideQuest1_Map,
+	    OBJ_EVENT_GFX_OLD_MAN,
 	    OBJECT,
 	    sText_Complete
 	),
 	sub_quest(
 	    110, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-		gText_SubQuestX_DoneDescX,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
+	    gText_DistortedDimensions_SubQuest2_Name,
+	    gText_DistortedDimensions_SubQuest2_Desc,
+		gText_DistortedDimensions_SubQuest2_DoneDesc,
+	    gText_DistortedDimensions_SideQuest2_Map,
+	    SPECIES_CELEBI,
+	    PKMN,
 	    sText_Complete
 	),
 	sub_quest(
 	    111, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-		gText_SubQuestX_DoneDescX,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
+	    gText_DistortedDimensions_SubQuest3_Name,
+	    gText_DistortedDimensions_SubQuest3_Desc,
+		gText_DistortedDimensions_SubQuest3_DoneDesc,
+	    gText_DistortedDimensions_SideQuest3_Map,
+	    SPECIES_DIALGA,
+	    PKMN,
 	    sText_Complete
 	),
 	sub_quest(
 	    112, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-		gText_SubQuestX_DoneDescX,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
+	    gText_DistortedDimensions_SubQuest4_Name,
+	    gText_DistortedDimensions_SubQuest4_Desc,
+		gText_DistortedDimensions_SubQuest4_DoneDesc,
+	    gText_DistortedDimensions_SideQuest4_Map,
+	    SPECIES_HOOPA,
+	    PKMN,
 	    sText_Complete
 	),
 	sub_quest(
 	    113, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-		gText_SubQuestX_DoneDescX,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
+	    gText_DistortedDimensions_SubQuest5_Name,
+	    gText_DistortedDimensions_SubQuest5_Desc,
+		gText_DistortedDimensions_SubQuest5_DoneDesc,
+	    gText_DistortedDimensions_SideQuest5_Map,
+	    SPECIES_PALKIA,
+	    PKMN,
 	    sText_Complete
 	),
 	sub_quest(
 	    114, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-		gText_SubQuestX_DoneDescX,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
+	    gText_DistortedDimensions_SubQuest6_Name,
+	    gText_DistortedDimensions_SubQuest6_Desc,
+		gText_DistortedDimensions_SubQuest6_DoneDesc,
+	    gText_DistortedDimensions_SideQuest6_Map,
+	    SPECIES_NECROZMA,
+	    PKMN,
 	    sText_Complete
 	),
 	sub_quest(
 	    115, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-		gText_SubQuestX_DoneDescX,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
+	    gText_DistortedDimensions_SubQuest7_Name,
+	    gText_DistortedDimensions_SubQuest7_Desc,
+		gText_DistortedDimensions_SubQuest7_DoneDesc,
+	    gText_DistortedDimensions_SideQuest7_Map,
+	    SPECIES_NONE,
+	    PKMN,
 	    sText_Complete
 	),
 	sub_quest(
 	    116, //subquestidx
-	    gText_SubQuest1_Name1,
-	    gText_SubQuest1_Desc1,
-		gText_SubQuestX_DoneDescX,
-	    gText_SideQuestMap1,
-	    OBJ_EVENT_GFX_WALLY,
-	    OBJECT,
+	    gText_DistortedDimensions_SubQuest8_Name,
+	    gText_DistortedDimensions_SubQuest8_Desc,
+		gText_DistortedDimensions_SubQuest8_DoneDesc,
+	    gText_DistortedDimensions_SideQuest8_Map,
+	    SPECIES_GIRATINA,
+	    PKMN,
 	    sText_Complete
 	),
 };
@@ -3089,6 +3089,8 @@ void QuestMenu_Init(u8 a0, MainCallback callback)
 	sStateDataPtr->spriteIconSlot = 0;
 	sStateDataPtr->scrollIndicatorArrowPairId = 0xFF;
 	sStateDataPtr->savedCallback = 0;
+	gSpecialVar_0x8004 = QUEST_COUNT;
+	gSpecialVar_0x8005 = SUB_QUEST_COUNT;
 	for (i = 0; i < 3; i++)
 	{
 		sStateDataPtr->data[i] = 0;
@@ -4033,6 +4035,8 @@ void PopulateSubquestName(u8 parentQuest, u8 countQuest)
 {
 	questNamePointer = StringAppend(questNamePointer,
 		                                sSideQuests[parentQuest].subquests[countQuest].name);
+	if (!QuestMenu_GetSetSubquestState(parentQuest, FLAG_GET_COMPLETED, countQuest))
+		questNamePointer = StringAppend(questNamePointer, sText_SubQuestButton);
 }
 
 void PopulateListRowNameAndId(u8 row, u8 countQuest)
@@ -4122,6 +4126,7 @@ void GenerateAndPrintQuestDetails(s32 questId)
 	GenerateQuestFlavorText(questId);
 	PrintQuestFlavorText(questId);
 }
+
 void GenerateQuestLocation(s32 questId)
 {
 	if (!IsSubquestMode())
@@ -4133,133 +4138,77 @@ void GenerateQuestLocation(s32 questId)
 		StringCopy(gStringVar2,
 		           sSideQuests[sStateDataPtr->parentQuest].subquests[questId].map);
 	}
-
 	StringExpandPlaceholders(gStringVar4, sText_ShowLocation);
 }
+
 void PrintQuestLocation(s32 questId)
 {
 	FillWindowPixelBuffer(1, 0);
-	QuestMenu_AddTextPrinterParameterized(1, 2, gStringVar4, 2, 3, 2, 0, 0,
-	                                      4);
+	QuestMenu_AddTextPrinterParameterized(1, 2, gStringVar4, 2, 3, 2, 0, 0, 4);
 }
+
 void GenerateQuestFlavorText(s32 questId)
 {
 	if (IsSubquestMode() == FALSE)
 	{
 		if (IsQuestInactiveState(questId) == TRUE)
-		{
 			StringCopy(gStringVar1, sText_StartForMore);
-		}
 		if (IsQuestActiveState(questId) == TRUE)
-		{
 			UpdateQuestFlavorText(questId);
-		}
 		if (IsQuestRewardState(questId) == TRUE)
-		{
 			StringCopy(gStringVar1, sText_ReturnRecieveReward);
-		}
 		if (IsQuestCompletedState(questId) == TRUE)
-		{
 			StringCopy(gStringVar1, sSideQuests[questId].donedesc);
-		}
 	}
 	else // since subquest no longer have ???, always print some text, but now between completed desc and todo dec
 	{
 		if (IsSubquestCompletedState(questId) == TRUE) 
-		{
-			StringCopy(gStringVar1,
-			           sSideQuests[sStateDataPtr->parentQuest].subquests[questId].donedesc);
-		}
+			StringCopy(gStringVar1, sSideQuests[sStateDataPtr->parentQuest].subquests[questId].donedesc);
 		else
-		{
-			StringCopy(gStringVar1,
-			           sSideQuests[sStateDataPtr->parentQuest].subquests[questId].desc);
-		}
+			StringCopy(gStringVar1, sSideQuests[sStateDataPtr->parentQuest].subquests[questId].desc);
 	}
 
 	StringExpandPlaceholders(gStringVar3, gStringVar1);
 }
+
 void UpdateQuestFlavorText(s32 questId)
 {
 	StringCopy(gStringVar1, sSideQuests[questId].desc);
 }
+
 void PrintQuestFlavorText(s32 questId)
 {
-	QuestMenu_AddTextPrinterParameterized(1, 2, gStringVar3, 40, 19, 5, 0, 0,
-	                                      4);
+	QuestMenu_AddTextPrinterParameterized(1, 2, gStringVar3, 40, 19, 5, 0, 0, 4);
 }
 
 bool8 IsSubquestCompletedState(s32 questId)
 {
-	if (QuestMenu_GetSetSubquestState(sStateDataPtr->parentQuest,
-	                                  FLAG_GET_COMPLETED,
-	                                  questId))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return QuestMenu_GetSetSubquestState(sStateDataPtr->parentQuest, FLAG_GET_COMPLETED, questId);
 }
+
 bool8 IsQuestRewardState(s32 questId)
 {
-	if (QuestMenu_GetSetQuestState(questId, FLAG_GET_REWARD))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return QuestMenu_GetSetQuestState(questId, FLAG_GET_REWARD);
 }
 
 bool8 IsQuestInactiveState(s32 questId)
 {
-	if (!QuestMenu_GetSetQuestState(questId, FLAG_GET_ACTIVE))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return (!QuestMenu_GetSetQuestState(questId, FLAG_GET_ACTIVE));
 }
 
 bool8 IsQuestActiveState(s32 questId)
 {
-	if (QuestMenu_GetSetQuestState(questId, FLAG_GET_ACTIVE))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return QuestMenu_GetSetQuestState(questId, FLAG_GET_ACTIVE);
 }
 
 bool8 IsQuestCompletedState(s32 questId)
 {
-	if (QuestMenu_GetSetQuestState(questId, FLAG_GET_COMPLETED))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return QuestMenu_GetSetQuestState(questId, FLAG_GET_COMPLETED);
 }
 
 bool8 UNUSED IsQuestUnlocked(s32 questId)
 {
-	if (QuestMenu_GetSetQuestState(questId, FLAG_GET_UNLOCKED))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return QuestMenu_GetSetQuestState(questId, FLAG_GET_UNLOCKED);
 }
 
 void DetermineSpriteType(s32 questId)
@@ -4271,22 +4220,17 @@ void DetermineSpriteType(s32 questId)
 	{
 		spriteId = sSideQuests[questId].sprite;
 		spriteType = sSideQuests[questId].spritetype;
-
-		QuestMenu_CreateSprite(spriteId, sStateDataPtr->spriteIconSlot,
-		                       spriteType);
 	}
 	else // always print for submenu now that submenu no longer has ???
 	{
-		spriteId =
-		      sSideQuests[sStateDataPtr->parentQuest].subquests[questId].sprite;
-		spriteType =
-		      sSideQuests[sStateDataPtr->parentQuest].subquests[questId].spritetype;
-		QuestMenu_CreateSprite(spriteId, sStateDataPtr->spriteIconSlot,
-		                       spriteType);
+		spriteId = sSideQuests[sStateDataPtr->parentQuest].subquests[questId].sprite;
+		spriteType = sSideQuests[sStateDataPtr->parentQuest].subquests[questId].spritetype;
 	}
+	QuestMenu_CreateSprite(spriteId, sStateDataPtr->spriteIconSlot, spriteType);
 	QuestMenu_DestroySprite(sStateDataPtr->spriteIconSlot ^ 1);
 	sStateDataPtr->spriteIconSlot ^= 1;
 }
+
 static void QuestMenu_CreateSprite(u16 itemId, u8 idx, u8 spriteType)
 {
 	u8 *ptr = &sItemMenuIconSpriteIds[10];
@@ -4308,7 +4252,7 @@ static void QuestMenu_CreateSprite(u16 itemId, u8 idx, u8 spriteType)
 				break;
 			case PKMN:
 				LoadMonIconPalettes();
-				spriteId = CreateMonIcon(itemId, SpriteCallbackDummy, 20, 132, 0, 1);
+				spriteId = CreateMonIcon(itemId, SpriteCB_MonIcon, 19, 136, 0, 1);
 				break;
 			default:
 				break;
@@ -4346,8 +4290,7 @@ static void QuestMenu_DestroySprite(u8 idx)
 
 	if (ptr[idx] != 0xFF)
 	{
-		u16 palTag = GetSpritePaletteTagByPaletteNum(
-		                   gSprites[ptr[idx]].oam.paletteNum);
+		u16 palTag = GetSpritePaletteTagByPaletteNum(gSprites[ptr[idx]].oam.paletteNum);
 		if (sItemMenuSpriteTypes[idx] == PKMN)
 			FreeAndDestroyMonIconSprite(&gSprites[ptr[idx]]);
 		else
@@ -4364,22 +4307,16 @@ static void QuestMenu_DestroySprite(u8 idx)
 		}
 	}
 }
-static void GenerateStateAndPrint(u8 windowId, u32 questId,
-                                  u8 y)
+static void GenerateStateAndPrint(u8 windowId, u32 questId, u8 y)
 {
 	u8 colorIndex;
 
 	if (questId != LIST_CANCEL)
 	{
 		if (IsSubquestMode())
-		{
 			colorIndex = GenerateSubquestState(questId);
-		}
 		else
-		{
 			colorIndex = GenerateQuestState(questId);
-		}
-
 		PrintQuestState(windowId, y, colorIndex);
 	}
 }
@@ -4388,8 +4325,7 @@ u8 GenerateSubquestState(u8 questId)
 {
 	u8 parentQuest = sStateDataPtr->parentQuest;
 
-	if (QuestMenu_GetSetSubquestState(parentQuest, FLAG_GET_COMPLETED,
-	                                  questId))
+	if (QuestMenu_GetSetSubquestState(parentQuest, FLAG_GET_COMPLETED, questId))
 	{
 		StringCopy(gStringVar4, sSideQuests[parentQuest].subquests[questId].type);
 		return 2; // prints in green for completed
@@ -4429,8 +4365,7 @@ u8 GenerateQuestState(u8 questId)
 
 void PrintQuestState(u8 windowId, u8 y, u8 colorIndex)
 {
-	QuestMenu_AddTextPrinterParameterized(windowId, 0, gStringVar4, 200, y, 0,
-	                                      0, 0xFF, colorIndex);
+	QuestMenu_AddTextPrinterParameterized(windowId, 0, gStringVar4, 200, y, 0, 0, 0xFF, colorIndex);
 }
 
 static void GenerateAndPrintHeader(void)
@@ -4443,14 +4378,12 @@ static void GenerateAndPrintHeader(void)
 	PrintMenuContext();
 
 	if (!IsSubquestMode())
-	{
-		PrintTypeFilterButton();
-	}
+		PrintTypeFilterButton(); // TODO - add a button to mark start button as alphabetical sort
 }
+
 static void GenerateDenominatorNumQuests(void)
 {
-	ConvertIntToDecimalStringN(gStringVar2, QUEST_COUNT,
-	                           STR_CONV_MODE_LEFT_ALIGN, 6);
+	ConvertIntToDecimalStringN(gStringVar2, QUEST_COUNT, STR_CONV_MODE_LEFT_ALIGN, 6);
 }
 
 static void GenerateNumeratorNumQuests(void)
@@ -4461,38 +4394,26 @@ static void GenerateNumeratorNumQuests(void)
 	switch (mode)
 	{
 		case SORT_DEFAULT:
-			ConvertIntToDecimalStringN(gStringVar1, CountUnlockedQuests(),
-			                           STR_CONV_MODE_LEFT_ALIGN,
-			                           6);
+			ConvertIntToDecimalStringN(gStringVar1, CountUnlockedQuests(), STR_CONV_MODE_LEFT_ALIGN, 6);
 			break;
 		case SORT_INACTIVE:
-			ConvertIntToDecimalStringN(gStringVar1, CountInactiveQuests(),
-			                           STR_CONV_MODE_LEFT_ALIGN,
-			                           6);
+			ConvertIntToDecimalStringN(gStringVar1, CountInactiveQuests(), STR_CONV_MODE_LEFT_ALIGN, 6);
 			break;
 		case SORT_ACTIVE:
-			ConvertIntToDecimalStringN(gStringVar1, CountActiveQuests(),
-			                           STR_CONV_MODE_LEFT_ALIGN, 6);
+			ConvertIntToDecimalStringN(gStringVar1, CountActiveQuests(), STR_CONV_MODE_LEFT_ALIGN, 6);
 			break;
 		case SORT_REWARD:
-			ConvertIntToDecimalStringN(gStringVar1, CountRewardQuests(),
-			                           STR_CONV_MODE_LEFT_ALIGN, 6);
+			ConvertIntToDecimalStringN(gStringVar1, CountRewardQuests(), STR_CONV_MODE_LEFT_ALIGN, 6);
 			break;
 		case SORT_DONE:
-			ConvertIntToDecimalStringN(gStringVar1, CountCompletedQuests(),
-			                           STR_CONV_MODE_LEFT_ALIGN,
-			                           6);
+			ConvertIntToDecimalStringN(gStringVar1, CountCompletedQuests(), STR_CONV_MODE_LEFT_ALIGN, 6);
 			break;
 	}
 
 	if (IsSubquestMode())
 	{
-		ConvertIntToDecimalStringN(gStringVar2,
-		                           sSideQuests[parentQuest].numSubquests,
-		                           STR_CONV_MODE_LEFT_ALIGN, 6);
-		ConvertIntToDecimalStringN(gStringVar1, CountCompletedQuests(),
-		                           STR_CONV_MODE_LEFT_ALIGN,
-		                           6);
+		ConvertIntToDecimalStringN(gStringVar2, sSideQuests[parentQuest].numSubquests, STR_CONV_MODE_LEFT_ALIGN, 6);
+		ConvertIntToDecimalStringN(gStringVar1, CountCompletedQuests(), STR_CONV_MODE_LEFT_ALIGN, 6);
 	}
 }
 
@@ -4504,55 +4425,40 @@ static void GenerateMenuContext(void)
 	switch (mode)
 	{
 		case SORT_DEFAULT:
-			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT],
-			                              sText_AllHeader);
+			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT], sText_AllHeader);
 			break;
 		case SORT_INACTIVE:
-			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT],
-			                              sText_InactiveHeader);
+			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT], sText_InactiveHeader);
 			break;
 		case SORT_ACTIVE:
-			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT],
-			                              sText_ActiveHeader);
+			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT], sText_ActiveHeader);
 			break;
 		case SORT_REWARD:
-			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT],
-			                              sText_RewardHeader);
+			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT], sText_RewardHeader);
 			break;
 		case SORT_DONE:
-			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT],
-			                              sText_CompletedHeader);
+			questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT], sText_CompletedHeader);
 			break;
 	}
 
 	if (IsAlphaMode())
-	{
-		questNamePointer = StringAppend(questNameArray[QUEST_ARRAY_COUNT],
-		                                sText_AZ);
-	}
+		questNamePointer = StringAppend(questNameArray[QUEST_ARRAY_COUNT], sText_AZ);
 	if (IsSubquestMode())
-	{
-		questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT],
-		                              sSideQuests[parentQuest].name);
-
-	}
+		questNamePointer = StringCopy(questNameArray[QUEST_ARRAY_COUNT], sSideQuests[parentQuest].name);
 }
 
 static void PrintNumQuests(void)
 {
 	StringExpandPlaceholders(gStringVar4, sText_QuestNumberDisplay);
-	QuestMenu_AddTextPrinterParameterized(2, 0, gStringVar4, 167, 1, 0, 1, 0,
-	                                      0);
+	QuestMenu_AddTextPrinterParameterized(2, 0, gStringVar4, 167, 1, 0, 1, 0, 0);
 }
 static void PrintMenuContext(void)
 {
-	QuestMenu_AddTextPrinterParameterized(2, 0,
-	                                      questNameArray[QUEST_ARRAY_COUNT], 10, 1, 0, 1, 0, 0);
+	QuestMenu_AddTextPrinterParameterized(2, 0, questNameArray[QUEST_ARRAY_COUNT], 10, 1, 0, 1, 0, 0);
 }
 static void PrintTypeFilterButton(void)
 {
-	QuestMenu_AddTextPrinterParameterized(2, 0, sText_Type, 198, 1,
-	                                      0, 1, 0, 0);
+	QuestMenu_AddTextPrinterParameterized(2, 0, sText_Type, 198, 1, 0, 1, 0, 0);
 
 }
 
@@ -4565,42 +4471,31 @@ static void Task_Main(u8 taskId)
 
 	if (!gPaletteFade.active)
 	{
-		ListMenuGetScrollAndRow(data[0], &sListMenuState.scroll,
-		                        &sListMenuState.row);
+		ListMenuGetScrollAndRow(data[0], &sListMenuState.scroll, &sListMenuState.row);
 
 		switch (input)
 		{
 			case LIST_NOTHING_CHOSEN:
 				if (JOY_NEW(R_BUTTON))
-				{
 					ChangeModeAndCleanUp(taskId);
-				}
 				if (JOY_NEW(START_BUTTON))
-				{
 					ToggleAlphaModeAndCleanUp(taskId);
-				}
 				if (JOY_NEW(SELECT_BUTTON))
-				{
 					ToggleFavoriteAndCleanUp(taskId, selectedQuestId);
-				}
 				break;
 
 			case LIST_CANCEL:
 				if (IsSubquestMode())
-				{
 					ReturnFromSubquestAndCleanUp(taskId);
-				}
 				else
-				{
 					TurnOffQuestMenu(taskId);
-				}
 				break;
 
 			default:
+				DebugPrintf("Is this an A?");
 				if (!IsSubquestMode())
-				{
 					EnterSubquestModeAndCleanUp(taskId, data, input);
-				}
+				DebugPrintf("Is this inside subquest?");
 				break;
 		}
 	}
@@ -4609,13 +4504,9 @@ static void Task_Main(u8 taskId)
 void ManageFavorites(u8 selectedQuestId)
 {
 	if (QuestMenu_GetSetQuestState(selectedQuestId, FLAG_GET_FAVORITE))
-	{
 		QuestMenu_GetSetQuestState(selectedQuestId, FLAG_REMOVE_FAVORITE);
-	}
 	else
-	{
 		QuestMenu_GetSetQuestState(selectedQuestId, FLAG_SET_FAVORITE);
-	}
 }
 
 static void Task_QuestMenuCleanUp(u8 taskId)
@@ -4633,28 +4524,20 @@ static void Task_QuestMenuCleanUp(u8 taskId)
 	PlaceTopMenuScrollIndicatorArrows();
 
 	if (sStateDataPtr->restoreCursor == TRUE)
-	{
 		RestoreSavedScrollAndRow(data);
-	}
 	else
-	{
 		ResetCursorToTop(data);
-	}
-
 }
 
 static void RestoreSavedScrollAndRow(s16 *data)
 {
-	data[0] = ListMenuInit(&gMultiuseListMenuTemplate,
-	                       sListMenuState.storedScrollOffset,
-	                       sListMenuState.storedRowPosition);
+	data[0] = ListMenuInit(&gMultiuseListMenuTemplate, sListMenuState.storedScrollOffset, sListMenuState.storedRowPosition);
 }
 static void ResetCursorToTop(s16 *data)
 {
 	sListMenuState.row = 0;
 	sListMenuState.scroll = 0;
-	data[0] = ListMenuInit(&gMultiuseListMenuTemplate, sListMenuState.scroll,
-	                       sListMenuState.row);
+	data[0] = ListMenuInit(&gMultiuseListMenuTemplate, sListMenuState.scroll, sListMenuState.row);
 }
 
 static void QuestMenu_RemoveScrollIndicatorArrowPair(void)
@@ -4667,8 +4550,7 @@ static void QuestMenu_RemoveScrollIndicatorArrowPair(void)
 }
 
 
-void EnterSubquestModeAndCleanUp(u8 taskId, s16 *data,
-                                 s32 input)
+void EnterSubquestModeAndCleanUp(u8 taskId, s16 *data, s32 input)
 {
 	if (DoesQuestHaveChildrenAndNotInactive(input))
 	{
@@ -4680,7 +4562,24 @@ void EnterSubquestModeAndCleanUp(u8 taskId, s16 *data,
 		SaveScrollAndRow(data);
 		gTasks[taskId].func = Task_FadeOut;
 	}
+	else
+		PlaySE(SE_FAILURE);
 }
+
+// void AttemptToFinishQuestMenu(u8 taskId, s16 *data, s32 input)
+// {
+// 	if (IsCharacterFree(input))
+// 	{
+// 		PlaySE(SE_SELECT);
+// 		DebugPrintf("Parent Quest: %d", sStateDataPtr->parentQuest);
+// 		DebugPrintf("Sub Quest:");
+// 		DebugPrintf("Selected Character: %d", input);
+// 		TurnOffQuestMenu(taskId);
+// 	}
+// 	else
+// 		PlaySE(SE_FAILURE);
+// }
+
 void ChangeModeAndCleanUp(u8 taskId)
 {
 	if (!IsSubquestMode())
@@ -4690,6 +4589,7 @@ void ChangeModeAndCleanUp(u8 taskId)
 		Task_QuestMenuCleanUp(taskId);
 	}
 }
+
 void ToggleAlphaModeAndCleanUp(u8 taskId)
 {
 	if (!IsSubquestMode())
@@ -4699,10 +4599,10 @@ void ToggleAlphaModeAndCleanUp(u8 taskId)
 		Task_QuestMenuCleanUp(taskId);
 	}
 }
+
 void ToggleFavoriteAndCleanUp(u8 taskId, u8 selectedQuestId)
 {
-	if (!IsSubquestMode()
-	            && !CheckSelectedIsCancel(selectedQuestId))
+	if (!IsSubquestMode() && !CheckSelectedIsCancel(selectedQuestId))
 	{
 		PlaySE(SE_SELECT);
 		ManageFavorites(selectedQuestId);
@@ -4712,15 +4612,9 @@ void ToggleFavoriteAndCleanUp(u8 taskId, u8 selectedQuestId)
 }
 bool8 CheckSelectedIsCancel(u8 selectedQuestId)
 {
-	if (selectedQuestId == (0xFF - 1))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return selectedQuestId == (0xFF - 1);
 }
+
 void ReturnFromSubquestAndCleanUp(u8 taskId)
 {
 	PrepareFadeOut(taskId);
@@ -4846,7 +4740,6 @@ static void FadeAndBail(void)
 	SetMainCallback2(MainCB);
 }
 
-
 #define try_free(ptr) ({        \
 		void ** ptr__ = (void **)&(ptr);   \
 		if (*ptr__ != NULL)                \
@@ -4875,6 +4768,7 @@ void TurnOffQuestMenu(u8 taskId)
 	SetInitializedFlag(0);
 	gTasks[taskId].func = Task_QuestMenuTurnOff1;
 }
+
 static void Task_QuestMenuTurnOff1(u8 taskId)
 {
 	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);

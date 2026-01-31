@@ -30,6 +30,9 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
+#include "pokemon.h"
+#include "pokemon_icon.h"
+#include "field_camera.h"
 
 #define GRID_COLS   1
 #define GRID_ROWS   4
@@ -66,6 +69,12 @@ enum Sprites {
     GFX_FTS, // front
     GFX_BTS, // back
     GFX_CURSOR,
+    GFX_MON1,
+    GFX_MON2,
+    GFX_MON3,
+    GFX_MON4,
+    GFX_MON5,
+    GFX_MON6,
     GFX_COUNT,
 };
 
@@ -98,7 +107,8 @@ typedef struct {
     u8 listCount;
     u8 currentOutfitSpriteIds[GRID_ROWS];
     u8 slotId:1; // flipped each time its used, for trainer sprites
-    u8 unused:7;
+    u8 monCount:3; // the number of Pokémon currently shown
+    u8 unused:4;
     u16 idx;
     u8 gfxState;
     MainCallback retCB;
@@ -119,6 +129,8 @@ static void Task_CloseOutfitMenu(u8 taskId);
 static u32 BuildOutfitLists(void);
 static inline void UpdateOutfitInfo(void);
 static void UpdateCursorPosition(void);
+static void SaveOutfitParty(void);
+static void SwapOutfitAndParty(u8 newOutfitId);
 
 static const u8 sText_OutfitLocked[] = _("???");
 static const u8 sText_OutfitLockedMsg[] =
@@ -346,6 +358,8 @@ void OpenOutfitMenu(MainCallback retCB)
         gSaveBlock2Ptr->currOutfitId = DEFAULT_OUTFIT;
     }
     sOutfitMenu->retCB = retCB;
+    // save the current party to its extra slot
+    SaveOutfitParty();
     SetMainCallback2(CB2_SetupOutfitMenu);
 }
 
@@ -507,14 +521,19 @@ static void SetupOutfitMenu_PrintStr(void)
 
 static inline void SetupOutfitMenu_Sprites_DrawTrainerSprite(bool32 update, bool32 unlocked)
 {
+    u16 species;
     u32 frontSpriteId = GetPlayerTrainerPicIdByOutfitGenderType(sOutfitMenu->idx, gSaveBlock2Ptr->playerGender, 0);
     u32 backSpriteId = GetPlayerTrainerPicIdByOutfitGenderType(sOutfitMenu->idx, gSaveBlock2Ptr->playerGender, 1);
-    u32 frontPalSlot = sOutfitMenu->slotId ? 9 : 10;
+    u32 frontPalSlot = sOutfitMenu->slotId ? 14 : 15;
     u32 backPalSlot = sOutfitMenu->slotId ? 12 : 13;
     if (update)
     {
         FreeAndDestroyTrainerPicSprite(sOutfitMenu->spriteIds[GFX_FTS]);
         FreeAndDestroyTrainerPicSprite(sOutfitMenu->spriteIds[GFX_BTS]);
+        for (u8 i = 0; i < sOutfitMenu->monCount; i++)
+            FreeAndDestroyMonIconSprite(&gSprites[sOutfitMenu->spriteIds[GFX_MON1 + i]]);
+        sOutfitMenu->monCount = 0;
+        FreeMonIconPalettes();
     }
 
     sOutfitMenu->spriteIds[GFX_FTS] = CreateTrainerPicSprite(frontSpriteId, TRUE, 32+27, 32+32, frontPalSlot, TAG_NONE);
@@ -522,6 +541,17 @@ static inline void SetupOutfitMenu_Sprites_DrawTrainerSprite(bool32 update, bool
     LoadPalette(gTrainerBacksprites[backSpriteId].palette.data, OBJ_PLTT_ID(backPalSlot), PLTT_SIZE_4BPP);
     gSprites[sOutfitMenu->spriteIds[GFX_BTS]].anims = gTrainerBacksprites[backSpriteId].animation;
     StartSpriteAnim(&gSprites[sOutfitMenu->spriteIds[GFX_BTS]], 0);
+    LoadMonIconPalettes();
+    for (u8 i = 0; i < PARTY_SIZE; i++)
+    {
+        species = GetMonData(&gSaveBlock1Ptr->extraParty[(sOutfitMenu->idx)-1][i], MON_DATA_SPECIES_OR_EGG);
+        if (species != SPECIES_NONE)
+        {
+            sOutfitMenu->spriteIds[GFX_MON1 + i] = CreateMonIcon(species, SpriteCB_MonIcon, 20 + (34*i), 95, 0, GetMonData(&gSaveBlock1Ptr->extraParty[(sOutfitMenu->idx)-1][i], MON_DATA_PERSONALITY));
+            gSprites[sOutfitMenu->spriteIds[GFX_MON1 + i]].oam.priority = 0;
+            sOutfitMenu->monCount++;
+        }
+    }
     if (!unlocked)
     {
         // bc we're directly tint to idx 1-15, skipping idx 0
@@ -855,7 +885,7 @@ static void Task_OutfitMenuHandleInput(u8 taskId)
             if (GetOutfitStatus(sOutfitMenu->idx))
             {
                 PlaySE(SE_SUCCESS);
-                gSaveBlock2Ptr->currOutfitId = sOutfitMenu->idx;
+                SwapOutfitAndParty(sOutfitMenu->idx);
             }
             else
             {
@@ -1032,4 +1062,45 @@ void SetCurrentOutfitGfxIntoVar(struct ScriptContext *ctx)
         gSaveBlock2Ptr->currOutfitId, state, gSaveBlock2Ptr->playerGender);
 
     VarSet(varId, gfxId);
+}
+
+// Save the current party to it's corresponding extra party slot
+static void SaveOutfitParty(void)
+{
+    for (u8 i = 0; i < PARTY_SIZE; i++)
+        CopyMon(&gSaveBlock1Ptr->extraParty[(gSaveBlock2Ptr->currOutfitId)-1][i], &gPlayerParty[i], sizeof(struct Pokemon));
+}
+
+// Swap both the outfit and party to new selection, while saving previous (just in case)
+static void SwapOutfitAndParty(u8 newOutfitId)
+{
+    u8 currentParty = (gSaveBlock2Ptr->currOutfitId)-1;
+    u8 newParty = newOutfitId-1;
+    // Handle party
+    for (u8 i = 0; i < PARTY_SIZE; i++)
+    {
+        CopyMon(&gSaveBlock1Ptr->extraParty[currentParty][i], &gPlayerParty[i], sizeof(struct Pokemon));
+        CopyMon(&gPlayerParty[i], &gSaveBlock1Ptr->extraParty[newParty][i], sizeof(struct Pokemon));
+    }
+    CalculatePlayerPartyCount();
+    // Handle outfit
+    gSaveBlock2Ptr->currOutfitId = newOutfitId;
+    // Handle loc
+    // TBD
+}
+
+// For event actions
+void SetOutfitAndParty(struct ScriptContext *ctx)
+{
+    u32 partyId = ScriptReadHalfword(ctx);
+    // Save the current party to current outfit, then load new party
+    u8 currentParty = (gSaveBlock2Ptr->currOutfitId)-1;
+    u8 newParty = partyId-1;
+    for (u8 i = 0; i < PARTY_SIZE; i++)
+    {
+        CopyMon(&gSaveBlock1Ptr->extraParty[currentParty][i], &gPlayerParty[i], sizeof(struct Pokemon));
+        CopyMon(&gPlayerParty[i], &gSaveBlock1Ptr->extraParty[newParty][i], sizeof(struct Pokemon));
+    }
+    CalculatePlayerPartyCount();
+    gSaveBlock2Ptr->currOutfitId = partyId;
 }

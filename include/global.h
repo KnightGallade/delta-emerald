@@ -593,6 +593,19 @@ struct RankingHall2P
     //u8 padding;
 };
 
+struct Avatar
+{
+    u8 avatarName[PLAYER_NAME_LENGTH + 1]; // TODO - initialize
+    u8 avatarTrainerId[TRAINER_ID_LENGTH]; // TODO - initialize
+    u8 avatarCharacter:4; // ex: Red, Brendan, Leaf, May, etc.
+    u8 avatarOutfit:4; // Brendan: ORAS, Emerald, Ruby; Leaf: RBY, FRLG
+    u8 avatarStamina;
+    u8 questStatus; // TODO - what info should be here?
+    s8 mapGroup;
+    s8 mapNum;
+    s16 x, y;
+};
+
 // quest menu
 #include "constants/quests.h"
 
@@ -614,8 +627,8 @@ struct SaveBlock2
              u16 optionsBattleSceneOff:1; // whether battle animations are disabled
              u16 regionMapZoom:1; // whether the map is zoomed in
              u16 playerBike:1;
-             u16 currOutfitId:4;
-             u16 outfits[NUM_OUTFIT_OWNED_BYTES]; // addresses listed no longer correct after this
+             u16 currOutfitId:4; // TODO - make it work with currentAvatarId
+             u16 outfits[NUM_OUTFIT_OWNED_BYTES]; // addresses listed no longer correct after this // TODO - make it work with currentAvatarId
     /*0x18*/ struct Pokedex pokedex;
     /*0x90*/ u8 filler_90[0x6];
     /*0x98*/ struct Time localTimeOffset;
@@ -642,9 +655,11 @@ struct SaveBlock2
 
     u8 questData[QUEST_FLAGS_COUNT * QUEST_STATES];
     u8 subQuests[SUB_FLAGS_COUNT];
-    u8 rivalName[PLAYER_NAME_LENGTH + 1];
+    u8 rivalName[PLAYER_NAME_LENGTH + 1]; // TODO - is this still used with the avatar system?
     struct PWT pwt;
-}; 
+    u8 currentAvatarId;
+    struct Avatar avatars[OUTFIT_COUNT - 1];
+};
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
 
@@ -1207,7 +1222,7 @@ struct SaveBlock1
     /*0x3???*/ struct TrainerHillSave trainerHill;
 #endif //FREE_TRAINER_HILL
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
-    // sizeof: 0x3???
+    struct Pokemon extraParty[OUTFIT_COUNT-1][PARTY_SIZE]; // TODO - make work with the avatar system
 };
 
 extern struct SaveBlock1 *gSaveBlock1Ptr;

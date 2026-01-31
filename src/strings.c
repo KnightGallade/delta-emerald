@@ -1419,10 +1419,51 @@ const u8 gText_SideQuestDesc_TaoKings[] = _("DESCRIPTION");
 const u8 gText_SideQuestDoneDesc_TaoKings[] = _("COMPLETED DESCRIPTION");
 const u8 gText_SideQuestMap_TaoKings[] = _("LOCATION");
 
+// QUEST_DISTORTED_DIMENSIONS
 const u8 gText_SideQuestName_DistortedDimensions[] = _("Distorted Dimensions");
-const u8 gText_SideQuestDesc_DistortedDimensions[] = _("DESCRIPTION");
-const u8 gText_SideQuestDoneDesc_DistortedDimensions[] = _("COMPLETED DESCRIPTION");
-const u8 gText_SideQuestMap_DistortedDimensions[] = _("LOCATION");
+const u8 gText_SideQuestDesc_DistortedDimensions[] = _("Our dimension is one of many. May we\nexplore them all, both their beauty \nand horrors.");
+const u8 gText_SideQuestDoneDesc_DistortedDimensions[] = _("We traveled across worlds, and caught\nthe master of dimensions, Giratina.");
+const u8 gText_SideQuestMap_DistortedDimensions[] = _("Alternate Dimensions");
+// Subquest 1
+const u8 gText_DistortedDimensions_SubQuest1_Name[] = _("Meet the Otherworlder");
+const u8 gText_DistortedDimensions_SubQuest1_Desc[] = _("A man in Sootopolis City is said to\ncome from another world.\nMaybe they have useful info?");
+const u8 gText_DistortedDimensions_SubQuest1_DoneDesc[] = _("The man spoke of traveling each\ndimension individually before\nfully mastering them.");
+const u8 gText_DistortedDimensions_SideQuest1_Map[] = _("Sootopolis City");
+// Subquest 2
+const u8 gText_DistortedDimensions_SubQuest2_Name[] = _("Traveling Dimension: Time");
+const u8 gText_DistortedDimensions_SubQuest2_Desc[] = _("The first dimension to explore is time.\nTo do so, find the time-traveling\nPokémon, Celebi.");
+const u8 gText_DistortedDimensions_SubQuest2_DoneDesc[] = _("Using Celebi, travelling through time\nis now possible.");
+const u8 gText_DistortedDimensions_SideQuest2_Map[] = _("Petalburg Woods");
+// Subquest 3
+const u8 gText_DistortedDimensions_SubQuest3_Name[] = _("Mastering Dimension: Time");
+const u8 gText_DistortedDimensions_SubQuest3_Desc[] = _("With the time-traveler, watch\nprecious time waste away.");
+const u8 gText_DistortedDimensions_SubQuest3_DoneDesc[] = _("Your waste of time obtained the\nattention of the master of time,\nDialga.");
+const u8 gText_DistortedDimensions_SideQuest3_Map[] = _("Your Timepiece");
+// Subquest 4
+const u8 gText_DistortedDimensions_SubQuest4_Name[] = _("Traveling Dimension: Space");
+const u8 gText_DistortedDimensions_SubQuest4_Desc[] = _("The next dimension to explore is space.\nTo do so, find the space-traveling\nPokémon, Hoopa.");
+const u8 gText_DistortedDimensions_SubQuest4_DoneDesc[] = _("Using Hoopa, travelling through space\nis now possible.");
+const u8 gText_DistortedDimensions_SideQuest4_Map[] = _("Broken Prison");
+// Subquest 5
+const u8 gText_DistortedDimensions_SubQuest5_Name[] = _("Mastering Dimension: Space");
+const u8 gText_DistortedDimensions_SubQuest5_Desc[] = _("With the space-traveler, waste a\nteleportation in safety.");
+const u8 gText_DistortedDimensions_SubQuest5_DoneDesc[] = _("Your waste of space obtained the\nattention of the master of space,\nPalkia.");
+const u8 gText_DistortedDimensions_SideQuest5_Map[] = _("Your Space");
+// Subquest 6
+const u8 gText_DistortedDimensions_SubQuest6_Name[] = _("Ultra-Dimension Trespasser");
+const u8 gText_DistortedDimensions_SubQuest6_Desc[] = _("Necrozma is known for trespassing\nacross dimensions. Finding it\nshould prove valuable.");
+const u8 gText_DistortedDimensions_SubQuest6_DoneDesc[] = _("With Necrozma, it should be possible\nto gain access to new dimensions.");
+const u8 gText_DistortedDimensions_SideQuest6_Map[] = _("Wormhole");
+// Subquest 7
+const u8 gText_DistortedDimensions_SubQuest7_Name[] = _("Altering the World");
+const u8 gText_DistortedDimensions_SubQuest7_Desc[] = _("There exists a cave where the line\nbetween dimensions gets blurry.\nMaybe Necrozma could help.");
+const u8 gText_DistortedDimensions_SubQuest7_DoneDesc[] = _("Necrozma broke through the barrier,\nand granted access to the Distortion\nWorld.");
+const u8 gText_DistortedDimensions_SideQuest7_Map[] = _("Altering Cave");
+// Subquest 8
+const u8 gText_DistortedDimensions_SubQuest8_Name[] = _("Distorted World");
+const u8 gText_DistortedDimensions_SubQuest8_Desc[] = _("The final task: capture the very\nmaster of dimenions, the Renegade\nPokémon, Giratina.");
+const u8 gText_DistortedDimensions_SubQuest8_DoneDesc[] = _("You now control the ruler of an\nalternate world, Giratina.");
+const u8 gText_DistortedDimensions_SideQuest8_Map[] = _("Distortion World");
 
 const u8 gText_SideQuestName_GoldenHeartSilverSoul[] = _("Golden Heart, Silver Soul");
 const u8 gText_SideQuestDesc_GoldenHeartSilverSoul[] = _("DESCRIPTION");
