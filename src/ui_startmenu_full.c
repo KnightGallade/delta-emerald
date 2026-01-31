@@ -47,6 +47,7 @@
 #include "link.h"
 #include "frontier_pass.h"
 #include "start_menu.h"
+#include "dynamic_maps.h"
 
 /*
     Full Screen Start Menu
@@ -55,12 +56,6 @@
     Some of the code for the HP Bars was also borrowed from PSFs hack written by Rioluwott
 
 */
-
-// This config unlocks the ability to switch between 24-hours clock and
-// 12-hours clock.
-// User need to set this toggle with an unused scripting flag such as
-// FLAG_UNUSED_0x020 replacing the 0 to be able to use the clock modes.
-#define FLAG_CLOCK_MODE 0
 
 struct StartMenuResources
 {
@@ -180,18 +175,12 @@ static const struct WindowTemplate sStartMenuWindowTemplates[] =
 //
 
 // Main Background
-static const u32 sStartMenuTiles[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tiles.4bpp.lz");
-static const u16 sStartMenuPalette[] = INCBIN_U16("graphics/ui_startmenu_full/menu.gbapal");
-
-//#if (FLAG_CLOCK_MODE != 0)
-//static const u32 sStartMenuTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tilemap_alt.bin.lz");
-//#else
+static const u32 sStartMenuTilesBlue[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tiles_blue.4bpp.lz");
+static const u16 sStartMenuPaletteBlue[] = INCBIN_U16("graphics/ui_startmenu_full/menu_blue.gbapal");
 static const u32 sStartMenuTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tilemap.bin.lz");
-//#endif
-
 // Alternate Main Background for Female Player
-static const u32 sStartMenuTilesAlt[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tiles_alt.4bpp.lz");
-static const u16 sStartMenuPaletteAlt[] = INCBIN_U16("graphics/ui_startmenu_full/menu_alt.gbapal");
+static const u32 sStartMenuTilesRed[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tiles_red.4bpp.lz");
+static const u16 sStartMenuPaletteRed[] = INCBIN_U16("graphics/ui_startmenu_full/menu_red.gbapal");
 
 // Scrolling Background
 static const u32 sScrollBgTiles[] = INCBIN_U32("graphics/ui_startmenu_full/scroll_tiles.4bpp.lz");
@@ -202,10 +191,6 @@ static const u16 sScrollBgPalette[] = INCBIN_U16("graphics/ui_startmenu_full/scr
 static const u32 sStartMenuFRLGRedTiles[] = INCBIN_U32("graphics/ui_startmenu_full/frlg_red/menu_tiles.4bpp.lz");
 static const u16 sStartMenuFRLGRedPalette[] = INCBIN_U16("graphics/ui_startmenu_full/frlg_red/menu.gbapal");
 static const u32 sStartMenuFRLGRedTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/frlg_red/menu_tilemap.bin.lz");
-static const u32 sScrollBgFRLGRedTiles[] = INCBIN_U32("graphics/ui_startmenu_full/frlg_red/frlg_red_tiles.4bpp.lz");
-static const u32 sScrollBgFRLGRedTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/frlg_red/frlg_red_tilemap.bin.lz");
-static const u16 sScrollBgFRLGRedPalette[] = INCBIN_U16("graphics/ui_startmenu_full/frlg_red/frlg_red.gbapal");
-
 
 // Cursor and IconBox
 static const u16 sCursor_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/cursor.gbapal");
@@ -231,7 +216,7 @@ static const u16 sHP_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/hpbar_pal.gb
 static const u16 sHP_PalAlt[] = INCBIN_U16("graphics/ui_startmenu_full/hpbar_pal_alt.gbapal");
 
 // greyed buttons
-static const u32 sGreyMenuButtonMap_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/map_dark_sprite.4bpp.lz");
+static const u32 sGreyMenuButtonNav_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/nav_dark_sprite.4bpp.lz");
 static const u32 sGreyMenuButtonDex_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/dex_dark_sprite.4bpp.lz");
 static const u32 sGreyMenuButtonParty_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/party_dark_sprite.4bpp.lz");
 static const u16 sGreyMenuButton_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/menu_dark.gbapal");
@@ -429,7 +414,7 @@ static const struct SpriteTemplate sSpriteTemplate_StatusIcons =
 };
 
 #define TAG_GREY_ICON 20001
-#define TAG_GREY_ICON_MAP 20003
+#define TAG_GREY_ICON_NAV 20003
 #define TAG_GREY_ICON_DEX 20005
 #define TAG_GREY_ICON_PARTY 20007
 
@@ -440,11 +425,11 @@ static const struct OamData sOamData_GreyMenuButton =
     .priority = 1,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_GreyMenuButtonMap =
+static const struct CompressedSpriteSheet sSpriteSheet_GreyMenuButtonNav =
 {
-    .data = sGreyMenuButtonMap_Gfx,
+    .data = sGreyMenuButtonNav_Gfx,
     .size = 64*32*4/2,
-    .tag = TAG_GREY_ICON_MAP,
+    .tag = TAG_GREY_ICON_NAV,
 };
 
 static const struct CompressedSpriteSheet sSpriteSheet_GreyMenuButtonParty =
@@ -478,9 +463,9 @@ static const union AnimCmd *const sSpriteAnimTable_GreyMenuButton[] =
     sSpriteAnim_GreyMenuButton0,
 };
 
-static const struct SpriteTemplate sSpriteTemplate_GreyMenuButtonMap =
+static const struct SpriteTemplate sSpriteTemplate_GreyMenuButtonNav =
 {
-    .tileTag = TAG_GREY_ICON_MAP,
+    .tileTag = TAG_GREY_ICON_NAV,
     .paletteTag = TAG_GREY_ICON,
     .oam = &sOamData_GreyMenuButton,
     .anims = sSpriteAnimTable_GreyMenuButton,
@@ -661,15 +646,8 @@ static void CreatePartyMonIcons()
                 y = ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 2);
                 break;
         }
-
-#ifdef POKEMON_EXPANSION
-            sStartMenuDataPtr->iconMonSpriteIds[i] = CreateMonIcon(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG), SpriteCB_MonIcon, x, y, 0, GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY));
-#else
-            sStartMenuDataPtr->iconMonSpriteIds[i] = CreateMonIcon(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG), SpriteCB_MonIcon, x, y, 0, GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY), TRUE);
-#endif
-
+        sStartMenuDataPtr->iconMonSpriteIds[i] = CreateMonIcon(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG), SpriteCB_MonIcon, x, y, 0, GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY));
         gSprites[sStartMenuDataPtr->iconMonSpriteIds[i]].oam.priority = 0;
-
         if (GetHPEggCyclePercent(i) == 0)
         {
             gSprites[sStartMenuDataPtr->iconMonSpriteIds[i]].callback = SpriteCallbackDummy;
@@ -808,7 +786,7 @@ static void CreateGreyedMenuBoxes()
     if(!FlagGet(FLAG_SYS_POKENAV_GET))
     {
         if (sStartMenuDataPtr->greyMenuBoxIds[2] == SPRITE_NONE)
-            sStartMenuDataPtr->greyMenuBoxIds[2] = CreateSprite(&sSpriteTemplate_GreyMenuButtonMap, CURSOR_LEFT_COL_X, CURSOR_BTM_ROW_Y, 1);
+            sStartMenuDataPtr->greyMenuBoxIds[2] = CreateSprite(&sSpriteTemplate_GreyMenuButtonNav, CURSOR_LEFT_COL_X, CURSOR_BTM_ROW_Y, 1);
         gSprites[sStartMenuDataPtr->greyMenuBoxIds[2]].invisible = FALSE;
         StartSpriteAnim(&gSprites[sStartMenuDataPtr->greyMenuBoxIds[2]], 0);
     }
@@ -975,7 +953,7 @@ static void StartMenuFull_VBlankCB(void)
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
-    switch (GetMenuType())
+    switch (GetMenuType()) // For potential future use
     {
         default:
         case MENU_DEFAULT_MALE:
@@ -987,14 +965,10 @@ static void StartMenuFull_VBlankCB(void)
         case MENU_ORAS_BRENDAN:
         case MENU_ORAS_MAY:
         case MENU_FRLG_LEAF:
+        case MENU_FRLG_RED:
             ChangeBgY(2, 128, BG_COORD_SUB); // controls the background scrolling
             break;
-        case MENU_FRLG_RED:
-            // Do nothing, no scroll
-            break;
-        }
-
-    
+    }
 }
 
 static bool8 StartMenuFull_DoGfxSetup(void) // base UI loader from Ghouls UI Shell branch, does the important hardware stuff to setup a UI
@@ -1153,43 +1127,43 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
         {
             default:
             case MENU_DEFAULT_MALE:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesBlue, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_DEFAULT_FEMALE:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_EMERALD_BRENDAN:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesBlue, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_EMERALD_MAY:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_RS_BRENDAN:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesBlue, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_RS_MAY:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_ORAS_BRENDAN:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesBlue, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_ORAS_MAY:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_FRLG_RED:
                 DecompressAndCopyTileDataToVram(1, sStartMenuFRLGRedTiles, 0, 0, 0);
-                DecompressAndCopyTileDataToVram(2, sScrollBgFRLGRedTiles, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
             case MENU_FRLG_LEAF:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesAlt, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
         }
@@ -1235,7 +1209,7 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
                     break;
                 case MENU_FRLG_RED:
                     DecompressDataWithHeaderWram(sStartMenuFRLGRedTilemap, sBg1TilemapBuffer);
-                    DecompressDataWithHeaderWram(sScrollBgFRLGRedTilemap, sBg2TilemapBuffer);
+                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
                     break;
                 case MENU_FRLG_LEAF:
                     DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
@@ -1252,60 +1226,59 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
         {
             default:
             case MENU_DEFAULT_MALE:
-                LoadPalette(sStartMenuPalette, 0, 16);
-                LoadPalette(sHP_Pal, 32, 16);
-                LoadPalette(sScrollBgPalette, 16, 16);
+                LoadPalette(sStartMenuPaletteBlue, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
             case MENU_DEFAULT_FEMALE:
-                LoadPalette(sStartMenuPaletteAlt, 0, 16);
-                LoadPalette(sHP_PalAlt, 32, 16);
                 cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sScrollBgPalette, 16, 16);
+                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
             case MENU_EMERALD_BRENDAN:
-                LoadPalette(sStartMenuPalette, 0, 16);
-                LoadPalette(sHP_Pal, 32, 16);
-                LoadPalette(sScrollBgPalette, 16, 16);
+                LoadPalette(sStartMenuPaletteBlue, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
             case MENU_EMERALD_MAY:
-                LoadPalette(sStartMenuPaletteAlt, 0, 16);
-                LoadPalette(sHP_PalAlt, 32, 16);
                 cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sScrollBgPalette, 16, 16);
+                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
             case MENU_RS_BRENDAN:
-                LoadPalette(sStartMenuPalette, 0, 16);
-                LoadPalette(sHP_Pal, 32, 16);
-                LoadPalette(sScrollBgPalette, 16, 16);
+                LoadPalette(sStartMenuPaletteBlue, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
             case MENU_RS_MAY:
-                LoadPalette(sStartMenuPaletteAlt, 0, 16);
-                LoadPalette(sHP_PalAlt, 32, 16);
                 cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sScrollBgPalette, 16, 16);
+                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
             case MENU_ORAS_BRENDAN:
-                LoadPalette(sStartMenuPalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
+                LoadPalette(sStartMenuPaletteBlue, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
                 LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
             case MENU_ORAS_MAY:
-                LoadPalette(sStartMenuPaletteAlt, 0, 16);
-                LoadPalette(sHP_PalAlt, 32, 16);
                 cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sScrollBgPalette, 16, 16);
+                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
             case MENU_FRLG_RED:
                 LoadPalette(sStartMenuFRLGRedPalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
                 LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-                LoadPalette(sScrollBgFRLGRedPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-                // DO RUN
                 break;
             case MENU_FRLG_LEAF:
-                LoadPalette(sStartMenuPaletteAlt, 0, 16);
-                LoadPalette(sHP_PalAlt, 32, 16);
                 cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sScrollBgPalette, 16, 16);
+                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
         }
         LoadCompressedSpriteSheet(&sSpriteSheet_IconBox);
@@ -1315,7 +1288,7 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
         LoadCompressedSpriteSheet(&sSpriteSheet_StatusIcons);
         LoadSpritePalette(&sSpritePalette_StatusIcons);
 
-        LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonMap);
+        LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonNav);
         LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonDex);
         LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonParty);
         LoadSpritePalette(&sSpritePal_GreyMenuButton);
@@ -1412,7 +1385,7 @@ static void PrintMapNameAndTime(void) //this code is ripped froom different part
     FillWindowPixelBuffer(WINDOW_TOP_BAR, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
     withoutPrefixPtr = &(mapDisplayHeader[3]);
-    GetMapName(withoutPrefixPtr, gMapHeader.regionMapSectionId, 0);
+    CopyDynamicMapName(withoutPrefixPtr, gMapHeader.regionMapSectionId);
     x = GetStringRightAlignXOffset(FONT_NARROW, withoutPrefixPtr, 80);
     mapDisplayHeader[0] = EXT_CTRL_CODE_BEGIN;
     mapDisplayHeader[1] = EXT_CTRL_CODE_HIGHLIGHT;
@@ -1422,28 +1395,6 @@ static void PrintMapNameAndTime(void) //this code is ripped froom different part
     RtcCalcLocalTime();
 
     hours = gLocalTime.hours;
-
-#if (FLAG_CLOCK_MODE != 0)
-    if (FlagGet(FLAG_CLOCK_MODE)) // true: 12-hours, false: 24-hours
-    {
-        if (gLocalTime.hours < 12)
-        {
-            hours = (gLocalTime.hours == 0) ? 12 : gLocalTime.hours;
-            suffix = sText_AM;
-        }
-        else if (gLocalTime.hours == 12)
-        {
-            hours = 12;
-            if (suffix == sText_AM)
-                suffix = sText_PM;
-        }
-        else
-        {
-            hours = gLocalTime.hours - 12;
-            suffix = sText_PM;
-        }
-    }
-#endif
 
     minutes = gLocalTime.minutes;
     dayOfWeek = gLocalTime.days % 7;
@@ -1473,16 +1424,6 @@ static void PrintMapNameAndTime(void) //this code is ripped froom different part
     x += width;
     ConvertIntToDecimalStringN(gStringVar4, minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
     AddTextPrinterParameterized3(WINDOW_TOP_BAR, FONT_NORMAL, x, y, sTimeTextColors, TEXT_SKIP_DRAW, gStringVar4);
-
-#if (FLAG_CLOCK_MODE != 0)
-    if (suffix != NULL)
-    {
-        width = GetStringWidth(FONT_NORMAL, gStringVar4, 0) + 3; // CHAR_SPACE is 3 pixels wide
-        x += width;
-        StringExpandPlaceholders(gStringVar4, suffix);
-        AddTextPrinterParameterized3(WINDOW_TOP_BAR, FONT_NORMAL, x, y, sTimeTextColors, TEXT_SKIP_DRAW, gStringVar4);
-    }
-#endif
 
     PutWindowTilemap(WINDOW_TOP_BAR);
     CopyWindowToVram(WINDOW_TOP_BAR, COPYWIN_FULL);
@@ -1706,19 +1647,6 @@ static void Task_StartMenuFullMain(u8 taskId)
         PrintSaveConfirmToWindow();
         gTasks[taskId].func = Task_HandleSaveConfirmation;
     }
-
-#if (FLAG_CLOCK_MODE != 0)
-    if (JOY_NEW(SELECT_BUTTON)) // switch between clock modes
-    {
-        if (FlagGet(FLAG_CLOCK_MODE))
-            FlagClear(FLAG_CLOCK_MODE);
-        else
-            FlagSet(FLAG_CLOCK_MODE);
-
-        PrintMapNameAndTime();
-        PlaySE(SE_SUCCESS);
-    }
-#endif
 
     if(gTasks[taskId].sFrameToSecondTimer >= 60) // every 60 frames update the time
     {
