@@ -15294,8 +15294,8 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_OutfitBox,
-	.iconPic = gItemIcon_OutfitBox,
-	.iconPalette = gItemIconPalette_OutfitBox,
+	    .iconPic = gItemIcon_OutfitBox,
+	    .iconPalette = gItemIconPalette_OutfitBox,
     },
 };
 
