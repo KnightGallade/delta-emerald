@@ -1173,6 +1173,7 @@ u16 GetLocationMusic(struct WarpData *warp)
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE) { return MUS_MT_CHIMNEY; }
     // Now handle werid areas
     // desert area
+    // TODO - verify
     else if (warp->mapGroup == MAP_GROUP(MAP_ROUTE111) && warp->mapNum == MAP_NUM(MAP_ROUTE111) && GetSavedWeather() == WEATHER_SANDSTORM) {
         switch (GetTimeOfDay()) {
             default:
@@ -1185,6 +1186,7 @@ u16 GetLocationMusic(struct WarpData *warp)
         }
     }
     // Route 118 split into 2 by river
+    // TODO - verify
     else if (warp->mapGroup == MAP_GROUP(MAP_ROUTE118) && warp->mapNum == MAP_NUM(MAP_ROUTE118)) {
         bool8 left = gSaveBlock1Ptr->pos.x < 24; // left side or right
         switch (GetTimeOfDay()) {
