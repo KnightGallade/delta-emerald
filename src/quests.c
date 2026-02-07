@@ -3229,19 +3229,19 @@ static bool8 SetupGraphics(void)
 		case 18:
 			if (sListMenuState.initialized == 1)
 			{
-				BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
+				BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
 			}
 			gMain.state++;
 			break;
 		case 19:
 			if (sListMenuState.initialized == 1)
 			{
-				BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+				BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
 			}
 			else
 			{
 
-				BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+				BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
 				SetInitializedFlag(1);
 			}
 			gMain.state++;
@@ -4231,6 +4231,11 @@ void DetermineSpriteType(s32 questId)
 	sStateDataPtr->spriteIconSlot ^= 1;
 }
 
+static void SpriteCB_Overworld(struct Sprite *s)
+{
+    StartSpriteAnimIfDifferent(s, ANIM_STD_GO_SOUTH);
+}
+
 static void QuestMenu_CreateSprite(u16 itemId, u8 idx, u8 spriteType)
 {
 	u8 *ptr = &sItemMenuIconSpriteIds[10];
@@ -4243,8 +4248,9 @@ static void QuestMenu_CreateSprite(u16 itemId, u8 idx, u8 spriteType)
 
 		switch (spriteType)
 		{
+			// NOTE: for some reason, if no event object is loaded during main quest menu, subquest will show timetint
 			case OBJECT:
-				spriteId = CreateObjectGraphicsSprite(itemId, SpriteCallbackDummy, 20,
+				spriteId = CreateObjectGraphicsSprite(itemId, SpriteCB_Overworld, 20,
 				                                      132, 0);
 				break;
 			case ITEM:
@@ -4734,7 +4740,7 @@ static void Task_QuestMenuWaitFadeAndBail(u8 taskId)
 
 static void FadeAndBail(void)
 {
-	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+	BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
 	CreateTask(Task_QuestMenuWaitFadeAndBail, 0);
 	SetVBlankCallback(VBlankCB);
 	SetMainCallback2(MainCB);
@@ -4771,7 +4777,7 @@ void TurnOffQuestMenu(u8 taskId)
 
 static void Task_QuestMenuTurnOff1(u8 taskId)
 {
-	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+	BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
 	gTasks[taskId].func = Task_QuestMenuTurnOff2;
 }
 
