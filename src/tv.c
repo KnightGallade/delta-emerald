@@ -1133,7 +1133,7 @@ void TryPutPokemonTodayOnAir(void)
                     itemLastUsed = gLastUsedItem;
                     show->pokemonToday.nBallsUsed = ballsUsed;
                     show->pokemonToday.ball = itemLastUsed;
-                    StringCopy(show->pokemonToday.playerName, gSaveBlock2Ptr->playerName);
+                    StringCopy(show->pokemonToday.playerName, GetCurrentAvatarName());
                     StringCopy(show->pokemonToday.nickname, gBattleResults.caughtMonNick);
                     language2 = GetNicknameLanguage(show->pokemonToday.nickname);
                     StripExtCtrlCodes(show->pokemonToday.nickname);
@@ -1190,7 +1190,7 @@ static void TryPutPokemonTodayFailedOnTheAir(void)
                 show->pokemonTodayFailed.nBallsUsed = ballsUsed;
                 show->pokemonTodayFailed.outcome = gBattleOutcome;
                 show->pokemonTodayFailed.location = gMapHeader.regionMapSectionId;
-                StringCopy(show->pokemonTodayFailed.playerName, gSaveBlock2Ptr->playerName);
+                StringCopy(show->pokemonTodayFailed.playerName, GetCurrentAvatarName());
                 StorePlayerIdInRecordMixShow(show);
                 show->pokemonTodayFailed.language = gGameLanguage;
             }
@@ -1229,7 +1229,7 @@ static void InterviewAfter_ContestLiveUpdates(void)
         show2 = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show2->contestLiveUpdates.kind = TVSHOW_CONTEST_LIVE_UPDATES;
         show2->contestLiveUpdates.active = TRUE;
-        StringCopy(show2->contestLiveUpdates.winningTrainerName, gSaveBlock2Ptr->playerName); // Show only begins running if player won, so always load players name
+        StringCopy(show2->contestLiveUpdates.winningTrainerName, GetCurrentAvatarName()); // Show only begins running if player won, so always load players name
         show2->contestLiveUpdates.category = gSpecialVar_ContestCategory;
         show2->contestLiveUpdates.winningSpecies = GetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_SPECIES, NULL);
         show2->contestLiveUpdates.losingSpecies = show->contestLiveUpdates.losingSpecies;
@@ -1260,7 +1260,7 @@ void PutBattleUpdateOnTheAir(u8 opponentLinkPlayerId, u16 move, u16 speciesPlaye
             show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
             show->battleUpdate.kind = TVSHOW_BATTLE_UPDATE;
             show->battleUpdate.active = TRUE;
-            StringCopy(show->battleUpdate.playerName, gSaveBlock2Ptr->playerName);
+            StringCopy(show->battleUpdate.playerName, GetCurrentAvatarName());
 
             if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
                 show->battleUpdate.battleType = 2;
@@ -1301,7 +1301,7 @@ bool8 Put3CheersForPokeblocksOnTheAir(const u8 *partnersName, u8 flavor, u8 colo
     show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
     show->threeCheers.kind = TVSHOW_3_CHEERS_FOR_POKEBLOCKS;
     show->threeCheers.active = TRUE;
-    StringCopy(show->threeCheers.playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(show->threeCheers.playerName, GetCurrentAvatarName());
     StringCopy(name, partnersName);
     StripExtCtrlCodes(name);
     StringCopy(show->threeCheers.worstBlenderName, name);
@@ -1325,7 +1325,7 @@ void PutFanClubSpecialOnTheAir(void)
 
     show = &gSaveBlock1Ptr->tvShows[gSpecialVar_0x8006];
     show->fanClubSpecial.score = gSpecialVar_0x8005 * 10;
-    StringCopy(show->fanClubSpecial.playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(show->fanClubSpecial.playerName, GetCurrentAvatarName());
     show->fanClubSpecial.kind = TVSHOW_FAN_CLUB_SPECIAL;
     show->fanClubSpecial.active = TRUE;
     id = GetPlayerIDAsU32();
@@ -1417,7 +1417,7 @@ static void InterviewAfter_BravoTrainerPokemonProfile(void)
         show2->bravoTrainer.kind = TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE;
         show2->bravoTrainer.active = TRUE;
         show2->bravoTrainer.species = show->bravoTrainer.species;
-        StringCopy(show2->bravoTrainer.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show2->bravoTrainer.playerName, GetCurrentAvatarName());
         StringCopy(show2->bravoTrainer.pokemonNickname, show->bravoTrainer.pokemonNickname);
         show2->bravoTrainer.contestCategory = show->bravoTrainer.contestCategory;
         show2->bravoTrainer.contestRank = show->bravoTrainer.contestRank;
@@ -1468,7 +1468,7 @@ static void InterviewAfter_BravoTrainerBattleTowerProfile(void)
     TVShow *show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
     show->bravoTrainerTower.kind = TVSHOW_BRAVO_TRAINER_BATTLE_TOWER_PROFILE;
     show->bravoTrainerTower.active = TRUE;
-    StringCopy(show->bravoTrainerTower.playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(show->bravoTrainerTower.playerName, GetCurrentAvatarName());
     StringCopy(show->bravoTrainerTower.opponentName, gSaveBlock2Ptr->frontier.towerInterview.opponentName);
     show->bravoTrainerTower.species = gSaveBlock2Ptr->frontier.towerInterview.playerSpecies;
     show->bravoTrainerTower.defeatedSpecies = gSaveBlock2Ptr->frontier.towerInterview.opponentSpecies;
@@ -1512,7 +1512,7 @@ void TryPutSmartShopperOnAir(void)
                     show->smartshopperShow.itemAmounts[i] = gMartPurchaseHistory[i].quantity;
                 }
                 show->smartshopperShow.priceReduced = IsPokeNewsActive(POKENEWS_SLATEPORT);
-                StringCopy(show->smartshopperShow.playerName, gSaveBlock2Ptr->playerName);
+                StringCopy(show->smartshopperShow.playerName, GetCurrentAvatarName());
                 StorePlayerIdInRecordMixShow(show);
                 show->smartshopperShow.language = gGameLanguage;
             }
@@ -1528,7 +1528,7 @@ void PutNameRaterShowOnTheAir(void)
     if (gSpecialVar_Result != 1)
     {
         GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar1);
-        if (StringLength(gSaveBlock2Ptr->playerName) > 1 && StringLength(gStringVar1) > 1)
+        if (StringLength(GetCurrentAvatarName()) > 1 && StringLength(gStringVar1) > 1)
         {
             show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
             show->nameRaterShow.kind = TVSHOW_NAME_RATER_SHOW;
@@ -1537,7 +1537,7 @@ void PutNameRaterShowOnTheAir(void)
             show->nameRaterShow.random = Random() % 3;
             show->nameRaterShow.random2 = Random() % 2;
             show->nameRaterShow.randomSpecies = GetRandomDifferentSpeciesSeenByPlayer(show->nameRaterShow.species);
-            StringCopy(show->nameRaterShow.trainerName, gSaveBlock2Ptr->playerName);
+            StringCopy(show->nameRaterShow.trainerName, GetCurrentAvatarName());
             GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME10, show->nameRaterShow.pokemonName);
             StripExtCtrlCodes(show->nameRaterShow.pokemonName);
             StorePlayerIdInNormalShow(show);
@@ -1589,7 +1589,7 @@ static void InterviewAfter_FanClubLetter(void)
     TVShow *show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
     show->fanclubLetter.kind = TVSHOW_FAN_CLUB_LETTER;
     show->fanclubLetter.active = TRUE;
-    StringCopy(show->fanclubLetter.playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(show->fanclubLetter.playerName, GetCurrentAvatarName());
     show->fanclubLetter.species = GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_SPECIES, NULL);
     StorePlayerIdInNormalShow(show);
     show->fanclubLetter.language = gGameLanguage;
@@ -1600,7 +1600,7 @@ static void InterviewAfter_RecentHappenings(void)
     TVShow *show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
     show->recentHappenings.kind = TVSHOW_RECENT_HAPPENINGS;
     show->recentHappenings.active = TRUE;
-    StringCopy(show->recentHappenings.playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(show->recentHappenings.playerName, GetCurrentAvatarName());
     show->recentHappenings.species = SPECIES_NONE;
     StorePlayerIdInNormalShow(show);
     show->recentHappenings.language = gGameLanguage;
@@ -1613,7 +1613,7 @@ static void InterviewAfter_PkmnFanClubOpinions(void)
     show->fanclubOpinions.active = TRUE;
     show->fanclubOpinions.friendshipHighNybble = GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_FRIENDSHIP, NULL) >> 4;
     show->fanclubOpinions.questionAsked = gSpecialVar_0x8007;
-    StringCopy(show->fanclubOpinions.playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(show->fanclubOpinions.playerName, GetCurrentAvatarName());
     GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_NICKNAME10, show->fanclubOpinions.nickname);
     StripExtCtrlCodes(show->fanclubOpinions.nickname);
     show->fanclubOpinions.species = GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_SPECIES, NULL);
@@ -1761,7 +1761,7 @@ static void TryPutFishingAdviceOnAir(void)
         show->pokemonAngler.nBites = sPokemonAnglerAttemptCounters;
         show->pokemonAngler.nFails = sPokemonAnglerAttemptCounters >> 8;
         show->pokemonAngler.species = sPokemonAnglerSpecies;
-        StringCopy(show->pokemonAngler.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->pokemonAngler.playerName, GetCurrentAvatarName());
         StorePlayerIdInRecordMixShow(show);
         show->pokemonAngler.language = gGameLanguage;
     }
@@ -1807,7 +1807,7 @@ static void TryPutWorldOfMastersOnAir(void)
             show2->worldOfMasters.caughtPoke = show->worldOfMasters.caughtPoke;
             show2->worldOfMasters.species = show->worldOfMasters.species;
             show2->worldOfMasters.location = show->worldOfMasters.location;
-            StringCopy(show2->worldOfMasters.playerName, gSaveBlock2Ptr->playerName);
+            StringCopy(show2->worldOfMasters.playerName, GetCurrentAvatarName());
             StorePlayerIdInRecordMixShow(show2);
             show2->worldOfMasters.language = gGameLanguage;
             DeleteTVShowInArrayByIdx(gSaveBlock1Ptr->tvShows, LAST_TVSHOW_IDX);
@@ -1851,7 +1851,7 @@ void TryPutTodaysRivalTrainerOnAir(void)
                 show->rivalTrainer.nGoldSymbols++;
         }
         show->rivalTrainer.battlePoints = gSaveBlock2Ptr->frontier.battlePoints;
-        StringCopy(show->rivalTrainer.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->rivalTrainer.playerName, GetCurrentAvatarName());
         StorePlayerIdInRecordMixShow(show);
         show->rivalTrainer.language = gGameLanguage;
     }
@@ -1867,10 +1867,10 @@ void TryPutTrendWatcherOnAir(const u16 *words)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->trendWatcher.kind = TVSHOW_TREND_WATCHER;
         show->trendWatcher.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        show->trendWatcher.gender = gSaveBlock2Ptr->playerGender;
+        show->trendWatcher.gender = GetCurrentAvatarGender();
         show->trendWatcher.words[0] = words[0];
         show->trendWatcher.words[1] = words[1];
-        StringCopy(show->trendWatcher.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->trendWatcher.playerName, GetCurrentAvatarName());
         StorePlayerIdInRecordMixShow(show);
         show->trendWatcher.language = gGameLanguage;
     }
@@ -1889,7 +1889,7 @@ void TryPutTreasureInvestigatorsOnAir(void)
         show->treasureInvestigators.item = gSpecialVar_0x8005;
         show->treasureInvestigators.location = gMapHeader.regionMapSectionId;
         show->treasureInvestigators.mapLayoutId = gMapHeader.mapLayoutId;
-        StringCopy(show->treasureInvestigators.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->treasureInvestigators.playerName, GetCurrentAvatarName());
         StorePlayerIdInRecordMixShow(show);
         show->treasureInvestigators.language = gGameLanguage;
     }
@@ -1942,7 +1942,7 @@ void TryPutFindThatGamerOnAir(u16 nCoinsPaidOut)
         show->findThatGamer.nCoins = nCoinsWon;
         show->findThatGamer.whichGame = sFindThatGamerWhichGame;
         show->findThatGamer.won = flag;
-        StringCopy(show->findThatGamer.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->findThatGamer.playerName, GetCurrentAvatarName());
         StorePlayerIdInRecordMixShow(show);
         show->findThatGamer.language = gGameLanguage;
     }
@@ -2086,7 +2086,7 @@ void TryPutSecretBaseVisitOnAir(void)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->secretBaseVisit.kind = TVSHOW_SECRET_BASE_VISIT;
         show->secretBaseVisit.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        StringCopy(show->secretBaseVisit.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->secretBaseVisit.playerName, GetCurrentAvatarName());
         SecretBaseVisit_CalculateDecorationData(show);
         SecretBaseVisit_CalculatePartyData(show);
         StorePlayerIdInRecordMixShow(show);
@@ -2110,7 +2110,7 @@ void TryPutBreakingNewsOnAir(void)
         for (i = 0; i < POKEBALL_COUNT; i++)
             balls += gBattleResults.catchAttempts[i];
         show->breakingNews.location = gMapHeader.regionMapSectionId;
-        StringCopy(show->breakingNews.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->breakingNews.playerName, GetCurrentAvatarName());
         show->breakingNews.poke1Species = gBattleResults.playerMon1Species;
         switch (gBattleOutcome)
         {
@@ -2163,7 +2163,7 @@ void TryPutLotteryWinnerReportOnAir(void)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->lottoWinner.kind = TVSHOW_LOTTO_WINNER;
         show->lottoWinner.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        StringCopy(show->lottoWinner.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->lottoWinner.playerName, GetCurrentAvatarName());
         show->lottoWinner.whichPrize = 4 - gSpecialVar_0x8004;
         show->lottoWinner.item = gSpecialVar_0x8005;
         StorePlayerIdInRecordMixShow(show);
@@ -2183,7 +2183,7 @@ void TryPutBattleSeminarOnAir(u16 foeSpecies, u16 species, u8 moveIndex, const u
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->battleSeminar.kind = TVSHOW_BATTLE_SEMINAR;
         show->battleSeminar.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        StringCopy(show->battleSeminar.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->battleSeminar.playerName, GetCurrentAvatarName());
         show->battleSeminar.foeSpecies = foeSpecies;
         show->battleSeminar.species = species;
         show->battleSeminar.move = movePtr[moveIndex];
@@ -2212,7 +2212,7 @@ void TryPutSafariFanClubOnAir(u8 monsCaught, u8 pokeblocksUsed)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->safariFanClub.kind = TVSHOW_SAFARI_FAN_CLUB;
         show->safariFanClub.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        StringCopy(show->safariFanClub.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->safariFanClub.playerName, GetCurrentAvatarName());
         show->safariFanClub.monsCaught = monsCaught;
         show->safariFanClub.pokeblocksUsed = pokeblocksUsed;
         StorePlayerIdInRecordMixShow(show);
@@ -2230,7 +2230,7 @@ void TryPutSpotTheCutiesOnAir(struct Pokemon *pokemon, u8 ribbonMonDataIdx)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->cuties.kind = TVSHOW_CUTIES;
         show->cuties.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        StringCopy(show->cuties.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->cuties.playerName, GetCurrentAvatarName());
         GetMonData(pokemon, MON_DATA_NICKNAME10, show->cuties.nickname);
         StripExtCtrlCodes(show->cuties.nickname);
         show->cuties.nRibbons = GetRibbonCount(pokemon);
@@ -2301,7 +2301,7 @@ void TryPutTrainerFanClubOnAir(void)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->trainerFanClub.kind = TVSHOW_TRAINER_FAN_CLUB;
         show->trainerFanClub.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        StringCopy(show->trainerFanClub.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->trainerFanClub.playerName, GetCurrentAvatarName());
         show->trainerFanClub.words[0] = gSaveBlock1Ptr->easyChatProfile[0];
         show->trainerFanClub.words[1] = gSaveBlock1Ptr->easyChatProfile[1];
         StorePlayerIdInRecordMixShow(show);
@@ -2364,7 +2364,7 @@ void TryPutFrontierTVShowOnAir(u16 winStreak, u8 facilityAndMode)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->frontier.kind = TVSHOW_FRONTIER;
         show->frontier.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        StringCopy(show->frontier.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->frontier.playerName, GetCurrentAvatarName());
         show->frontier.winStreak = winStreak;
         show->frontier.facilityAndMode = facilityAndMode;
         switch (facilityAndMode)
@@ -2416,7 +2416,7 @@ void TryPutSecretBaseSecretsOnAir(void)
             show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
             show->secretBaseSecrets.kind = TVSHOW_SECRET_BASE_SECRETS;
             show->secretBaseSecrets.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-            StringCopy(show->secretBaseSecrets.playerName, gSaveBlock2Ptr->playerName);
+            StringCopy(show->secretBaseSecrets.playerName, GetCurrentAvatarName());
             show->secretBaseSecrets.stepsInBase = VarGet(VAR_SECRET_BASE_STEP_COUNTER);
             CopyCurSecretBaseOwnerName_StrVar1();
             StringCopy(strbuf, gStringVar1);
@@ -2464,7 +2464,7 @@ static void TryPutNumberOneOnAir(u8 actionIdx)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->numberOne.kind = TVSHOW_NUMBER_ONE;
         show->numberOne.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-        StringCopy(show->numberOne.playerName, gSaveBlock2Ptr->playerName);
+        StringCopy(show->numberOne.playerName, GetCurrentAvatarName());
         show->numberOne.actionIdx = actionIdx;
         show->numberOne.count = VarGet(sNumberOneVarsAndThresholds[actionIdx][0]);
         StorePlayerIdInRecordMixShow(show);
@@ -3333,7 +3333,7 @@ u8 CheckForPlayersHouseNews(void)
         return PLAYERS_HOUSE_TV_NONE;
 
     // Check if not in player's house (dependent on gender)
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetCurrentAvatarGender() == MALE)
     {
         if (gSaveBlock1Ptr->location.mapNum != MAP_NUM(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
             return PLAYERS_HOUSE_TV_NONE;
@@ -3358,7 +3358,7 @@ void GetMomOrDadStringForTVMessage(void)
     // If the player is checking the TV in their house it will only refer to their Mom.
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
     {
-        if (gSaveBlock2Ptr->playerGender == MALE)
+        if (GetCurrentAvatarGender() == MALE)
         {
             if (gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
             {

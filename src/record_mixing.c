@@ -1116,7 +1116,7 @@ void GetPlayerHallRecords(struct PlayerHallRecords *dst)
         {
             CopyTrainerId(dst->onePlayer[i][j].id, gSaveBlock2Ptr->playerTrainerId);
             dst->onePlayer[i][j].language = GAME_LANGUAGE;
-            StringCopy(dst->onePlayer[i][j].name, gSaveBlock2Ptr->playerName);
+            StringCopy(dst->onePlayer[i][j].name, GetCurrentAvatarName());
         }
     }
 
@@ -1125,7 +1125,7 @@ void GetPlayerHallRecords(struct PlayerHallRecords *dst)
         dst->twoPlayers[j].language = GAME_LANGUAGE;
         CopyTrainerId(dst->twoPlayers[j].id1, gSaveBlock2Ptr->playerTrainerId);
         CopyTrainerId(dst->twoPlayers[j].id2, gSaveBlock2Ptr->frontier.opponentTrainerIds[j]);
-        StringCopy(dst->twoPlayers[j].name1, gSaveBlock2Ptr->playerName);
+        StringCopy(dst->twoPlayers[j].name1, GetCurrentAvatarName());
         StringCopy(dst->twoPlayers[j].name2, gSaveBlock2Ptr->frontier.opponentNames[j]);
     }
 

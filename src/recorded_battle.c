@@ -145,12 +145,12 @@ void RecordedBattle_SetTrainerInfo(void)
                               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
                               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
 
-        sPlayers[0].gender = gSaveBlock2Ptr->playerGender;
+        sPlayers[0].gender = GetCurrentAvatarGender();
         sPlayers[0].battler = 0;
         sPlayers[0].language = gGameLanguage;
 
         for (i = 0; i < PLAYER_NAME_LENGTH + 1; i++)
-            sPlayers[0].name[i] = gSaveBlock2Ptr->playerName[i];
+            sPlayers[0].name[i] = GetCurrentAvatarName()[i];
     }
 }
 

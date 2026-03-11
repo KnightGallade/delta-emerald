@@ -312,7 +312,7 @@ static void PrintPlayerNameAndIdOnWindow(u8 windowId)
     u8 text[30];
     u8 *txtPtr;
 
-    PrintUnionRoomText(windowId, FONT_NORMAL, gSaveBlock2Ptr->playerName, 0, 1, UR_COLOR_DEFAULT);
+    PrintUnionRoomText(windowId, FONT_NORMAL, GetCurrentAvatarName(), 0, 1, UR_COLOR_DEFAULT);
     txtPtr = StringCopy(text, sText_ID);
     ConvertIntToDecimalStringN(txtPtr, ReadAsU16(gSaveBlock2Ptr->playerTrainerId), STR_CONV_MODE_LEADING_ZEROS, 5);
     PrintUnionRoomText(windowId, FONT_NORMAL, text, 0, 17, UR_COLOR_DEFAULT);
@@ -2573,7 +2573,7 @@ static void Task_RunUnionRoom(u8 taskId)
             {
                 UpdateGameData_SetActivity(ACTIVITY_PLYRTALK | IN_UNION_ROOM, 0, TRUE);
                 PlaySE(SE_PC_LOGIN);
-                StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+                StringCopy(gStringVar1, GetCurrentAvatarName());
                 uroom->state = UR_STATE_INTERACT_WITH_ATTENDANT;
                 gSpecialVar_Result = 0;
             }
@@ -2607,7 +2607,7 @@ static void Task_RunUnionRoom(u8 taskId)
                     UpdateGameData_SetActivity(ACTIVITY_PLYRTALK | IN_UNION_ROOM, 0, TRUE);
                     PlaySE(SE_PC_LOGIN);
                     StartScriptInteraction();
-                    StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+                    StringCopy(gStringVar1, GetCurrentAvatarName());
                     uroom->state = UR_STATE_CHECK_TRADING_BOARD;
                     break;
                 }
@@ -4132,7 +4132,7 @@ static void TradeBoardListMenuItemPrintFunc(u8 windowId, u32 itemId, u8 y)
     {
         gameData = GetHostRfuGameData();
         if (gameData->tradeSpecies != SPECIES_NONE)
-            TradeBoardPrintItemInfo(windowId, y, gameData, gSaveBlock2Ptr->playerName, UR_COLOR_TRADE_BOARD_SELF);
+            TradeBoardPrintItemInfo(windowId, y, gameData, GetCurrentAvatarName(), UR_COLOR_TRADE_BOARD_SELF);
     }
     else
     {

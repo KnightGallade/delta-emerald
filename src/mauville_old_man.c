@@ -158,7 +158,7 @@ void SaveBardSongLyrics(void)
     u16 i;
     struct MauvilleManBard *bard = &gSaveBlock1Ptr->oldMan.bard;
 
-    StringCopy(bard->playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(bard->playerName, GetCurrentAvatarName());
 
     for (i = 0; i < TRAINER_ID_LENGTH; i++)
         bard->playerTrainerId[i] = gSaveBlock2Ptr->playerTrainerId[i];
@@ -1306,7 +1306,7 @@ static void StorytellerSetPlayerName(u32 player, const u8 *src)
 static void StorytellerRecordNewStat(u32 player, u32 stat)
 {
     sStorytellerPtr->gameStatIDs[player] = stat;
-    StorytellerSetPlayerName(player, gSaveBlock2Ptr->playerName);
+    StorytellerSetPlayerName(player, GetCurrentAvatarName());
     StorytellerSetRecordedTrainerStat(player, StorytellerGetGameStat(stat));
     ConvertIntToDecimalStringN(gStringVar1, StorytellerGetGameStat(stat), STR_CONV_MODE_LEFT_ALIGN, 10);
     StringCopy(gStringVar2, GetStoryActionByStat(stat));

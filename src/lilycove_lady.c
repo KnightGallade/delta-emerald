@@ -237,7 +237,7 @@ static bool8 DoesFavorLadyLikeItem(u16 itemId)
     sFavorLadyPtr->state = LILYCOVE_LADY_STATE_COMPLETED;
     BufferItemName(gStringVar2, itemId);
     sFavorLadyPtr->itemId = itemId;
-    SetFavorLadyPlayerName(gSaveBlock2Ptr->playerName, sFavorLadyPtr->playerName);
+    SetFavorLadyPlayerName(GetCurrentAvatarName(), sFavorLadyPtr->playerName);
     sFavorLadyPtr->language = gGameLanguage;
     likedItem = FALSE;
     for (i = 0; i < numItems; i ++)
@@ -404,13 +404,13 @@ static u8 BufferQuizAuthorName(void)
         StringCopy_PlayerName(gStringVar1, sQuizLadyPtr->playerName);
         ConvertInternationalString(gStringVar1, sQuizLadyPtr->language);
         nameLen = GetPlayerNameLength(sQuizLadyPtr->playerName);
-        if (nameLen == GetPlayerNameLength(gSaveBlock2Ptr->playerName))
+        if (nameLen == GetPlayerNameLength(GetCurrentAvatarName()))
         {
             u8 *name = sQuizLadyPtr->playerName;
             for (i = 0; i < nameLen; i++)
             {
                 name = sQuizLadyPtr->playerName;
-                if (name[i] != gSaveBlock2Ptr->playerName[i])
+                if (name[i] != GetCurrentAvatarName()[i])
                 {
                     authorNameId = QUIZ_AUTHOR_NAME_OTHER_PLAYER;
                     break;
@@ -552,7 +552,7 @@ void QuizLadyRecordCustomQuizData(void)
     sQuizLadyPtr->prize = gSpecialVar_ItemId;
     for (i = 0; i < TRAINER_ID_LENGTH; i++)
         sQuizLadyPtr->playerTrainerId[i] = gSaveBlock2Ptr->playerTrainerId[i];
-    StringCopy_PlayerName(sQuizLadyPtr->playerName, gSaveBlock2Ptr->playerName);
+    StringCopy_PlayerName(sQuizLadyPtr->playerName, GetCurrentAvatarName());
     sQuizLadyPtr->language = gGameLanguage;
 }
 
@@ -631,7 +631,7 @@ static void ContestLadySavePlayerNameIfHighSheen(u8 sheen)
     {
         sContestLadyPtr->maxSheen = sheen;
         memset(sContestLadyPtr->playerName, EOS, sizeof(sContestLadyPtr->playerName));
-        memcpy(sContestLadyPtr->playerName, gSaveBlock2Ptr->playerName, sizeof(sContestLadyPtr->playerName));
+        memcpy(sContestLadyPtr->playerName, GetCurrentAvatarName(), sizeof(sContestLadyPtr->playerName));
         sContestLadyPtr->language = gGameLanguage;
     }
 }

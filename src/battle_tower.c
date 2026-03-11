@@ -2131,7 +2131,7 @@ static void SaveBattleTowerRecord(void)
     ClearBattleTowerRecord(playerRecord);
     lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
-    if (gSaveBlock2Ptr->playerGender != MALE)
+    if (GetCurrentAvatarGender() != MALE)
     {
         class = gTowerFemaleFacilityClasses[(gSaveBlock2Ptr->playerTrainerId[0] +
                                        gSaveBlock2Ptr->playerTrainerId[1] +
@@ -2148,7 +2148,7 @@ static void SaveBattleTowerRecord(void)
     playerRecord->lvlMode = lvlMode;
     playerRecord->facilityClass = class;
     CopyTrainerId(playerRecord->trainerId, gSaveBlock2Ptr->playerTrainerId);
-    StringCopy_PlayerName(playerRecord->name, gSaveBlock2Ptr->playerName);
+    StringCopy_PlayerName(playerRecord->name, GetCurrentAvatarName());
     playerRecord->winStreak = GetCurrentBattleTowerWinStreak(lvlMode, battleMode);
 
     for (i = 0; i < EASY_CHAT_BATTLE_WORDS_COUNT; i++)
@@ -2809,7 +2809,7 @@ static void UNUSED FillEReaderTrainerWithPlayerData(void)
     struct BattleTowerEReaderTrainer *ereaderTrainer = &gSaveBlock2Ptr->frontier.ereaderTrainer;
     s32 i, j;
 
-    if (gSaveBlock2Ptr->playerGender != MALE)
+    if (GetCurrentAvatarGender() != MALE)
     {
         ereaderTrainer->facilityClass = gTowerFemaleFacilityClasses[(gSaveBlock2Ptr->playerTrainerId[0] + gSaveBlock2Ptr->playerTrainerId[1]
                                                         + gSaveBlock2Ptr->playerTrainerId[2] + gSaveBlock2Ptr->playerTrainerId[3]) % ARRAY_COUNT(gTowerFemaleFacilityClasses)];
@@ -2821,7 +2821,7 @@ static void UNUSED FillEReaderTrainerWithPlayerData(void)
     }
 
     CopyTrainerId(ereaderTrainer->trainerId, gSaveBlock2Ptr->playerTrainerId);
-    StringCopy_PlayerName(ereaderTrainer->name, gSaveBlock2Ptr->playerName);
+    StringCopy_PlayerName(ereaderTrainer->name, GetCurrentAvatarName());
 
     ereaderTrainer->winStreak = 1;
 

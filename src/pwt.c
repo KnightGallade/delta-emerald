@@ -3115,7 +3115,7 @@ static void DisplayPWTTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     int windowId = WIN_PWT_TRAINER_NAME;
     int x = 0, y = 0;
     u8 palSlot = 0;
-    u32 trainerPic = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 0);
+    u32 trainerPic = GetPlayerTrainerPicIdByCharacterOutfitType(GetCurrentAvatarCharacter(), GetCurrentAvatarOutfit(), 0);
     trainerId = PWT_TRAINERS[trainerTourneyId].trainerId;
 
     if (flags & PWT_CARD_ALTERNATE_SLOT)
@@ -3191,7 +3191,7 @@ static void DisplayPWTTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
 
     if (trainerId == TRAINER_PLAYER)
     {
-        StringAppend(gStringVar1, gSaveBlock2Ptr->playerName);
+        StringAppend(gStringVar1, GetCurrentAvatarName());
     }
     else
     {
@@ -3261,7 +3261,7 @@ static int BufferPWTWinString(u8 matchNum, u8 *tournamentIds)
         {
             tournamentIds[count] = tournamentId;
             if (PWT_TRAINERS[tournamentId].trainerId == TRAINER_PLAYER)
-                StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+                StringCopy(gStringVar1, GetCurrentAvatarName());
             else
                 CopyPWTTrainerName(gStringVar1, PWT_TRAINERS[tournamentId].trainerId);
             count++;
@@ -3294,7 +3294,7 @@ static int BufferPWTWinString(u8 matchNum, u8 *tournamentIds)
             else
             {
                 if (PWT_TRAINERS[tournamentId].trainerId == TRAINER_PLAYER)
-                    StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+                    StringCopy(gStringVar1, GetCurrentAvatarName());
                 else
                     CopyPWTTrainerName(gStringVar1, PWT_TRAINERS[tournamentId].trainerId);
             }
@@ -3322,7 +3322,7 @@ static void DisplayPWTMatchInfoOnCard(u8 flags, u8 matchNo)
     int windowId = 0;
     int x = 0, y = 0;
     u8 palSlot = 0;
-    u16 picId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 0);
+    u16 picId = GetPlayerTrainerPicIdByCharacterOutfitType(GetCurrentAvatarCharacter(), GetCurrentAvatarOutfit(), 0);
 
     if (flags & PWT_CARD_ALTERNATE_SLOT)
         arrId = 2 * (PARTY_SIZE + 1), windowId = NUM_PWT_INFO_CARD_WINDOWS, palSlot = 2;
@@ -3456,7 +3456,7 @@ static void DisplayPWTMatchInfoOnCard(u8 flags, u8 matchNo)
 
     // Print left trainer's name.
     if (trainerIds[0] == TRAINER_PLAYER)
-        StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+        StringCopy(gStringVar1, GetCurrentAvatarName());
     else
         CopyPWTTrainerName(gStringVar1, trainerIds[0]);
 
@@ -3472,7 +3472,7 @@ static void DisplayPWTMatchInfoOnCard(u8 flags, u8 matchNo)
 
     // Print right trainer's name.
     if (trainerIds[1] == TRAINER_PLAYER)
-        StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+        StringCopy(gStringVar1, GetCurrentAvatarName());
     else
         CopyPWTTrainerName(gStringVar1, trainerIds[1]);
 
@@ -4602,7 +4602,7 @@ void CopyPWTTrainerName(u8 *str, u16 trainerId)
     if (trainerId == TRAINER_PLAYER)
     {
         for (i = 0; i < PLAYER_NAME_LENGTH; i++)
-            str[i] = gSaveBlock2Ptr->playerName[i];
+            str[i] = GetCurrentAvatarName()[i];
     }
     else if (trainerId < PWT_TRAINERS_COUNT)
     {

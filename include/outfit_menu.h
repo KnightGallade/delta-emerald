@@ -6,13 +6,13 @@ void Task_OpenOutfitMenu(u8 taskId);
 
 //! misc funcs
 void BufferOutfitStrings(u8 *dest, u8 outfitId, u8 dataType);
-u32 GetPlayerTrainerPicIdByOutfitGenderType(u32 outfitId, u32 gender, bool32 type);
+u32 GetPlayerTrainerPicIdByCharacterOutfitType(u32 characterId, u32 outfitId, bool32 type);
 const void *GetPlayerHeadGfxOrPal(u8 which, bool32 isFP);
-u16 *GetOutfitPointer(u16 id);
-u16 UnlockOutfit(u16 id);
-u16 ToggleOutfit(u16 id);
-u16 LockOutfit(u16 id);
-bool8 GetOutfitStatus(u16 id);
+u8 GetOutfitFlag(u8 character, u8 outfit);
+void UnlockOutfit(u8 character, u8 outfit);
+void LockOutfit(u8 character, u8 outfit);
+void ToggleOutfit(u8 character, u8 outfit);
+bool8 GetOutfitStatus(u8 character, u8 outfit);
 bool8 IsPlayerWearingOutfit(u16 id);
 u32 GetOutfitPrice(u16 id);
 

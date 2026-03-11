@@ -1844,6 +1844,7 @@ u32 LinkPlayerGetTrainerPicId(u32 multiplayerId)
 
     u8 gender = gLinkPlayers[multiplayerId].gender;
     u8 version = gLinkPlayers[multiplayerId].version & 0xFF;
+    u8 characterId = gLinkPlayers[multiplayerId].currCharacterId;
     u8 outfitId = gLinkPlayers[multiplayerId].currOutfitId;
 
     if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
@@ -1852,8 +1853,8 @@ u32 LinkPlayerGetTrainerPicId(u32 multiplayerId)
         trainerPicId = gender + TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN;
     else
     {
-        if (outfitId < OUTFIT_COUNT)
-            trainerPicId = GetPlayerTrainerPicIdByOutfitGenderType(outfitId, gender, 1);
+        if (characterId < CHARACTER_COUNT && outfitId < OUTFIT_COUNT)
+            trainerPicId = GetPlayerTrainerPicIdByCharacterOutfitType(characterId, outfitId, 1);
         else
             trainerPicId = gender + TRAINER_BACK_PIC_BRENDAN;
     }
@@ -1868,7 +1869,7 @@ static u32 PlayerGetTrainerBackPicId(void)
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
         trainerPicId = LinkPlayerGetTrainerPicId(GetMultiplayerId());
     else
-        trainerPicId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 1);
+        trainerPicId = GetPlayerTrainerPicIdByCharacterOutfitType(GetCurrentAvatarCharacter(), GetCurrentAvatarOutfit(), 1);
 
     return trainerPicId;
 }
@@ -1920,7 +1921,7 @@ static void PlayerHandleDrawTrainerPic(u32 battler)
     // Use front pic table for any tag battles unless your partner is Steven or a custom partner.
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
     {
-        trainerPicId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 0);
+        trainerPicId = GetPlayerTrainerPicIdByCharacterOutfitType(GetCurrentAvatarCharacter(), GetCurrentAvatarOutfit(), 0);
         isFrontPic = TRUE;
     }
     else // Use back pic in all the other usual circumstances.

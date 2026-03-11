@@ -6,6 +6,7 @@
 #include "pokemon_size_record.h"
 #include "string_util.h"
 #include "text.h"
+#include "main.h"
 
 #define DEFAULT_MAX_SIZE 0x8000 // was 0x8100 in Ruby/Sapphire
 static u8* ReturnHeightStringNoWhitespace(u32 size);
@@ -161,7 +162,7 @@ static void GetMonSizeRecordInfo(u16 species, u16 *sizeRecord)
     if (*sizeRecord == DEFAULT_MAX_SIZE)
         StringCopy(gStringVar2, gText_Marco);
     else
-        StringCopy(gStringVar2, gSaveBlock2Ptr->playerName);
+        StringCopy(gStringVar2, GetCurrentAvatarName());
 }
 
 void InitSeedotSizeRecord(void)

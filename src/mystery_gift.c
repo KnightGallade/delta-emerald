@@ -454,7 +454,7 @@ void MysteryGift_LoadLinkGameData(struct MysteryGiftLinkGameData *data, bool32 i
         data->questionnaireWords[i] = gSaveBlock1Ptr->mysteryGift.questionnaireWords[i];
 
     CopyTrainerId(data->playerTrainerId, gSaveBlock2Ptr->playerTrainerId);
-    StringCopy(data->playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(data->playerName, GetCurrentAvatarName());
     for (i = 0; i < EASY_CHAT_BATTLE_WORDS_COUNT; i++)
         data->easyChatProfile[i] = gSaveBlock1Ptr->easyChatProfile[i];
 

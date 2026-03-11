@@ -249,7 +249,7 @@ void StorePokemonInDaycare(struct Pokemon *mon, struct DaycareMon *daycareMon)
     {
         u8 mailId;
 
-        StringCopy(daycareMon->mail.otName, gSaveBlock2Ptr->playerName);
+        StringCopy(daycareMon->mail.otName, GetCurrentAvatarName());
         GetMonNicknameVanilla(mon, daycareMon->mail.monName);
         StripExtCtrlCodes(daycareMon->mail.monName);
         daycareMon->mail.gameLanguage = GAME_LANGUAGE;

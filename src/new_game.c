@@ -157,9 +157,10 @@ void ResetMenuAndMonGlobals(void)
 
 static void ResetOutfitData(void)
 {
-    memset(gSaveBlock2Ptr->outfits, 0, sizeof(gSaveBlock2Ptr->outfits));
-    UnlockOutfit(DEFAULT_OUTFIT);
-    gSaveBlock2Ptr->currOutfitId = DEFAULT_OUTFIT;
+    for (u8 flag = FLAG_AVATAR_START; flag < FLAG_AVATAR_END; flag++)
+        FlagClear(flag);
+    SetCurrentAvatarCharacter(CHARACTER_PLAYER);
+    SetCurrentAvatarOutfit(OUTFIT_DEFAULT);
 }
 
 void NewGameInitData(void)

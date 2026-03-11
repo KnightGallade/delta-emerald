@@ -1120,7 +1120,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     StringCopy(speciesName, GetSpeciesName(species));
     SetBoxMonData(boxMon, MON_DATA_NICKNAME, speciesName);
     SetBoxMonData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
-    SetBoxMonData(boxMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+    SetBoxMonData(boxMon, MON_DATA_OT_NAME, GetCurrentAvatarName());
     SetBoxMonData(boxMon, MON_DATA_SPECIES, &species);
     SetBoxMonData(boxMon, MON_DATA_EXP, &gExperienceTables[gSpeciesInfo[species].growthRate][level]);
     SetBoxMonData(boxMon, MON_DATA_FRIENDSHIP, &gSpeciesInfo[species].friendship);
@@ -1130,7 +1130,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     SetBoxMonData(boxMon, MON_DATA_MET_GAME, &gGameVersion);
     value = ITEM_POKE_BALL;
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
-    SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    SetBoxMonData(boxMon, MON_DATA_OT_GENDER, GetCurrentAvatarGender());
 
     enum Type teraType = (boxMon->personality & 0x1) == 0 ? GetSpeciesType(species, 0) : GetSpeciesType(species, 1);
     SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &teraType);
@@ -3217,8 +3217,8 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
 {
     s32 i;
 
-    SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
-    SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    SetMonData(mon, MON_DATA_OT_NAME, GetCurrentAvatarName());
+    SetMonData(mon, MON_DATA_OT_GENDER, GetCurrentAvatarGender());
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
 
     for (i = 0; i < PARTY_SIZE; i++)
@@ -6163,7 +6163,7 @@ u16 GetBattleBGM(void)
         // Here is an example for how to make the music depend on the route
         // if (gMapHeader.regionMapSectionId == MAPSEC_ROUTE_102)
             // return MUS_DP_VS_WILD;
-        // For a wild battle, choose a song based off the gen of the Pokémon (no song XY/gen6 for now)
+        // For a wild battle, choose a song based off the gen of the Pokémon (no song past XY/gen6 for now)
         u16 dexNum = SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL));
         if (dexNum >= 1 && dexNum <= 151)
             return MUS_RG_VS_WILD; // Gen 1
@@ -6183,8 +6183,8 @@ u16 GetBattleBGM(void)
             return MUS_DP_VS_TRAINER; // Gen 8
         else if (dexNum >= 906 && dexNum <= 1025)
             return MUS_VS_RIVAL; // Gen 9
-        else
-            return MUS_RG_SLOW_PALLET; // Error condition
+        else // error handling, but also for initial zigzagoon battle
+            return MUS_VS_WILD;
     }
 }
 
@@ -6326,7 +6326,7 @@ bool8 IsOtherTrainer(u32 otId, u8 *otName)
     {
         int i;
         for (i = 0; otName[i] != EOS; i++)
-            if (otName[i] != gSaveBlock2Ptr->playerName[i])
+            if (otName[i] != GetCurrentAvatarName()[i])
                 return TRUE;
         return FALSE;
     }

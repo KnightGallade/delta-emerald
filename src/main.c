@@ -467,3 +467,78 @@ void ClearPokemonCrySongs(void)
 {
     CpuFill16(0, gPokemonCrySongs, MAX_POKEMON_CRIES * sizeof(struct PokemonCrySong));
 }
+
+// All below functions clean up avatar system
+
+// Select an avatar's index
+// TODO - add verification that that avatar currently exists
+u8 *GetAvatarName(u8 avatarId)
+{
+    return gSaveBlock2Ptr->avatars[avatarId].avatarName;
+}
+
+u8 GetAvatarGender(u8 avatarId)
+{
+    return gSaveBlock2Ptr->avatars[avatarId].avatarGender;
+}
+
+u8 GetAvatarCharacter(u8 avatarId)
+{
+    return gSaveBlock2Ptr->avatars[avatarId].avatarCharacter;
+}
+
+u8 GetAvatarOutfit(u8 avatarId)
+{
+    return gSaveBlock2Ptr->avatars[avatarId].avatarOutfit;
+}
+
+void SetAvatarGender(u8 avatarId, u8 gender)
+{
+    gSaveBlock2Ptr->avatars[avatarId].avatarGender = gender;
+}
+
+void SetAvatarCharacter(u8 avatarId, u8 character)
+{
+    gSaveBlock2Ptr->avatars[avatarId].avatarCharacter = character;
+}
+
+void SetAvatarOutfit(u8 avatarId, u8 outfit)
+{
+    gSaveBlock2Ptr->avatars[avatarId].avatarOutfit = outfit;
+}
+
+// For current avatar
+u8 *GetCurrentAvatarName(void)
+{
+    return GetAvatarName(gSaveBlock2Ptr->currentCharacterId);
+}
+
+u8 GetCurrentAvatarGender(void)
+{
+    return GetAvatarGender(gSaveBlock2Ptr->currentCharacterId);
+}
+
+u8 GetCurrentAvatarCharacter(void)
+{
+    return GetAvatarCharacter(gSaveBlock2Ptr->currentCharacterId);
+}
+
+u8 GetCurrentAvatarOutfit(void)
+{
+    return GetAvatarOutfit(gSaveBlock2Ptr->currentCharacterId);
+}
+
+void SetCurrentAvatarGender(u8 gender)
+{
+    SetAvatarGender(gSaveBlock2Ptr->currentCharacterId, gender);
+}
+
+void SetCurrentAvatarCharacter(u8 character)
+{
+    SetAvatarCharacter(gSaveBlock2Ptr->currentCharacterId, character);
+}
+
+void SetCurrentAvatarOutfit(u8 outfit)
+{
+    SetAvatarOutfit(gSaveBlock2Ptr->currentCharacterId, outfit);
+}

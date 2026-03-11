@@ -958,13 +958,6 @@ static void StartMenuFull_VBlankCB(void)
         default:
         case MENU_DEFAULT_MALE:
         case MENU_DEFAULT_FEMALE:
-        case MENU_EMERALD_BRENDAN:
-        case MENU_EMERALD_MAY:
-        case MENU_RS_BRENDAN:
-        case MENU_RS_MAY:
-        case MENU_ORAS_BRENDAN:
-        case MENU_ORAS_MAY:
-        case MENU_FRLG_LEAF:
         case MENU_FRLG_RED:
             ChangeBgY(2, 128, BG_COORD_SUB); // controls the background scrolling
             break;
@@ -1134,36 +1127,8 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
                 DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
-            case MENU_EMERALD_BRENDAN:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesBlue, 0, 0, 0);
-                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
-                break;
-            case MENU_EMERALD_MAY:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
-                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
-                break;
-            case MENU_RS_BRENDAN:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesBlue, 0, 0, 0);
-                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
-                break;
-            case MENU_RS_MAY:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
-                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
-                break;
-            case MENU_ORAS_BRENDAN:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesBlue, 0, 0, 0);
-                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
-                break;
-            case MENU_ORAS_MAY:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
-                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
-                break;
             case MENU_FRLG_RED:
                 DecompressAndCopyTileDataToVram(1, sStartMenuFRLGRedTiles, 0, 0, 0);
-                DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
-                break;
-            case MENU_FRLG_LEAF:
-                DecompressAndCopyTileDataToVram(1, sStartMenuTilesRed, 0, 0, 0);
                 DecompressAndCopyTileDataToVram(2, sScrollBgTiles, 0, 0, 0);
                 break;
         }
@@ -1183,36 +1148,8 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
                     DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
                     DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
                     break;
-                case MENU_EMERALD_BRENDAN:
-                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
-                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
-                    break;
-                case MENU_EMERALD_MAY:
-                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
-                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
-                    break;
-                case MENU_RS_BRENDAN:
-                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
-                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
-                    break;
-                case MENU_RS_MAY:
-                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
-                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
-                    break;
-                case MENU_ORAS_BRENDAN:
-                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
-                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
-                    break;
-                case MENU_ORAS_MAY:
-                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
-                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
-                    break;
                 case MENU_FRLG_RED:
                     DecompressDataWithHeaderWram(sStartMenuFRLGRedTilemap, sBg1TilemapBuffer);
-                    DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
-                    break;
-                case MENU_FRLG_LEAF:
-                    DecompressDataWithHeaderWram(sStartMenuTilemap, sBg1TilemapBuffer);
                     DecompressDataWithHeaderWram(sScrollBgTilemap, sBg2TilemapBuffer);
                     break;
             }
@@ -1236,49 +1173,10 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
                 LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
                 LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
-            case MENU_EMERALD_BRENDAN:
-                LoadPalette(sStartMenuPaletteBlue, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-                break;
-            case MENU_EMERALD_MAY:
-                cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-                break;
-            case MENU_RS_BRENDAN:
-                LoadPalette(sStartMenuPaletteBlue, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-                break;
-            case MENU_RS_MAY:
-                cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-                break;
-            case MENU_ORAS_BRENDAN:
-                LoadPalette(sStartMenuPaletteBlue, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-                LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-                break;
-            case MENU_ORAS_MAY:
-                cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-                break;
             case MENU_FRLG_RED:
                 LoadPalette(sStartMenuFRLGRedPalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
                 LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
                 LoadPalette(sHP_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-                break;
-            case MENU_FRLG_LEAF:
-                cursorPal.data = sCursor_PalAlt;
-                LoadPalette(sStartMenuPaletteRed, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-                LoadPalette(sScrollBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-                LoadPalette(sHP_PalAlt, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
                 break;
         }
         LoadCompressedSpriteSheet(&sSpriteSheet_IconBox);
@@ -1659,17 +1557,17 @@ static void Task_StartMenuFullMain(u8 taskId)
 
 // New function to determine which menu to load
 static u8 GetMenuType(void) {
-    switch (gSaveBlock2Ptr->currOutfitId)
+    switch (GetCurrentAvatarCharacter())
     {
-        case OUTFIT_USUAL_GREEN:
-            return gSaveBlock2Ptr->playerGender == MALE ? MENU_EMERALD_BRENDAN : MENU_EMERALD_MAY;
-        case OUTFIT_UNUSUAL_RED:
-            return gSaveBlock2Ptr->playerGender == MALE ? MENU_RS_BRENDAN : MENU_RS_MAY;
-        case OUTFIT_FUTURISTIC:
-            return gSaveBlock2Ptr->playerGender == MALE ? MENU_ORAS_BRENDAN : MENU_ORAS_MAY;
-        case OUTFIT_FOREIGN:
-            return gSaveBlock2Ptr->playerGender == MALE ? MENU_FRLG_RED : MENU_FRLG_LEAF;
+        case CHARACTER_RED:
+            return MENU_FRLG_RED;
+        case CHARACTER_LEAF:
+        case CHARACTER_GOLD:
+        case CHARACTER_KRIS:
+        case CHARACTER_BRENDAN:
+        case CHARACTER_MAY:
+        case CHARACTER_PLAYER:
         default:
-            return gSaveBlock2Ptr->playerGender == MALE ? MENU_DEFAULT_MALE : MENU_DEFAULT_FEMALE;
+            return GetCurrentAvatarGender() == MALE ? MENU_DEFAULT_MALE : MENU_DEFAULT_FEMALE;
     }
 }

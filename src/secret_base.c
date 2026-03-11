@@ -370,8 +370,8 @@ void SetPlayerSecretBase(void)
         gSaveBlock1Ptr->secretBases[0].trainerId[i] = gSaveBlock2Ptr->playerTrainerId[i];
 
     VarSet(VAR_CURRENT_SECRET_BASE, 0);
-    StringCopyN(gSaveBlock1Ptr->secretBases[0].trainerName, gSaveBlock2Ptr->playerName, GetNameLength(gSaveBlock2Ptr->playerName));
-    gSaveBlock1Ptr->secretBases[0].gender = gSaveBlock2Ptr->playerGender;
+    StringCopyN(gSaveBlock1Ptr->secretBases[0].trainerName, GetCurrentAvatarName(), GetNameLength(GetCurrentAvatarName()));
+    gSaveBlock1Ptr->secretBases[0].gender = GetCurrentAvatarGender();
     gSaveBlock1Ptr->secretBases[0].language = GAME_LANGUAGE;
     VarSet(VAR_SECRET_BASE_MAP, gMapHeader.regionMapSectionId);
 }
@@ -1522,7 +1522,7 @@ static bool8 SecretBaseBelongsToPlayer(struct SecretBase *secretBase)
     if (secretBase->secretBaseId == 0)
         return FALSE;
 
-    if (secretBase->secretBaseId && secretBase->gender != gSaveBlock2Ptr->playerGender)
+    if (secretBase->secretBaseId && secretBase->gender != GetCurrentAvatarGender())
         return FALSE;
 
     // Check if the player's trainer Id matches the secret base's id.
@@ -1532,9 +1532,9 @@ static bool8 SecretBaseBelongsToPlayer(struct SecretBase *secretBase)
             return FALSE;
     }
 
-    for (i = 0; i < PLAYER_NAME_LENGTH && (secretBase->trainerName[i] != EOS || gSaveBlock2Ptr->playerName[i] != EOS); i++)
+    for (i = 0; i < PLAYER_NAME_LENGTH && (secretBase->trainerName[i] != EOS || GetCurrentAvatarName()[i] != EOS); i++)
     {
-        if (secretBase->trainerName[i] != gSaveBlock2Ptr->playerName[i])
+        if (secretBase->trainerName[i] != GetCurrentAvatarName()[i])
             return FALSE;
     }
 

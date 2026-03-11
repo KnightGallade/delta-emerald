@@ -1402,23 +1402,23 @@ static void NamingScreen_NoIcon(void)
  * So, for example, if you want it to show the player's current outfit instead of
  * DEFAULT_OUTFIT, change this:
  * DoNamingScreen(NAMING_SCREEN_PLAYER,
- *                gSaveBlock2Ptr->playerName,
- *                gSaveBlock2Ptr->playerGender,
+ *                GetCurrentAvatarName(),
+ *                GetCurrentAvatarGender(),
  *                0, 
  *                0,
  *                CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
  * To this:
  * DoNamingScreen(NAMING_SCREEN_PLAYER,
- *                gSaveBlock2Ptr->playerName,
- *                gSaveBlock2Ptr->playerGender,
+ *                GetCurrentAvatarName(),
+ *                GetCurrentAvatarGender(),
  *                0, 
- *                gSaveBlock2Ptr->currOutfitId,
+ *                GetCurrentAvatarOutfit(),
  *                CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
  * 
  * You can specify a specific outfit too, like so:
  * DoNamingScreen(NAMING_SCREEN_PLAYER,
- *                gSaveBlock2Ptr->playerName,
- *                gSaveBlock2Ptr->playerGender,
+ *                GetCurrentAvatarName(),
+ *                GetCurrentAvatarGender(),
  *                0, 
  *                OUTFIT_UNUSUAL_RED,
  *                CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
@@ -1426,10 +1426,8 @@ static void NamingScreen_NoIcon(void)
 
 static void NamingScreen_CreatePlayerIcon(void)
 {
-    u16 gfxId = GetPlayerAvatarGraphicsIdByOutfitStateIdAndGender(DEFAULT_OUTFIT, PLAYER_AVATAR_STATE_NORMAL, gSaveBlock2Ptr->playerGender);
+    u16 gfxId = GetPlayerAvatarGraphicsIdByCharacterOutfitAndStateId(CHARACTER_BRENDAN, OUTFIT_DEFAULT, PLAYER_AVATAR_STATE_NORMAL); // TODO - make dynamic
     u8 spriteId;
-    // u32 outfit = sNamingScreen->monPersonality;
-    // gfxId = GetPlayerAvatarGraphicsIdByOutfitStateIdAndGender(outfit, PLAYER_AVATAR_STATE_NORMAL, gSaveBlock2Ptr->playerGender);
     spriteId = CreateObjectGraphicsSprite(gfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);
@@ -1437,11 +1435,10 @@ static void NamingScreen_CreatePlayerIcon(void)
 
 static void NamingScreen_CreateRivalIcon(void)
 {
-    u8 rivalGender = gSaveBlock2Ptr->playerGender == MALE ? FEMALE : MALE;
-    u16 gfxId = GetPlayerAvatarGraphicsIdByOutfitStateIdAndGender(DEFAULT_OUTFIT, PLAYER_AVATAR_STATE_NORMAL, rivalGender);
+    u8 rivalGender = GetCurrentAvatarGender() == MALE ? FEMALE : MALE;
+
+    u16 gfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, rivalGender);
     u8 spriteId;
-    // u32 outfit = sNamingScreen->monPersonality;
-    // gfxId = GetPlayerAvatarGraphicsIdByOutfitStateIdAndGender(outfit, PLAYER_AVATAR_STATE_NORMAL, rivalGender);
     spriteId = CreateObjectGraphicsSprite(gfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);
@@ -2131,27 +2128,27 @@ static bool8 IsWideLetter(u8 character)
 // Debug? Arguments aren't sensible for non-player screens.
 static void UNUSED Debug_NamingScreenPlayer(void)
 {
-    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_PLAYER, GetCurrentAvatarName(), GetCurrentAvatarGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void UNUSED Debug_NamingScreenRival(void)
 {
-    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, GetCurrentAvatarGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void UNUSED Debug_NamingScreenBox(void)
 {
-    DoNamingScreen(NAMING_SCREEN_BOX, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_BOX, GetCurrentAvatarName(), GetCurrentAvatarGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void UNUSED Debug_NamingScreenCaughtMon(void)
 {
-    DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, GetCurrentAvatarName(), GetCurrentAvatarGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void UNUSED Debug_NamingScreenNickname(void)
 {
-    DoNamingScreen(NAMING_SCREEN_NICKNAME, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(NAMING_SCREEN_NICKNAME, GetCurrentAvatarName(), GetCurrentAvatarGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 //--------------------------------------------------

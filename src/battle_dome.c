@@ -4156,7 +4156,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     int x = 0, y = 0;
     u8 palSlot = 0;
     s16 *allocatedArray = AllocZeroed(sizeof(s16) * ALLOC_ARRAY_SIZE);
-    u32 trainerPic = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 0);
+    u32 trainerPic = GetPlayerTrainerPicIdByCharacterOutfitType(GetCurrentAvatarCharacter(), GetCurrentAvatarOutfit(), 0);
     trainerId = DOME_TRAINERS[trainerTourneyId].trainerId;
 
     if (flags & CARD_ALTERNATE_SLOT)
@@ -4245,7 +4245,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
 
     if (trainerId == TRAINER_PLAYER)
     {
-        StringAppend(gStringVar1, gSaveBlock2Ptr->playerName);
+        StringAppend(gStringVar1, GetCurrentAvatarName());
     }
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
     {
@@ -4610,7 +4610,7 @@ static int BufferDomeWinString(u8 matchNum, u8 *tournamentIds)
         {
             tournamentIds[count] = tournamentId;
             if (DOME_TRAINERS[tournamentId].trainerId == TRAINER_PLAYER)
-                StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+                StringCopy(gStringVar1, GetCurrentAvatarName());
             else if (DOME_TRAINERS[tournamentId].trainerId == TRAINER_FRONTIER_BRAIN)
                 CopyFrontierBrainTrainerName(gStringVar1);
             else
@@ -4645,7 +4645,7 @@ static int BufferDomeWinString(u8 matchNum, u8 *tournamentIds)
             else
             {
                 if (DOME_TRAINERS[tournamentId].trainerId == TRAINER_PLAYER)
-                    StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+                    StringCopy(gStringVar1, GetCurrentAvatarName());
                 else if (DOME_TRAINERS[tournamentId].trainerId == TRAINER_FRONTIER_BRAIN)
                     CopyFrontierBrainTrainerName(gStringVar1);
                 else
@@ -4675,7 +4675,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
     int windowId = 0;
     int x = 0, y = 0;
     u8 palSlot = 0;
-    u16 picId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 0);
+    u16 picId = GetPlayerTrainerPicIdByCharacterOutfitType(GetCurrentAvatarCharacter(), GetCurrentAvatarOutfit(), 0);
 
     if (flags & CARD_ALTERNATE_SLOT)
         arrId = 2 * (FRONTIER_PARTY_SIZE + 1), windowId = NUM_INFO_CARD_WINDOWS, palSlot = 2;
@@ -4830,7 +4830,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
 
     // Print left trainer's name.
     if (trainerIds[0] == TRAINER_PLAYER)
-        StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+        StringCopy(gStringVar1, GetCurrentAvatarName());
     else if (trainerIds[0] == TRAINER_FRONTIER_BRAIN)
         CopyFrontierBrainTrainerName(gStringVar1);
     else
@@ -4848,7 +4848,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
 
     // Print right trainer's name.
     if (trainerIds[1] == TRAINER_PLAYER)
-        StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+        StringCopy(gStringVar1, GetCurrentAvatarName());
     else if (trainerIds[1] == TRAINER_FRONTIER_BRAIN)
         CopyFrontierBrainTrainerName(gStringVar1);
     else
@@ -6023,7 +6023,7 @@ static void CopyDomeTrainerName(u8 *str, u16 trainerId)
         if (trainerId == TRAINER_PLAYER)
         {
             for (i = 0; i < PLAYER_NAME_LENGTH; i++)
-                str[i] = gSaveBlock2Ptr->playerName[i];
+                str[i] = GetCurrentAvatarName()[i];
         }
         else if (trainerId < FRONTIER_TRAINERS_COUNT)
         {

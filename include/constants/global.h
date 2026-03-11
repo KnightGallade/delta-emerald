@@ -81,7 +81,7 @@
 #define DAYCARE_MON_COUNT 2
 #define POKEBLOCKS_COUNT 40
 #define OBJECT_EVENTS_COUNT 16
-#define MAIL_COUNT (10 + PARTY_SIZE)
+#define MAIL_COUNT (1 + PARTY_SIZE) // lowered to save space
 #define SECRET_BASES_COUNT 20
 #define POKE_NEWS_COUNT 16
 #define PC_ITEMS_COUNT 50
@@ -97,6 +97,7 @@
 #define SAVED_TRENDS_COUNT 5
 #define PYRAMID_BAG_ITEMS_COUNT 10
 #define ROAMER_COUNT 1 // Number of maximum concurrent active roamers
+#define AVATAR_COUNT 5
 
 // Bag constants
 #define BAG_ITEMS_COUNT 30

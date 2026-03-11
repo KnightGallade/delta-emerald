@@ -793,7 +793,7 @@ static void CreateCableCarSprites(void)
     u8 i;
 
     //! Always use normal state
-    u16 playerGraphicsId = GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, gSaveBlock2Ptr->playerGender);
+    u16 playerGraphicsId = GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_NORMAL);
     u16 rval = Random();
     u16 hikerGraphicsIds[4] = {
         OBJ_EVENT_GFX_HIKER,

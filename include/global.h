@@ -21,6 +21,7 @@
 #include "constants/easy_chat.h"
 #include "constants/trainer_hill.h"
 #include "constants/outfits.h"
+#include "constants/my_characters.h"
 #include "constants/items.h"
 #include "config/save.h"
 
@@ -135,7 +136,6 @@
 #define NUM_DEX_FLAG_BYTES ROUND_BITS_TO_BYTES(POKEMON_SLOTS_NUMBER)
 #define NUM_FLAG_BYTES ROUND_BITS_TO_BYTES(FLAGS_COUNT)
 #define NUM_TRENDY_SAYING_BYTES ROUND_BITS_TO_BYTES(NUM_TRENDY_SAYINGS)
-#define NUM_OUTFIT_OWNED_BYTES ROUND_BITS_TO_BYTES(OUTFIT_COUNT)
 
 #define NUM_APRICORN_TREE_BYTES ROUND_BITS_TO_BYTES(APRICORN_TREE_COUNT)
 
@@ -597,8 +597,10 @@ struct Avatar
 {
     u8 avatarName[PLAYER_NAME_LENGTH + 1]; // TODO - initialize
     u8 avatarTrainerId[TRAINER_ID_LENGTH]; // TODO - initialize
-    u8 avatarCharacter:4; // ex: Red, Brendan, Leaf, May, etc.
-    u8 avatarOutfit:4; // Brendan: ORAS, Emerald, Ruby; Leaf: RBY, FRLG
+    u8 avatarCharacter:3; // ex: Red, Leaf, May, Brendan
+    u8 avatarOutfit:3; // ex: Default, Old, New (technically 2 bits is enough but safer)
+    u8 avatarGender:1; // MALE/FEMALE
+    u8 unused:1; // unused bits, maybe add to character later
     u8 avatarStamina;
     u8 questStatus; // TODO - what info should be here?
     s8 mapGroup;
@@ -611,43 +613,41 @@ struct Avatar
 
 struct SaveBlock2
 {
-    /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x08*/ u8 playerGender; // MALE, FEMALE
-    /*0x09*/ u8 specialSaveWarpFlags;
-    /*0x0A*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
-    /*0x0E*/ u16 playTimeHours;
-    /*0x10*/ u8 playTimeMinutes;
-    /*0x11*/ u8 playTimeSeconds;
-    /*0x12*/ u8 playTimeVBlanks;
-    /*0x13*/ u8 optionsButtonMode;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
-    /*0x14*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST]
-             u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
-             u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
-             u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
-             u16 optionsBattleSceneOff:1; // whether battle animations are disabled
-             u16 regionMapZoom:1; // whether the map is zoomed in
-             u16 playerBike:1;
-             u16 currOutfitId:4; // TODO - make it work with currentAvatarId
-             u16 outfits[NUM_OUTFIT_OWNED_BYTES]; // addresses listed no longer correct after this // TODO - make it work with currentAvatarId
-    /*0x18*/ struct Pokedex pokedex;
-    /*0x90*/ u8 filler_90[0x6];
-    /*0x98*/ struct Time localTimeOffset;
-    /*0xA0*/ struct Time lastBerryTreeUpdate;
-    /*0xA8*/ u32 gcnLinkFlags; // Read by Pokémon Colosseum/XD
-    /*0xAC*/ u32 encryptionKey;
-    /*0xB0*/ struct PlayersApprentice playerApprentice;
-    /*0xDC*/ struct Apprentice apprentices[APPRENTICE_COUNT];
-    /*0x1EC*/ struct BerryCrush berryCrush;
+    u8 currentCharacterId;
+    struct Avatar avatars[AVATAR_COUNT];
+    u8 specialSaveWarpFlags;
+    u8 playerTrainerId[TRAINER_ID_LENGTH];
+    u16 playTimeHours;
+    u8 playTimeMinutes;
+    u8 playTimeSeconds;
+    u8 playTimeVBlanks;
+    u8 optionsButtonMode;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
+    u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST]
+    u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
+    u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
+    u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
+    u16 optionsBattleSceneOff:1; // whether battle animations are disabled
+    u16 regionMapZoom:1; // whether the map is zoomed in
+    u16 playerBike:1;
+    u16 unused:3;
+    struct Pokedex pokedex;
+    struct Time localTimeOffset;
+    struct Time lastBerryTreeUpdate;
+    u32 gcnLinkFlags; // Read by Pokémon Colosseum/XD
+    u32 encryptionKey;
+    struct PlayersApprentice playerApprentice;
+    struct Apprentice apprentices[APPRENTICE_COUNT];
+    struct BerryCrush berryCrush;
 #if FREE_POKEMON_JUMP == FALSE
-    /*0x1FC*/ struct PokemonJumpRecords pokeJump;
+    struct PokemonJumpRecords pokeJump;
 #endif //FREE_POKEMON_JUMP
-    /*0x20C*/ struct BerryPickingResults berryPick;
+    struct BerryPickingResults berryPick;
 #if FREE_RECORD_MIXING_HALL_RECORDS == FALSE
-    /*0x21C*/ struct RankingHall1P hallRecords1P[HALL_FACILITIES_COUNT][FRONTIER_LVL_MODE_COUNT][HALL_RECORDS_COUNT]; // From record mixing.
-    /*0x57C*/ struct RankingHall2P hallRecords2P[FRONTIER_LVL_MODE_COUNT][HALL_RECORDS_COUNT]; // From record mixing.
+    struct RankingHall1P hallRecords1P[HALL_FACILITIES_COUNT][FRONTIER_LVL_MODE_COUNT][HALL_RECORDS_COUNT]; // From record mixing.
+    struct RankingHall2P hallRecords2P[FRONTIER_LVL_MODE_COUNT][HALL_RECORDS_COUNT]; // From record mixing.
 #endif //FREE_RECORD_MIXING_HALL_RECORDS
-    /*0x624*/ u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
-    /*0x64C*/ struct BattleFrontier frontier;
+    u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
+    struct BattleFrontier frontier;
 
 #define QUEST_FLAGS_COUNT ROUND_BITS_TO_BYTES(QUEST_COUNT)
 #define SUB_FLAGS_COUNT ROUND_BITS_TO_BYTES(SUB_QUEST_COUNT)
@@ -657,8 +657,6 @@ struct SaveBlock2
     u8 subQuests[SUB_FLAGS_COUNT];
     u8 rivalName[PLAYER_NAME_LENGTH + 1]; // TODO - is this still used with the avatar system?
     struct PWT pwt;
-    u8 currentAvatarId;
-    struct Avatar avatars[OUTFIT_COUNT - 1];
 };
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
@@ -1131,7 +1129,7 @@ struct SaveBlock1
     /*0x34*/ u16 mapView[0x100];
     /*0x234*/ u8 playerPartyCount;
     /*0x235*/ //u8 padding2[3];
-    /*0x238*/ struct Pokemon playerParty[PARTY_SIZE];
+    /*0x238*/ struct Pokemon playerParty[PARTY_SIZE]; // TODO - remove entirely
     /*0x490*/ u32 money;
     /*0x494*/ u16 coins;
     /*0x496*/ u16 registeredItem; // registered for use with SELECT button
@@ -1143,7 +1141,7 @@ struct SaveBlock1
     /*0x988*/ u8 filler1[0x34]; // Previously Dex Flags, feel free to remove.
 #endif //FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK1
     /*0x9BC*/ u16 berryBlenderRecords[3];
-    /*0x9C2*/ u8 unused_9C2[6];
+    /*0x9C2*/ // u8 unused_9C2[6];
 #if FREE_MATCH_CALL == FALSE
     /*0x9C8*/ u16 trainerRematchStepCounter;
     /*0x9CA*/ u8 trainerRematches[MAX_REMATCH_ENTRIES];
@@ -1222,7 +1220,7 @@ struct SaveBlock1
     /*0x3???*/ struct TrainerHillSave trainerHill;
 #endif //FREE_TRAINER_HILL
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
-    struct Pokemon extraParty[OUTFIT_COUNT-1][PARTY_SIZE]; // TODO - make work with the avatar system
+    struct Pokemon avatarParty[AVATAR_COUNT][PARTY_SIZE]; // TODO - make work with the avatar system
 };
 
 extern struct SaveBlock1 *gSaveBlock1Ptr;

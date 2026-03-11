@@ -1170,7 +1170,7 @@ static void SaveApprentice(void)
     for (i = 0; i < TRAINER_ID_LENGTH; i++)
         gSaveBlock2Ptr->apprentices[0].playerId[i] = gSaveBlock2Ptr->playerTrainerId[i];
 
-    StringCopy(gSaveBlock2Ptr->apprentices[0].playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(gSaveBlock2Ptr->apprentices[0].playerName, GetCurrentAvatarName());
     gSaveBlock2Ptr->apprentices[0].language = gGameLanguage;
     CalcApprenticeChecksum(&gSaveBlock2Ptr->apprentices[0]);
 }

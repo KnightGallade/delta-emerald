@@ -599,8 +599,7 @@ void SpawnLinkPartnerObjectEvent(void)
 static void LoadLinkPartnerObjectEventSpritePalette(u16 graphicsId, u8 localEventId, u8 paletteNum)
 {
     u32 i = 0;
-    u8 outfit = 0;
-    u8 gender = 0;
+    u8 character, outfit = 0;
     u8 adjustedPaletteNum = paletteNum + 6;
     u8 obj = GetObjectEventIdByLocalIdAndMap(localEventId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
     u16 gfx = 0;
@@ -609,9 +608,9 @@ static void LoadLinkPartnerObjectEventSpritePalette(u16 graphicsId, u8 localEven
 
     while (i < MAX_LINK_PLAYERS)
     {
-        gender = gLinkPlayers[i].gender;
+        character = gLinkPlayers[i].currCharacterId;
         outfit = gLinkPlayers[i].currOutfitId;
-        gfx = GetPlayerAvatarGraphicsIdByOutfitStateIdAndGender(outfit, PLAYER_AVATAR_STATE_NORMAL, gender);
+        gfx = GetPlayerAvatarGraphicsIdByCharacterOutfitAndStateId(character, outfit, PLAYER_AVATAR_STATE_NORMAL);
         if (graphicsId == gfx && obj != OBJECT_EVENTS_COUNT)
         {
             sprite->oam.paletteNum = adjustedPaletteNum;
@@ -918,7 +917,7 @@ u8 GetPlayerTrainerIdOnesDigit(void)
 
 void GetPlayerBigGuyGirlString(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetCurrentAvatarGender() == MALE)
         StringCopy(gStringVar1, sText_BigGuy);
     else
         StringCopy(gStringVar1, sText_BigGirl);
@@ -926,7 +925,7 @@ void GetPlayerBigGuyGirlString(void)
 
 void GetRivalSonDaughterString(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetCurrentAvatarGender() == MALE)
         StringCopy(gStringVar1, sText_Daughter);
     else
         StringCopy(gStringVar1, sText_Son);
@@ -1604,7 +1603,7 @@ bool8 MonOTNameNotPlayer(void)
 
     GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_OT_NAME, gStringVar1);
 
-    if (!StringCompare(gSaveBlock2Ptr->playerName, gStringVar1))
+    if (!StringCompare(GetCurrentAvatarName(), gStringVar1))
         return FALSE;
 
     return TRUE;

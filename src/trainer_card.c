@@ -700,7 +700,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     u32 playTime;
     u8 i;
 
-    trainerCard->gender = gSaveBlock2Ptr->playerGender;
+    trainerCard->gender = GetCurrentAvatarGender();
     trainerCard->playTimeHours = gSaveBlock2Ptr->playTimeHours;
     trainerCard->playTimeMinutes = gSaveBlock2Ptr->playTimeMinutes;
 
@@ -734,7 +734,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     for (i = 0; i < TRAINER_CARD_PROFILE_LENGTH; i++)
         trainerCard->easyChatProfile[i] = gSaveBlock1Ptr->easyChatProfile[i];
 
-    StringCopy(trainerCard->playerName, gSaveBlock2Ptr->playerName);
+    StringCopy(trainerCard->playerName, GetCurrentAvatarName());
 
     switch (cardType)
     {
@@ -1897,7 +1897,7 @@ static void CreateTrainerCardTrainerPic(void)
     else
     {
         //! TODO: Support outfits on linking
-        u16 picId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, sData->trainerCard.gender, 0);
+        u16 picId = GetPlayerTrainerPicIdByCharacterOutfitType(GetCurrentAvatarCharacter(), GetCurrentAvatarOutfit(), 0);
         CreateTrainerCardTrainerPicSprite(picId,
                     TRUE,
                     sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],

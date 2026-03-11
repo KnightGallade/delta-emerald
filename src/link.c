@@ -313,8 +313,8 @@ void SetLocalLinkPlayerId(u8 playerId)
 static void InitLocalLinkPlayer(void)
 {
     gLocalLinkPlayer.trainerId = gSaveBlock2Ptr->playerTrainerId[0] | (gSaveBlock2Ptr->playerTrainerId[1] << 8) | (gSaveBlock2Ptr->playerTrainerId[2] << 16) | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-    StringCopy(gLocalLinkPlayer.name, gSaveBlock2Ptr->playerName);
-    gLocalLinkPlayer.gender = gSaveBlock2Ptr->playerGender;
+    StringCopy(gLocalLinkPlayer.name, GetCurrentAvatarName());
+    gLocalLinkPlayer.gender = GetCurrentAvatarGender();
     gLocalLinkPlayer.linkType = gLinkType;
     gLocalLinkPlayer.language = gGameLanguage;
     gLocalLinkPlayer.version = gGameVersion + 0x4000;
@@ -324,7 +324,7 @@ static void InitLocalLinkPlayer(void)
     {
         gLocalLinkPlayer.progressFlags |= 0x10;
     }
-    gLocalLinkPlayer.currOutfitId = gSaveBlock2Ptr->currOutfitId;
+    gLocalLinkPlayer.currOutfitId = GetCurrentAvatarOutfit();
 }
 
 static void VBlankCB_LinkError(void)

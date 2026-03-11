@@ -2346,7 +2346,7 @@ static bool8 Mugshot_SetGfx(struct Task *task)
         mugshotColor = MUGSHOT_COLOR_PURPLE;
 
     LoadPalette(sOpponentMugshotsPals[mugshotColor], 0xF0, 0x20);
-    LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerGender], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(6));
+    LoadPalette(sPlayerMugshotsPals[GetCurrentAvatarGender()], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(6));
 
     for (i = 0; i < 20; i++)
     {
@@ -2644,7 +2644,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 
     u8 trainerAPicId = GetTrainerPicFromId(TRAINER_BATTLE_PARAM.opponentA);
     u8 trainerBPicId = GetTrainerPicFromId(TRAINER_BATTLE_PARAM.opponentB);
-    u32 playerPicId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 0);
+    u32 playerPicId = GetPlayerTrainerPicIdByCharacterOutfitType(GetCurrentAvatarCharacter(), GetCurrentAvatarOutfit(), 0);
     u8 partnerPicId = GetTrainerPicFromId(gPartnerTrainerId);
     s16 opponentARotationScales = 0;
     s16 opponentBRotationScales = 0;

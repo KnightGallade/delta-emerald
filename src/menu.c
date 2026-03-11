@@ -2116,7 +2116,7 @@ void AddTextPrinterParameterized5(u8 windowId, u8 fontId, const u8 *str, u8 left
 void PrintPlayerNameOnWindow(u8 windowId, const u8 *src, u16 x, u16 y)
 {
     int count = 0;
-    while (gSaveBlock2Ptr->playerName[count] != EOS)
+    while (GetCurrentAvatarName()[count] != EOS)
         count++;
 
     StringExpandPlaceholders(gStringVar4, src);
@@ -2252,7 +2252,7 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
     switch (textId)
     {
         case SAVE_MENU_NAME:
-            StringCopy(string, gSaveBlock2Ptr->playerName);
+            StringCopy(string, GetCurrentAvatarName());
             break;
         case SAVE_MENU_CAUGHT:
             if (IsNationalPokedexEnabled())

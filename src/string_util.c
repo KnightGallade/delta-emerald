@@ -3,6 +3,7 @@
 #include "text.h"
 #include "strings.h"
 #include "union_room_chat.h"
+#include "main.h"
 
 EWRAM_DATA u8 gStringVar1[0x100] = {0};
 EWRAM_DATA u8 gStringVar2[0x100] = {0};
@@ -450,7 +451,7 @@ static const u8 *ExpandPlaceholder_UnknownStringVar(void)
 
 static const u8 *ExpandPlaceholder_PlayerName(void)
 {
-    return gSaveBlock2Ptr->playerName;
+    return GetCurrentAvatarName();
 }
 
 static const u8 *ExpandPlaceholder_StringVar1(void)
@@ -470,7 +471,7 @@ static const u8 *ExpandPlaceholder_StringVar3(void)
 
 static const u8 *ExpandPlaceholder_KunChan(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetCurrentAvatarGender() == MALE)
         return gText_ExpandedPlaceholder_Kun;
     else
         return gText_ExpandedPlaceholder_Chan;

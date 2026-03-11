@@ -1556,20 +1556,20 @@ static void DebugAction_Util_WatchCredits(u8 taskId)
 
 static void DebugAction_Player_Name(u8 taskId)
 {
-    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldContinueScript);
+    DoNamingScreen(NAMING_SCREEN_PLAYER, GetCurrentAvatarName(), GetCurrentAvatarGender(), 0, 0, CB2_ReturnToFieldContinueScript);
 }
 
 static void DebugAction_Rival_Name(u8 taskId)
 {
-    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldContinueScript);
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, GetCurrentAvatarGender(), 0, 0, CB2_ReturnToFieldContinueScript);
 }
 
 static void DebugAction_Player_Gender(u8 taskId)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        gSaveBlock2Ptr->playerGender = FEMALE;
+    if (GetCurrentAvatarGender() == MALE)
+        SetCurrentAvatarGender(FEMALE);
     else
-        gSaveBlock2Ptr->playerGender = MALE;
+        SetCurrentAvatarGender(MALE);
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
@@ -2985,8 +2985,8 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     CalculateMonStats(&mon);
 
     // give player the mon
-    SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
-    SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    SetMonData(&mon, MON_DATA_OT_NAME, GetCurrentAvatarName());
+    SetMonData(&mon, MON_DATA_OT_GENDER, GetCurrentAvatarGender());
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)

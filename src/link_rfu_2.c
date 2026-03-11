@@ -2054,7 +2054,7 @@ bool32 RfuMain2(void)
 
 static void SetHostRfuUsername(void)
 {
-    StringCopy(gHostRfuUsername, gSaveBlock2Ptr->playerName);
+    StringCopy(gHostRfuUsername, GetCurrentAvatarName());
 }
 
 void ResetHostRfuGameData(void)

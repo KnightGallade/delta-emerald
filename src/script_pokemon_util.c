@@ -372,8 +372,8 @@ u32 BirchCase_GiveMonParameterized(u16 species, u8 level, u16 item, u8 ball, u8 
 #endif
 
     // assign OT name and gender
-    SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
-    SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    SetMonData(&mon, MON_DATA_OT_NAME, GetCurrentAvatarName());
+    SetMonData(&mon, MON_DATA_OT_GENDER, GetCurrentAvatarGender());
 
     // find empty party slot to decide whether the Pokémon goes to the Player's party or the storage system.
     for (i = 0; i < PARTY_SIZE; i++)
@@ -603,8 +603,8 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u
         SetMonData(&mon, MON_DATA_SPECIES, &targetSpecies);
 
     // assign OT name and gender
-    SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
-    SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    SetMonData(&mon, MON_DATA_OT_NAME, GetCurrentAvatarName());
+    SetMonData(&mon, MON_DATA_OT_GENDER, GetCurrentAvatarGender());
 
     if (slot < PARTY_SIZE)
     {

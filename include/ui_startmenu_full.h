@@ -10,14 +10,7 @@ void StartMenuFull_Init(MainCallback callback);
 enum MenuTypes {
     MENU_DEFAULT_MALE = 0,
     MENU_DEFAULT_FEMALE,
-    MENU_EMERALD_BRENDAN,
-    MENU_EMERALD_MAY,
-    MENU_RS_BRENDAN,
-    MENU_RS_MAY,
-    MENU_ORAS_BRENDAN,
-    MENU_ORAS_MAY,
     MENU_FRLG_RED,
-    MENU_FRLG_LEAF,
 };
 
 

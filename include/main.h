@@ -72,5 +72,19 @@ void RestoreSerialTimer3IntrHandlers(void);
 void StartTimer1(void);
 void SeedRngAndSetTrainerId(void);
 u16 GetGeneratedTrainerIdLower(void);
+u8 *GetAvatarName(u8 avatarId);
+u8 GetAvatarGender(u8 avatarId);
+u8 GetAvatarCharacter(u8 avatarId);
+u8 GetAvatarOutfit(u8 avatarId);
+void SetAvatarGender(u8 avatarId, u8 gender);
+void SetAvatarCharacter(u8 avatarId, u8 character);
+void SetAvatarOutfit(u8 avatarId, u8 outfit);
+u8 *GetCurrentAvatarName(void);
+u8 GetCurrentAvatarGender(void);
+u8 GetCurrentAvatarCharacter(void);
+u8 GetCurrentAvatarOutfit(void);
+void SetCurrentAvatarGender(u8 gender);
+void SetCurrentAvatarCharacter(u8 character);
+void SetCurrentAvatarOutfit(u8 outfit);
 
 #endif // GUARD_MAIN_H
